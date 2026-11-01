@@ -2,66 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFDC3606A31A
-	for <ath11k@archiver.kernel.org>; Sat, 31 Oct 2026 22:40:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 840E9606A32C
+	for <ath11k@archiver.kernel.org>; Sun,  1 Nov 2026 12:59:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UTm65SBj;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nKUURtNl
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2JK1D2vJ;
+	dkim=pass (2048-bit key, unprotected) header.d=disroot.org header.i=@disroot.org header.a=rsa-sha256 header.s=mail header.b=Zbq8qJbI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Q5uvZDT1R9J4d3TC3fA2zDEXnWmfjPoepqdpmR39X5E=; b=UTm65SBjXVGW6r
-	ozSzhgzi87bh6zb9PEl82vmT6KbSNmrRWUeOu9+anEkiO8B0LzOVItsJEq2Gj1MKqGeabYYqs2Es3
-	DuskJvGUJ9iLdT9H+7lRPnIurdBgmyh6TdULfUTeYfdN4SCVyLTp3E5Aqj3mkHMpH+M0qlNiq+sZv
-	rv++VV53HWGOxUQRHOEGlJvxmuBnfsWga8XCaeHyQufh3ZQx1iVbxNDPv3zZd28tFDAGr43rvKWF6
-	cuaiCOyHjj28US8HTiOZtFnoSrOIDDSfVdPCpFk8yZ5OEmYWGjuXwdd8tGoiWK4xab/zN+Tcfsvac
-	JbHjFHrzV0IXCNrbOHZA==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=42uUpwxeFlIt+oVlZYyg3MehKD4BJExenLU7k+2MNBE=; b=2JK1D2vJOvDf3aAdas9Obr6LZu
+	iTE8GbWghdCHgXL66Pk5wabhrGmiai3Vf43tZLBI8LZfYmEOqtnpE7RuO7zwaXy4pQF9UlS4NOaTx
+	BJXYOGZaSdk4Mi2oX0bbc3Z2mdNvPkmEB5O6DN16nKVNPCFb/qdrBSbgUpOqG8c8l4GRQRFerC5y6
+	eRgoI68yCaY/AOn0AfeXUkIYue54X8SnXFETcjTsQUAWkP/soJn9sV3gXYvaAlvqK5wBGGNxAgh/o
+	gtqm278lQNm2fuEOciUo9AQ2vpAc1h+e7zQfVDRU2Ste9Kg5U9VOMrYYjrei7pSpYMPqVPRLqNVFa
+	JG1TJVig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNHkN-0000000DjHV-2D7O;
-	Sat, 31 Oct 2026 22:40:23 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xNV9K-0000000EDxg-0vl3;
+	Sun, 01 Nov 2026 12:59:02 +0000
+Received: from layka.disroot.org ([178.21.23.139])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNHkM-0000000DjFt-0BvN;
-	Sat, 31 Oct 2026 22:40:22 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7C07E602CA;
-	Sat, 31 Oct 2026 22:40:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE0291F000C1;
-	Sat, 31 Oct 2026 22:40:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793486420;
-	bh=Q5uvZDT1R9J4d3TC3fA2zDEXnWmfjPoepqdpmR39X5E=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=nKUURtNlbEjHNFFbeN65HrTkp7Y0dEK2zzJ0ulw8wEQ+yhR11bAQ0nYMJgqkETaCh
-	 SpGdwFbN6zPbuzfHtK4lWVvU4glnvwvbZOdiLyxQXCsrQbdNaIEQ2ZxfTkKRHC464I
-	 ob1Pj3aYbYWAHazkmAgVw2suG/bSQu2xWlW1jL/nEVrAJVVMjfteS1ZYg1BLrhQELb
-	 t0zAj3dJairsPJg1P0JUzaFLC26ifKfMxIXi9r7vX1dFgtveiMCdtDDs9hto50Vz1q
-	 9wkziizQB1qarYz130nh6xWKc1L6WuT/Y3CPRuW9r8fis6XuI0CgvQodoJjqhPtCZs
-	 fkSRi240pOEjQ==
-From: Vladimir Zapolskiy <vz@kernel.org>
-To: Jeff Johnson <jjohnson@kernel.org>,
-	Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-Cc: Kalle Valo <kvalo@kernel.org>,
-	Carl Huang <quic_cjhuang@quicinc.com>,
-	Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com>,
-	Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>,
-	Bhagavathi Perumal S <quic_bperumal@quicinc.com>,
-	linux-wireless@vger.kernel.org,
+	id 1xNV9G-0000000EDwt-0iFF
+	for ath11k@lists.infradead.org;
+	Sun, 01 Nov 2026 12:59:00 +0000
+Received: from mail01.layka.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 70E3D80710;
+	Sun, 01 Nov 2026 13:58:53 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id Esdo88_qE1eM; Sun,  1 Nov 2026 13:58:52 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1793537932; bh=6sl3s0b1KzqpQad7r6W0dlFWZcquTtdY7WN+602Jpg4=;
+	h=From:To:Cc:Subject:Date;
+	b=Zbq8qJbIWzsun0y2XIFeg7/KX+NbKsNCqrjoDxGmkBzL4fwlXZVeSG+/CGbMdWyKs
+	 pfUex37BHb4Q9aF/J5BgZ1USh/HD16pG7nXrSOBD84txLi6RgyqiWJNLMCI2XJA2Eh
+	 AAAKLLYhMkyuD6LS+hpnAz675iNkC7fKpauVqQALKcDdH0USzWDGOX1EWGiznQh3kI
+	 eEeClwNexVxFEpGaEdaxwVG/80XA9hrRIZjQ8jbqRCHlcawFQx4W/rGv2d/HDwx7Il
+	 pwKXkr8bD2DardiPhwDEvtgW/L6NEr/rAPDnnhGvr/RnSXaql8MXJH6RVTjMKmXG4N
+	 spEZQ3H9wql+A==
+From: Florian Maurer <fmaurer@disroot.org>
+To: Jeff Johnson <jjohnson@kernel.org>
+Cc: Florian Maurer <fmaurer@disroot.org>,
 	ath11k@lists.infradead.org,
-	ath12k@lists.infradead.org
-Subject: [PATCH v2 2/2] wifi: ath12k: Unprepare MHI on power up failure
-Date: Sun,  1 Nov 2026 00:40:09 +0200
-Message-ID: <20261031224009.2323055-3-vz@kernel.org>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20261031224009.2323055-1-vz@kernel.org>
-References: <20261031224009.2323055-1-vz@kernel.org>
+	linux-wireless@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Julius Bairaktaris <julius@bairaktaris.de>,
+	Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
+	Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>,
+	Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
+Subject: [PATCH ath-next 0/3] wifi: ath11k: more firmware crash recovery fixes for AHB
+Date: Sun,  1 Nov 2026 12:58:00 +0000
+Message-ID: <cover.1793531790.git.fmaurer@disroot.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261101_045858_640461_E264C46E 
+X-CRM114-Status: GOOD (  11.91  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,98 +75,67 @@ List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-If MHI power up fails, ath12k_mhi_start() returns with MHI still left in
-the ATH12K_MHI_INIT state, and on this error ath12k_core_soc_create()
-frees the MHI controller data, but does not power down the device and
-does not free the MHI device context and the RDDM image table allocated
-earlier by mhi_prepare_for_power_up(), this is reported by kmemleak:
+Three patches on top of Julius Bairaktaris' "wifi: ath11k: firmware crash
+recovery fixes" v2 [1], for firmware crash recovery on IPQ8074 (AHB).
 
-  unreferenced object 0xffff00081c048100 (size 64):
-    comm "(udev-worker)", pid 556, jiffies 4294893304
-    hex dump (first 32 bytes):
-      00 50 1d 80 00 80 ff ff 00 d0 df 80 00 80 ff ff  .P..............
-      00 d0 05 81 00 80 ff ff 00 d0 fd ff 00 00 00 00  ................
-    backtrace (crc 87372616):
-      kmemleak_alloc+0x3c/0x50
-      __kmalloc_cache_noprof+0x248/0x430
-      mhi_prepare_for_power_up+0x60/0x558 [mhi]
-      ath12k_mhi_start+0x44/0x1c8 [ath12k]
-      ath12k_pci_power_up+0x1f4/0x398 [ath12k]
-      ath12k_core_init+0x128/0x510 [ath12k]
-      ath12k_pci_probe+0x814/0xe30 [ath12k]
-      local_pci_probe+0x48/0xb8
-      pci_call_probe+0x6c/0x1a0
-      pci_device_probe+0xb4/0x148
-      really_probe+0xc4/0x2a8
-      __driver_probe_device+0x174/0x1b0
-      driver_probe_device+0x44/0x128
-      __driver_attach+0xa0/0x1b0
-      bus_for_each_dev+0x7c/0xe8
-      driver_attach+0x2c/0x40
+Patch 1 keeps the ext IRQs from being disabled twice when a recovery
+follows a failed one. With 2/5 and 3/5 of [1] a failed recovery is
+recoverable, but without this patch TX completions stop afterwards.
 
-After a failed power up in the reset or resume path the device stays
-bound, but ath12k_pci_power_down() does not stop MHI, because
-ATH12K_PCI_FLAG_INIT_DONE is not set. So the resources are leaked on
-removal as well, and the stale ATH12K_MHI_INIT state bit makes every
-later ath12k_mhi_start() fail until the device is rebound.
+Patch 2 turns the "select RPMSG" of ATH11K_AHB into a dependency, which
+patch 3 needs to depend on QCOM_RPROC_COMMON without a recursive
+Kconfig dependency.
 
-Release a prepared but not powered up MHI controller in
-ath12k_mhi_unregister() and before preparing it again in
-ath12k_mhi_start(). It is intentionally not released on the power up
-error path, because the RDDM image may still be read by a firmware
-crash dump collection in the reset work.
+Patch 3 stops TX before remoteproc resets WCSS on a firmware crash.
+Today a TX in that window ends in an asynchronous SError and a kernel
+panic. It depends on 4/5 of [1].
 
-Fixes: d889913205cf ("wifi: ath12k: driver for Qualcomm Wi-Fi 7 devices")
-Signed-off-by: Vladimir Zapolskiy <vz@kernel.org>
----
- drivers/net/wireless/ath/ath12k/mhi.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Patches 1 and 3 were tested on a Xiaomi AX3600 (IPQ8074,
+WLAN.HK.2.9.0.1-02146) together with [1], backported to
+backports-6.18.55 (OpenWrt 25.12), with real firmware asserts under AP
+and mesh load, with simulated crashes, and with a forced failed
+recovery followed by another crash.
 
-diff --git a/drivers/net/wireless/ath/ath12k/mhi.c b/drivers/net/wireless/ath/ath12k/mhi.c
-index ee87f00bc5de..1b8d47eb5984 100644
---- a/drivers/net/wireless/ath/ath12k/mhi.c
-+++ b/drivers/net/wireless/ath/ath12k/mhi.c
-@@ -276,10 +276,22 @@ int ath12k_mhi_register(struct ath12k_pci *ab_pci)
- 	return ret;
- }
- 
-+/* MHI stays prepared after a failed power up, release it here */
-+static void ath12k_mhi_unprepare_stale(struct ath12k_pci *ab_pci)
-+{
-+	if (!test_bit(ATH12K_MHI_INIT, &ab_pci->mhi_state) ||
-+	    test_bit(ATH12K_MHI_POWER_ON, &ab_pci->mhi_state))
-+		return;
-+
-+	mhi_unprepare_after_power_down(ab_pci->mhi_ctrl);
-+	clear_bit(ATH12K_MHI_INIT, &ab_pci->mhi_state);
-+}
-+
- void ath12k_mhi_unregister(struct ath12k_pci *ab_pci)
- {
- 	struct mhi_controller *mhi_ctrl = ab_pci->mhi_ctrl;
- 
-+	ath12k_mhi_unprepare_stale(ab_pci);
- 	mhi_unregister_controller(mhi_ctrl);
- 	kfree(mhi_ctrl->irq);
- 	mhi_free_controller(mhi_ctrl);
-@@ -485,6 +497,8 @@ int ath12k_mhi_start(struct ath12k_pci *ab_pci)
- 
- 	ab_pci->mhi_ctrl->timeout_ms = MHI_TIMEOUT_DEFAULT_MS;
- 
-+	ath12k_mhi_unprepare_stale(ab_pci);
-+
- 	ret = ath12k_mhi_set_state(ab_pci, ATH12K_MHI_INIT);
- 	if (ret)
- 		goto out;
+Not covered yet, both to be addressed separately:
+- A second firmware crash 10-20 ms after the firmware is up again can
+  make the QMI firmware start fail before the CE pipes are set up
+  again; the next recovery then dereferences the cleared srngs in
+  ath11k_ce_cleanup_pipes(). This is not caused by these patches; I'm
+  reporting it in the thread of [1].
+- A crash within the few milliseconds before the restart work clears
+  ATH11K_FLAG_CRASH_FLUSH (see patch 3).
+
+[1] https://lore.kernel.org/linux-wireless/20261018210153.1925962-1-julius@bairaktaris.de/
+
+Florian Maurer (3):
+  wifi: ath11k: don't disable ext IRQs twice
+  wifi: ath11k: depend on RPMSG instead of selecting it
+  wifi: ath11k: ahb: stop TX before WCSS is reset on a firmware crash
+
+ drivers/net/wireless/ath/ath11k/Kconfig |  3 +-
+ drivers/net/wireless/ath/ath11k/ahb.c   | 63 ++++++++++++++++++++++++-
+ drivers/net/wireless/ath/ath11k/ahb.h   |  2 +
+ drivers/net/wireless/ath/ath11k/ce.c    |  7 +++
+ drivers/net/wireless/ath/ath11k/core.c  |  1 +
+ drivers/net/wireless/ath/ath11k/hw.h    |  1 +
+ drivers/net/wireless/ath/ath11k/pcic.c  |  4 +-
+ 7 files changed, 76 insertions(+), 5 deletions(-)
+
+
+base-commit: 7b14c8f4a9615579b09cbcdc4515b65ae6124753
+prerequisite-patch-id: cd9f2849ade92e165f15fe3f887edabd1d06b6e8
+prerequisite-patch-id: 3c9ba2aec0d93942448aba1dc5d26b632d519e5a
+prerequisite-patch-id: 9a833c602db147b490fba6df590eeea3847f4877
+prerequisite-patch-id: 6fd3e11242fb3ead65751e3cd9972c4d7c63f989
+prerequisite-patch-id: 01e149ed860e5e40e79725580548ce4034f344b2
 -- 
-2.51.0
+2.47.3
 
 
