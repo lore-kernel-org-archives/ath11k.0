@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7824C606A33F
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 628A5606A324
 	for <ath11k@archiver.kernel.org>; Mon,  2 Nov 2026 05:14:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kE0P/ZP5;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XS2sL0cz
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bZAoIc+t;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=m75/0I0P
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=0ggQvw09iPL5Urt/5zaC/WmW/k5FcSA219ACP9yk0DA=; b=kE0P/ZP5I2+CjjSJF0BFOGlsUm
-	sgYXiM/dTVbzHaDKBalrnmuxJYz4Za3RXH2F2sTOSnm/4gGxTVm/cjmGaiLErH7y8SyCDw5dNoPYS
-	V23ViWDlsghCM7ZbEtv5OOnrU/fhr2ousFNfOMv5gDlovdrvdYFHWPa6IarmrH92LaeQg/fUKVd0s
-	4FIlU3+cQw2OlTv87Pxi9YZD4GF893L71CoE9FMQmPMHtErJqz5YAHb1dAms4TEp/wKWUb9Tc788Z
-	jKFLgZPpg+2Ykd495L8OYJJG7UuvOugiFnsoPpGexn0po+wHIwvTGQs88W6F0KbaBuJ4ein47/Ovz
-	/n+LlaAg==;
+	bh=XVpNLH2FiGtscLNxG2j1l4l4r0lRErkiBU7Q0Ju5Pww=; b=bZAoIc+trjeI9qsP0vsMHgnIhf
+	anoACKqO2QXZ1Pn+jY7XSzv0GsJqc2TN5QIp/D/y7N8lFI3NZFr08zNbBOsrHRBGDYBDUxIPxJVlf
+	o3GX8ikOX7mqbzLd914vNzHNLRRtFgaP6fBjLCdkDaZP81OAUdySmEjLOIfo4Q5ySFjaL7TIFA99A
+	gV7I0as3894nJdLVx/h1cPNd4rT+5azfrzqhLF94ydEC4/JmNaSGggqy6wdHKhRkZ8xIQdNR3WYmr
+	TEf/0CQnSe7iQGyTorDVQ6b2HoS1icI65u5OMn6jTJZ12dXPG4BHGVCHceX/4LzRFz1zp/HPUlIKH
+	i5cOChJg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNkN4-0000000FXyi-0Ta3;
+	id 1xNkN4-0000000FXyd-0Aqp;
 	Mon, 02 Nov 2026 05:14:14 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNkN2-0000000FXx3-1MSR
+	id 1xNkN2-0000000FXxG-1MVB
 	for ath11k@lists.infradead.org;
 	Mon, 02 Nov 2026 05:14:12 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 39E876062B;
+	by tor.source.kernel.org (Postfix) with ESMTP id 9CD1B60A50;
 	Mon,  2 Nov 2026 05:14:11 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1793596450;
-	b=lDmRqVHFV0ccJNe0kYQZa/XEkWgUCYCHgIjh6Hk26SuaWsYXCf/ohACjeAXZXOpTffhl
-	 djM4+nTZVpLjhvgjuf8d49BErwxVQ2jYmf52LZt5sza6yyjdh+az8R7D+TcaqgB4rrXl8
-	 65YjQnhtkxjMFugA1uWsuS/mkmK14XwolBlY+sB13johKAGZ8+sgEUJ6SzgQFtoApxP9E
-	 wCxZGj7+8LS12NSuitywBwtGhCMPh57TjflYukE/3IdjBMS7wrX/AyO+qhZ9Urog9nFP1
-	 Vht5Up7XhApdSkRrKC97atf+b68s9zTsmiZ+yC4nIIo2HJ1q8MvhmmHnMtOXhMcfOSg==
+	t=1793596451;
+	b=0GuZFyoX0iSk1sYLZdM4tkNXhp4HJJR5znm/WIeTRO0qv0XRikOO6pXBGEh36ZoCigjA
+	 YehbQ6bgkZbalgPkGC+FAxUe9OY1Mlb6QHC7vgFnYihxpEPEWgnlEgrVWblvC/alq0fhL
+	 aggx2+lScsgLKUxbIIzkLD1lh8o9QXUJO4pgoCvYtjXkJ+L43AyVK4UP4WEZP0Ii+vrd/
+	 jaVAWKvwrrWCkkY3p2jh+lmZD/gCBSe5/Uc5N7Osfwc5IVfYHsATL1vu6cnj0XGg0CAo+
+	 z3btkCKUgpKSjUaEmz9oflkRX5IW3TXRjmrv+BuAobQsDMB3twGhj0qZ2WxvqkJd06Q==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1793596450;
+	c=relaxed/relaxed; t=1793596451;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=0ggQvw09iPL5Urt/5zaC/WmW/k5FcSA219ACP9yk0DA=;
-	b=EeVYKCdBPnW1dGCEAOi9nDkDtJXWYUOz7u4z/2zj6nAsq48VBaCg68zQsfOedT/HET1R
-	 H/mUac/Al8gXNx/I+SBft7B1UX5UTmRBh0P3LOW7USg/gIoQHFyb1ybEa+qGepMgSPKUB
-	 lhJwmhqHTAWdeBRkSMRepntFuVefH+FZS06/AxDhUSyNG2nItBR5Qkg0mTheVjegkI5Ei
-	 C3Av7aSZ6U2DkumqH94FnzqtewdtnOH8hCwBNGvQWIZbIDFsQIiiKyCiDnNhrhtbHw33E
-	 WiECLPXZjnw2S02sIC9UHM6XlCqsJWQs+7rIVIVe1uNdUvqSGg+y77/u7o/yu8zcIRw==
+	bh=XVpNLH2FiGtscLNxG2j1l4l4r0lRErkiBU7Q0Ju5Pww=;
+	b=szlP+/cdyvY9nmNQOacHM58VjGmh3FqJzZrDtneXqY8Bv/ujvy7a/YfqT6snfanh9tot
+	 E1rJUOy/Hfvsh0bjPqaGQXW0lwG02KvSf/QNjGH/sM7URtxaju244aTKk9seDSY5dp5Ms
+	 kElXCWetkhOKkWOBHO5TQhBYHPb0sMLZ5RAHXdv2Ncs+bsJaw3gwEEe+auSdHfLig0utP
+	 wUR/fmy3tiXe82Y3OD+5jeZHnEJgmo6DR9BabzoFrnQhTNxf8i+iVbMOmh4TIMp0dE2vy
+	 wgoUwBLRpBgtSpolW03VyV3r2U/ORm2kq4oQUmyMDZXAZG6+Ipgm9bsp3TNOynuE64w==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id A7CA21F000C1;
+	by smtp.kernel.org (Postfix) with ESMTPS id A80741F00919;
 	Mon,  2 Nov 2026 05:14:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793596450;
-	bh=0ggQvw09iPL5Urt/5zaC/WmW/k5FcSA219ACP9yk0DA=;
+	s=k20260515; t=1793596451;
+	bh=XVpNLH2FiGtscLNxG2j1l4l4r0lRErkiBU7Q0Ju5Pww=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=XS2sL0czj+K/nYZvseHUeCsZNxT4InGz1XmcnaatY3U2eIKq8ZGv+gI5DUHErgN23
-	 lQupHDpV2uqXlaYTzI6Nh++PoVHXvdLgrUh05GphrFfDfx1p3h51aos+YFtptd8g3y
-	 Ulj3q6CrPczeBjpi+AaREte2Q/xIiJIt7kMYmKHo5BGLVkrCkloYUmAMtJya6zDapR
-	 6uac2jQ+FXsY4/uEMiUQXzsPmH0qHjRmk3yl2QCXvDaE5OZgKzStKWNEajzLofVI6p
-	 Zx5pWcLsSB8qNcO1xhBK5g52KZdDeSvYua7jkluryCEP0y1k+1MRqf6LTXsJklY7Vb
-	 nmdv2igXU6a0A==
+	b=m75/0I0PEglcwwJU6K1P0MJCo7Q9sOaU4YeKM1IQand65duGVCPAIzQQruJ7WqKjD
+	 Yh+9uh9BHB89nKPvD95lUjp7xlW67jtrxSra88n+gxtUYmsrg/TDF0Fe4QdTq6rYXW
+	 vHI32SuRGjiyHg7pBvg1DVMZ7yvT+JF6s69v2okMWAgaulXPZskC8y89FHHItilhOr
+	 gv2fiYzwOdck8+ZNZ1Vinb1YQMTHNENZVNVQNdry2OlWUyCH7Q7UQR0QklQ026CsCi
+	 QKp0bmHac1gmGCyb/tVV18o3m/69cxjOudDU3gaGFRdf2GjDB2UV+r6gvy0hcWMs2I
+	 QEE3oXRl9xCNA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 19BA84637E;
+	by lkml.kernel.org (Postfix) with ESMTP id 32EE446386;
 	Mon,  2 Nov 2026 05:14:09 +0000 (UTC)
 From: Christopher Griffin via B4 Relay <devnull+christophergriffin05.gmail.com@kernel.org>
-Date: Sun, 01 Nov 2026 23:14:09 -0600
-Subject: [PATCH ath-next 1/3] wifi: ath11k: size monitor MPDUs by the
- chip's rx descriptor
+Date: Sun, 01 Nov 2026 23:14:11 -0600
+Subject: [PATCH ath-next 3/3] wifi: ath11k: report a monitor frame's MCS
+ and NSS only from the PPDU's SIG
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261101-b8-monitor-frames-v1-1-f0a43d9630e5@gmail.com>
+Message-Id: <20261101-b8-monitor-frames-v1-3-f0a43d9630e5@gmail.com>
 References: <20261101-b8-monitor-frames-v1-0-f0a43d9630e5@gmail.com>
 In-Reply-To: <20261101-b8-monitor-frames-v1-0-f0a43d9630e5@gmail.com>
 To: Jeff Johnson <jjohnson@kernel.org>, 
@@ -99,11 +99,11 @@ Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
  Rajkumar Manoharan <rmanohar@codeaurora.org>, 
  Christopher Griffin <christophergriffin05@gmail.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1793596448; l=4542;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1793596448; l=4679;
  i=christophergriffin05@gmail.com; s=20261024; h=from:subject:message-id;
- bh=A4A9iBgn+H+lp5REIyv/F4O/tf6R5XCCM4Z11kdHy5w=;
- b=AavwHSr+3kshmLM+ZxJ3/rk3ost96GccyiyjZevVa+7h4ZAXMRVU4XiKgJYwiN4tT4O2bP3qT
- lEwPl9Jdrt5DGPCMGUeGzlyNEAF1VvTZ8f2WJiwDLnqJvD2Zve3Ss8U
+ bh=J4jRf5l59+FWEVGn47cCD/3aF3TptpB1fGEP1KJUXLA=;
+ b=bmG75PeLmhL3oUTVAm+ZrW60a0gibEUkuhKP79wvs56n1yY43XiE9zmwYPAl4VwJ4b5VqU79V
+ 6hPVtoKyQnUBCed6G7Zy0QidhWv6iD3jnpQ+hKWbuBg3JvKL23gUjT6
 X-Developer-Key: i=christophergriffin05@gmail.com; a=ed25519;
  pk=oa9tkTNpiGoFWdGvpDHXLSobApmsh9BfrJRJrRJAvWA=
 X-Endpoint-Received: by B4 Relay for
@@ -131,116 +131,115 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Christopher Griffin <christophergriffin05@gmail.com>
 
-The monitor destination ring path sets each buffer's length from
-sizeof(struct hal_rx_desc), but pulls the chip's own descriptor,
-hw_params.hal_desc_sz, off its front. struct hal_rx_desc is the union
-of the descriptors of all supported chips; it is 392 bytes, WCN6855's
-size. IPQ8074, IPQ6018 and QCN9074 use a 384-byte descriptor, so on
-them every MPDU a monitor interface gets ends with 8 bytes the hardware
-did not write. After the RAW path trims the FCS, a frame still carries
-its FCS plus 4 stale bytes, and the radiotap header flags neither.
-Wireshark shows such management frames as malformed.
+ath11k_update_radiotap() sets an HT, VHT or HE monitor frame's
+rate_idx from ppduinfo->rate. That is the L-SIG rate code, not the MCS
+that the SIG TLV gave (ppduinfo->mcs). ath12k had the same bug, fixed
+by commit 10085a654a4c ("wifi: ath12k: fix incorrect HT/VHT/HE/EHT MCS
+reporting in monitor mode").
 
-ath11k_dp_mon_set_frag_len() uses the same size for the payload of a
-continuation buffer, so the last buffer of a long MPDU is another
-8 bytes too long for each buffer before it.
+The function also takes the preamble from the PPDU's user stats, which
+can arrive without the SIG TLV. The status of one PPDU can span more
+than one buffer, and since commit 01d2f285e3e5 ("ath11k: decode HE
+status tlv") ppdu_info holds only what the last buffer had. The frame
+then goes up as VHT or HE with MCS 0 and no spatial stream, and
+mac80211 drops it, warning once:
 
-Use hal_desc_sz in both places, as the rest of the rx path does.
+  Rate marked as a VHT rate but data is invalid: MCS: 0, NSS: 0
 
-Seen on an Arista C-360 (IPQ8074 plus QCN9074): a monitor capture of a
-management frame had the FCS and 4 more bytes after the body.
+An Arista C-360 with monitor interfaces up logs this, and the HE
+equivalent, once per boot. Because the warning is WARN_ONCE(), every
+later such frame is dropped without a message.
 
-Fixes: e4073430ee1d ("ath11k: add dp support for WCN6855")
+Take the MCS from ppduinfo->mcs, adding the stream offset for HT.
+Use the PPDU's HT, VHT or HE rate only when its SIG TLV was seen with a
+valid NSS and MCS. Otherwise keep the rate from the MPDU's rx
+descriptor, and if that names VHT or HE with no stream, report one
+rather than lose the frame.
+
+ath11k_dp_rx_deliver_msdu() sets RX_FLAG_RADIOTAP_HE on the rx_status
+that all skbs of an MPDU share. Clear the HE radiotap flags for each
+skb, so that each skb's flags match the radiotap data pushed onto it.
+
+Fixes: ab0a9ef605cf ("ath11k: translate HE status to radiotap format")
 Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.r4-00683-QCAHKSWPL_SILICONZ-1
 
 Assisted-by: Claude:claude-opus-5-5
 Signed-off-by: Christopher Griffin <christophergriffin05@gmail.com>
 ---
- drivers/net/wireless/ath/ath11k/dp_rx.c | 26 ++++++++++++++++----------
- 1 file changed, 16 insertions(+), 10 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 37 ++++++++++++++++++++++++++++++---
+ 1 file changed, 34 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 31faeda461acf..4e0b717b6f06d 100644
+index 7809c92baa325..53d7b19d8807c 100644
 --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -4524,10 +4524,13 @@ int ath11k_dp_rx_pdev_alloc(struct ath11k_base *ab, int mac_id)
- 	return 0;
- }
+@@ -5075,26 +5075,49 @@ static void ath11k_update_radiotap(struct ath11k *ar,
+ 	rxs->flag |= RX_FLAG_MACTIME_START;
+ 	rxs->signal = ppduinfo->rssi_comb + ath11k_noise_floor(ar, rxs->freq);
  
--static void ath11k_dp_mon_set_frag_len(u32 *total_len, u32 *frag_len)
-+static void ath11k_dp_mon_set_frag_len(struct ath11k_base *ab,
-+				       u32 *total_len, u32 *frag_len)
- {
--	if (*total_len >= (DP_RX_BUFFER_SIZE - sizeof(struct hal_rx_desc))) {
--		*frag_len = DP_RX_BUFFER_SIZE - sizeof(struct hal_rx_desc);
-+	u32 hal_rx_desc_sz = ab->hw_params.hal_desc_sz;
++	/* Each skb of the MPDU carries its own HE radiotap data, if any:
++	 * drop the flags the last one left, ath11k_dp_rx_deliver_msdu()
++	 * included.
++	 */
++	rxs->flag &= ~(RX_FLAG_RADIOTAP_HE | RX_FLAG_RADIOTAP_HE_MU);
 +
-+	if (*total_len >= (DP_RX_BUFFER_SIZE - hal_rx_desc_sz)) {
-+		*frag_len = DP_RX_BUFFER_SIZE - hal_rx_desc_sz;
- 		*total_len -= *frag_len;
++	/* An HT, VHT or HE PPDU's MCS and NSS come from its SIG TLV, its
++	 * preamble type (the *_flags) from its user stats. The status can
++	 * hold the latter without the former, as when it spans more than
++	 * one buffer. Keep the rate the MPDU's rx descriptor gave
++	 * (ath11k_dp_rx_h_ppdu()) then: reporting the preamble with no
++	 * spatial stream gets the frame dropped by mac80211.
++	 */
++	if ((ppduinfo->he_mu_flags || ppduinfo->he_flags ||
++	     ppduinfo->vht_flags || ppduinfo->ht_flags) &&
++	    (!ppduinfo->nss || ppduinfo->nss > HAL_RX_MAX_NSS ||
++	     ppduinfo->mcs > ATH11K_HE_MCS_MAX))
++		goto out;
++
+ 	if (ppduinfo->nss)
+ 		rxs->nss = ppduinfo->nss;
+ 
++	/* ppduinfo->rate is the L-SIG rate; an HT, VHT or HE PPDU's MCS is
++	 * ppduinfo->mcs, as the SIG TLV gives it.
++	 */
+ 	if (ppduinfo->he_mu_flags) {
+ 		rxs->flag |= RX_FLAG_RADIOTAP_HE_MU;
+ 		rxs->encoding = RX_ENC_HE;
+ 		ptr = skb_push(mon_skb, sizeof(struct ieee80211_radiotap_he_mu));
+ 		ath11k_dp_rx_update_radiotap_he_mu(ppduinfo, ptr);
++		rxs->rate_idx = ppduinfo->mcs;
+ 	} else if (ppduinfo->he_flags) {
+ 		rxs->flag |= RX_FLAG_RADIOTAP_HE;
+ 		rxs->encoding = RX_ENC_HE;
+ 		ptr = skb_push(mon_skb, sizeof(struct ieee80211_radiotap_he));
+ 		ath11k_dp_rx_update_radiotap_he(ppduinfo, ptr);
+-		rxs->rate_idx = ppduinfo->rate;
++		rxs->rate_idx = ppduinfo->mcs;
+ 	} else if (ppduinfo->vht_flags) {
+ 		rxs->encoding = RX_ENC_VHT;
+-		rxs->rate_idx = ppduinfo->rate;
++		rxs->rate_idx = ppduinfo->mcs;
+ 	} else if (ppduinfo->ht_flags) {
+ 		rxs->encoding = RX_ENC_HT;
+-		rxs->rate_idx = ppduinfo->rate;
++		rxs->rate_idx = ppduinfo->mcs + 8 * (ppduinfo->nss - 1);
  	} else {
- 		*frag_len = *total_len;
-@@ -4675,7 +4678,8 @@ static bool ath11k_dp_rx_mon_comp_ppduid(u32 msdu_ppdu_id, u32 *ppdu_id,
- 	return false;
+ 		rxs->encoding = RX_ENC_LEGACY;
+ 		sband = &ar->mac.sbands[rxs->band];
+@@ -5102,6 +5125,14 @@ static void ath11k_update_radiotap(struct ath11k *ar,
+ 							  ppduinfo->cck_flag);
+ 	}
+ 
++out:
++	/* The descriptor can name VHT or HE with no spatial stream too.
++	 * Report one rather than lose the frame.
++	 */
++	if ((rxs->encoding == RX_ENC_VHT || rxs->encoding == RX_ENC_HE) &&
++	    !rxs->nss)
++		rxs->nss = 1;
++
+ 	rxs->mactime = ppduinfo->tsft;
  }
- 
--static void ath11k_dp_mon_get_buf_len(struct hal_rx_msdu_desc_info *info,
-+static void ath11k_dp_mon_get_buf_len(struct ath11k_base *ab,
-+				      struct hal_rx_msdu_desc_info *info,
- 				      bool *is_frag, u32 *total_len,
- 				      u32 *frag_len, u32 *msdu_cnt)
- {
-@@ -4684,11 +4688,11 @@ static void ath11k_dp_mon_get_buf_len(struct hal_rx_msdu_desc_info *info,
- 			*total_len = info->msdu_len;
- 			*is_frag = true;
- 		}
--		ath11k_dp_mon_set_frag_len(total_len,
-+		ath11k_dp_mon_set_frag_len(ab, total_len,
- 					   frag_len);
- 	} else {
- 		if (*is_frag) {
--			ath11k_dp_mon_set_frag_len(total_len,
-+			ath11k_dp_mon_set_frag_len(ab, total_len,
- 						   frag_len);
- 		} else {
- 			*frag_len = info->msdu_len;
-@@ -4826,7 +4830,7 @@ u32 ath11k_dp_rx_mon_mpdu_pop(struct ath11k *ar, int mac_id,
- 
- 			rx_desc = (struct hal_rx_desc *)msdu->data;
- 
--			rx_pkt_offset = sizeof(struct hal_rx_desc);
-+			rx_pkt_offset = ar->ab->hw_params.hal_desc_sz;
- 			l2_hdr_offset = ath11k_dp_rx_h_msdu_end_l3pad(ar->ab, rx_desc);
- 
- 			if (is_first_msdu) {
-@@ -4855,7 +4859,8 @@ u32 ath11k_dp_rx_mon_mpdu_pop(struct ath11k *ar, int mac_id,
- 				pmon->mon_last_linkdesc_paddr = paddr;
- 				is_first_msdu = false;
- 			}
--			ath11k_dp_mon_get_buf_len(&msdu_list.msdu_info[i],
-+			ath11k_dp_mon_get_buf_len(ar->ab,
-+						  &msdu_list.msdu_info[i],
- 						  &is_frag, &total_len,
- 						  &frag_len, &msdu_cnt);
- 			rx_buf_size = rx_pkt_offset + l2_hdr_offset + frag_len;
-@@ -5458,7 +5463,7 @@ ath11k_dp_rx_full_mon_mpdu_pop(struct ath11k *ar,
- 
- 			rx_desc = (struct hal_rx_desc *)msdu->data;
- 
--			rx_pkt_offset = sizeof(struct hal_rx_desc);
-+			rx_pkt_offset = ar->ab->hw_params.hal_desc_sz;
- 			l2_hdr_offset = ath11k_dp_rx_h_msdu_end_l3pad(ar->ab, rx_desc);
- 
- 			if (is_first_msdu) {
-@@ -5471,7 +5476,8 @@ ath11k_dp_rx_full_mon_mpdu_pop(struct ath11k *ar,
- 				is_first_msdu = false;
- 			}
- 
--			ath11k_dp_mon_get_buf_len(&msdu_list.msdu_info[i],
-+			ath11k_dp_mon_get_buf_len(ar->ab,
-+						  &msdu_list.msdu_info[i],
- 						  &is_frag, &total_len,
- 						  &frag_len, &msdu_cnt);
  
 
 -- 
