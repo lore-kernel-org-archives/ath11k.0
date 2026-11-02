@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38A1D60A260A
-	for <ath11k@archiver.kernel.org>; Mon,  2 Nov 2026 05:14:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7824C606A33F
+	for <ath11k@archiver.kernel.org>; Mon,  2 Nov 2026 05:14:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qNbe43g2;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HqP57x08
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kE0P/ZP5;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XS2sL0cz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=b1mZsSOMetU/Ho2p5NPS0yaILwy9cETrZxqZYB3+uRw=; b=qNbe43g2wUudmLWrS25ToOChcO
-	WKMaHpNV6ewoQ9D6vJVI3oZfNrruxBgqRHKngmP/Mq3FUf1yO3BdKr4yRC3iMupBnHHmarkgn4fJq
-	ZaZsp8QYKuvasrzYjDLFFjwRH81fFOjhcawwy/D9HiXY0VwbYARMmSfhh0oiVcf4WqjLujR52q7aN
-	A6TcpdY5v+fm+QlYtgLpbDDPQFLYQdBuvMdkXd/pV9VduuE5ZU7doca7zffZ2BF7OgRr+svslwGNP
-	jDpPBF2gtLUkgerf4+7rJrJpq9eP2TSVfH40BvCYOcInHuso72U7LAspjORSl+TwFz4DCjnO2syHm
-	EkizPT/g==;
+	bh=0ggQvw09iPL5Urt/5zaC/WmW/k5FcSA219ACP9yk0DA=; b=kE0P/ZP5I2+CjjSJF0BFOGlsUm
+	sgYXiM/dTVbzHaDKBalrnmuxJYz4Za3RXH2F2sTOSnm/4gGxTVm/cjmGaiLErH7y8SyCDw5dNoPYS
+	V23ViWDlsghCM7ZbEtv5OOnrU/fhr2ousFNfOMv5gDlovdrvdYFHWPa6IarmrH92LaeQg/fUKVd0s
+	4FIlU3+cQw2OlTv87Pxi9YZD4GF893L71CoE9FMQmPMHtErJqz5YAHb1dAms4TEp/wKWUb9Tc788Z
+	jKFLgZPpg+2Ykd495L8OYJJG7UuvOugiFnsoPpGexn0po+wHIwvTGQs88W6F0KbaBuJ4ein47/Ovz
+	/n+LlaAg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNkN1-0000000FXx8-319B;
-	Mon, 02 Nov 2026 05:14:11 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xNkN4-0000000FXyi-0Ta3;
+	Mon, 02 Nov 2026 05:14:14 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNkN1-0000000FXwd-0kDm
+	id 1xNkN2-0000000FXx3-1MSR
 	for ath11k@lists.infradead.org;
-	Mon, 02 Nov 2026 05:14:11 +0000
+	Mon, 02 Nov 2026 05:14:12 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id E526B440AC;
-	Mon,  2 Nov 2026 05:14:10 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 39E876062B;
+	Mon,  2 Nov 2026 05:14:11 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1793596450;
-	b=SoM6v+SgMq6uLs4sMzY/0mr0PcECPEGOJpSOTFTsjA71ih7oAyFNp1v5lB63j+jHOg1F
-	 3sxsaHDM+Nxq2IDZ3ykRVsxUySQjfCYHbyfHULIGUijTNmzQYeojzqtRvnQIhGueznQea
-	 PDJPQ3Xe8Oc33OQ016Ux56Ul4mtmd6PYB810lKvlQ7pFEsLjBfkcC4n4FOb/XAs4uAtzP
-	 7cCbMoFzVoGwt/fHEv57AwUKQuXt0GBJ3i7orhCa931j/TfENmo0VFYBnon6w7riQtBE9
-	 sB/EVca7+MWMLXrh80gcsVHhjJqFhPgxKkL4dBjisW53NErY41TxkIjLSfqSVhpIxaQ==
+	b=lDmRqVHFV0ccJNe0kYQZa/XEkWgUCYCHgIjh6Hk26SuaWsYXCf/ohACjeAXZXOpTffhl
+	 djM4+nTZVpLjhvgjuf8d49BErwxVQ2jYmf52LZt5sza6yyjdh+az8R7D+TcaqgB4rrXl8
+	 65YjQnhtkxjMFugA1uWsuS/mkmK14XwolBlY+sB13johKAGZ8+sgEUJ6SzgQFtoApxP9E
+	 wCxZGj7+8LS12NSuitywBwtGhCMPh57TjflYukE/3IdjBMS7wrX/AyO+qhZ9Urog9nFP1
+	 Vht5Up7XhApdSkRrKC97atf+b68s9zTsmiZ+yC4nIIo2HJ1q8MvhmmHnMtOXhMcfOSg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1793596450;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=b1mZsSOMetU/Ho2p5NPS0yaILwy9cETrZxqZYB3+uRw=;
-	b=c3SaLZ0KxE89cipnrTrCpGoH9FKDYMjT12wyq1XPbs55qUKxJSAL6W/caCczlWOPH00U
-	 KtZKR6+YTAAqVBV7cT9rcM5qEXBZEcir0tl+2RvpxNi76vUJXrjdDSmrnkm5V6pnpdwft
-	 GW+SpFup8hSzJsmi/i50iuGdfewihy21NIGt99klKEdb0B7oveXuiwXLO+iX7aG9jky2/
-	 HH/25sAc3GJ4/dSi1AhXYpMXpPdJ1GEaaph7Uj3p60BKBEG2zU5/EEbPGx+8bVFl3DAiD
-	 IB4uyPw+AL6pdcGypTccSHohfLLVydbJhEAxqe1zS24R+2H8DoclW1PsIKX/h4wXe7w==
+	bh=0ggQvw09iPL5Urt/5zaC/WmW/k5FcSA219ACP9yk0DA=;
+	b=EeVYKCdBPnW1dGCEAOi9nDkDtJXWYUOz7u4z/2zj6nAsq48VBaCg68zQsfOedT/HET1R
+	 H/mUac/Al8gXNx/I+SBft7B1UX5UTmRBh0P3LOW7USg/gIoQHFyb1ybEa+qGepMgSPKUB
+	 lhJwmhqHTAWdeBRkSMRepntFuVefH+FZS06/AxDhUSyNG2nItBR5Qkg0mTheVjegkI5Ei
+	 C3Av7aSZ6U2DkumqH94FnzqtewdtnOH8hCwBNGvQWIZbIDFsQIiiKyCiDnNhrhtbHw33E
+	 WiECLPXZjnw2S02sIC9UHM6XlCqsJWQs+7rIVIVe1uNdUvqSGg+y77/u7o/yu8zcIRw==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id A88CA1F0093A;
+	by smtp.kernel.org (Postfix) with ESMTPS id A7CA21F000C1;
 	Mon,  2 Nov 2026 05:14:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1793596450;
-	bh=b1mZsSOMetU/Ho2p5NPS0yaILwy9cETrZxqZYB3+uRw=;
+	bh=0ggQvw09iPL5Urt/5zaC/WmW/k5FcSA219ACP9yk0DA=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=HqP57x08xXgAV4+IcSNMYiSRhppxzDB2W05ITydjgI7sEpu9HI7kVXxGjC1SpTCiD
-	 d79TT+BmAwSrbToheRxVvP7HepkVwYagY1gKQgk8QhloUxr9mFO7SxmOInTAZObA8k
-	 bdccDXXufuAjE8mHHKhbs/g356J9lEuhuG2sACN+FSgtZxZmG5Q/4XOEda/lk3BF7q
-	 wpKJ6VvpD/YxdH9d7fzo4+7hLBl3TKy6aEDkai2BDqt6rapcPDMi0x+yd3jrD7RxA2
-	 h+Uo6/3hJzvrT5pmCpr7xRYsOhl/vwgvrluanRYgYYWAJBvPJm2I7Ui/2q705y+JMZ
-	 eCrG+pVJ33O1w==
+	b=XS2sL0czj+K/nYZvseHUeCsZNxT4InGz1XmcnaatY3U2eIKq8ZGv+gI5DUHErgN23
+	 lQupHDpV2uqXlaYTzI6Nh++PoVHXvdLgrUh05GphrFfDfx1p3h51aos+YFtptd8g3y
+	 Ulj3q6CrPczeBjpi+AaREte2Q/xIiJIt7kMYmKHo5BGLVkrCkloYUmAMtJya6zDapR
+	 6uac2jQ+FXsY4/uEMiUQXzsPmH0qHjRmk3yl2QCXvDaE5OZgKzStKWNEajzLofVI6p
+	 Zx5pWcLsSB8qNcO1xhBK5g52KZdDeSvYua7jkluryCEP0y1k+1MRqf6LTXsJklY7Vb
+	 nmdv2igXU6a0A==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 25ACE46382;
+	by lkml.kernel.org (Postfix) with ESMTP id 19BA84637E;
 	Mon,  2 Nov 2026 05:14:09 +0000 (UTC)
 From: Christopher Griffin via B4 Relay <devnull+christophergriffin05.gmail.com@kernel.org>
-Date: Sun, 01 Nov 2026 23:14:10 -0600
-Subject: [PATCH ath-next 2/3] wifi: ath11k: hold back FCS-failed monitor
- frames unless asked for
+Date: Sun, 01 Nov 2026 23:14:09 -0600
+Subject: [PATCH ath-next 1/3] wifi: ath11k: size monitor MPDUs by the
+ chip's rx descriptor
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261101-b8-monitor-frames-v1-2-f0a43d9630e5@gmail.com>
+Message-Id: <20261101-b8-monitor-frames-v1-1-f0a43d9630e5@gmail.com>
 References: <20261101-b8-monitor-frames-v1-0-f0a43d9630e5@gmail.com>
 In-Reply-To: <20261101-b8-monitor-frames-v1-0-f0a43d9630e5@gmail.com>
 To: Jeff Johnson <jjohnson@kernel.org>, 
@@ -99,11 +99,11 @@ Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
  Rajkumar Manoharan <rmanohar@codeaurora.org>, 
  Christopher Griffin <christophergriffin05@gmail.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1793596448; l=3200;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1793596448; l=4542;
  i=christophergriffin05@gmail.com; s=20261024; h=from:subject:message-id;
- bh=gW5/j2hiiWOOFjn6ouakRd7VONDoZcdzfhX/IthW4Vo=;
- b=Unx/VLGUd03Y0E20Qd3syMAamP4RBCNzYP78JySeJPZc2vyvfug+SX7i6SocFG0/VJvLBY9kS
- TL7D2W2rPNeA+rc3+SuG5IF1Qd6PIFCKu7Phky9JXOCVwHbAaNRY9Il
+ bh=A4A9iBgn+H+lp5REIyv/F4O/tf6R5XCCM4Z11kdHy5w=;
+ b=AavwHSr+3kshmLM+ZxJ3/rk3ost96GccyiyjZevVa+7h4ZAXMRVU4XiKgJYwiN4tT4O2bP3qT
+ lEwPl9Jdrt5DGPCMGUeGzlyNEAF1VvTZ8f2WJiwDLnqJvD2Zve3Ss8U
 X-Developer-Key: i=christophergriffin05@gmail.com; a=ed25519;
  pk=oa9tkTNpiGoFWdGvpDHXLSobApmsh9BfrJRJrRJAvWA=
 X-Endpoint-Received: by B4 Relay for
@@ -131,86 +131,117 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Christopher Griffin <christophergriffin05@gmail.com>
 
-ath11k accepts FIF_FCSFAIL in configure_filter() but never looks at
-the filter: its monitor path hands every MPDU whose FCS failed to
-mac80211, flagged RX_FLAG_FAILED_FCS_CRC. mac80211 passes such a frame
-to every monitor interface, whatever that interface's flags. It leaves
-holding these frames back to the driver unless a monitor asked for them
-with the "fcsfail" flag, which turns on FIF_FCSFAIL. So a monitor made
-without that flag gets them anyway. On an Arista C-360 the QCN9072 scan
-radio's monitor saw a bad FCS on 6 to 10 % of the beacons it heard.
+The monitor destination ring path sets each buffer's length from
+sizeof(struct hal_rx_desc), but pulls the chip's own descriptor,
+hw_params.hal_desc_sz, off its front. struct hal_rx_desc is the union
+of the descriptors of all supported chips; it is 392 bytes, WCN6855's
+size. IPQ8074, IPQ6018 and QCN9074 use a 384-byte descriptor, so on
+them every MPDU a monitor interface gets ends with 8 bytes the hardware
+did not write. After the RAW path trims the FCS, a frame still carries
+its FCS plus 4 stale bytes, and the radiotap header flags neither.
+Wireshark shows such management frames as malformed.
 
-Drop an FCS-failed MPDU in the monitor path unless FIF_FCSFAIL is set,
-as ath10k does in ath10k_process_rx(). filter_flags is now read outside
-conf_mutex, so write it with WRITE_ONCE().
+ath11k_dp_mon_set_frag_len() uses the same size for the payload of a
+continuation buffer, so the last buffer of a long MPDU is another
+8 bytes too long for each buffer before it.
 
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+Use hal_desc_sz in both places, as the rest of the rx path does.
+
+Seen on an Arista C-360 (IPQ8074 plus QCN9074): a monitor capture of a
+management frame had the FCS and 4 more bytes after the body.
+
+Fixes: e4073430ee1d ("ath11k: add dp support for WCN6855")
 Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.r4-00683-QCAHKSWPL_SILICONZ-1
 
 Assisted-by: Claude:claude-opus-5-5
 Signed-off-by: Christopher Griffin <christophergriffin05@gmail.com>
 ---
- drivers/net/wireless/ath/ath11k/dp_rx.c | 12 +++++++++++-
- drivers/net/wireless/ath/ath11k/mac.c   |  3 ++-
- 2 files changed, 13 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 26 ++++++++++++++++----------
+ 1 file changed, 16 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 4e0b717b6f06d..7809c92baa325 100644
+index 31faeda461acf..4e0b717b6f06d 100644
 --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -5115,6 +5115,7 @@ static int ath11k_dp_rx_mon_deliver(struct ath11k *ar, u32 mac_id,
- 	struct sk_buff *mon_skb, *skb_next, *header;
- 	struct ieee80211_rx_status *rxs = &dp->rx_status;
- 	bool fcs_err = false;
-+	int ret = 0;
- 
- 	mon_skb = ath11k_dp_rx_mon_merg_msdus(ar, mac_id, head_msdu,
- 					      tail_msdu, rxs, &fcs_err);
-@@ -5122,6 +5123,13 @@ static int ath11k_dp_rx_mon_deliver(struct ath11k *ar, u32 mac_id,
- 	if (!mon_skb)
- 		goto mon_deliver_fail;
- 
-+	/* mac80211 passes a frame whose FCS failed to every monitor
-+	 * interface. Holding such frames back unless a monitor asked for
-+	 * them (FIF_FCSFAIL) is left to the driver.
-+	 */
-+	if (fcs_err && !(READ_ONCE(ar->filter_flags) & FIF_FCSFAIL))
-+		goto mon_drop;
-+
- 	header = mon_skb;
- 
- 	rxs->flag = 0;
-@@ -5153,13 +5161,15 @@ static int ath11k_dp_rx_mon_deliver(struct ath11k *ar, u32 mac_id,
+@@ -4524,10 +4524,13 @@ int ath11k_dp_rx_pdev_alloc(struct ath11k_base *ab, int mac_id)
  	return 0;
- 
- mon_deliver_fail:
-+	ret = -EINVAL;
-+mon_drop:
- 	mon_skb = head_msdu;
- 	while (mon_skb) {
- 		skb_next = mon_skb->next;
- 		dev_kfree_skb_any(mon_skb);
- 		mon_skb = skb_next;
- 	}
--	return -EINVAL;
-+	return ret;
  }
  
- /* The destination ring processing is stuck if the destination is not
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index ada0f3a3c8565..0b7371ad808d5 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -7456,7 +7456,8 @@ static void ath11k_mac_op_configure_filter(struct ieee80211_hw *hw,
- 	mutex_lock(&ar->conf_mutex);
- 
- 	*total_flags &= SUPPORTED_FILTERS;
--	ar->filter_flags = *total_flags;
-+	/* read without the lock in the monitor rx path */
-+	WRITE_ONCE(ar->filter_flags, *total_flags);
- 
- 	mutex_unlock(&ar->conf_mutex);
+-static void ath11k_dp_mon_set_frag_len(u32 *total_len, u32 *frag_len)
++static void ath11k_dp_mon_set_frag_len(struct ath11k_base *ab,
++				       u32 *total_len, u32 *frag_len)
+ {
+-	if (*total_len >= (DP_RX_BUFFER_SIZE - sizeof(struct hal_rx_desc))) {
+-		*frag_len = DP_RX_BUFFER_SIZE - sizeof(struct hal_rx_desc);
++	u32 hal_rx_desc_sz = ab->hw_params.hal_desc_sz;
++
++	if (*total_len >= (DP_RX_BUFFER_SIZE - hal_rx_desc_sz)) {
++		*frag_len = DP_RX_BUFFER_SIZE - hal_rx_desc_sz;
+ 		*total_len -= *frag_len;
+ 	} else {
+ 		*frag_len = *total_len;
+@@ -4675,7 +4678,8 @@ static bool ath11k_dp_rx_mon_comp_ppduid(u32 msdu_ppdu_id, u32 *ppdu_id,
+ 	return false;
  }
+ 
+-static void ath11k_dp_mon_get_buf_len(struct hal_rx_msdu_desc_info *info,
++static void ath11k_dp_mon_get_buf_len(struct ath11k_base *ab,
++				      struct hal_rx_msdu_desc_info *info,
+ 				      bool *is_frag, u32 *total_len,
+ 				      u32 *frag_len, u32 *msdu_cnt)
+ {
+@@ -4684,11 +4688,11 @@ static void ath11k_dp_mon_get_buf_len(struct hal_rx_msdu_desc_info *info,
+ 			*total_len = info->msdu_len;
+ 			*is_frag = true;
+ 		}
+-		ath11k_dp_mon_set_frag_len(total_len,
++		ath11k_dp_mon_set_frag_len(ab, total_len,
+ 					   frag_len);
+ 	} else {
+ 		if (*is_frag) {
+-			ath11k_dp_mon_set_frag_len(total_len,
++			ath11k_dp_mon_set_frag_len(ab, total_len,
+ 						   frag_len);
+ 		} else {
+ 			*frag_len = info->msdu_len;
+@@ -4826,7 +4830,7 @@ u32 ath11k_dp_rx_mon_mpdu_pop(struct ath11k *ar, int mac_id,
+ 
+ 			rx_desc = (struct hal_rx_desc *)msdu->data;
+ 
+-			rx_pkt_offset = sizeof(struct hal_rx_desc);
++			rx_pkt_offset = ar->ab->hw_params.hal_desc_sz;
+ 			l2_hdr_offset = ath11k_dp_rx_h_msdu_end_l3pad(ar->ab, rx_desc);
+ 
+ 			if (is_first_msdu) {
+@@ -4855,7 +4859,8 @@ u32 ath11k_dp_rx_mon_mpdu_pop(struct ath11k *ar, int mac_id,
+ 				pmon->mon_last_linkdesc_paddr = paddr;
+ 				is_first_msdu = false;
+ 			}
+-			ath11k_dp_mon_get_buf_len(&msdu_list.msdu_info[i],
++			ath11k_dp_mon_get_buf_len(ar->ab,
++						  &msdu_list.msdu_info[i],
+ 						  &is_frag, &total_len,
+ 						  &frag_len, &msdu_cnt);
+ 			rx_buf_size = rx_pkt_offset + l2_hdr_offset + frag_len;
+@@ -5458,7 +5463,7 @@ ath11k_dp_rx_full_mon_mpdu_pop(struct ath11k *ar,
+ 
+ 			rx_desc = (struct hal_rx_desc *)msdu->data;
+ 
+-			rx_pkt_offset = sizeof(struct hal_rx_desc);
++			rx_pkt_offset = ar->ab->hw_params.hal_desc_sz;
+ 			l2_hdr_offset = ath11k_dp_rx_h_msdu_end_l3pad(ar->ab, rx_desc);
+ 
+ 			if (is_first_msdu) {
+@@ -5471,7 +5476,8 @@ ath11k_dp_rx_full_mon_mpdu_pop(struct ath11k *ar,
+ 				is_first_msdu = false;
+ 			}
+ 
+-			ath11k_dp_mon_get_buf_len(&msdu_list.msdu_info[i],
++			ath11k_dp_mon_get_buf_len(ar->ab,
++						  &msdu_list.msdu_info[i],
+ 						  &is_frag, &total_len,
+ 						  &frag_len, &msdu_cnt);
+ 
 
 -- 
 2.43.0
