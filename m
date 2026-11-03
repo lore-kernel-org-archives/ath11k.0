@@ -2,10 +2,10 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96F3760764C4
-	for <ath11k@archiver.kernel.org>; Tue,  3 Nov 2026 10:29:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 654126078F0F
+	for <ath11k@archiver.kernel.org>; Tue,  3 Nov 2026 10:29:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CWC7kTZ2
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hNTVzbg+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
@@ -13,24 +13,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=lS8HPnWp/ZiXusc6VF2DVeURTql02ont/sKJfBhomm8=; b=CWC7kTZ2HG2OTGqGYI23HFPS2n
-	WkBTEHuL0eq+SmfMtp/bdJkgXfhAhbbzSRTn1McmwYQojbBhxGrATtSO46G0bW7EkJOxlbLwyuhO6
-	Oj3yC88ae2xoab40r99DQJVtAfaIMSKLl63C/G9gfv2csyvFDAV91cFPXB7/+aGHytaz4338ArxIj
-	ICt29/hpJk2vBLaJOUaRTIci3E3Op+gbr9O6MdH1e11yh/f2vo80Bdm84AhL24BaVNX9WuCtX+i9P
-	PqSv3psbof7IaCuH7pKHFW5hnzHsP0TEsmey/pX3sqwttc8vFEY9hQA375IpMXlupU6gkYyBLEHAn
-	KrkL9vtw==;
+	bh=lS8HPnWp/ZiXusc6VF2DVeURTql02ont/sKJfBhomm8=; b=hNTVzbg+HJl7pGpIMNAbUplgc+
+	EvIO1qMI3dnSKAO185I2j55iDYVrOHufOP2eNAMS81EM6IeK6v5mDm1CyCsWYR/3E1bfs7wb+CZey
+	sZD36nyWiJGbxMWTZWpGNG9Z8aoO8MV7DzzsvauTWHiorhSgdjlBi56n++WK8L0AwyzrgD5YkRLtS
+	0AIy7Bl0kKyrPfWe+DEWHabr9He5T7qBakTjKBNvHL3+iOV7f0KrG/2o6cCR0rXZf3qkXIY7xf3wG
+	YRcRGhsL3XyAblTkaHfsz4XlwfLDY51HmXUUaZaibmv1f1a5/wsEX76geU/uE5NKMI6YB8/FjBLrn
+	P5H6qrPA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOBlC-00000001zxe-3LNR;
-	Tue, 03 Nov 2026 10:28:58 +0000
+	id 1xOBlR-000000020Dp-0GVh;
+	Tue, 03 Nov 2026 10:29:13 +0000
 Received: from smtp81.cstnet.cn ([159.226.251.81] helo=cstnet.cn)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOBl7-00000001zsq-0Qgq
+	id 1xOBlM-0000000206x-1x1W
 	for ath11k@lists.infradead.org;
-	Tue, 03 Nov 2026 10:28:56 +0000
+	Tue, 03 Nov 2026 10:29:11 +0000
 Received: from dfae2b116770.home.arpa (unknown [36.110.52.2])
-	by APP-03 (Coremail) with SMTP id rQCowAAnOJlit+lqxqk7AA--.3070S2;
-	Tue, 03 Nov 2026 18:28:50 +0800 (CST)
+	by APP-03 (Coremail) with SMTP id rQCowACXoZJyt+lqWao7AA--.3025S2;
+	Tue, 03 Nov 2026 18:29:06 +0800 (CST)
 From: Wentao Liang <vulab@iscas.ac.cn>
 To: Jeff Johnson <jjohnson@kernel.org>
 Cc: linux-wireless@vger.kernel.org,
@@ -38,17 +38,17 @@ Cc: linux-wireless@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Wentao Liang <vulab@iscas.ac.cn>,
 	stable@vger.kernel.org
-Subject: [PATCH] wifi: ath11k: release the rproc reference on teardown
-Date: Tue,  3 Nov 2026 10:28:59 +0000
-Message-Id: <20261103102859.1340835-1-vulab@iscas.ac.cn>
+Subject: [PATCH RESEND] wifi: ath11k: release the rproc reference on teardown
+Date: Tue,  3 Nov 2026 10:29:15 +0000
+Message-Id: <20261103102915.1341148-1-vulab@iscas.ac.cn>
 X-Mailer: git-send-email 2.34.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: rQCowAAnOJlit+lqxqk7AA--.3070S2
+X-CM-TRANSID: rQCowACXoZJyt+lqWao7AA--.3025S2
 X-Coremail-Antispam: 1UD129KBjvJXoW7CrW8XF43Cw17Xr4rJr45Awb_yoW8trW7pF
 	Z7W3yDKFZ8Ca1xtw4kXr48Z3WxZ3W3t3y3WrW3K3s3ZwnxJFyUt3W5XFyjqryYkry8GF1a
-	vFWay3yUuFyqy3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	vFWay3yUuFyqy3DanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
 	9KBjDU0xBIdaVrnRJUUUv014x267AKxVWUJVW8JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
 	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
 	1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
@@ -56,15 +56,15 @@ X-Coremail-Antispam: 1UD129KBjvJXoW7CrW8XF43Cw17Xr4rJr45Awb_yoW8trW7pF
 	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
 	2Ix0cI8IcVAFwI0_Jw0_WrylYx0Ex4A2jsIE14v26F4UJVW0owAm72CE4IkC6x0Yz7v_Jr
 	0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7MxkF7I0En4kS14v2
-	6r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrV
+	6r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrV
 	AFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUAVWUtwCI
-	c40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r4j6ryUMIIF0xvE2Ix0cI8IcVCY1x0267
+	c40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26ryj6F1UMIIF0xvE2Ix0cI8IcVCY1x0267
 	AKxVW8Jr0_Cr1UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWx
 	JVW8Jr1lIxAIcVC2z280aVCY1x0267AKxVWxJr0_GcJvcSsGvfC2KfnxnUUI43ZEXa7VU1
-	YsjUUUUUU==
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiCRQAA2rpnIByMgAAsB
+	SksDUUUUU==
+X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiBwYAA2rpnO5vkQABsM
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261103_022854_365942_EBDABF2B 
+X-CRM114-CacheID: sfid-20261103_022908_881529_637AB1A7 
 X-CRM114-Status: GOOD (  10.78  )
 X-Spam-Score: -0.9 (/)
 X-BeenThere: ath11k@lists.infradead.org
