@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B918606F7F3
-	for <ath11k@archiver.kernel.org>; Tue,  3 Nov 2026 11:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6084060A3835
+	for <ath11k@archiver.kernel.org>; Tue,  3 Nov 2026 11:11:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=U4AGe1If;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DOo0edod
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XXwyYm7S;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=cEzLaXw4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,49 +14,50 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=/pg0XXHZscRJVa2E7zhHFbdQCZ7KHQ6g29HtpeDbe0w=; b=U4AGe1IfHIypLZpgHZ0LMJsS87
-	Suz4BrDPtw3jYGSDLclmxmWCJM6DtAqL51czKyaJl7flGNHoT8HLT2x/STXNjXTnUHCMV47KH3vyE
-	KNwiJnmNjxPMp5yk1TOGCvyBJhvAj/UuOps0tPxFxweNJ+zH5faA4bB9oU0KrYJiyI6/QxoxnmZ6O
-	a3e2Kp++KpyK9fnz9XiZeoZOEXMV0jR1AdyvETF5Cm1v/O8lE6IzEGMHTynklYOKVV6KAL4nvwGrI
-	HcUQ5H6oxtIhC4UsAwWICgi1YTAJ9NEqUQtitvn3CCVFGM7LoxNp7cY2DSsQCXJcHfVwVwrcuoVRn
-	MwWBqRiA==;
+	bh=TpY7gfCybRj7+hCyHruI8lUkdXq2GT2C0QBLYpHMn5U=; b=XXwyYm7S9YYvWp/MLX+0t9nZbT
+	0jujTq7WqgzKg9dC9+1LcIkFBlUz6rJUgJDN6Cid0UwnSAVGZVtllg7pQSl34e6/dxQ8KAXzZ0Ta4
+	LRLg3MBuu1pgDl5NAdjgW6KnOhdodAom7wr0FlymeqA+jVGqaW+go0SpLbcakeas6NqN1GOfuR5XE
+	e7uqMX3fZDTpMMzETtPKP0DolrobN35HNJ7H2i+/v04IN78lYzukNcr2aK/L/O/Sx00gbDOeTZSVd
+	EwUxh4/i/Ztnt1UmPLGL+sdhCXLpp967DJLxcFQVRf+w/dPBomWQ2hcJPn+mZryBwqBEKzud5nMUK
+	PHxdEaIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOCPn-000000029TC-3KuD;
-	Tue, 03 Nov 2026 11:10:55 +0000
+	id 1xOCPy-000000029Z0-4Arm;
+	Tue, 03 Nov 2026 11:11:06 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOCPn-000000029So-00Qh
+	id 1xOCPv-000000029Xp-3Lym
 	for ath11k@lists.infradead.org;
-	Tue, 03 Nov 2026 11:10:55 +0000
+	Tue, 03 Nov 2026 11:11:04 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id A9C2B41816;
-	Tue,  3 Nov 2026 11:10:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E44351F00A16;
-	Tue,  3 Nov 2026 11:10:53 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 8EF5741632;
+	Tue,  3 Nov 2026 11:11:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF2F21F000C1;
+	Tue,  3 Nov 2026 11:11:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793704254;
-	bh=/pg0XXHZscRJVa2E7zhHFbdQCZ7KHQ6g29HtpeDbe0w=;
+	s=k20260515; t=1793704263;
+	bh=TpY7gfCybRj7+hCyHruI8lUkdXq2GT2C0QBLYpHMn5U=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=DOo0edod+NpniumTKGzUqE405H/LrT2mPZzUMpVsrVCDRuUxwO7+M0oC1ghzTi44F
-	 bR4kgVp1NJHyCM+bwqQ1UbRA6YtUZsDt5WCz8IDcGQu9dhDG9+1AcMCZ3Se22S/bWY
-	 PnZrM0TneTHyzePiMybL9jJBIY4OBWLO54gd/mnWjZ2AWxpqq0tHOdizMDXGL2tqiC
-	 zQYOtINtIYphmmvs6akZdMODtZT4K1HGdkDPkECns/876cv0/KL7uF7wDHAjI59RR7
-	 TVp8DjCdR6MU2gybor6wEzaDFvYxwDYyPDYG5OEv4vPC6NuTgs7X6Kq8PmdDgaFf+1
-	 zBMkT13VT2sAg==
-Date: Tue, 3 Nov 2026 12:10:51 +0100
+	b=cEzLaXw46GCElArUYrx2ojVrPAkir1oQf0DqjgF2UCOI5kSYG7Lb9zrxa5trV1XXj
+	 svMUHNqVoPkpYBD6XO61ebJYHDsZ+wUrkhMIxpHs5U4s9xFWQgPRb2B0viyjRU77Ey
+	 ji1x1gZRIqMpMApHcHoIhUySm2oRWb+kFPYGixlRe1R4IpH7MTmdV34n1atKwLY7YH
+	 xtvdnawDaO3/ajig/4F3JKWtB6VDaGsoads3xxKxp75k+WjuQs5clAclcGfnrzU/XL
+	 DXBRF2yhhAW8lFzrzMa3Y+GjjeRKZOiWy9wIgVaJjQpXUqMNWjAVRXJkh69m3xbYSg
+	 Lj10Pu/NmXq/g==
+Date: Tue, 3 Nov 2026 12:11:01 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Wentao Liang <vulab@iscas.ac.cn>
-Cc: linux-kernel@vger.kernel.org, ath11k@lists.infradead.org, 
-	linux-wireless@vger.kernel.org, Jeff Johnson <jjohnson@kernel.org>, stable@vger.kernel.org
-Subject: Re: [PATCH] wifi: ath11k: release the rproc reference on teardown
-Message-ID: <20261103-loyal-carrot-vole-8e4ee4@quoll>
-References: <20261103102859.1340835-1-vulab@iscas.ac.cn>
+Cc: linux-wireless@vger.kernel.org, Jeff Johnson <jjohnson@kernel.org>, 
+	linux-kernel@vger.kernel.org, ath11k@lists.infradead.org, stable@vger.kernel.org
+Subject: Re: [PATCH RESEND] wifi: ath11k: release the rproc reference on
+ teardown
+Message-ID: <20261103-clever-adder-of-culture-daa0dc@quoll>
+References: <20261103102915.1341148-1-vulab@iscas.ac.cn>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20261103102859.1340835-1-vulab@iscas.ac.cn>
+In-Reply-To: <20261103102915.1341148-1-vulab@iscas.ac.cn>
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,7 +77,7 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
-On Tue, 03 Nov 2026 10:28:59 +0000, Wentao Liang wrote:
+On Tue, 03 Nov 2026 10:29:15 +0000, Wentao Liang wrote:
 > ath11k_core_get_rproc() looks up the target remoteproc with
 > rproc_get_by_phandle(), which takes a device reference and a reference on
 > the remoteproc driver's module.  The resulting pointer is stored in
