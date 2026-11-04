@@ -2,63 +2,124 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B0E0606D827
-	for <ath11k@archiver.kernel.org>; Wed,  4 Nov 2026 02:33:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83B89606A337
+	for <ath11k@archiver.kernel.org>; Wed,  4 Nov 2026 16:46:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=E9V7zDrb;
-	dkim=pass (1024-bit key, unprotected) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=b6EW8j7X
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gyNtp0Ei;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QHBHB2O7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=00pDn8gpWy1cmRkiYLDWSOCJsKkN0Wkf4UzyiZzW/0g=; b=E9V7zDrbZhKULNkh/iyv5CxhEH
-	YjPUVnzh57b8B1KWB+DNdaYkgiJWLarsMrZxmmGE+V3+zZn5FMIF+egHieYB+r71QNLE2UacS3zlc
-	fvN438nB6aKYsqiAJvGrlZjm6PjmVZSDrwAfMMeM6zYJiSlgBZcZVyVcvejJcDmgZdEkbjuGeQqzv
-	Z1d3JsmXghndQve/jiqAx7HUByeoDNkw8tjPMz+XKqz7oEorSNGZcCsu7Xn//zu2s1/tilD4BNf5T
-	lIj7BG8BmV64nhPR22MhGjBab028wE7D4vFpyh/ElF70bjsY396DJSVLuKdEBfvKJtfzM6iKH1NHL
-	koqx7b5w==;
+	bh=SFrbJ3RqQqeBPd4Xoqyu8DGpsu+3gFnNtvd1aPsr9A0=; b=gyNtp0EihH9vxHIhlsRmTykbCn
+	PVREs+CpXBRDmzapp5piR7WCptiVkIYoPZQeFm8+fxHzkmDtWgha10jEEig2KWx2pN69srn5jCCau
+	uf3N4v/vv/OcYF3fFXNcxWLW3Cmb9usgmnVvinN529SEmEp3YNcb9tgS2M/MgKOxhLeOVNMw1pgId
+	zPheWUGL2zoZlkgjWomzLEIkQLx3AlCjxqfpdN5XHvamvz/0ryEMGr6HB9tu5kmL4tsgWraqa4vXj
+	vmlxs2M0u48P6sQS71ZceFvTkamJRaMnjtOt1QKzumN7j5MWSyS0X7H9KwIFvjSBS6xvW9s+8ixm3
+	uRPa/yCg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOQp1-00000004A9Y-3YRU;
-	Wed, 04 Nov 2026 02:33:55 +0000
-Received: from mail-m49198.qiye.163.com ([45.254.49.198])
+	id 1xOe7p-000000063US-3DQy;
+	Wed, 04 Nov 2026 16:46:13 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOQow-00000004A60-1ZNc
-	for ath11k@lists.infradead.org;
-	Wed, 04 Nov 2026 02:33:54 +0000
-Received: from lgs.. (unknown [101.76.249.61])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 536858af4;
-	Wed, 4 Nov 2026 10:33:43 +0800 (GMT+08:00)
-From: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
-To: Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] wifi: ath11k: Fix potential SRNG configuration leak on init failure
-Date: Wed,  4 Nov 2026 10:33:42 +0800
-Message-ID: <20261104-db9e3c75b3-wifi-ath11k-1@mail.sdu.edu.cn>
-X-Mailer: git-send-email 2.43.0
+	id 1xOe7o-000000063S0-16vC;
+	Wed, 04 Nov 2026 16:46:12 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id AA94060A9C;
+	Wed,  4 Nov 2026 16:46:11 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1793810771;
+	b=aye4J6vqIjsBYGUtFDQfNI6sy19x61oFHqlpSFtPBGerl22ZkyuDd5/U6QJDB3fmZDRh
+	 pcHTJfzfuq1M7GgIUffx28LAuKHRV3yeyHM7R8GBp7lUzTMBe42/xk7uughFUnJsRdyiL
+	 MKUob1mw4dCSe97d2YmYsFYfDKfF4faavlQK6ca/3aGJtxSolM1sohpIIRdry8zRSMIjp
+	 yqGf1Vz5gCVL+4yz7vh+1TqSm00kwRM2OwXw6Mn7t4GH3avA2YJh1mD+0ruU4l4Iv73ZN
+	 VOOaIrFbTIpXqKfefFVqII/Qy2gwuikYvgIe6YHJ+xSLJXStNP4sN6pcAhG74U+MqiQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1793810771;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=SFrbJ3RqQqeBPd4Xoqyu8DGpsu+3gFnNtvd1aPsr9A0=;
+	b=JzgN+LJ7QEYGiPCrydqXI6lPbT8UNaqlMAuOlK8+N5Iu+EWGuaVGcKVjZfxD4xLmDIdp
+	 lZUL2eNBSqsfKyCZUkdo10rO3GLE/4u17bjJeiSiWAAP7N0aGyf+Ly26zQVxVfz+EIL0s
+	 i0LX3bt3+aHiPNRgpdWUILdVWRAqXQabjF+0S9AV1ylcPWOFaZwLj686LuYPeEhcETBw5
+	 tAz/+E3xNzSxWRLhLfJJ0eEoiAGVjm+JiUkKDYHTVTi3Xb6fqmYjhk8y1FQR/KgNXpLNh
+	 b2a+y6juhIqEyBaHL1ZFveiEp23x9D7sM8UEZfmLZ0C5/3WHp3SA2BgPY2bQH8do5zA==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id E95321F00A20;
+	Wed,  4 Nov 2026 16:46:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1793810771;
+	bh=SFrbJ3RqQqeBPd4Xoqyu8DGpsu+3gFnNtvd1aPsr9A0=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=QHBHB2O7NLBrqPktJtj2c2SfoXe1u7ne56qagtKa4zOYS/97sveEsKQ6+0rIA2F9T
+	 5c12R99axvLZr6sGTndyNncKVViiyFXDuwEMJqd6VyBuRAdfEC5JVxK3GXrrqcSxHA
+	 DzpPohLvUaE+0ZuKchCGbnBTYEYlhGiK8cqCs273Qr3kFlHXA10LRaG02qYUz8Iakl
+	 l0izdRLg6TKVfXPGHkN3z1GhiOG7Yzl0xTILMdBqswzrSfMBAWJOYzISkrp6axKoWx
+	 jhupe6tsKDSJl+THHgKdqW76tuNCCl9o7z/+A7Gb8DFBqKDNoxGUYSH03e/WPrAFlA
+	 3mL7CGsCa1Z0A==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 488D946ECA;
+	Wed,  4 Nov 2026 16:46:09 +0000 (UTC)
+From: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org>
+Subject: [PATCH net-next v5 0/4] net: qrtr: Add support for using identical
+ MHI endpoint devices
+Date: Wed, 04 Nov 2026 08:46:00 -0800
+Message-Id: <20261104-qrtr-multi-ep-v5-0-4cdb2b4f1920@oss.qualcomm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0aa1a467b9e203a1kunmaae2da131636f3
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaTEkaVk9OS0NCTkJOGhhCGlYeHw
-	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlKS0pVTE1VSU9CVU1KWVdZFhoPEhUdFFlBWU9LSFVKS0hKTE
-	1DVUpLS1VKQktLWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=b6EW8j7XEFdsKNAiwEUbKbKqi/1IDrcwSLmlLU230HT8k4ypGyGCGP/fSsed5tmxnUDBO7C0IhPoabx71I10UZsL7mwNCMmob82kO8TaOMehT0e2FjAg8kZPm7a0PyidZQRhBLzK04mPR++ROeGz0I24z4rC2/5GclrwusAy71E=; s=default; c=relaxed/relaxed; d=mail.sdu.edu.cn; v=1;
-	bh=00pDn8gpWy1cmRkiYLDWSOCJsKkN0Wkf4UzyiZzW/0g=;
-	h=date:mime-version:subject:message-id:from;
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261103_183351_165967_8151C069 
-X-CRM114-Status: UNSURE (   7.20  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-B4-Tracking: v=1; b=H4sIAEhh62oC/3XN3WrDMAwF4Fcpvp6LLOfH7dXeY+zCkZXVo0la2
+ wkdJe8+J4NRuuVGcJD0nbuIHDxHcdzdReDJRz/0OZQvO0En23+w9C5ngYAVHJSR15CC7MZz8pI
+ vkrAmbKgsmJXIP5fArb+t3pvoOcmeb0m8/2zi2HwypYVbbk8+piF8rdWTWj82WiYlQRoLFVmrK
+ +P06xDj/jraMw1dt89jrZjwAUH1jGBGsHbOgDOFsrCB6EcEnxGdEQIwWrExh7LeQIpfRMFfpFi
+ QqnVNXbbkNP+DzPP8DU1QPxKcAQAA
+X-Change-ID: 20260918-qrtr-multi-ep-c27c2bc54ee1
+To: Manivannan Sadhasivam <mani@kernel.org>, 
+ "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, 
+ Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, 
+ Jeff Johnson <jjohnson@kernel.org>, Eric Dumazet <edumazet@kernel.org>, 
+ Eric Dumazet <edumazet@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
+ ath11k@lists.infradead.org, ath12k@lists.infradead.org, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Chris Lew <christopher.lew@oss.qualcomm.com>, 
+ Deepak Kumar Singh <deepak.singh@oss.qualcomm.com>, 
+ Raj Kumar Bhagat <raj.bhagat@oss.qualcomm.com>, 
+ Juha-Matti Tilli <juha-matti.tilli@iki.fi>, 
+ Jeff Hugo <jeff.hugo@oss.qualcomm.com>, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+ Jeff Johnson <jeff.johnson@oss.qualcomm.com>, 
+ Daizhuang Bai <daizhuang.bai@oss.qualcomm.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4612;
+ i=manivannan.sadhasivam@oss.qualcomm.com; h=from:subject:message-id;
+ bh=y2J9xaz0uLoyFrScT4xkB8c2QveIyP+efStfQ3ylWUE=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBq62FO+oXYYLu7YdB5LRuFC36REfIvTqUPmpa67
+ tN4fsbPzXSJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCauthTgAKCRBVnxHm/pHO
+ 9RDyCACmwwMCggdJFkWxixS65FSH8KOFaNcvNc9SDm9DBEwVuguMWSvgCe30SoP2dhJpy3Z1Wla
+ N0eXxchVMHXKWIyJGLTEha1O3XrM/w6KwazZ/SYDB9qnqm4HbwOH3MmyEZAfqV1FZhupGf0my20
+ KfB1bisuX/XFx1ElPWUorH5MuZXxNR3gpm/tavZl3pNsxZVzHdBGogKA2gnLe2oIMvhWyEr6Mev
+ zNgypS8iMzKy4GqXCRfsfx+q0ySvIh258KDCTKH/spEObRwxTWqlmKMK8Pb3nO2KpuFA/pjUXTm
+ 3A6em7ks+HNgtFlDssqDhW94f2qJecthJ4A6s2yS8CwEW5Md
+X-Developer-Key: i=manivannan.sadhasivam@oss.qualcomm.com; a=openpgp;
+ fpr=C668AEC3C3188E4C611465E7488550E901166008
+X-Endpoint-Received: by B4 Relay for
+ manivannan.sadhasivam@oss.qualcomm.com/default with auth_id=461
+X-Original-From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -68,6 +129,7 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Reply-To: manivannan.sadhasivam@oss.qualcomm.com
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
@@ -77,51 +139,110 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-If either DMA pointer-buffer allocation fails after the SRNG
-configuration is copied, HAL initialization returns without freeing
-the copy. Its callers skip HAL deinitialization on this error.
+Hi,
 
-Free the configuration on both allocation failure paths and clear
-its pointer before returning.
+This series reworks the QRTR driver to add support for using identical MHI
+endpoint devices at the same time. Currently, QRTR driver has a limitation on
+using more than one identical MHI endpoint devices like QCS6490 or any Qcom
+Endpoint device making use of QRTR at the same time. Because of the fact that
+these devices will have the identical QRTR node id, they cannot be used at the
+same time, on the same host machine.
 
-This issue was found by our static analysis tool under development.
+This limitation is a blocker for running upstream kernel on devices like Qcom
+based routers as they often have multiple identical WLAN Endpoint devices
+connected to the Router SoC.
 
-Fixes: f7eb4b04ce6f ("ath11k: hal: create hw_srng_config dynamically")
-Signed-off-by: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
+This series supersedes the following 2 series from Juha:
+https://lore.kernel.org/all/20260915054207.2513877-1-juha-matti.tilli@iki.fi
+https://lore.kernel.org/all/20260915074135.2567411-1-juha-matti.tilli@iki.fi
+
+Compared to the series from Juha, this series simplifies the multi-endpoint
+support by computing a unique node id for each MHI endpoint and uses it for the
+internal QRTR book keeping. This ensures that even if the MHI endpoint devices
+have same node ids, the host QRTR will always use a unique node id for each one
+of them.
+
+More details can be found in the individual patches.
+
+Merge Strategy
+==============
+
+Since both QRTR and ath drivers are falling under the networking tree, the whole
+series can be merged through netdev tree.
+
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 ---
-Validation: x86-64 Clang W=1 changed-object builds passed with
-allmodconfig and allyesconfig. No hardware/kernel runtime test or full
-linked-kernel build.
-OpenAI Codex assisted with source review, patch implementation and
-commit-message drafting. The submitter has reviewed the changes.
+Changes in v5:
+- Rebased on top of net-next/main
+- Collected tags
+- Link to v4: https://patch.msgid.link/20261022-qrtr-multi-ep-v4-0-c6fdb75fcd3e@oss.qualcomm.com
 
- drivers/net/wireless/ath/ath11k/hal.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+Changes in v4:
+- Moved the 'ep_nid' and the node id assignment into a single
+  'qrtr_nodes_lock' critical section and used READ_ONCE() elsewhere
+- Propagated the radix tree insert error out of qrtr_node_assign() and
+  rejected the packet or failed the endpoint registration
+- Fixed the assign condition that stopped adding bridged node ids as
+  lookup keys
+- Moved the control packet length check to qrtr_endpoint_post() and
+  extended it to DEL_SERVER and DEL_CLIENT
+- Rejected endpoint node ids at and above QRTR_NODE_HOST_BASE
+- Returned error for the QMI message received from an unknown server in
+  ath{11k,12k} so that the QMI core drops the service
+- Dropped Juha's Tested-by and Vasanth's Reviewed-bt as the code changed since v3
+- Link to v3: https://patch.msgid.link/20260922-qrtr-multi-ep-v3-0-c00831e88957@oss.qualcomm.com
 
-diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-index 98bd9e3f0aae..8a4e5042d89a 100644
---- a/drivers/net/wireless/ath/ath11k/hal.c
-+++ b/drivers/net/wireless/ath/ath11k/hal.c
-@@ -1351,7 +1351,7 @@ int ath11k_hal_srng_init(struct ath11k_base *ab)
- 
- 	ret = ath11k_hal_alloc_cont_rdp(ab);
- 	if (ret)
--		goto err_hal;
-+		goto err_free_config;
- 
- 	ret = ath11k_hal_alloc_cont_wrp(ab);
- 	if (ret)
-@@ -1363,7 +1363,9 @@ int ath11k_hal_srng_init(struct ath11k_base *ab)
- 
- err_free_cont_rdp:
- 	ath11k_hal_free_cont_rdp(ab);
--
-+err_free_config:
-+	kfree(hal->srng_config);
-+	hal->srng_config = NULL;
- err_hal:
- 	return ret;
- }
+Changes in v3:
+- Added missing qrtr_node_rewrite_ctrl() for QRTR_TYPE_RESUME_TX
+- Fixed the types of ath{11k/12k}_pci_get_qrtr_node_id() and helpers to use
+  'unsigned int' to match qrtr_host_node_id()
+- Collected tags
+- Link to v2: https://patch.msgid.link/20260921-qrtr-multi-ep-v2-0-27dd80d841a0@oss.qualcomm.com
 
-base-commit: 05441d697f7f9a927264f4058cbbc6a03dfcac9d
+Changes in v2:
+- Rebased on top of net-next/main
+- Used READ/WRITE_ONCE for reading/writing ep_nid
+- Link to v1: https://patch.msgid.link/20260918-qrtr-multi-ep-v1-0-8a06caa368d3@oss.qualcomm.com
+
+Cc: linux-arm-msm@vger.kernel.org
+Cc: netdev@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-wireless@vger.kernel.org
+Cc: ath11k@lists.infradead.org
+Cc: ath12k@lists.infradead.org
+To: Manivannan Sadhasivam <mani@kernel.org>
+To: "David S. Miller" <davem@davemloft.net>
+To: Eric Dumazet <edumazet@kernel.org>
+To: Jakub Kicinski <kuba@kernel.org>
+To: Paolo Abeni <pabeni@redhat.com>
+To: Simon Horman <horms@kernel.org>
+To: Jeff Johnson <jjohnson@kernel.org>
+
+---
+Manivannan Sadhasivam (4):
+      net: qrtr: Allow the host QRTR to assign a unique node id
+      net: qrtr: Assign unique node id for MHI endpoints
+      wifi: ath11k: Connect to the QMI server belonging to the device owned by this driver
+      wifi: ath12k: Connect to the QMI server belonging to the device owned by this driver
+
+ MAINTAINERS                           |   1 +
+ drivers/net/wireless/ath/ath11k/hif.h |   9 +++
+ drivers/net/wireless/ath/ath11k/pci.c |   9 +++
+ drivers/net/wireless/ath/ath11k/qmi.c |  11 +++
+ drivers/net/wireless/ath/ath12k/hif.h |   9 +++
+ drivers/net/wireless/ath/ath12k/pci.c |   9 +++
+ drivers/net/wireless/ath/ath12k/qmi.c |  12 +++
+ include/net/qrtr.h                    |  22 ++++++
+ net/qrtr/af_qrtr.c                    | 141 ++++++++++++++++++++++++++++++----
+ net/qrtr/mhi.c                        |   4 +-
+ 10 files changed, 210 insertions(+), 17 deletions(-)
+---
+base-commit: 7b6ab4dbc156e2f96419715130b3d5738a306c93
+change-id: 20260918-qrtr-multi-ep-c27c2bc54ee1
+
+Best regards,
+--  
+மணிவண்ணன் சதாசிவம்
+
+
 
