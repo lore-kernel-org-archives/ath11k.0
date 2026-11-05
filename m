@@ -2,100 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89551606A31B
-	for <ath11k@archiver.kernel.org>; Thu,  5 Nov 2026 05:17:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 639AA606A329
+	for <ath11k@archiver.kernel.org>; Thu,  5 Nov 2026 05:17:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2wXA553F;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=hXzpVksA
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZH7n2KsE;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UonDI737
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=NVAnmuoA9gL7mXf9hPCOfc86UVshuAYigYl6E9l0mzE=; b=2wXA553FzMgf7vZN8O8YIcTwD1
-	DC1tA7k+UBa401K7a/2u4RIQLs38zgJeKTKnQG1sDRSaisPRaPvULFaaaSUsT1FERQhJa/lW9u95X
-	pAnV4p0wuLtGutpGPudkn+eOYVQ+tq44lgVwbMbF8FnLVL+rKVNEJ06AwKBGTIQBDmCSGzTKsuNyI
-	Bz3sbJmY/xn2uj/7pjYPT/W2IJJwkdQ7no9m+J/yvXnnjoi7/zbH9dv182Y3tYQtLINbzgSGQ5B3B
-	CYCSOFCmfjSt7M9PNjPfVk/WD9fy6Z9EQpe7EAhE8x9fDX1deOp8+li/5NjHqju0hkw/Ps8XWV2id
-	a79gEHVg==;
+	bh=X+VBJPN19Rxr4jI2MqKS4zWSqq8lpduuJ6vi/q3CP0o=; b=ZH7n2KsEdyXpgdwqdGzFgQQcC1
+	e+yrIL5uSdu7trhLmHPi8wN5TSF9YKxAkyji+qrsoferB+xbO/JtyzxTk2mab2nLeu1uqcNg1imMp
+	484mt58Tx2wWyj82SeJMuj6Vqytb9gqrxXHVMdaVMb6M2Mdufh4e7ATW10SpzG5Fj+rxJSh9tUnzx
+	3dx3ZOQSPt60hjCZjwbGjSJFrg6woUDSQ87yZbmmUDkOeUGXWPirLt0uNh6jsPc/0oB+q8cz0rgmA
+	4IBcjbeYDRx+FV8x4RLaLJXBnv2MwHxTl1AvhzcbjsJXXm13ljh0Evwf2Ec5tdNh7cObjZmoVvQma
+	xiyIl2dQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOpqZ-00000007qnB-42eM;
-	Thu, 05 Nov 2026 05:17:11 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xOpqt-00000007qtl-0D7S;
+	Thu, 05 Nov 2026 05:17:31 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOpqY-00000007qn1-23OK
-	for ath11k@lists.infradead.org;
-	Thu, 05 Nov 2026 05:17:10 +0000
+	id 1xOpqp-00000007qs0-3VCV;
+	Thu, 05 Nov 2026 05:17:28 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id BD032438B8;
-	Thu,  5 Nov 2026 05:17:09 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 3C93A437E3;
+	Thu,  5 Nov 2026 05:17:27 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1793855829;
-	b=ydWvnhJ+iXKCwRwKEWLjIHUNJehxIAB+GeYngUESP3V3ZJXnAbAMCUZcMnVuwKEq5LFr
-	 6ljZFdWDlpmaRrLGA0YX8AV8f4UOoexUAGW9hlspbK/VNUvrocK+kew+3EVK2IaJI5mCe
-	 2pm047yYZ4CGQAAG9/HxqfCpuuoZh1iV0Ik/eec3P5q+myzET+1uIvdl23shSB82r0xCs
-	 G8qWURJoLmsrCdmAvYku6KS2so4jsUS6h1Vj9i81BSsG1kLwX/Fbh1PXMExce3pNKIY+s
-	 G/vzmdTEP5CGDRQF/bZdGCm/nctYCag14xXXfyy65TmeN0KaFxM6tAwLLyAa/kIEyGw==
+	t=1793855847;
+	b=FPfWgE74SBn4hGxWGUJDwbzPd6W4SZ/FHEiJqUKTldKmjH5G+j4CsDi3L1BTF3V2Ba4a
+	 TZMb+uJPUmQG1GHzlK5mQ4m2tz9snWxF6VbV8hgN6FrccXFjq2Eyy2Z6xdA63lAaMSe1n
+	 AKrjx4ZuXvEfAVt6JG/ZKhgnaCbwiaze0goDJOhwq/Ja5uji1gxaLLZJ+7lervhqEIkrc
+	 CXRWg6dO1MIeLYyBCghY5d3Ph2g6HWa9kCKQbkWGl1GExyG5a8OcIneGPeTlDQI0eAcWx
+	 FFAgsGYBhjBXfHhKwy3ixwUbslDOEQOG3hDEtkYpU9KW7V3oJA2obizuKGz//+k941Q==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1793855829;
+	c=relaxed/relaxed; t=1793855847;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=NVAnmuoA9gL7mXf9hPCOfc86UVshuAYigYl6E9l0mzE=;
-	b=eXZVAnasZn1C7gix2H1EsNr/5eYACSuJkWlroYS0ohAC2xT/SkAxbD3SYljZZuRYLN4i
-	 2cgslid7iLDJm51mwE0jpT0q30OZ9RVmW/jkZHi69/woW1j5izpucFBNaBAUD1+CdiF6A
-	 6PYs7WC82XXirE4QiW8GCHfFCAqzsTOjV8HZCJWAF36hX4QN/sZHCZsBUhhaaJ/UndvaX
-	 cCebIUMsb7YTQtT+RUK6GdlTZ3bXbLQGeX8n542+Y/JR9SgbNZ5Hpvp5cEhU5lqGE0Etz
-	 SFgh8HWMISwVi5u3hbGVoCBAHErqODml8tmNA0oYfn3Ggox5F1TbkeJYIYP70kKVhzA==
+	bh=X+VBJPN19Rxr4jI2MqKS4zWSqq8lpduuJ6vi/q3CP0o=;
+	b=U6Hw+mdb5lRB3ca9TGlLY5brXo/5QM788nAmNckaUowt9RkhXgrJwsa2ij/c4smmHTMW
+	 tJRBGIHyoA4xBQes7XI09fBPtqbPYyboG58x6m4hHaRMNQYsTSyDKjuROQctJA2b0dFMI
+	 L4oUhf7ByQmgg1NJ3/Isf06Tv/2n44E2B/wffZcNyjM/izpOvtDg5pKulCUCpjaDOGYnn
+	 Y6g64ZRvPNRVpIim54+pFaTHUBbjL1MjE7SrSypl0x9vGFyhQqajCuyUN/nctBKaC/4+t
+	 p56mIEot44Uc6Va+V+BTBetRvMNtqn5IGV1FDJ7AFH120cDNvVA30Mvudu5x0BiqIBg==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id DDE201F0093A;
-	Thu,  5 Nov 2026 05:17:08 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 8E4811F00919;
+	Thu,  5 Nov 2026 05:17:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793855829;
-	bh=NVAnmuoA9gL7mXf9hPCOfc86UVshuAYigYl6E9l0mzE=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=hXzpVksAkJeKpAfZWbEk25HswGzQIzEI4CUN4dI3QJ0QRB5P2btplBFIv+1ealQal
-	 VOU9EiAhdgoTRJbLtkF9X4oM3nSPZoMM/hLyuPs3zuSNpo8IxgnQEI0ymQ7uDq/Nld
-	 1fv9TOO7W1INrmu5AnAV8JuA8dtRkUG8ykGv7P/036/RbrTI2GyrbeBgA3vLHmQOge
-	 EV+6aZt06dPus+tp2wpU6Mh8NVVWDSlviY9kaTrLwLSehu4PdE0oegFJoRN0eOcebN
-	 qkNBdhbk+T7yRen8MPJjvdNd9T+BU5GepAuXEQ5hBFn2sM8Ic+0lBGvq1eHLg2xeTh
-	 wRtAKF/EBxfKw==
+	s=k20260515; t=1793855847;
+	bh=X+VBJPN19Rxr4jI2MqKS4zWSqq8lpduuJ6vi/q3CP0o=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=UonDI737eeMBhgQ6//FM0zpif7+yl0uVzCWO+F8H7xw4umnSO+B9Phd1SOutdhrI0
+	 bz7kmwyYG1MWt9T/hHbCpZzm9I/LxGEkWMQEvh2B/9FaVdvR+8+tJT/ZrSkY+DrCGO
+	 bXhUniBv6CMKXaGAQl6fmT9CzgQlboyLVcDSc77i55dfAiPCe9LJcqfRKddIu0pp2Y
+	 iTwQRzYDULZke2LFDqZFJHitPVcTWrJLJDw4987uYExKZQvoXvDtnKuY5aIErApKkM
+	 6qTVIqWDWpiWuoebgaV9udC1gtW/I73hWQI4LiPWT1sbsA7cUW2A2K82M9omsjYvaX
+	 KshgYck+hf4cQ==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 64818470B5;
-	Thu,  5 Nov 2026 05:17:08 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 167B5470CA;
+	Thu,  5 Nov 2026 05:17:26 +0000 (UTC)
 From: Christopher Griffin via B4 Relay <devnull+christophergriffin05.gmail.com@kernel.org>
-Date: Wed, 04 Nov 2026 23:17:08 -0600
-Subject: [PATCH ath-next] wifi: ath11k: drop the full monitor state left
- from before a monitor stop
+Date: Wed, 04 Nov 2026 23:17:26 -0600
+Subject: [PATCH ath-next 1/2] wifi: ath11k: don't bit-reverse the
+ firmware's PPE thresholds
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261104-ath11k-full-monitor-stale-hold-v1-1-10a680c3ad2f@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAFMR7GoC/yWNywrCMBBFf6XM2oEkfSD+irhI06kZjYlkUimU/
- ruxLg+He+4GQplJ4NJskOnDwilW0KcGnLfxTshTZTDKDFqrDm3xWj9xXkLAV4pcUkYpNhD6FCZ
- 0pu3VaE03tGeokXemmdfj4Ap1i5HWAre/kWV8kCu/Puz7F0NilUWMAAAA
-X-Change-ID: 20261104-ath11k-full-monitor-stale-hold-c2350ba24638
-To: Jeff Johnson <jjohnson@kernel.org>, 
- Anilkumar Kolli <quic_akolli@quicinc.com>, Kalle Valo <kvalo@kernel.org>
+Message-Id: <20261104-ath-ppe-thresholds-bit-order-v1-1-0f569106cbc4@gmail.com>
+References: <20261104-ath-ppe-thresholds-bit-order-v1-0-0f569106cbc4@gmail.com>
+In-Reply-To: <20261104-ath-ppe-thresholds-bit-order-v1-0-0f569106cbc4@gmail.com>
+To: Jeff Johnson <jjohnson@kernel.org>, John Crispin <john@phrozen.org>, 
+ Kalle Valo <kvalo@kernel.org>, 
+ Shashidhar Lakkavalli <slakkavalli@datto.com>, 
+ P Praneesh <quic_ppranees@quicinc.com>, 
+ Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com>, 
+ Karthikeyan Periyasamy <quic_periyasa@quicinc.com>, 
+ Wen Gong <quic_wgong@quicinc.com>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
  linux-kernel@vger.kernel.org, 
+ Baochen Qiang <baochen.qiang@oss.qualcomm.com>, 
+ Carl Huang <quic_cjhuang@quicinc.com>, 
+ Ramya Gnanasekar <quic_rgnanase@quicinc.com>, 
+ Balamurugan Selvarajan <quic_bselvara@quicinc.com>, 
+ ath12k@lists.infradead.org, 
  Christopher Griffin <christophergriffin05@gmail.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1793855827; l=8294;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1793855845; l=2073;
  i=christophergriffin05@gmail.com; s=20261024; h=from:subject:message-id;
- bh=XLX7K0utKQw/gsxKboFItICJfxTeRdNiCzLnMMpwlvs=;
- b=9rxh9ZYJ9W6nXOONrK46TRxpAz7oEQ3qfJsONmBMCxlOjS3CRzK7NpUDhPAXJI/USohyHnXNH
- 0IseRnpfh0TBfFMz4LBb1umhgeC56vfjVpdOtLLuGWpetqcFmdDG9SQ
+ bh=lRDCXb5fGqCIVT7aLQMio7qzrVZEvLsJS6K3rr1zoFA=;
+ b=HxsVhn7nW+oc2hCfogzfaE60v4s1cr3V3MsFVFNOGWXSrL6D7cjsfiMXTfQfbLM2387B36S2x
+ 98q7iBMhVbmBAJduHvsDlnW68pPkmk8FYDaDNmqyW4hpCJ+k0v43rV5
 X-Developer-Key: i=christophergriffin05@gmail.com; a=ed25519;
  pk=oa9tkTNpiGoFWdGvpDHXLSobApmsh9BfrJRJrRJAvWA=
 X-Endpoint-Received: by B4 Relay for
@@ -123,197 +130,52 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Christopher Griffin <christophergriffin05@gmail.com>
 
-In full monitor mode (QCN9074) the monitor destination ring is read
-first, and the PPDU it ends on is held, together with the destination
-ring, until its status buffer turns up on the monitor status ring. A
-status buffer with the same PPDU ID delivers the PPDU and ends the
-hold; one that reads as newer (LEAD) drops the PPDU and ends it; one
-that reads as older (LAG) keeps the hold.
+The firmware reports its PPE thresholds as WMI defines them: in
+ppet16_ppet8_ru3_ru0[nss], each RU has six bits, PPET16 in bits 2:0 and
+PPET8 in bits 5:3, each a 3-bit constellation index. The PPE Thresholds
+field of the HE Capabilities element carries the same two subfields in
+the same order, bit 0 first, and ath11k_peer_assoc_h_he() already
+converts a peer's field to the WMI layout that way.
 
-The hold outlives a monitor stop. While the monitor is stopped,
-ath11k_dp_rx_process_mon_rings() reaps the status ring on the plain
-path, so the held PPDU's status buffer is gone. When the monitor starts
-again, the held PPDU ID is compared with whatever the status ring
-carries after the gap, and the 16-bit compare in
-ath11k_dp_rx_mon_update_status_buf_state() reads LEAD or LAG depending
-on how far the PPDU counter moved meanwhile. After a long, busy stop it
-reads LAG about half the time, and then the hold never ends: the
-destination ring fills, the firmware reports backpressure on the
-monitor destination ring, and the radio receives nothing more, scan
-results included, until the driver is bound again.
+ath11k_gen_ppe_thresh(), which builds our own field from the firmware's,
+swaps the two halves and then writes the six bits from the top down.
+That puts PPET16 first again, but with its three bits reversed, and the
+same for PPET8: a threshold of 1 (QPSK) is advertised as 4 (256-QAM),
+4 as 1, 3 (64-QAM) as 6 (reserved) and 6 as 3. Only 0, 2, 5 and 7 (none)
+come out right, so the bug does not show with firmware that asks for
+16 us padding at every constellation (PPET16 0, PPET8 7).
 
-Seen with a QCN9074 used as a scanning radio and lent, for about 25 s
-at a time, as the station of a client test: it went deaf after 4 of 7
-loans, each time with the hold set, the status ring empty (buf_state
-DP_MON_STATUS_REPLINISH) and the destination ring full. The monitor
-also stops and starts at each channel change of a scan, and a PPDU was
-held at nearly every start (4022 of 4033).
+Copy the six bits in order.
 
-When the monitor starts, drop the held PPDU and the destination ring
-entries left behind it, and clear the hold. Also bound a hold: more
-status buffers than the status ring holds cannot come before the held
-PPDU's own, so drop the PPDU then rather than wait.
+IPQ8074 (WLAN.HK.2.9.0.1-02146) and QCN9074 (WLAN.HK.2.5.r4-00683)
+firmware report PPET16 0 and PPET8 7 everywhere (iw phy: PPE Threshold
+0x7b 0x1c 0xc7 0x71 ...), which reads the same either way, so their HE
+capabilities do not change. Compile-tested.
 
-With this, the radio kept receiving through 13 hours of such loans,
-about four an hour, and two more units through 9 and 11 hours.
-
-Fixes: 7e2ea2e94704 ("ath11k: Process full monitor mode rx support")
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.r4-00683-QCAHKSWPL_SILICONZ-1
+Fixes: 9f056ed8ee01 ("ath11k: add HE support")
 Assisted-by: Claude:claude-opus-5-5
 Signed-off-by: Christopher Griffin <christophergriffin05@gmail.com>
 ---
- drivers/net/wireless/ath/ath11k/dp.h    |  1 +
- drivers/net/wireless/ath/ath11k/dp_rx.c | 75 +++++++++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/dp_rx.h |  1 +
- drivers/net/wireless/ath/ath11k/mac.c   |  3 ++
- 4 files changed, 80 insertions(+)
+ drivers/net/wireless/ath/ath11k/mac.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index 84f66839f0c6d..0f2d278eb709d 100644
---- a/drivers/net/wireless/ath/ath11k/dp.h
-+++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -162,6 +162,7 @@ struct ath11k_mon_data {
- 	bool hold_mon_dst_ring;
- 	enum dp_mon_status_buf_state buf_state;
- 	dma_addr_t mon_status_paddr;
-+	u32 hold_status_bufs;
- 	struct dp_full_mon_mpdu *mon_mpdu;
- 	struct hal_sw_mon_ring_entries sw_mon_entries;
- 	struct ath11k_pdev_mon_stats rx_mon_stats;
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 6d95f7b343a55..c941f35741167 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -5595,6 +5595,15 @@ ath11k_dp_rx_process_full_mon_status_ring(struct ath11k_base *ab, int mac_id,
- 			   pmon->buf_state == DP_MON_STATUS_LEAD) {
- 			sw_mon_entries->drop_ppdu = true;
- 			pmon->hold_mon_dst_ring = false;
-+		} else if (quota &&
-+			   ++pmon->hold_status_bufs > DP_RXDMA_MON_STATUS_RING_SIZE) {
-+			/* More status buffers than the ring holds came before
-+			 * this PPDU's own: it is not coming.
-+			 */
-+			ath11k_dbg(ab, ATH11K_DBG_DATA, "full mon: ppdu %u held past %u status buffers, dropped\n",
-+				   sw_mon_entries->ppdu_id, pmon->hold_status_bufs);
-+			sw_mon_entries->drop_ppdu = true;
-+			pmon->hold_mon_dst_ring = false;
- 		}
- 
- 		if (!quota)
-@@ -5672,6 +5681,7 @@ static int ath11k_dp_full_mon_process_rx(struct ath11k_base *ab, int mac_id,
- 		pmon->buf_state = DP_MON_STATUS_LAG;
- 		pmon->mon_status_paddr = sw_mon_entries->mon_status_paddr;
- 		pmon->hold_mon_dst_ring = true;
-+		pmon->hold_status_bufs = 0;
- next_entry:
- 		ring_entry = ath11k_hal_srng_dst_get_next_entry(ar->ab,
- 								mon_dst_srng);
-@@ -5697,6 +5707,71 @@ static int ath11k_dp_full_mon_process_rx(struct ath11k_base *ab, int mac_id,
- 	return quota;
- }
- 
-+/* Drop what full monitor mode kept from before the monitor was stopped: a
-+ * PPDU held for its status buffer and the destination ring entries behind
-+ * it. While the monitor is stopped the status ring is reaped on the plain
-+ * path, so their status buffers are gone, and a hold that compares its
-+ * PPDU ID with what the status ring carries after the gap can wait for
-+ * good. The destination ring then fills and stalls the RXDMA.
-+ */
-+void ath11k_dp_rx_full_mon_reset(struct ath11k *ar)
-+{
-+	struct ath11k_base *ab = ar->ab;
-+	struct ath11k_pdev_dp *dp = &ar->dp;
-+	struct ath11k_mon_data *pmon = &dp->mon_data;
-+	struct hal_sw_mon_ring_entries *sw_mon_entries = &pmon->sw_mon_entries;
-+	struct sk_buff *head_msdu, *tail_msdu, *msdu, *next;
-+	struct hal_srng *mon_dst_srng;
-+	u32 rx_bufs_used = 0, entries = 0;
-+	bool held;
-+	u16 ppdu_id;
-+	void *ring_entry;
-+
-+	spin_lock_bh(&pmon->mon_lock);
-+
-+	held = pmon->hold_mon_dst_ring;
-+	ppdu_id = sw_mon_entries->ppdu_id;
-+	ath11k_dp_rx_full_mon_drop_ppdu(&ab->dp, pmon->mon_mpdu);
-+
-+	mon_dst_srng = &ab->hal.srng_list[dp->rxdma_mon_dst_ring.ring_id];
-+	spin_lock_bh(&mon_dst_srng->lock);
-+	ath11k_hal_srng_access_begin(ab, mon_dst_srng);
-+	while ((ring_entry = ath11k_hal_srng_dst_peek(ab, mon_dst_srng))) {
-+		head_msdu = NULL;
-+		tail_msdu = NULL;
-+		rx_bufs_used += ath11k_dp_rx_full_mon_mpdu_pop(ar, ring_entry,
-+							       &head_msdu,
-+							       &tail_msdu,
-+							       sw_mon_entries);
-+		for (msdu = head_msdu; msdu; msdu = next) {
-+			next = msdu->next;
-+			dev_kfree_skb_any(msdu);
-+		}
-+		entries++;
-+		ath11k_hal_srng_dst_get_next_entry(ab, mon_dst_srng);
-+	}
-+	ath11k_hal_srng_access_end(ab, mon_dst_srng);
-+	spin_unlock_bh(&mon_dst_srng->lock);
-+
-+	pmon->hold_mon_dst_ring = false;
-+	pmon->hold_status_bufs = 0;
-+	pmon->mon_status_paddr = 0;
-+	pmon->mon_ppdu_status = DP_PPDU_STATUS_START;
-+	memset(sw_mon_entries, 0, sizeof(*sw_mon_entries));
-+
-+	spin_unlock_bh(&pmon->mon_lock);
-+
-+	if (rx_bufs_used)
-+		ath11k_dp_rxbufs_replenish(ab, dp->mac_id,
-+					   &dp->rxdma_mon_buf_ring,
-+					   rx_bufs_used,
-+					   HAL_RX_BUF_RBM_SW3_BM);
-+
-+	if (held || entries)
-+		ath11k_dbg(ab, ATH11K_DBG_DATA, "full mon: monitor start: dropped %s ppdu %u, %u dest ring entries\n",
-+			   held ? "held" : "no held", ppdu_id, entries);
-+}
-+
- int ath11k_dp_rx_process_mon_rings(struct ath11k_base *ab, int mac_id,
- 				   struct napi_struct *napi, int budget)
- {
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.h b/drivers/net/wireless/ath/ath11k/dp_rx.h
-index f69d9301e0a16..ea005537e6275 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.h
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.h
-@@ -81,6 +81,7 @@ int ath11k_dp_htt_tlv_iter(struct ath11k_base *ab, const void *ptr, size_t len,
- 			   int (*iter)(struct ath11k_base *ar, u16 tag, u16 len,
- 				       const void *ptr, void *data),
- 			   void *data);
-+void ath11k_dp_rx_full_mon_reset(struct ath11k *ar);
- int ath11k_dp_rx_process_mon_rings(struct ath11k_base *ab, int mac_id,
- 				   struct napi_struct *napi, int budget);
- int ath11k_dp_rx_process_mon_status(struct ath11k_base *ab, int mac_id,
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 1a237adaa37d1..a4556d8e75cdf 100644
+index 1a237adaa37d1..8b4e992b609a6 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -1185,6 +1185,9 @@ static int ath11k_mac_monitor_start(struct ath11k *ar)
- 		return ret;
- 	}
- 
-+	if (ar->ab->hw_params.full_monitor_mode)
-+		ath11k_dp_rx_full_mon_reset(ar);
-+
- 	set_bit(ATH11K_FLAG_MONITOR_STARTED, &ar->monitor_flags);
- 
- 	ar->num_started_vdevs++;
+@@ -5825,8 +5825,7 @@ static void ath11k_gen_ppe_thresh(struct ath11k_ppe_threshold *fw_ppet,
+ 				continue;
+ 			val = (fw_ppet->ppet16_ppet8_ru3_ru0[nss] >> (ru * 6)) &
+ 			       0x3f;
+-			val = ((val >> 3) & 0x7) | ((val & 0x7) << 3);
+-			for (i = 5; i >= 0; i--) {
++			for (i = 0; i < 6; i++) {
+ 				he_ppet[bit / 8] |=
+ 					((val >> i) & 0x1) << ((bit % 8));
+ 				bit++;
 
----
-base-commit: a3ddbb45768717b5c9f923489387cf55c838d1ad
-change-id: 20261104-ath11k-full-monitor-stale-hold-c2350ba24638
-
-Best regards,
---  
-Christopher Griffin <christophergriffin05@gmail.com>
+-- 
+2.43.0
 
 
 
