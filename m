@@ -2,147 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E71A606A326
-	for <ath11k@archiver.kernel.org>; Fri,  6 Nov 2026 15:40:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DE2D606D812
+	for <ath11k@archiver.kernel.org>; Fri,  6 Nov 2026 18:48:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cJ2aGQK4;
-	dkim=pass (2048-bit key, unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=ETlvFZcx;
-	dkim=pass (2048-bit key, unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=UEE5ICXY
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=V/apERpN;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZcbEq8pO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:To:
-	From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=7RDbC0pALLr5CnExCFDRPuafJ92+0xlIvMW5RZJKZVA=; b=cJ2aGQK40ds54R
-	wmIXpApz24488PbEJd69oyzKjowRkiwhEOTuEc6RoITfkCHTgY15DsssC6ckgw5CiqImtoWTylpGj
-	8qtlmOemj4v4El454FiChzKlb143ZH9iLH3JqIcWDUZhdntGQlqzpcxZvUskYdAilue9KNfg06Eie
-	BVQw+lcd1lZ71ksADo+TXH8wProCLkZo5OzFvsxdxajAEVj0xgq4C53CXUhxyF6sgagekp30tFNCh
-	f3nv6DKKvavMzYIHzPXonB7w281j0uNpN9Nl9XQgKjaDw7W7N7dWO/S2RwCTsW+V67F/xOAt5C1YV
-	AbvP1c0lYx0JUTuWqwDQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=csVR1b1qOunnprGs/YKmTHhPqHommGDzIirA2HbkNBs=; b=V/apERpNH3Vyu1A5VadbvJKNG8
+	l+b62B0ypmHX00tXXw++gQOezfaaoRy8CerJE7OPzR9aoKTYlLXuzRln8NDmNI+DpcF4UVJ5GVeZS
+	086SkfBfTPQFAkrQPMGOfY/qKdkFXLFpGQyUnTvkoIr7y2WK7qvGGyXe0ij+LePlqu/zBn1z7L362
+	mW9oWRyO+urLJmWhU+P/dgmYIX/f9MKd12/9IsPUl+CNEopMIyRvRL7zF1RqZQw0r6WiV0VoY2zkQ
+	QSX6LMGd14eFjoW824cxo7WXmcF7bt+Rgvt2Cl5popG3NKGDUyZgO1/4G7e5NlaNajI1X9wOuUFHS
+	1bivC2JA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPM37-0000000CrrP-1RK9;
-	Fri, 06 Nov 2026 15:40:17 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1xPOzG-0000000DRYb-2Cn2;
+	Fri, 06 Nov 2026 18:48:30 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPM34-0000000CrqP-43sA
-	for ath11k@lists.infradead.org;
-	Fri, 06 Nov 2026 15:40:16 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6A6F0L0D687884
-	for <ath11k@lists.infradead.org>; Fri, 6 Nov 2026 15:40:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	7RDbC0pALLr5CnExCFDRPuafJ92+0xlIvMW5RZJKZVA=; b=ETlvFZcxJaJbViQg
-	s1Clz3k1BfRQ4S4/4cRR1kIAadFr0qPEgoNsYlsygLNDjsEoeM77wm/Hcp88th/r
-	8wI2M8bAUQ1EorbRlwe99asSu2nCoRL97F+Taa7Tjmfu3d+9XXF07rWI61euufRO
-	ViW6LkGvLeF1ZI/Pawk4gFyM7nBvaM7TCiG1/h686QO4ILjPl2pcbmcZ7u8grVAj
-	iWnzzM3xA/QqNpq+JpcTHyekjVg7spprisImQQYmWUrMcgXsboenr0HkGa0CSf2B
-	FZ7Puxmd+N93Mj6PD4Yp+Wh98ZdumTXu1qnyS2UTzcwAzPBsZbazi9srBNPoAbm/
-	N6B0qA==
-Received: from mail-dy1-f200.google.com (mail-dy1-f200.google.com [74.125.82.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hs3pb3dmg-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Fri, 06 Nov 2026 15:40:13 +0000 (GMT)
-Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-370230d93efso185795eec.1
-        for <ath11k@lists.infradead.org>; Fri, 06 Nov 2026 07:40:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1793979613; x=1794584413; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:mime-version:date:message-id
-         :subject:references:in-reply-to:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=7RDbC0pALLr5CnExCFDRPuafJ92+0xlIvMW5RZJKZVA=;
-        b=UEE5ICXYrbXXnOp6oRcvNM5eKrZM/51FR3GMozKSlmDZq2jcEglFtYczF76mbTEC5D
-         nmfn45lHogw84739KdTyQ6L2Fet0UHhHWla8sYfFqbOPnLKpuQUP8GLbjesQssrEgTIo
-         k6VyM/l+FbpbxIrvVAzL0WZk6IeqyAwMP0yIGiUjAlhTHCmLLwqWMEct0y0V7gZ/5BPb
-         iGWltERgvlxM5VgHxpEfdDUMV/9jxiNWI6BjaTpFvL1lanl9l7Nphd9nqbNohvMTWoIp
-         QDy1GNwwafLy5Bzu1M4fVBRzKbm9jEqDc6reR2lDHFSqMyd3qHwdeg4NuUEg80yZRfp4
-         GP3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793979613; x=1794584413;
-        h=content-transfer-encoding:content-type:mime-version:date:message-id
-         :subject:references:in-reply-to:to:from:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=7RDbC0pALLr5CnExCFDRPuafJ92+0xlIvMW5RZJKZVA=;
-        b=ONdrFStt0KpXbNPKcmcbLz1jG/w6yi1UipHo9I02IoJu9QPeVriX87U6tTTPv4MN5x
-         ZMMu9HSeHuMczA1q38zBNKfMTon0hX0TXCkL8RF2d1ZMwmXT3BLLYO8f3NQpIIEhG2mY
-         zMUKAGyJ+ZS0frxrRlP9k2l7XRLH/H3AtlAyj90djoaCZCq8hv94qW1yELkSysXnRp04
-         f7EnwzpfW2E9XEk9gR/OO5OQYDCijjq7Z5PVpM3n+LL/g2csIqb0pOePhrVLgZJ19+1h
-         J18P0/DF+ajmapg3GEmuLOpwjdKikzg5hiReDBwznwX+l0Mr65k4vXywEw1HZOi8iHdB
-         JbLA==
-X-Forwarded-Encrypted: i=1; AL+hErEpYccz6AM88PdbbW6dQINf/zML8aYQfMQHEbPaTz/RE+0Q2g6b6a4LFGQ9AmAu/uTZrCgPSEk=@lists.infradead.org
-X-Gm-Message-State: APuU4Z/UFN2gpNOtVmex5hn+FdiI0tn3eCpY+KxNoJ60Daqhr1hy8Qoc
-	naofVg/m1WcAU0z8h1WPGHIysFB+1N1rq5H3ZxHd8ssHg1ZekEn2JPZHu85xdWzkZQ4H2iEZymq
-	8F8oXr06NcIMXSjSgCf0+euvpESs23Hx3ouDkbPOjtBnD+2Nkzy2E/hQGcdY9vPnt
-X-Gm-Gg: AYBFou3hag88gwy8HVuUGFqhyRaLy/0V22A52gPXkg74nQShhfuj6iFu6HuwSc5eTk4
-	uWjPCoNCTOfOi++4cwDUFZHgjA4HTSJtSon0EVCBwnoDyqPe45svwX+ZSExr/A9BGJYemB1Jq9V
-	GKfomyRjLTqHT8CmC3eBRTYcG7UUEafF0cv+EHcnwhXyu2N+PI2XIL2qvFGhhqdysWtSeU9c6aO
-	LRvBzJV0M5H7GIZCS4c0jBgojaA143t7ClKiA3RFmchhUQ/KtKjhSFi8MJ7q9BSk15KcTLnIzc3
-	jIWO/scrUTitSuXYuYQ5B+9ChjOSXEgokqrH8b3veW5yBx1SgT13PrDSDHrr6wTqMFpZrLPfSrB
-	xnHRqwa+89lzOeD0r8BgR1aVWWfDfS95iOdjms6CDorms9YRuTA+kvyz3brs3mRz/HxCduAvtzN
-	D9L8AWj9gec4o9tCel8U2gMesbMbg=
-X-Received: by 2002:a05:7300:8281:b0:369:f2f4:b227 with SMTP id 5a478bee46e88-36f75b1ffd2mr3243554eec.18.1793979612747;
-        Fri, 06 Nov 2026 07:40:12 -0800 (PST)
-X-Received: by 2002:a05:7300:8281:b0:369:f2f4:b227 with SMTP id 5a478bee46e88-36f75b1ffd2mr3243509eec.18.1793979611960;
-        Fri, 06 Nov 2026 07:40:11 -0800 (PST)
-Received: from hu-jjohnson-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-36fa97fbb54sm9851246eec.13.2026.11.06.07.40.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Nov 2026 07:40:10 -0800 (PST)
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-To: Jeff Johnson <jjohnson@kernel.org>,
-        Venkateswara Naralasetty <quic_vnaralas@quicinc.com>,
-        Govindaraj Saminathan <quic_gsamin@quicinc.com>,
-        Shashidhar Lakkavalli <slakkavalli@datto.com>,
-        Ganesh Sesetti <gseset@codeaurora.org>,
-        Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
-        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Jiale Yao <yaojiale02@163.com>
-In-Reply-To: <20260926114037.3231795-1-yaojiale02@163.com>
-References: <20260926114037.3231795-1-yaojiale02@163.com>
-Subject: Re: [PATCH] wifi: ath11k: Reject short management RX frames
-Message-Id: <179397961055.1195422.13808864180410221932.b4-ty@b4>
-Date: Fri, 06 Nov 2026 07:40:10 -0800
+	id 1xPOzF-0000000DRXV-10hF;
+	Fri, 06 Nov 2026 18:48:29 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 3DD56601BF;
+	Fri,  6 Nov 2026 18:48:28 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1793990908;
+	b=zrMBcnPJyIaFGjvLo/GeiaOlbKmLpkhsFIK5gbRha4STMsQRUYQ1/hDLGCQ36CibwkZL
+	 xOY2DQa78LLAya1e/jTUqIGwAxGmXyiq/CtydxC9FZi+NGLHkf1R8PxOW6lj1TYlwFRt3
+	 y/ZVhjDCsotvOLylzGHIycMtjmed+o7oFujxUqulRNj1DcsQGC+ay560Z+3+77SJDQcVM
+	 wIaEg+OFcomWQItXB/k//+Zo3EMjcxd0xdFlqXsk1LF8ZA7tqErFzrnEQBwkO56H4LnSX
+	 HZkZOUjs9XBHAKl0hh7pvg2sFwqN+q6W2IUHqnJ3Yee6gmXF2ASeSqRmppKJLV9y7XA==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1793990908;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=csVR1b1qOunnprGs/YKmTHhPqHommGDzIirA2HbkNBs=;
+	b=LdHql8uTVhxZ4wgz6lmXEvDW7lbPsZS8U/sYPfdJKeBkXD0cNqEg/p8Lt6+MQqvi3oQ/
+	 KNCPh8AxyfPf3HZGlcUI0uwX/C9ZixusV1+VgeRWACmuHNf3Em/sxcOeOZpNlRS+YWhFd
+	 uhPwog72u5YC4Wr/p4BDib9b5WC8lCfOSgLu95KR79vx2ciHLup+FiDwBEkG3UhV92mP6
+	 xWKJ9IeioDy7YV6cNwRXIW5yL/+Q9JKA9zmfLReFJoNRv9TuvU8Vbv1OBg9cBcHWzLxt7
+	 NplZYTGFXcp9egyIwWu11Ec/UA5/H7T/RgAUQrRwwgBFEug9Qtts45xHX6uirC0cZJA==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 707931F008A1;
+	Fri,  6 Nov 2026 18:48:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1793990907;
+	bh=csVR1b1qOunnprGs/YKmTHhPqHommGDzIirA2HbkNBs=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=ZcbEq8pO2TyJbAVy4EvEOFhhMI9NYvNSsWGnIbRpYSeomKaKbVuwaH90F4xPxyvkG
+	 pOwCAO55/yiHdnsZQVdxhO3w733bPBn8d1EqjllKeVEif9QmmOAXXRtD0Hf46zzAZX
+	 c9xcg/8jQ+ZvIkJJvHxxT6YZ/GntvrxT307hHUeY1xZaEIc0K+4tMDF3F6uWr7BTOR
+	 XoLlzTfGi/1VU6eze1MTTtNExt+dSGIlgdntpCp+1rmwOl/m0Ez1jYxSTbJYshMk5K
+	 oXtOBfkrl+lmifJLw2Khij6qZ7nD3/MZVFl4gj8svHm1+TejuBiCKNt9d6BZPn2d8x
+	 NnLCd1yg+Aprg==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id EABD647832;
+	Fri,  6 Nov 2026 18:48:26 +0000 (UTC)
+From: Christopher Griffin via B4 Relay <devnull+christophergriffin05.gmail.com@kernel.org>
+Date: Fri, 06 Nov 2026 12:48:27 -0600
+Subject: [PATCH 2/2] wifi: ath12k: simplify copying a peer's PPE thresholds
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+Message-Id: <20261106-ath-peer-ppe-thres-loop-v1-2-f6bb5fe9ffb3@gmail.com>
+References: <20261106-ath-peer-ppe-thres-loop-v1-0-f6bb5fe9ffb3@gmail.com>
+In-Reply-To: <20261106-ath-peer-ppe-thres-loop-v1-0-f6bb5fe9ffb3@gmail.com>
+To: Jeff Johnson <jjohnson@kernel.org>
+Cc: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>, 
+ Baochen Qiang <baochen.qiang@oss.qualcomm.com>, 
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
+ ath12k@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Jeff Johnson <jeff.johnson@oss.qualcomm.com>, 
+ Christopher Griffin <christophergriffin05@gmail.com>
 X-Mailer: b4 0.16.0
-X-Proofpoint-GUID: OlRWJoIA_T45lDwnivly_fT8lck_D83J
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTA2MDA2MiBTYWx0ZWRfX49CdEDgy/8VY
- S6j94Df4NqXAbsjz1aZtuJamfOhnQ0Vy6iQ8LIJYcJ4FOmu1RLaEo4dlBfbdVCVmm2nsexJOJAG
- jfYwuJbTbY7xwUl51lrWkvV1KVmQeck=
-X-Authority-Analysis: v=2.4 cv=LIrz05W9 c=1 sm=1 tr=0 ts=6aedf4de cx=c_pps
- a=PfFC4Oe2JQzmKTvty2cRDw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
- a=EUspDBNiAAAA:8 a=mSvAxenApeD-3uNJg0EA:9 a=QEXdDO2ut3YA:10 a=ZXulRonScM0A:10
- a=6Ab_bkdmUrQuMsNx7PHu:22
-X-Proofpoint-ORIG-GUID: OlRWJoIA_T45lDwnivly_fT8lck_D83J
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTA2MDA2MiBTYWx0ZWRfX/Es8DVjhuSla
- BKQEo5R777an59hSG5extvvSygJLGJ6YHfh3V+xCMJ10KoHYVYxHXSQdf6tyNHMVuwWkCDIm5Bg
- vmXtc4jXslpUYPVx0ui0BOechOdu/cuqd6rNMcas4VKGWEAJaQoQzWcNbJQfN8w8osjJSacLGS4
- ZwG2RzhI6wWgJ/onFmTlKWh3ZPps3PF5B44umW78TpnM5T96t0bi5Xh4hLBaAhwUIk9GINPI6IS
- kGObNt0e7UZ1DLz0XBziYAkcI12KaJv3EPzH+gQ4N+6giV5rJ4jvN/tOUYxsD8FA8Io21g/x7wL
- JJmRjpuUM876RKcSZof447PfTVqUKikx5zo25uRr1GHnTFyTXiZ9Oy5Kp9wrzaZPbVMAuZYhiVc
- k2qFAihnfFFzcU8cSKo98nFLSV6BCVt2kkQxg+KwWFA4pIDRZbJcdOIXURGN9+ZEUn33LvXJKht
- 63OHaANTF3r+dWpsFLQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-06_05,2026-11-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 suspectscore=0 clxscore=1015 malwarescore=0 bulkscore=0
- lowpriorityscore=0 adultscore=0 phishscore=0 priorityscore=1501
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
- definitions=main-2611060062
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_074015_126271_1D9AE1D6 
-X-CRM114-Status: UNSURE (   8.88  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.8 (--)
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1793990906; l=1559;
+ i=christophergriffin05@gmail.com; s=20261024; h=from:subject:message-id;
+ bh=JLN7YicOXOFCr/vXZYPyTuLNZ3CcFDfpEDaO5w1TJNk=;
+ b=Pa8jp3EhLqfYJuIC7j4KkGCHkhfh1h+xKMZt9a6cFmdDX3spOspd8+5b5OhSlyFuwKhqyqXF2
+ ZHVoE/lhKZABcQNqO1MD6D7HrYmmogO93RLPDR6yKg0NyBvFKos6x/+
+X-Developer-Key: i=christophergriffin05@gmail.com; a=ed25519;
+ pk=oa9tkTNpiGoFWdGvpDHXLSobApmsh9BfrJRJrRJAvWA=
+X-Endpoint-Received: by B4 Relay for
+ christophergriffin05@gmail.com/20261024 with auth_id=1309
+X-Original-From: Christopher Griffin <christophergriffin05@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -152,33 +109,56 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Reply-To: christophergriffin05@gmail.com
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+From: Christopher Griffin <christophergriffin05@gmail.com>
 
-On Sat, 26 Sep 2026 19:40:37 +0800, Jiale Yao wrote:
-> ath11k_pull_mgmt_rx_params_tlv() verifies that the firmware-reported frame
-> length fits in the WMI event, but does not ensure that it can hold an IEEE
-> 802.11 management header. It then sets skb->len to that reported length.
-> 
-> ath11k_mgmt_rx_event() subsequently reads frame_control and other header
-> fields without another length check. A firmware event with a short buf_len
-> can therefore cause an out-of-bounds read.
-> 
-> [...]
+ath12k_peer_assoc_h_he() copies each 6-bit PPE threshold of a peer's HE
+capabilities into the WMI layout one bit at a time, shifting it in from
+the top: val >>= 1, then the new bit at bit 5, six times over. After the
+sixth bit, bit i of the field sits at bit i of val, so put it there
+directly.
 
-Applied, thanks!
+No functional change: a userspace copy of both loops gives the same
+ppet16_ppet8_ru3_ru0 for every 6-bit value in every RU slot and for 2.5
+million random threshold fields. Compile-tested with W=1.
 
-[1/1] wifi: ath11k: Reject short management RX frames
-      commit: 9e15ccad0877c4a748bf2b817811a23f2d71bd92
+The change, this message and the test were written with Claude, an AI
+coding assistant.
 
-Best regards,
+Suggested-by: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
+Link: https://lore.kernel.org/all/b60c4c56-483b-406e-92ab-643b0fdf2dc8@oss.qualcomm.com/
+Signed-off-by: Christopher Griffin <christophergriffin05@gmail.com>
+---
+ drivers/net/wireless/ath/ath12k/mac.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath12k/mac.c b/drivers/net/wireless/ath/ath12k/mac.c
+index 9fd3841f71b71..12dfac1d3b42c 100644
+--- a/drivers/net/wireless/ath/ath12k/mac.c
++++ b/drivers/net/wireless/ath/ath12k/mac.c
+@@ -2731,9 +2731,8 @@ static void ath12k_peer_assoc_h_he(struct ath12k *ar,
+ 				if ((arg->peer_ppet.ru_bit_mask & BIT(ru)) == 0)
+ 					continue;
+ 				for (i = 0; i < 6; i++) {
+-					val >>= 1;
+ 					val |= ((he_cap->ppe_thres[bit / 8] >>
+-						 (bit % 8)) & 0x1) << 5;
++						 (bit % 8)) & 0x1) << i;
+ 					bit++;
+ 				}
+ 				arg->peer_ppet.ppet16_ppet8_ru3_ru0[nss] |=
+
 -- 
-Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+2.43.0
+
 
 
