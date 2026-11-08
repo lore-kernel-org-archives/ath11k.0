@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09F30606A330
-	for <ath11k@archiver.kernel.org>; Sun,  8 Nov 2026 00:02:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76040606A32E
+	for <ath11k@archiver.kernel.org>; Sun,  8 Nov 2026 00:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=L5KadHtq;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Buuwer1t
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2MsYUQrS;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VZefF6ga
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,88 +14,88 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=HWi1jiRSnRJfgQ0tDiZtUVXuEEGoRZ0gMq3cRtHXy3I=; b=L5KadHtqph754PoHoVUHB+PVAP
-	zolTvHcGKtd79pxhRNQK0byF1cFP851v+tGSFi23nSLHkX6DkJEVwTWrsmGBX5c7mCDczoetKtK7l
-	v6PMDdjthXRsicMkd+Vcv6x3vMbmvM1Q4fbZtt4tL6Uqu+K5Z5g25o05RTWml1oCHGEkljdRe/0Ok
-	D5ITuEFCsUasubSzatCa5KluXZc1/tbw4adyPdeAM05G2bWnJ2tb7Pq0kN9zQcTlPw1aGdQiLd78D
-	hfTvnioLqjBUG/tbCF98LAN96JQ/UtMQRPOjKghBYu93jOz4y390wAa574dXMPZu30LCDQqxvnMkX
-	myxhDgdQ==;
+	bh=r31NsiZOgizVwPpTDT3QJst8H8jPpnkDDnTlwzVVTYg=; b=2MsYUQrSXOXG/LPWbwZNE38mTv
+	DGZLmeJXDe//eOkigI+WqrvQAQGEdV3Q5MmgJ7/aKJEN0xEqh3Zxi968vrjOagYxHH7shQGQx5PHz
+	w1VST+EPF/H7D5Tk+fmUiNvyO72xdN4HxgG+NNZqN16dKPHQj4nGPWo51efrVuFrKLpMY1sxWoBAY
+	vjmF/+n546D+d8IuQQseLCqTWpxOy+P65GYa+WuYcl6NM1Yq6SrspxaMRsNVtPBEqNwOfBN396J4H
+	w5jGTr8kg926pRrtTt/eqpsNjyEnjupcpk/ZYiLnjnZSxLthc5X9CdVmzXAOdnMypsmp15oj4C1re
+	qjJdbYmw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPqMw-0000000FWaf-0KOe;
-	Sun, 08 Nov 2026 00:02:46 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xPqNA-0000000FWdo-0e58;
+	Sun, 08 Nov 2026 00:03:00 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPqMu-0000000FWaZ-37qe
+	id 1xPqN8-0000000FWdQ-3FoJ
 	for ath11k@lists.infradead.org;
-	Sun, 08 Nov 2026 00:02:45 +0000
+	Sun, 08 Nov 2026 00:02:58 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 2643441713;
-	Sun,  8 Nov 2026 00:02:43 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id A9D7560A4D;
+	Sun,  8 Nov 2026 00:02:57 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794096163;
-	b=Eyg/kFTiQvFa73P0GZzV4w75sNEwlXyBdZ4cQQKLcIdmnCiTV9HD2qHocU+SNh3A5kks
-	 Io2Hav3rTSHAY3OFrZTNz3ms+C7fXoAKNpqKY60zFBT5FyUkazO3SuSyksgUvvLxwFftz
-	 w/bOWnujUZDZNncBkXPgy9V25CZmBL5CCqpiwllfBb5litlBo8LY78GYOii/ay5N9wJk1
-	 hXhEvwFwQSrPN7laz31ZpDFdXSVRd6h45aRgMg9GQfDsf+xdfaBO3FD3AoP8oVEuIUhzz
-	 FF8Ot0pFSloRpwcRcQ3jlB8lFnJsOyfzv+9Hd2fI1Dh6kw2MSEp5lducvJDAA6JdvKg==
+	t=1794096177;
+	b=MkhaUwCheb4c6y+Kc8BpHlpZNq2+cJpMJGDXoh+xo2mfTDFbNYwrunlgAux/XGJUZBT6
+	 vIQrXivzwC1NfzckKC76oePWTQnpxbG6ovfMQjEFX9BK2f1XHaBt3b206EGPYK0awUy9L
+	 ACw3ajY4Jnkeo10vwCSRWSgJdUp+rcRIDIfo3EwrcfRRSLn9KtTzQ+XrkvKHf3aJ7+yvu
+	 EkrSV9u7fwz6FH4BBw8KvcKIxwQ9gA1eHIluI5TGOd/0P/UzhaDIUNrS1xDuYCUnvyFK9
+	 npAnfh5B2t7rpQN4k61Ga2QrXRc0BKxBvPzT89+odyQRsoTEFDgiEd6F+4bret9adhA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794096163;
+	c=relaxed/relaxed; t=1794096177;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=HWi1jiRSnRJfgQ0tDiZtUVXuEEGoRZ0gMq3cRtHXy3I=;
-	b=TkZ8QgYvIMq3tJi49QQbVec0EtzNh9OFutJC7558sX2l5KqreSP0W0gEwKqQS5ZcPxEk
-	 /Vm6GoGlI0Q3Y6IRBVi0qI6BvD9O9oaLae1sAlxhc5KHBg3cn93UT1k7GjkU7R1mbTfos
-	 q8SoBUzcY6kFSszWJ4aTzlDiqKrW/dau8BPL/DRsZ9Z3QcVtFWUts7BTwiciLmr6Bkd00
-	 NVjckQ6gDpoMJwXJnVdEVUXGBtJ83rRjR9SdePqYQjvYix7VIMxOrqOjEmuKDMXPeUNiS
-	 9XhF1/wb74QuiVBudu1SulL21xhSiDMXaFktZ3mRKXLwdwkuumUdFn5zyx3IpJH9EPw==
+	bh=r31NsiZOgizVwPpTDT3QJst8H8jPpnkDDnTlwzVVTYg=;
+	b=LRpjQJLGLJ8ASOKVSWyVCIvsNextyNGWaWbI4WQiv62NAWnnhGcUaTxaj5GoSuTW4xhW
+	 PFDeFmBNTQj/Y5WiD+BC6ZuZIPlVducdGZC86VCHycBYuJfUA72v/ltED42UX0aOrUUFd
+	 X/ZF7Fc/O2o0iCbp5gxdgivFtZG8ylbbMNeDKV9A3ufEYPAAEWMCcTPQvSb1EqJXE/szj
+	 yxdDgH0MAnel5Q4dMPsRgsTgPcNp1vaGZYOwxpvDMPOp6gD9Lld8ivCzxxDdUmV3HoM3j
+	 86CCil7g7egXOqvmJ4M7r1NJwvon6lRR7u8eyPEdGplttulqJS5KwgcRhHIBV8o6d4A==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 6BF511F0089F;
-	Sun,  8 Nov 2026 00:02:42 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id BE5B51F0089F;
+	Sun,  8 Nov 2026 00:02:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794096163;
-	bh=HWi1jiRSnRJfgQ0tDiZtUVXuEEGoRZ0gMq3cRtHXy3I=;
+	s=k20260515; t=1794096177;
+	bh=r31NsiZOgizVwPpTDT3QJst8H8jPpnkDDnTlwzVVTYg=;
 	h=From:Date:Subject:To:Cc:Reply-To;
-	b=Buuwer1tx3sN+orGE+9oCNn6Jr7TdkEa3T7EdZOL1ao5yTFT2iSPE6OhJKrRxrVlr
-	 Tg7ArKNQ8nwVwHiwKI9tc/khfuhYJ3OPBYMQIHOgWgmJUBXE0hEBmAOOb4ccTqy8RT
-	 riQoY/EmcqdhUZLJzz5fwvxjYFf1jSuV4z43Qd2IQT5bguwaZ6irusgsf6X3FYHBsh
-	 2wSZ241zNSkzp7IPt+aZysGH4B2m8RivSn6meZVAGZxAPgXUiuPSxz/iaD4ubbt2sv
-	 f5MMKsNb+FbbWTQ/6WlmMpMcqrVput0plOZEdSIIMiTpRsaeyGFpLekVPRxjXf5Aqe
-	 gRe48AnnFRDBQ==
+	b=VZefF6gax4EOSxUIg9Pc8/xzKkNHqGDpJN5aduh/uuWl+TOFi8o13rzf1KuUofPmQ
+	 g2xbuJ92XeWyrcbzJBX+48ixNo1cYdy2GQ7qnkvfuXkuyyg0wY/S0qroAWNlhHJMuD
+	 TYr9FC5rOO/3efUr5IUd4zN9fDtFqf7cdOnu/Z76hDzYYKmYzTE1LLw/iNpl3/qBey
+	 Nfb61NjWBP2vj0ArUehgNM7NGnagf5IJsaUDpbQ+O1Oi/yoVq3ccS1OT0u3Tgglgmh
+	 dTO2ZWRTtyZ2SyjwtUGHPrKuYMXaS039mcIR/cAtLw92nOyG/fqQoaDghblP4GsAJF
+	 KleckfKObZ5jQ==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id BE9F547D5F;
-	Sun,  8 Nov 2026 00:02:41 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 4E72947D5E;
+	Sun,  8 Nov 2026 00:02:56 +0000 (UTC)
 From: Christopher Griffin via B4 Relay <devnull+christophergriffin05.gmail.com@kernel.org>
-Date: Sat, 07 Nov 2026 18:02:42 -0600
-Subject: [PATCH] wifi: ath11k: serialize updates of the AHB CE interrupt
- enable registers
+Date: Sat, 07 Nov 2026 18:02:56 -0600
+Subject: [PATCH] wifi: ath11k: advertise 7935-byte A-MSDUs on 2 GHz-only
+ radios
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261107-ath11k-ahb-ce-ie-lock-v1-1-4bf2cc474c6e@gmail.com>
-X-B4-Tracking: v=1; b=H4sIACG872oC/yXM0QqDMAyF4VeRXC/Q1KGwV5FdpF202YZK68ZAf
- PdFvfw4nH+FIlmlwK1aIctXi06jgS4VxMTjIKgPM3jnGyLXIi+J6IWcAkYbBd9TNNZ94Ma3jus
- r2HfO0uvv6Hb30+UTnhKXPQbb9gd1MqoueQAAAA==
-X-Change-ID: 20261107-ath11k-ahb-ce-ie-lock-a3fba6270a34
+Message-Id: <20261107-ath11k-2ghz-ht-max-amsdu-v1-1-ed18a6b0c18d@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAC+872oC/yXMMQ6DMAxA0asgz7WEMxSpV0EMJjHEIGgVB4SKu
+ HvTdnzD/yeYJBWDR3VCkl1Nn2sB3SrwkddRUEMxuNrdieoGOUeiGd0Y3xgzLnwgLxY29DQQB+b
+ Q9AwlfyUZ9Pit2+5v2/pJfP7+4Lo+/WuILnwAAAA=
+X-Change-ID: 20261107-ath11k-2ghz-ht-max-amsdu-c1f1adaad7ba
 To: Jeff Johnson <jjohnson@kernel.org>
 Cc: Baochen Qiang <baochen.qiang@oss.qualcomm.com>, 
  linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
  linux-kernel@vger.kernel.org, Jeff Johnson <jeff.johnson@oss.qualcomm.com>, 
  Christopher Griffin <christophergriffin05@gmail.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794096161; l=4945;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794096176; l=5625;
  i=christophergriffin05@gmail.com; s=20261024; h=from:subject:message-id;
- bh=f55mKIhjRDjKmv7VLGI3KY4Ua1+TgC1Bejx8DYIGEbo=;
- b=emDSlfFZPqqTPIkbaTAcKUKXKl48pgHtm4foTh6rZx1GgJzoEmTMvbKEQrP1qjqLatIO3wxGE
- H/hiyU3Vm9EB2vD/ugAwAmataheTx1Gk3WMY+0EDTfKnPfbIBLUI6x8
+ bh=C7DUr4eKMqw0XBpofJFw7fPdlQOxru+WVXPSPaby87E=;
+ b=xtxBE9PG93ZvYFGT44EgRqSetMs+317bSzModVVHqyg96nhWOFgbrsldiIkefGrEEutTkAXII
+ LRgO5RL8W43CzhvHG4YZU8VhHLY7GyKPYU4A8iDQSAAL8RuPvkREV5j
 X-Developer-Key: i=christophergriffin05@gmail.com; a=ed25519;
  pk=oa9tkTNpiGoFWdGvpDHXLSobApmsh9BfrJRJrRJAvWA=
 X-Endpoint-Received: by B4 Relay for
@@ -123,123 +123,129 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Christopher Griffin <christophergriffin05@gmail.com>
 
-ath11k_ahb_ce_irq_enable() and ath11k_ahb_ce_irq_disable() set or clear
-a CE's bits in the CE interrupt enable registers with a read-modify-
-write. All CEs share these registers, and the updates run without a
-lock from each CE's interrupt handler (disable) and tasklet (enable).
+ath11k_create_ht_cap() sets IEEE80211_HT_CAP_MAX_AMSDU when the pdev's
+VHT capabilities allow an MPDU longer than 3895 bytes. ath11k fills the
+pdev's VHT capabilities from vht_cap_info_5g only, so on a pdev without
+5 GHz they are zero and its 2 GHz band advertises a maximum A-MSDU of
+3839 bytes. The 2 GHz band of a dual-band pdev and every 5 GHz radio
+advertise 7935 bytes with the same MAC.
 
-While all CE interrupts are handled on one CPU, this does no harm: a
-handler that runs in the middle of a tasklet's update only clears a
-bit, and the tasklet's write can at worst enable that CE again early.
-Once the CE interrupts are spread over CPUs, by irqbalance or by hand,
-two CPUs can update a register at the same time and one CE's enable
-bit is lost. That CE never interrupts again.
+The firmware reports VHT capabilities for 2 GHz too, in
+vht_cap_info_2g. On IPQ6018 the 2 GHz pdev reports 0x73997992, a
+maximum MPDU length of 11454 bytes, and the 5 GHz pdev 0x7399f9b2.
 
-On an IPQ8074 AP, moving the CE1 interrupt to another CPU under load
-made WMI commands time out 14 seconds later ("failed to request fw
-stats: -110"). The firmware then asserted in hif_ce.c, and after each
-recovery the same happened again; the third recovery ended in a kernel
-oops.
+Keep the 2 GHz VHT capabilities with the band's other capabilities, and
+take the max A-MSDU bit from them when the pdev has no VHT capabilities
+of its own. Pdevs with 5 GHz are unchanged.
 
-Take a spinlock around the updates.
+On IPQ6018 the 2 GHz radio's HT capabilities change from 0x11e7 to
+0x19e7, and hostapd adds [MAX-AMSDU-7935] to its ht_capab. Its beacons,
+read by another AP, advertise a maximum A-MSDU length of 7935 bytes,
+where the 2 GHz-only radio of an IPQ8074 AP without the change
+advertises 3839. Beaconing and channel switches on both radios work as
+before.
 
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
+Tested-on: IPQ6018 hw1.0 AHB WLAN.HK.2.5.0.1-03982-QCAHKSWPL_SILICONZ-3
 
 The change, this message and the test were written with Claude, an AI
 coding assistant.
 
 Signed-off-by: Christopher Griffin <christophergriffin05@gmail.com>
 ---
-Found on an Arista C-360 (IPQ8074) while spreading interrupts over the
-CPUs for a throughput test. With the change, the same CE1 interrupt
-move ran under two-radio load for several minutes (78k CE1 interrupts
-on CPU3) without a WMI timeout; without it the firmware asserted within
-a minute. irqbalance would hit the same race.
----
- drivers/net/wireless/ath/ath11k/ahb.c | 9 +++++++++
- drivers/net/wireless/ath/ath11k/ahb.h | 2 ++
- 2 files changed, 11 insertions(+)
+Found on Arista C-360 (IPQ8074) and W-318 (IPQ6018) APs while comparing
+the capabilities their radios report: every 2 GHz-only radio said
+3839, everything else 7935.
 
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 27d01411b6e9c..6d600c787596a 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -271,15 +271,18 @@ static void ath11k_ahb_clearbit32(struct ath11k_base *ab, u8 bit, u32 offset)
- 
- static void ath11k_ahb_ce_irq_enable(struct ath11k_base *ab, u16 ce_id)
- {
-+	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
- 	const struct ce_attr *ce_attr;
- 	const struct ce_ie_addr *ce_ie_addr = ab->hw_params.ce_ie_addr;
- 	u32 ie1_reg_addr, ie2_reg_addr, ie3_reg_addr;
-+	unsigned long flags;
- 
- 	ie1_reg_addr = ce_ie_addr->ie1_reg_addr + ATH11K_CE_OFFSET(ab);
- 	ie2_reg_addr = ce_ie_addr->ie2_reg_addr + ATH11K_CE_OFFSET(ab);
- 	ie3_reg_addr = ce_ie_addr->ie3_reg_addr + ATH11K_CE_OFFSET(ab);
- 
- 	ce_attr = &ab->hw_params.host_ce_config[ce_id];
-+	spin_lock_irqsave(&ab_ahb->ce_ie_lock, flags);
- 	if (ce_attr->src_nentries)
- 		ath11k_ahb_setbit32(ab, ce_id, ie1_reg_addr);
- 
-@@ -288,19 +291,23 @@ static void ath11k_ahb_ce_irq_enable(struct ath11k_base *ab, u16 ce_id)
- 		ath11k_ahb_setbit32(ab, ce_id + CE_HOST_IE_3_SHIFT,
- 				    ie3_reg_addr);
- 	}
-+	spin_unlock_irqrestore(&ab_ahb->ce_ie_lock, flags);
+ath12k fills the pdev's VHT capabilities the same way
+(ath12k_pull_mac_phy_cap_svc_ready_ext() reads vht_cap_info_5g only), so a
+2 GHz-only ath12k pdev probably has the same gap. I have no such
+hardware to test it on, so this patch leaves ath12k alone.
+---
+ drivers/net/wireless/ath/ath11k/core.h |  1 +
+ drivers/net/wireless/ath/ath11k/mac.c  | 15 ++++++++++-----
+ drivers/net/wireless/ath/ath11k/wmi.c  |  1 +
+ 3 files changed, 12 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index a0d725923ef24..6eca6dc67da16 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -818,6 +818,7 @@ struct ath11k_band_cap {
+ 	u32 phy_id;
+ 	u32 max_bw_supported;
+ 	u32 ht_cap_info;
++	u32 vht_cap_info;
+ 	u32 he_cap_info[2];
+ 	u32 he_mcs;
+ 	u32 he_cap_phy_info[PSOC_HOST_MAX_PHY_SIZE];
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 1a237adaa37d1..1f405e200b0bc 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -5556,11 +5556,11 @@ static int ath11k_mac_op_conf_tx(struct ieee80211_hw *hw,
  }
  
- static void ath11k_ahb_ce_irq_disable(struct ath11k_base *ab, u16 ce_id)
+ static struct ieee80211_sta_ht_cap
+-ath11k_create_ht_cap(struct ath11k *ar, u32 ar_ht_cap, u32 rate_cap_rx_chainmask)
++ath11k_create_ht_cap(struct ath11k *ar, u32 ar_ht_cap, u32 ar_vht_cap,
++		     u32 rate_cap_rx_chainmask)
  {
-+	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
- 	const struct ce_attr *ce_attr;
- 	const struct ce_ie_addr *ce_ie_addr = ab->hw_params.ce_ie_addr;
- 	u32 ie1_reg_addr, ie2_reg_addr, ie3_reg_addr;
-+	unsigned long flags;
+ 	int i;
+ 	struct ieee80211_sta_ht_cap ht_cap = {};
+-	u32 ar_vht_cap = ar->pdev->cap.vht_cap;
  
- 	ie1_reg_addr = ce_ie_addr->ie1_reg_addr + ATH11K_CE_OFFSET(ab);
- 	ie2_reg_addr = ce_ie_addr->ie2_reg_addr + ATH11K_CE_OFFSET(ab);
- 	ie3_reg_addr = ce_ie_addr->ie3_reg_addr + ATH11K_CE_OFFSET(ab);
+ 	if (!(ar_ht_cap & WMI_HT_CAP_ENABLED))
+ 		return ht_cap;
+@@ -5769,7 +5769,7 @@ static void ath11k_mac_setup_ht_vht_cap(struct ath11k *ar,
+ 	struct ieee80211_supported_band *band;
+ 	u32 rate_cap_tx_chainmask;
+ 	u32 rate_cap_rx_chainmask;
+-	u32 ht_cap;
++	u32 ht_cap, vht_cap;
  
- 	ce_attr = &ab->hw_params.host_ce_config[ce_id];
-+	spin_lock_irqsave(&ab_ahb->ce_ie_lock, flags);
- 	if (ce_attr->src_nentries)
- 		ath11k_ahb_clearbit32(ab, ce_id, ie1_reg_addr);
- 
-@@ -309,6 +316,7 @@ static void ath11k_ahb_ce_irq_disable(struct ath11k_base *ab, u16 ce_id)
- 		ath11k_ahb_clearbit32(ab, ce_id + CE_HOST_IE_3_SHIFT,
- 				      ie3_reg_addr);
+ 	rate_cap_tx_chainmask = ar->cfg_tx_chainmask >> cap->tx_chain_mask_shift;
+ 	rate_cap_rx_chainmask = ar->cfg_rx_chainmask >> cap->rx_chain_mask_shift;
+@@ -5777,9 +5777,14 @@ static void ath11k_mac_setup_ht_vht_cap(struct ath11k *ar,
+ 	if (cap->supported_bands & WMI_HOST_WLAN_2G_CAP) {
+ 		band = &ar->mac.sbands[NL80211_BAND_2GHZ];
+ 		ht_cap = cap->band[NL80211_BAND_2GHZ].ht_cap_info;
++		/* A pdev without 5 GHz has no VHT capabilities of its own, but
++		 * the firmware reports them for 2 GHz too: use those for the
++		 * max A-MSDU length.
++		 */
++		vht_cap = cap->vht_cap ?: cap->band[NL80211_BAND_2GHZ].vht_cap_info;
+ 		if (ht_cap_info)
+ 			*ht_cap_info = ht_cap;
+-		band->ht_cap = ath11k_create_ht_cap(ar, ht_cap,
++		band->ht_cap = ath11k_create_ht_cap(ar, ht_cap, vht_cap,
+ 						    rate_cap_rx_chainmask);
  	}
-+	spin_unlock_irqrestore(&ab_ahb->ce_ie_lock, flags);
- }
  
- static void ath11k_ahb_sync_ce_irqs(struct ath11k_base *ab)
-@@ -1183,6 +1191,7 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 	}
- 
- 	ab->hif.ops = hif_ops;
-+	spin_lock_init(&ath11k_ahb_priv(ab)->ce_ie_lock);
- 	ab->pdev = pdev;
- 	ab->hw_rev = hw_rev;
- 	ab->fw_mode = ATH11K_FIRMWARE_MODE_NORMAL;
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.h b/drivers/net/wireless/ath/ath11k/ahb.h
-index 8c1eb1e8e6b13..91bd097ccb900 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.h
-+++ b/drivers/net/wireless/ath/ath11k/ahb.h
-@@ -23,6 +23,8 @@ struct ath11k_base;
- 
- struct ath11k_ahb {
- 	struct rproc *tgt_rproc;
-+	/* protects the CE interrupt enable registers, shared by all CEs */
-+	spinlock_t ce_ie_lock;
- 	struct {
- 		struct device *dev;
- 		struct iommu_domain *iommu_domain;
+@@ -5790,7 +5795,7 @@ static void ath11k_mac_setup_ht_vht_cap(struct ath11k *ar,
+ 		ht_cap = cap->band[NL80211_BAND_5GHZ].ht_cap_info;
+ 		if (ht_cap_info)
+ 			*ht_cap_info = ht_cap;
+-		band->ht_cap = ath11k_create_ht_cap(ar, ht_cap,
++		band->ht_cap = ath11k_create_ht_cap(ar, ht_cap, cap->vht_cap,
+ 						    rate_cap_rx_chainmask);
+ 		band->vht_cap = ath11k_create_vht_cap(ar, rate_cap_tx_chainmask,
+ 						      rate_cap_rx_chainmask);
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 82f85df481cbf..69405d8ca0901 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -454,6 +454,7 @@ ath11k_pull_mac_phy_cap_svc_ready_ext(struct ath11k_pdev_wmi *wmi_handle,
+ 		cap_band->phy_id = mac_phy_caps->phy_id;
+ 		cap_band->max_bw_supported = mac_phy_caps->max_bw_supported_2g;
+ 		cap_band->ht_cap_info = mac_phy_caps->ht_cap_info_2g;
++		cap_band->vht_cap_info = mac_phy_caps->vht_cap_info_2g;
+ 		cap_band->he_cap_info[0] = mac_phy_caps->he_cap_info_2g;
+ 		cap_band->he_cap_info[1] = mac_phy_caps->he_cap_info_2g_ext;
+ 		cap_band->he_mcs = mac_phy_caps->he_supp_mcs_2g;
 
 ---
 base-commit: ad6bdd5f9030dbcf29a67f40ccdb3fa57afecff5
-change-id: 20261107-ath11k-ahb-ce-ie-lock-a3fba6270a34
+change-id: 20261107-ath11k-2ghz-ht-max-amsdu-c1f1adaad7ba
 
 Best regards,
 --  
