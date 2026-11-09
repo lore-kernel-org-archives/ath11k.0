@@ -2,102 +2,145 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A28C3606A335
-	for <ath11k@archiver.kernel.org>; Sun,  8 Nov 2026 22:45:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 491E5606A323
+	for <ath11k@archiver.kernel.org>; Mon,  9 Nov 2026 02:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DW1AGU/O;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=A1Hkrw6/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Z/tNHWp8;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=PUYUEDMQ;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=g5boPZxe
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=j93T7HDIrEE01S1CvxT1EP2HEJdVUqbYJGyOt3zvifs=; b=DW1AGU/OkyoGMMO85VzAAxZn9s
-	w9tr5FEB89Cq9QPa3o5zgo6ZecqHY/lzyr8q2LKSfnAqsdNnusoDonHoCJHDTauf0RkjK5Hw/aeHt
-	vVDDJ48ON6KetvcAunmc5ZK/yW3EOaiGkf7ppR6iLpg00gqk7C3RvWqNcIykJbMrfkmAW4b/LCJ2u
-	o2loBWlnlJ6sS7iOM3DCJYSxvhpN41zr6/K3Gp8hk3ZuVUG/EmvurZjDUUi0Cz23BhDjQe6Z72jss
-	1zFiI7i4yYoPe8ePEB0Ff3xB4Kwx1h5F+4HCaliMOxeHMqCFibZo8KTOMY/RSKKr+XmeRD9Um+twb
-	ypgM0MaQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=eKJNiJGcbpr8z6s4EliWO1wvSZdyW+jyuqQmPlvgA6Y=; b=Z/tNHWp871oMXF
+	hoGHy/jZUr985dDkMK8x9/xjpZJ7V4FSIbwVygWRDlUOq7tk5TQzUq0DLZE3B8H7DaJpR6p01BHxk
+	rJZUWyj602trndLeaXNtRLb4Gd7qkctkrEeiW0oF5BdKI+Yo5gADaNUJwN9/zBfchKzi6uA3mfuY7
+	7KiItuoijsIglP5MRUN6hxY5MDHv7MH2kMRDOYaEG7W/5kS+DX8sc/3Ro2ySlpYTQZyPoN/sYjre7
+	8EfJKv0tXMyIzGLBhU/jK15gu/FbR/oivTbHh+qo0677bECroXuHgW3JhgCyMDdYsE9t6llad9Ub6
+	XMZ1A0HYhvH3bhmpzbzw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQBdn-0000000GrOO-3Bez;
-	Sun, 08 Nov 2026 22:45:35 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xQEin-0000000H5vE-2JrB;
+	Mon, 09 Nov 2026 02:02:57 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQBdk-0000000GrNv-1G6z
+	id 1xQEij-0000000H5uL-44u9
 	for ath11k@lists.infradead.org;
-	Sun, 08 Nov 2026 22:45:33 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 6D77E61E2D;
-	Sun,  8 Nov 2026 22:45:31 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794177931;
-	b=FjNfPxRoObpY7cZoBx1FPoYeBIaYQ5Uu0m+FR5dkVGlCNOXmuxwjTRWebCJpPlYGcYDd
-	 PgPoCYnMAxIePPHpYrlBJoFYrGlIX4oIiVgEU1za8XPzL0j7c6XaYG9K1Lg3QdDr2PNtT
-	 qY9T7iqLu9j3CaOqJqSFFnLthDTkHG/huyqeDI5wEE4mMjIorQ/LpHDK8NtCfXUPhVZTe
-	 g0mvGH4iHgx7ziPOJy2ikRlZrwtQm1t7FupF+ODlwvciFWbsXk6lWmtFoS+GnsldsNqK5
-	 n8ctQPRb29KJPA03DiPCtnIVMKUx/njRkGWTLpc9D6blWYsTsy16nShvaa09A08d16A==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794177931;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=j93T7HDIrEE01S1CvxT1EP2HEJdVUqbYJGyOt3zvifs=;
-	b=H8A8r0MMa8QPFDzmGJk6rOZq1HKjMxhUlPyNj0SV3L2jVcVicov4SBpPVj/5wHW5FJp9
-	 bh0dhh8girswzjxIlZ26TJoJjIP7uzBoVx80XvA9N+zGdxWGq3GPsV5r+f2iQdRPfvsz5
-	 vvtGsSu81ahJ3A8B4y1T51SbwfL+zJd3++ypKcxubC/myDP8XlSXHjmAKQbtQFRvlXJWx
-	 6SYVqAa7THKQ8R91dmsiIhO7hh6pJuS8z3HKC56VdQCHAdUzzNfzKqb8Zn2RyRP+nGd+H
-	 +Z2Dd88zHqwPY/gecnkmzVs8JFfdVuFVCnBddoHn7ENj5SDlQZeRIP4BIc/bUsYJggw==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id D88BA1F008A1;
-	Sun,  8 Nov 2026 22:45:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794177931;
-	bh=j93T7HDIrEE01S1CvxT1EP2HEJdVUqbYJGyOt3zvifs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=A1Hkrw6/WlQhY1quNAtKc5nLElsShZDy8dw4E51FGBt3+Da/pdWFnQsyImM09GMF0
-	 NHuIiwdoPuy9Za0jRjkdr3G5i29r0zL9UcBA5aDGww60s2zgPQU5oTnSob/jwq4smc
-	 4JV+58A2WdAsaEzI6OfEHfYOBUJqrv4qxk0mEVp22JDPIn1ScNJH7pV8c9d4kVo9Mc
-	 J3ccRImNc1jDMuvMbyNrOhOqVcHY+1B18F8KR31p3jcq503n7ir9G29wvEwSAD4sJo
-	 QW+5uIVjL/xxc4ZRLXiVWCLrdOy6Ul60kMCqD2hS4GrpU5vDweUfCjs32eWFDqgQKT
-	 dUbdG4vmk8FKQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 4C8F748126;
-	Sun,  8 Nov 2026 22:45:29 +0000 (UTC)
-From: Christopher Griffin via B4 Relay <devnull+christophergriffin05.gmail.com@kernel.org>
-Date: Sun, 08 Nov 2026 16:45:29 -0600
-Subject: [PATCH 1/2] wifi: ath11k: report TX airtime to mac80211
+	Mon, 09 Nov 2026 02:02:57 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6A90H5a21795935
+	for <ath11k@lists.infradead.org>; Mon, 9 Nov 2026 02:02:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	eKJNiJGcbpr8z6s4EliWO1wvSZdyW+jyuqQmPlvgA6Y=; b=PUYUEDMQqJeTQQse
+	vhjkZkDVCHXfmDIDjn+etojLsomIMcUgP5qIr2wdExDl+coNYT0gle9FvsQuIj68
+	a/g7b4qBHF9gmVHmFo5jpL5pmd8Gy72X8/sgs6GM84SDc7/Eh6hB3sgfKg3D6xXJ
+	eHYed1pCPuQzUgICJiO9f4HKTodcWPH2Stg6daOYahYLJYKnPG69hWP/Fxs1cbTh
+	sKa3+XpFHVIDVNCIsYOaHXQ2KopdH7kQLYpcjmrT2SgfkzRppyhLFEn/smbH0xXe
+	7yujuGOZvszBjJ9nCZ0mX983a9iRoheTjSVMNUiPRvVEh8M1su8g5Vp6Jy/UgVgI
+	PqNVtw==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hsvc6m7a5-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Mon, 09 Nov 2026 02:02:52 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2eaae62796dso4021605ad.0
+        for <ath11k@lists.infradead.org>; Sun, 08 Nov 2026 18:02:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1794189772; x=1794794572; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=eKJNiJGcbpr8z6s4EliWO1wvSZdyW+jyuqQmPlvgA6Y=;
+        b=g5boPZxeZHbYDwOvkcqoI70iWLuNJ8yVOWyHkq52eMFXJMluu4lalBXnCB8hMYd07Y
+         kQgntX+elqg8Armg/gQhGGLREgwfF4xHH++jFsVt27K7SIT7YaG4IeCH2n5Y7PaWblAS
+         s4ubQBXyqiJsvDVlN7TA/vsami36idO3nmuxc/qS9QCkEHvMCYFl8lKx3JvpBA49xsRx
+         1wzN5nNozVoreV6fEpjj5JbBrolVXkniaukzd4QAVmj5DmguJsbSaIa910quLZiUiNdH
+         sN1vAEJSjXRBVR3AyQCJF0MivFkBBneo22uP3sIkV52vLQumC+On9XF6DO+EWGfl+ryg
+         2GdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794189772; x=1794794572;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=eKJNiJGcbpr8z6s4EliWO1wvSZdyW+jyuqQmPlvgA6Y=;
+        b=ubVYan8bx2IWk00FNFystQFOllMrRscxRrClk4FR6/JbCCERihlwruznEwuRPwB9jM
+         9ggghk+RmivO0SmaHedG40i3Ny2a6zHgcIqTphIYnx1lQw7Q/pHT8RuPzIuqf8dvxqFW
+         y6kHoWrXOPDvm+rQx+BFNSeWjR8hLgdRsXWMFGTQPcRJEb68GX/mx9sV+4Uv3Bxyg6sw
+         QZ9yPt1xEPgMfOkQ86ZnbA546Y4UPOwzQmj+rdI5LjOvEVB+mkZCmfHeFe9b3tqWIrt5
+         D8eDt9Z5lkjdneWEwU/9fwdiSDMAnKVfW6jySUQfkeY9mtTQjDYutRu2lZDC5wHvGmn6
+         8svw==
+X-Forwarded-Encrypted: i=1; AL+hErFbMMmm1gCk3seW+60KMGLABURwrIMKlHztFAptdA/j2Z/zqLT3z2B2bYNlqZUPy9jtY6J7qU0=@lists.infradead.org
+X-Gm-Message-State: APuU4Z9AqL6mpCkKl2WPosq5oSPCKkHgHoB40zsW+mB39OqIMvYZmJMI
+	M0rzhPzeI3BVrMn4atc+Ja2vd7O0ql+0vYifmFaLZBjMcv/LL9y43ejH/OY46Lp4uWHycSWskjw
+	lNyrTkEKwBt1hwoJYFi4m0szlWCkqnIg2IE6r8cyhwMRAAWCe5oXKWLSKSMiosLdiLdBi1/CQM9
+	k=
+X-Gm-Gg: AYBFou3QxL/mSEcAwxSBeqMFdUBE/pqyDwN6N/UMNb3AvmRog/SZC9D1aCinkR4y52U
+	on20FhQMA0BFL3bS7Hx1jnd0Uzhb+hPkDk5qbxIW5dgc1jJ+CYq7tzR408Sq5MxzU6fKFdm3C+4
+	dm17ofrOEsY2+ceGeJnP63KHIiKhFKLQn3uRgDwvxR1JClfjgUPtXsLUdLyNIJOUfFoeeaDlr2B
+	/p21j9rcy+HkXSt1Ui3+8wihbVTRabwJn1aRwasrRlls9YAaPM29CclCa3Z0X02lPImldBL0OP4
+	JkZQ3SLu/8zW/fEfZjJhxa3FenIa+OkDemcNU4/B193E462rZrJvGiTX5ntDFAIzdwaQuM09+/1
+	G8Eap8ZpgBoRcCd8JtNAmg8QsSWx3Bf8Y/JjiFjlG3QgWaS3crK4l6XiPri1iao7Tu2Nys35zPl
+	VbOVM=
+X-Received: by 2002:a17:903:1b50:b0:2ed:21fb:e762 with SMTP id d9443c01a7336-2ed8373e282mr24624595ad.12.1794189771883;
+        Sun, 08 Nov 2026 18:02:51 -0800 (PST)
+X-Received: by 2002:a17:903:1b50:b0:2ed:21fb:e762 with SMTP id d9443c01a7336-2ed8373e282mr24624375ad.12.1794189771332;
+        Sun, 08 Nov 2026 18:02:51 -0800 (PST)
+Received: from [10.239.104.253] ([114.94.8.21])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ed815e60b3sm6599565ad.26.2026.11.08.18.02.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 08 Nov 2026 18:02:50 -0800 (PST)
+Message-ID: <6f76f35b-0ef7-468a-934f-1c6426ca9760@oss.qualcomm.com>
+Date: Mon, 9 Nov 2026 10:02:46 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261108-ath11k-tx-airtime-v1-1-f1a02b2372d4@gmail.com>
-References: <20261108-ath11k-tx-airtime-v1-0-f1a02b2372d4@gmail.com>
-In-Reply-To: <20261108-ath11k-tx-airtime-v1-0-f1a02b2372d4@gmail.com>
-To: Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
- linux-kernel@vger.kernel.org, 
- Christopher Griffin <christophergriffin05@gmail.com>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794177928; l=3065;
- i=christophergriffin05@gmail.com; s=20261024; h=from:subject:message-id;
- bh=zAGNDCci+NrWD77ftsAlGwIki6RsHsOwcH4VFGyismo=;
- b=2vusuqHf4uq8QZiEe/1l+A/qBvkFBYziwTATE3j7XuQXLKs1bcDINSDo5W3GhOWzicy33hUdD
- gQ1j98m4d7pB9Fes4Wt/OF5XWFKnSrU8S3Hr9t/5j2D/JVxPD/S4y/O
-X-Developer-Key: i=christophergriffin05@gmail.com; a=ed25519;
- pk=oa9tkTNpiGoFWdGvpDHXLSobApmsh9BfrJRJrRJAvWA=
-X-Endpoint-Received: by B4 Relay for
- christophergriffin05@gmail.com/20261024 with auth_id=1309
-X-Original-From: Christopher Griffin <christophergriffin05@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] wifi: ath11k: Fix potential SRNG configuration leak on
+ init failure
+To: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>,
+        Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20261104-db9e3c75b3-wifi-ath11k-1@mail.sdu.edu.cn>
+From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <20261104-db9e3c75b3-wifi-ath11k-1@mail.sdu.edu.cn>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTA5MDAwNyBTYWx0ZWRfX128Xr7vHG8DA
+ f8xul3DTmp623C0ShJ6cYBolyDYhu9LLicUVdY6+8XYWMVsbxqZHceE4+VQCFc5G89ODACa46T1
+ dlQV4xUrcP0x3vzjLWvxUFAw1uhfi6t1xU6v7RiVDv4IW/QthWNC/2GH8Y8UTqrbQBgH4/NXGt8
+ HowfNNpJT1FvAcEm4xgUmMCvmz5Wu2gWa6eVMQ4YqIFus3YlUEf3ZudOTnJe0xUAQdP+pYTwJOu
+ axF5Dy5jeayq5Cmnwa+NyaaONRZrYI7Z2cyIjjPKGYvIUmARlYXd7Bko9OIEou/mb2RJPw4WrSB
+ EK5sphMZbGJmj2kM/zlQmTQScahVHAZxrHOehF7ESsxidlDAQYTxtn8THriWnnTAA77kq0/pXNt
+ rXd5eYrwSwGl4oSznVoKpvVHRPsxpvxAKSgCHiuXeaEt7lJWdPHdwo2phsR+dWcUOeoMIhMrgq9
+ 219REUqxtx4CajAhAbQ==
+X-Authority-Analysis: v=2.4 cv=WOjqzXsR c=1 sm=1 tr=0 ts=6af129cc cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=Uz3yg00KUFJ2y2WijEJ4bw==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=EUspDBNiAAAA:8 a=Rv8SPUj7cjXdj5bJQ3UA:9 a=QEXdDO2ut3YA:10
+ a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTA5MDAwNyBTYWx0ZWRfX7Mp6jBECE09n
+ TJsX+Myd2hAck2IOMSrpYi9vA3YUx35lwfSw7+RMbqLKwoc2Y1hoquhC5V507NaJQ29gukU7207
+ VLnAsUM1IokA/5Vv3dwpcawgfCGWgYg=
+X-Proofpoint-ORIG-GUID: fK--4oEjqyflAKoLV2GAQh0LnZVTNuQm
+X-Proofpoint-GUID: fK--4oEjqyflAKoLV2GAQh0LnZVTNuQm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-09_01,2026-11-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 suspectscore=0 phishscore=0 priorityscore=1501 clxscore=1015
+ lowpriorityscore=0 bulkscore=0 spamscore=0 adultscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611090007
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261108_180254_134684_9D41D82C 
+X-CRM114-Status: GOOD (  16.51  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,89 +150,66 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Reply-To: christophergriffin05@gmail.com
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Christopher Griffin <christophergriffin05@gmail.com>
-
-mac80211's airtime fairness schedules a station's TX queues by the
-airtime the driver reports with ieee80211_sta_register_airtime().
-ath11k never reports any, so on every ath11k radio each station's
-deficit stays where it started and the scheduler falls back to round
-robin: the station's airtime file in debugfs reads "TX: 0 us" however
-much it sends, though airtime_flags has TX and RX set.
-
-The firmware reports each PPDU's frame exchange duration in the HTT
-PPDU stats (fes_duration_us), and ath11k_update_per_peer_tx_stats()
-already adds it to arsta->tx_duration for the station dump. Register it
-with mac80211 as well, as the station's TX airtime on the PPDU's TID,
-split evenly among the users of an MU PPDU. PPDUs without a QoS TID
-are skipped, as the peer stats skip them, and the call is made after
-base_lock is dropped, since mac80211 takes its own active_txq_lock.
-ath10k (htt_rx.c) and mt76 feed mac80211 the same way.
-
-On an IPQ8074 AP with a QCN9074 6 GHz radio at 160 MHz, with this and
-the next patch: each station's airtime now accrues (50 s and 20 s of TX
-for two clients under load, deficits moving), one client's TCP download
-ran 1777 Mbit/s against 1672 before (means of 6 and 12 runs of 30 s),
-two clients together 1540 and 1524 against 1569 and 1566, and the 95th
-percentile ping under the two-client load fell from 61 to 42-50 ms for
-one client and from 56-77 to 31-44 ms for the other.
-
-The change, this message and the test were written with Claude, an AI
-coding assistant.
-
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.r4-00683-QCAHKSWPL_SILICONZ-1
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
-Signed-off-by: Christopher Griffin <christophergriffin05@gmail.com>
----
- drivers/net/wireless/ath/ath11k/dp_rx.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 6d95f7b343a55..b394a4cfaaaa9 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1380,7 +1380,7 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
- 	u8 flags, mcs, nss, bw, sgi, dcm, rate_idx = 0;
- 	u32 succ_bytes = 0;
- 	u16 rate = 0, succ_pkts = 0;
--	u32 tx_duration = 0;
-+	u32 tx_duration = 0, airtime = 0;
- 	u8 tid = HTT_PPDU_STATS_NON_QOS_TID;
- 	bool is_ampdu = false;
- 
-@@ -1496,6 +1496,9 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
- 	 * So skip peer stats update for mgmt packets.
- 	 */
- 	if (tid < HTT_PPDU_STATS_NON_QOS_TID) {
-+		/* the users of an MU PPDU share its frame exchange */
-+		airtime = tx_duration / max_t(u8, common->num_users, 1);
-+
- 		memset(peer_stats, 0, sizeof(*peer_stats));
- 		peer_stats->succ_pkts = succ_pkts;
- 		peer_stats->succ_bytes = succ_bytes;
-@@ -1510,6 +1513,10 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
- 	}
- 
- 	spin_unlock_bh(&ab->base_lock);
-+
-+	if (airtime)
-+		ieee80211_sta_register_airtime(sta, tid, airtime, 0);
-+
- 	rcu_read_unlock();
- }
- 
-
--- 
-2.43.0
 
 
+On 11/4/2026 10:33 AM, Guangshuo Li wrote:
+> If either DMA pointer-buffer allocation fails after the SRNG
+> configuration is copied, HAL initialization returns without freeing
+> the copy. Its callers skip HAL deinitialization on this error.
+> 
+> Free the configuration on both allocation failure paths and clear
+> its pointer before returning.
+> 
+> This issue was found by our static analysis tool under development.
+> 
+> Fixes: f7eb4b04ce6f ("ath11k: hal: create hw_srng_config dynamically")
+> Signed-off-by: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
+> ---
+> Validation: x86-64 Clang W=1 changed-object builds passed with
+> allmodconfig and allyesconfig. No hardware/kernel runtime test or full
+> linked-kernel build.
+> OpenAI Codex assisted with source review, patch implementation and
+> commit-message drafting. The submitter has reviewed the changes.
+> 
+>  drivers/net/wireless/ath/ath11k/hal.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
+> index 98bd9e3f0aae..8a4e5042d89a 100644
+> --- a/drivers/net/wireless/ath/ath11k/hal.c
+> +++ b/drivers/net/wireless/ath/ath11k/hal.c
+> @@ -1351,7 +1351,7 @@ int ath11k_hal_srng_init(struct ath11k_base *ab)
+>  
+>  	ret = ath11k_hal_alloc_cont_rdp(ab);
+>  	if (ret)
+> -		goto err_hal;
+> +		goto err_free_config;
+>  
+>  	ret = ath11k_hal_alloc_cont_wrp(ab);
+>  	if (ret)
+> @@ -1363,7 +1363,9 @@ int ath11k_hal_srng_init(struct ath11k_base *ab)
+>  
+>  err_free_cont_rdp:
+>  	ath11k_hal_free_cont_rdp(ab);
+> -
+> +err_free_config:
+> +	kfree(hal->srng_config);
+> +	hal->srng_config = NULL;
+>  err_hal:
+>  	return ret;
+>  }
+> 
+> base-commit: 05441d697f7f9a927264f4058cbbc6a03dfcac9d
+> 
+
+Reviewed-by: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
 
