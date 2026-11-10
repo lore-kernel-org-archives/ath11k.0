@@ -2,111 +2,111 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E530606A321
-	for <ath11k@archiver.kernel.org>; Tue, 10 Nov 2026 06:54:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 186E960A2601
+	for <ath11k@archiver.kernel.org>; Tue, 10 Nov 2026 06:57:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0G/4Rdx8;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=dFeszzBd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1O9uVQ6H;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=thnEnBBt
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	Message-ID:Date:From:MIME-Version:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ON76yPiGBPjOcdBUQsWjKqWuzblLf6KyNBqMD0/QiEs=; b=0G/4Rdx8DflAVNu7XIf3f1PRWG
-	V0sPZ44mlrlnTnZSgPoroE4yJ40ht6W4X/8Lkm2L1UB7+9oKWHsbyR1L/LtBk1lUrKeeeUt2i2/ph
-	9wmCP8aObtujWpfs5UPUYhHc2qU64RsYWEI7AXuoIJf0qW85MuIM+MPAud52aM7J6qkR1OJoJzmC/
-	hYshcuu20Nu6JLRqmsh9zCefkC3g8BxmwXwT49/Q66u1IpjsNN62IpUBpWfGxZ4UHauHEfdtDkPDy
-	KQWsGjxUswJvK646SSiq+iUmX94Oy8KKNh4HUkzNbgyAKfwwWTOMnmn5Hmu1WvYL/1McrfqavpvZU
-	dvPbRkKA==;
+	bh=FNCN9F8ROMGrrVoJ7iFWkLhPaPG6W+ai/dJpDmC52jM=; b=1O9uVQ6HjIHVz9itGs7JJ39yVy
+	18eKnGJXEVV8DG5OAvlT2W11pWWHzKgvAAavGanwvu1od39sbFi1lQh4Zx7B72+CY9hOi6cFEX7Ck
+	SFpib5oQM+b6LUj33NU/YSQt9Hb+5sydimekCNVhKNtgKp++cHGBnCl+y8NMd+ka2sno+qugApoo7
+	xl72g7HHh0a5APnJR09QF2gxY1XeuP+vnKwdnmTfa/2+QSpWye5wsEQUl8Yku9h7QdLJTI8WXpkwS
+	s2tyg5Mp4sKvCWJuls0Sub9UzgrNZ0mSRcniyqgz6qasELBdQiqbKz0C4dI/tPfdWZYaXynUfjasP
+	kFqjTq3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQfkY-00000002ikZ-0UiM;
-	Tue, 10 Nov 2026 06:54:34 +0000
-Received: from mail-ua1-x932.google.com ([2607:f8b0:4864:20::932])
+	id 1xQfnb-00000002j2C-2WB8;
+	Tue, 10 Nov 2026 06:57:43 +0000
+Received: from mail-ua1-x92c.google.com ([2607:f8b0:4864:20::92c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQfkV-00000002iit-17vg
+	id 1xQfnY-00000002j1Z-4AaX
 	for ath11k@lists.infradead.org;
-	Tue, 10 Nov 2026 06:54:32 +0000
-Received: by mail-ua1-x932.google.com with SMTP id a1e0cc1a2514c-99c042cee7dso750905241.1
-        for <ath11k@lists.infradead.org>; Mon, 09 Nov 2026 22:54:30 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794293670; cv=none;
+	Tue, 10 Nov 2026 06:57:42 +0000
+Received: by mail-ua1-x92c.google.com with SMTP id a1e0cc1a2514c-99b49d6a5caso368135241.2
+        for <ath11k@lists.infradead.org>; Mon, 09 Nov 2026 22:57:40 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794293860; cv=none;
         d=google.com; s=arc-20260327;
-        b=EA1VZED6MbVwR3Qc0yBxYHdSp2M3a641ooRdwhPXhqQ+pQBQ2c0W0aX6Xyw1E2WbZz
-         Wa8ZzJSGPuteCHl1oe2tEc4oclAftgopXnyo6CYUpKnBrqws4EXLjuWvTofL6jJypIYD
-         vLobZ5O7uWx/Y4LFkXlVlBKLfohalfwT2HFZmTSq4tZ8gJHC/7g1IvFdToJG1xD4Wft9
-         PpTS8uwtwxF5CtM5dqKtX/Mu0b2hUkM7tAxSnnlwC0EJpcKK5ePTMZud7M51wG40DKCq
-         3kmi+XAAoBOPIRIddUFtOkA0vwGF0D2E6tu/cyNh/kXPK0a4tBzkHilfXJU1uREKs8cZ
-         Mdlw==
+        b=IcOy843F1AEl0sfmrMc9mjtYuYnpB9sm/gz7z8+12Dc3mdiQAt7EkVoR5VubT/D0hz
+         Y4OSR8Oibj8gwxz6Fmekd0+joz1Oqonx6RvD6PAm5ndybZ+jhqvC7zMh38MaQn/sbdI4
+         IcHk2EaUgAJNI3ui3P2R1EXA8429A7axYMVEuslWKbJ8AuUY3MkxUbmjH6oEoY0SNdQm
+         qnaqxp/DMfCc8jK8exxMMW3EHc/cvzGm+3UAU5Fz9h0IkCMzA0K1bCfpaS8idOjA8GeV
+         Z00WwLQD8KafbYpndDqmZON92kRyuAlDF0DXONe9hIGcFITW+fL2Y1BkdqchSaGjWt1K
+         46bg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=ON76yPiGBPjOcdBUQsWjKqWuzblLf6KyNBqMD0/QiEs=;
-        fh=LmkkKYSXQ1U6BV60GpTpiAAhFs1hErnQLZiwmEwRwCg=;
-        b=lRnjTyV4oY1PfpcyvJKtCkw9zZFd7YmAFFkod1v0QPGwO2KSTUJ7sRBMJoFUVr5Rcs
-         v74qJUdZKoxui1qUSwgu8mwxApnuEi8VU0fGtYEdyQO+37S+E2DKcCKgrrfOkSYvQ1Zs
-         jq44IytLEqHAD+E2RBG+/NliKyRia7sttNzvvcPz0d1Wk7SRnVnlUDYeF8M8w+hKI4GJ
-         s5z9ixc1B/rIiRpR4HC1txF5tzJPA+w5OeX2ybLhnqEn3psuUQj2uiPcODq0cWmuTI6T
-         n8e9T8rxjfWDZLUEOCyM7PjIACAwyKvjUl0M91Gqx56DQmqT8wOOk9VP7bqd/IHGCRIO
-         7jZw==;
+        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=FNCN9F8ROMGrrVoJ7iFWkLhPaPG6W+ai/dJpDmC52jM=;
+        fh=Zvs7Gq+yutMvDPM1m3SyZp9COm104iwxknPzo50lUC4=;
+        b=Pm2L+6jaE3If2H6vj5nT/u6/x/2FD7VmoggEFrF2xKkJgXdKdT6mP571pEPANg3TQ/
+         cRxI2qc4h5RG9dPwBslpDa7W8EyvE3WJCf8rKch/+vQtZa7m29ioYZOF4THvq1oZKylh
+         3mHTX2VClXepgLvm0o+S7+DpVnq/Xy+d+WBmSXGsMci+HBOUBgWD+csbS7Fcyo6OOgpd
+         hNkmX5TSQbogvE6A5e/VMbKgM366xGODqGteVH3Crugf27umdd3PqS4KS8YNI34ZQ1XF
+         dQo4E1SQfPtFXzQXT+06EK238f7CEMT/tuDW6Jw5PL3G2bpK13TAcZeVyW7HLF/ki9q+
+         4eLQ==;
         darn=lists.infradead.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794293670; x=1794898470; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=ON76yPiGBPjOcdBUQsWjKqWuzblLf6KyNBqMD0/QiEs=;
-        b=dFeszzBd/RRweaeD2a5KplgD2CT2LSuL9nemNUa+HnMqMfuXpU7Y2+Kahw5PY2CI1b
-         /HuKmzpohtG96x+mMIHFX9kEJZ8MSspEOB0IBvoXJiZs7l/hVDJlnmSe5rvFBsLPh5HE
-         0WHGJ7V4qvIzoQW8oDThemqLVq7M82lZaQvOJzHfFDArEeavZ4qyM+QVrOVam4YsGh1i
-         c95H4945myEh0U+soA5/uGenTeX8Ts6W7vuvbxCSDpQI5fjy0JJFEKyY0ZzsSHIadud1
-         qouz1br4O7iPdR8qChOMz/dT2EE57QR+N2NKh63B+FA8S0AGFil+9ufTWbTJ+h5JV6kI
-         Mw1g==
+        d=gmail.com; s=20260707; t=1794293860; x=1794898660; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=FNCN9F8ROMGrrVoJ7iFWkLhPaPG6W+ai/dJpDmC52jM=;
+        b=thnEnBBt0/+Ch/nD1F+p3SU6LJjNgKra5PNYUb1uXQQ26wzm2VhPdkMM2WsXw+Epcj
+         Vp6NOuAkquYucxaqxjS1vj9IEdoTLggaU3TV1urxGl7Pec9oTUpY6znIuh/7h92NmhZB
+         irpL9BbKXNL6Dpyi+SpNuNdRRJRKITgC9JF91bwow/e1LfeZdufd/2QTMDPb58aJ9QiP
+         7RxMa3PY3eD1Z0ZSpxQtJJCiIhFL5WSPnoqzwb6/DqA3NtfYMSyJi7eMsutmnRZQQ0Qj
+         RirvaOgoeIcrsrt3qCw14gwRs0cklEfsoAjravLV7Mbo49uox6qL0TXWrt5mdUWQCHKZ
+         TCWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794293670; x=1794898470;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=ON76yPiGBPjOcdBUQsWjKqWuzblLf6KyNBqMD0/QiEs=;
-        b=yckNsh4utigVAAjN6YaI0oSegrLhMcNoHj1eWWU2koaNtf2jrkarXMcKaEauJ/wojS
-         LkpVIo9NB/BrfPn2jtKkqj7a4TJffmq9TtViW8J/5u0npBN7l9kocdhqJ6mJQwvxbpbU
-         81skAQ5Un7+FB9F2gEaQdq/377ZlfUcmaYBAat0LQgLFOgWCW0UTwmGfU6aJjFpcf6LV
-         M/4GX4IRlpT4y4RS8rZ2sqSDCl/4cY+6CW135/7xN0U00WdDzXzjD4scQXplx1pINlGW
-         mZckLbybVwltyG+00KXU7o/grm3Hz7QpoI+uGNkaO5G1pVht9t0LsAIzQVsNQVOketUq
-         ooaA==
-X-Forwarded-Encrypted: i=1; AL+hErEyhezplALA3oJzmnjWdmECLZJ/n8TpMAAi3LgBOpM/zOUEdhTnRseLlf6Ayc3MwonvGoNE7qc=@lists.infradead.org
-X-Gm-Message-State: APuU4Z9EVzjgbb09eaZy4KTKKNcuDytc4FkmBZ/DHkkoEKc6i9VUL8YH
-	IuwUvW7Q8DQEqVlo4dwpxaNq+eBmKNRLWVXaNJH3j0xjyiKY+gwJw8enffA7U9qs/P2VYMmKXrI
-	VADnr+SNSaDT5mlQ3LDK3irzCjpHrztU=
-X-Gm-Gg: AYBFou0wHvxwjtxklcCK17/qfj5dmB90hLrQDoXEAutuQmCpiGrLtuy3t4Jqf7VLxv4
-	3QczlyreSOPk+CPIbNkdPmYuOdwiZJCipY+uAjk1PDIcK40LMXaSIf66J8XpQEyClpL5o/nSAHE
-	9lwo24M+m30b00KhxCObicy7i1Ge6SjClUkQPlctF/bIhSKRh+m1hII/aa49DkL9JIiDRF7/U4l
-	M9chIEozrT4nrL4CRR+cTBHM9fZA7j7Od0pHyo4v/saPNdVg1/WShtZsBYE5XrieC83JACYxq/M
-	9hJsYZeKmJEEipJScOYyXpIdJ8ykv2EJMt8bWbPBXnSCLOWH6KaT/Rj8FJVjAqNuTdTiFVN8F+7
-	0VNJPcBI20HaZawGvMiHU2HMSi7BbB5kXVp3sLUZbtvY40DMP6TXFQBXtEeejc5nja1DXVmeUaz
-	VINrV3YgvxQJ6eu+3Y
-X-Received: by 2002:a05:6102:579b:b0:7d2:cf82:1a5f with SMTP id
- ada2fe7eead31-7d301c194a3mr577202137.24.1794293669561; Mon, 09 Nov 2026
- 22:54:29 -0800 (PST)
+        d=1e100.net; s=20260707; t=1794293860; x=1794898660;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=FNCN9F8ROMGrrVoJ7iFWkLhPaPG6W+ai/dJpDmC52jM=;
+        b=0lSFQVPe1v1s/g0Tw14YJa4N95wzYiVBjTODB47QTcfnjlu+TtAl8M6Y/cYLBDsPzu
+         m7mkILPzqBlqaFVdXhiGSPy2wVCOt9RipJZu6JLRkYMnFqp5i5cC9aRbMdk+jGGgFbOi
+         LENCnZGgV7CDIX4Jm5ENNN8M0+G51UPi7GTD4pCfURNWJCzwsdSqt3rYdAE/ntqiDwqG
+         l9eS5JxnqV4+oRtI6cmcEHQFeQv6unJYWhkkSQjqmrw8wk/a3krO9NK0yW8HxDcaj3I/
+         XLvnQVtF4JEo32TJ1tbOck+QRNEhqLAjbmu/FMqe8TKLAV3BeOkqEF2HXXKIBHVmBLcn
+         bUtQ==
+X-Forwarded-Encrypted: i=1; AL+hErH6i3ZyzuxvbKGKzN427ih1bXWc+jiDjD5B3SRcKtZdvt+/LGkGwFLZZgRHdcoZecmE7ou+jNM=@lists.infradead.org
+X-Gm-Message-State: APuU4Z/cR2WgLEKahL0D5h/HOZ2XbTMZ1N3xOwFu3o5h0pmbzJl99nzr
+	fyp2pBxW19GUS1X51vIs1ShRjNi7L4wHsUA1US9vnWmYHyilO4NEJd/I9k0isMVG7fJ9QLZo7Lu
+	R4bCn4nc0/wz6Y8B/Hny+Qz/brwhNtd8=
+X-Gm-Gg: AYBFou0f1cbb0DpruCcDFbKXhIzVds6Uqvkry7Bxv5Qe338Yb3mDitOki88ZyDKft9r
+	9ByUZpC621u5lsWVSvbfXu0mqW7eIOpidiJIReUKwwUDOj80nOcefI0AfJOCnyvbSMis78im4I3
+	uuGAPS7xICbOX5ONd/lHoe1UWGZkgJ0bfEjGN6qHmuC61O+YNEtR3vho12tfFRo+u39Re1dBbU1
+	s0bK1fdg3aybqIi0eWw5hjmSRTuEPnkCvWQDny32AU/FMOu+PtFmVFKyHoxNj1SdC9XSTuiQ7/k
+	DS8o7/+VXE4KtjtTDP8LE5xqdgosxFZ6rWZCAIxdn2LvmJiQL/g7+iRQzjZQcTOmD4D+q+Eojle
+	V3tJLNR526GCGd/7g3H0UsJhUAjK2EF9RH/RgWahwkZDTD5UQRBqnvqumq03Lc9BPrtde9O0o1G
+	Ew5yroHDJgc3X9uaY/
+X-Received: by 2002:a05:6102:f13:b0:7c2:5692:1917 with SMTP id
+ ada2fe7eead31-7d301b8446fmr459013137.10.1794293859655; Mon, 09 Nov 2026
+ 22:57:39 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <CAKobHXBuRr2Mz=yqFoqzQpeL9nY6ZeXY1HftEwyUxPYoDkS_+w@mail.gmail.com>
- <CAKobHXCMdy1YT8SO+kkZP9sCr+KOhOXU+if_r=_hb_5pgKO0mQ@mail.gmail.com>
-In-Reply-To: <CAKobHXCMdy1YT8SO+kkZP9sCr+KOhOXU+if_r=_hb_5pgKO0mQ@mail.gmail.com>
 From: Christopher Griffin <christophergriffin05@gmail.com>
-Date: Tue, 10 Nov 2026 00:54:16 -0600
-X-Gm-Features: AclHuK_Xu-_4ngLn3T1h_mV8L2B9Pvc_TLsSCnvFrlmuhuWEjpoBW9WF3FgbfRE
-Message-ID: <CAKobHXBhqnB0c2gDEn+so-0AMFg5aj4pv=rEey9mCLHgHy-pBQ@mail.gmail.com>
-Subject: Re: ath11k: QCN9074 public firmware stalls at QMI cap request on C-360
-To: baochen.qiang@oss.qualcomm.com, rameshkumar.sundaram@oss.qualcomm.com
-Cc: jjohnson@kernel.org, ath11k@lists.infradead.org, 
-	linux-wireless@vger.kernel.org, vasanthakumar.thiagarajan@oss.qualcomm.com
+Date: Tue, 10 Nov 2026 00:57:28 -0600
+X-Gm-Features: AclHuK-ugbccll-p_Y-1vjiqdOoRo5wtQJSfTOSPG7IArA7RJi8LRKvYE_A9LRY
+Message-ID: <CAKobHXAfLKmJWSP_xNKwmNVkd4M92XhVXkVMcG5nxCBnbphH5w@mail.gmail.com>
+Subject: Re: [PATCH ath-next v5 0/9] wifi: ath11k: airtime queue limits,
+ airtime fairness and a driver TXQ scheduler
+To: julius@bairaktaris.de
+Cc: Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org, 
+	ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, jtornosm@redhat.com, 
+	baochen.qiang@oss.qualcomm.com, rameshkumar.sundaram@oss.qualcomm.com, 
+	toke@toke.dk, sven@narfation.org, john@phrozen.org, 
+	tamizh.raja@oss.qualcomm.com
 Content-Type: text/plain; charset="UTF-8"
+X-Bad-Reply: 'Re:' in Subject but no References or In-Reply-To headers
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_225431_318489_0B1D3506 
-X-CRM114-Status: GOOD (  11.60  )
+X-CRM114-CacheID: sfid-20261109_225741_050737_2C1B8652 
+X-CRM114-Status: GOOD (  12.69  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -118,69 +118,95 @@ List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Baochen, Rameshkumar,
+(In reply to the v5 cover letter,
+https://lore.kernel.org/all/20261018174904.1757161-1-julius@bairaktaris.de/
+which my mailbox doesn't hold, so this may not thread.)
 
-A direct question on this one, since a month of testing has ruled out
-everything on the host side that I can reach.
+Hi Julius,
 
-The board is an Arista C-360: an IPQ8074 host with two PCIe cards,
-both 17cb:1104 and both reporting board_id 0xff. One is a 4x4 QCN9074
-(6 GHz); the other is 2x2, probably a QCN9072 (2.4/5/6 GHz scan
-radio). ath11k from backports 7.2 on Linux 6.18.
+I tested v5 on an Arista C-360 AP: IPQ8074 (AHB) for 2.4 and 5 GHz,
+QCN9074 (PCI) for 6 GHz. The base was OpenWrt main with backports 7.2
+and the TX flow control v7 patches 1-3 underneath. Flow control
+patches 1 and 2 needed fuzz 1 against OpenWrt's IPQ9574 patch; the
+rest applied as posted. I swapped the modules in RAM and ran A/B/A
+against the unpatched driver.
 
-No QCN9074 hw1.0 build that Qualcomm has posted boots on it. That is
-24 builds now: the 15 in ath11k-firmware (2.5.0.1-01100 through
-2.9.0.1-02146; 2.9.0.1-02175 has 02146's amss.bin), on both cards,
-and this week the nine under testing/ in quic/upstream-wifi-fw, on
-the 2x2 card (2.6.0.1.r6-00010, 2.6.0.1.r7-00002, 2.7.0.1.r1-00003,
-2.7.0.1.r2-00005, 2.6.0.1-00828, 2.7.0.1-01701, 2.9.0.1-01385,
--01713, -01832). Two builds that are not in linux-firmware do boot:
-the AP vendor's WLAN.HK.2.5.r4-00683, in 2 s, and the
-2.15.0.1.r2-00004 from my earlier mail. amss.bin alone decides it:
-the vendor's amss.bin boots with any public m3.bin, and a public
-amss.bin fails with the vendor's m3.bin.
+2.4 GHz, ch 1 20 MHz, two stations downloading TCP for 60 s each:
+an 11g-only station (a FastConnect 7800 with HT/VHT/HE off) and a
+2x2 HE20 station (BE200). A wired host pinged the 11g station every
+0.2 s:
 
-The failure is always the same, on either card, with the other card
-bound or unbound:
+run | 11g Mbit/s | HE20 Mbit/s | ping avg / p95 ms | ping loss
+without (A1) | 1.6 | 64.6 | 5275 / 7710 | 4.7%
+with v5 | 1.5 | 52.8 | 375 / 769 | 0%
+without (A2) | 1.6 | 68.2 | 5415 / 9953 | 6.7%
 
-MHI SBL -> mission mode, WLFW service connects, indication register,
-host capability, memory request (type 1 36700160, type 4 3784704,
-type 3 1048576, type 9 8388608, type 10 8192), the host answers in
-2 MiB segments, FW_MEM_READY arrives, the host sends the target
-capability request, and the firmware never answers it:
-"failed to wait qmi cap request: -110". No SYS_ERR, no RDDM, MHI
-stays in mission mode.
+On the slow station that's the same bufferbloat cure your cover
+letter shows. The codel drops land where they should (385 on the 11g
+station, 89 on the HE20 one). Its share of the air stayed at about
+5%, which matches what you saw about the firmware serving queued
+stations in turn.
 
-The same public 2.9.0.1-02146 boots on a QCN9072 on an IPQ6018 host
-(an Arista W-318) with a QMI trace that is identical up to that
-point, including the segmented memory answer; there the capability
-reply comes at once.
+6 GHz, ch 37 160 MHz, one 2x2 HE station (FastConnect 7800) alone,
+TCP download, 4 streams, 60 s:
 
-So, the questions:
+run | Mbit/s | TCP retx | loaded ping avg / p95 ms
+without, run 1 | 1609 | 2928 | 31.7 / 57.6
+without, run 2 | 1622 | 2333 | 17.2 / 27.7
+with v5 | 1154 | 13100 | 6.5 / 13.3
+with v5, fq memory 16 MB | 1340 (*) | 8077 | 10.4 / 24.3
+with v5, fq memory 32 MB | 1398 | 2073 | 15.9 / 33.2
+(*) steady part only, after a client-side reassociation
 
-1. Between FW_MEM_READY and the capability reply, what does the
-firmware do that can hang on these cards behind an IPQ8074 host? Is
-there a known dependency that the 2.5.r4 and 2.15 builds handle and
-the posted 0.1 builds do not?
+The default run's loss wasn't codel: the station showed no drops or
+marks. It was fq_overmemory, 409 in the 60 s. mac80211 gives the TXQs
+16 MB only when some band has VHT (ieee80211_txq_setup_flows()), and a
+6 GHz-only radio has none, so the QCN9074 radio got 4 MB while the
+IPQ8074 5 GHz radio got 16 MB. With AQL the backlog moves from the
+firmware rings into mac80211, and at 1.4 to 1.6 Gbit/s 4 MB isn't
+enough. At 32 MB there were no overmemory drops. What's left (-13%)
+seems to be AQL's own cost at 2-stream HE-MCS 9 to 11. The 4 MB cap
+looks worth fixing in mac80211 on its own, for any HE radio without
+VHT.
 
-2. What can I capture to show where it sits? I have forced RDDM dumps
-of both cards from the stalled state and can send them; tell me if
-another log or MHI channel would show more.
+I also tried the series with NL80211_EXT_FEATURE_AQL left unset on
+the 6 GHz radio only (aql_enable 0 should behave the same). The radio
+then ran 1810 to 1906 Mbit/s for seconds at a time, above the 1615
+without the series, but it kept overrunning the TX buffer IDR: about
+14000 "failed to transmit frame -28" in two runs of 60 s and 45 s,
+each burst followed by a dip to 1000 to 1400 Mbit/s.
+ath11k_mac_tx_push_txq() checks the TCL ring for room but not the
+IDR, so without the airtime limit nothing bounds the frames in
+flight. It may be worth ending the round on a full IDR too.
 
-3. If the fix exists in a release branch, can a current QCN9074 hw1.0
-build from it go into linux-firmware?
+One note on 4/9: tx_duration there is the user's fes_duration_us, and
+it's registered in full for each user of the PPDU. For a DL OFDMA or
+MU-MIMO PPDU, that charges every station the whole exchange. My
+duplicate of this patch (below) divided it by num_users. I didn't
+test MU here (OFDMA and MU-MIMO were off).
 
-I can run any test build on this hardware the day I get it.
+That duplicate: I sent "wifi: ath11k: feed mac80211's airtime
+fairness" on 11-08 without having found your series. It repeats your
+1/9 and 4/9, and I've asked Jeff to drop it.
+
+With the series as posted there were no warnings, crashes or
+firmware asserts in any run.
+
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.r4-00683 (AP vendor's build)
+
+Tested-by: Christopher Griffin <christophergriffin05@gmail.com>
+
+The tests and this report were done with Claude, an AI coding
+assistant.
 
 Christopher
-
-The tests and this note were prepared with Claude, an AI coding
-assistant.
 
