@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB435606A33C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9841606A332
 	for <ath11k@archiver.kernel.org>; Tue, 10 Nov 2026 14:37:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=okdVZ2Bw;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jHTAXu6q
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YjDumvTS;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=TzT62Hy9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=tN3vdZ9ng1Mhk2Xe8ShvoPdE+C0i1qFRsvoRSok7RE0=; b=okdVZ2BwQonqyQ7Ao1yDMQwEnT
-	0J2OGaTyfofSAFNS6+9c1khz0XSgjM2bm2zHcsNIcF2pot3fLKfNQWjvqh3ka1QAUZVNlpXKemdcc
-	AggeBsuw1EF0s8cltCA1U1FCzs+g+AKWC6WjuEfrb1vr3e5CN9jxxTHos0Fzkr5i8MUQntu2I9EXY
-	jVqffNsd+tFW/L028VaWMYJnAfa8yhu4U0qEgDwmU054+WxD/w180U2Xzc+ra5GjH0aGJX72hlram
-	9FaP8DFPJoSfuRj0FtuWTE13q6SM9FPLFJNI/NBfiMDc4pCp44iE9WPZ9hqS/UaRp+434SqDLioq6
-	VLa78rqQ==;
+	bh=TH0RhbJ4444L2PfImVqZG0ogOGpAWT0oGQI0lbwLlys=; b=YjDumvTSJPXi8CHkzd9zjL+cWS
+	R1CiB8h+HDz6x0rL3mVMqa2zAUETlxkll+xgui53PTKcIrCXremJ0dmmcFYOIfgQAnzHwMwSA0YJK
+	dQa2lbDcSJ7ONwJ1NDSzTD25Zr83tRColGtRfU6vqwBFWgk3XGtB3GiD6M13APPBqU1c3U0/+4DXq
+	HXvOyU9Gt2zlOTEgREpKR5j3omVra9swfzxt8K7hT2VWmW59m4yqs9E8m9LCE8aFfe8RYyOVNkTlH
+	mGr43GCd19SGS2nUuPk6ngqXlZI6nZwYZCKhjkM37Vk/UwBeNg+95zIYU8SZRrztFzGZ7xoIgjiKn
+	aHF5Fxiw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQmyy-00000004Dop-2ymF;
-	Tue, 10 Nov 2026 14:37:56 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xQmyz-00000004Dp9-0L8s;
+	Tue, 10 Nov 2026 14:37:57 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQmyx-00000004DoM-00Nu;
+	id 1xQmyx-00000004DoN-1Yeg;
 	Tue, 10 Nov 2026 14:37:55 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6E8B145CA4;
+	by sea.source.kernel.org (Postfix) with ESMTP id AF937470A2;
 	Tue, 10 Nov 2026 14:37:54 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1794321474;
-	b=W/dEAKXDKQEL38AVbaPMArPp6n0tFfMdgcl9mwvxOtklqu2DfSCW8uzA7s+k8O1h7HAQ
-	 vclBQLRsB+DI1x9S9s4ORg5gbXxhPzTHHLLmRakXsyDo6crQzBYB7g3NLdeP3vuZ7CKPl
-	 hnTs+ybXGBaRVcCLHKz09iU/4AwsSS32PCCxsSwBfJINbTrgzaW6KVI7BJ4jnj3udZ7x/
-	 DpBFagXGToJjAAYEZnXDzi6gT9kZgFlcvPByXnp260ofJeu1vRP2u4A9inYeF9T0P5UZQ
-	 XZh9xHPVrclkRa7Z65zTT5seg2YWuiV3+GxuAod4dUfZ3bcVoUcaK8TJZARxkGCOz7g==
+	b=Zs3dnLJjauRbws8/ITbmi0WZLIYeRYBCAFTjCNq/QCJj60OcV9WT0CoKRRUFyZSWDlbs
+	 pa5oW6RF4Vcbk+znw0jfytyBZUUp1JYZJs/i37w/P6bKbFSfUOrfyiFsQJ79nbXo0Zx+a
+	 BfKNnhFOe4oYuYRYOe6Ltdf/7eqknb7SPAiQuh5EVD+WR0KvBXox03pi380P8OwxqdvwG
+	 XNW1SDK6ihU8w0F1fexCsrDX7L7nyW9OR9NKAUDfW6MZPynDlmu5RQqCZH7Yu5eh97bcN
+	 ce9hqg6BC2DxLRPP53Ndp+Cq0RiCt8Q8axBUcYpybLBOkzGyUKBOo8eVAyjhRi2NWMQ==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1794321474;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=tN3vdZ9ng1Mhk2Xe8ShvoPdE+C0i1qFRsvoRSok7RE0=;
-	b=jrCCv8oGK7/obn4jD3QWMWZqeKBZ7o8s/i0Fr7+thRDRPFJshku32aCdyyslMTLyglLk
-	 kBHbztYo/cRV9DNSg5qOXeYHPK07EMO/gusIfSQyKYsdnz4WGzUrYvcOHVlkr/YRHLqPd
-	 2ui/+mK9an4ga5e/6/Z/g/+Pk+nWk+/2iH/HR0ipCato6zRc9T2+O0UXH4uR4Ggb7MRZ+
-	 XwTuQeKS93sitymHJ5bP5tIO5AOIs5gA0dHU54OcmXRdhZPcJCqaAQXhA/vpgr47u2++P
-	 mOAOB6xgBBQOSwAmloCdagXNUnWW8tgXJ2ajvSxjyl5qJrMC3JAc2PfbIr6GT1iTpKw==
+	bh=TH0RhbJ4444L2PfImVqZG0ogOGpAWT0oGQI0lbwLlys=;
+	b=wI8/Wm5k0ZsQl7hqrYaOVHzwW+3Qzfzp5fRuqA2g2ABKYIo+0Im/Yrh/h62xKaDJGDNp
+	 N/E/dN2T8FNofunwm8Oe0/zxNmT/Li2YxXxC3DFwR9JusBCLh9dR1kIye5fpzyxdb3xSW
+	 o2ujYmtDufcszHfgOyKmDTQoWL3cOdqUpaNon0wtTwXx4FAYHx2mEAV7j575bTDaCQ2F0
+	 +BAdmzbuVr6VrsYTpEbDJcqm96GSSAvERYcqGGWe0vNJkfVv8hhsNVZWydnmmC1N2aQC9
+	 oOC5+u1zlxCK+vjVvQvqHjXyeR4YTWWS0IuLLbDm3/9uwchZY5EvUGi2Hd0UMcHIBBg==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 52B971F008A2;
+	by smtp.kernel.org (Postfix) with ESMTPS id 52A531F008A1;
 	Tue, 10 Nov 2026 14:37:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1794321474;
-	bh=tN3vdZ9ng1Mhk2Xe8ShvoPdE+C0i1qFRsvoRSok7RE0=;
+	bh=TH0RhbJ4444L2PfImVqZG0ogOGpAWT0oGQI0lbwLlys=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=jHTAXu6q7nLlpVJ5O27p6BB+S5hGeZgZWtjJkqDnNWhlOeUapHnMtzwg2RM2Xb66/
-	 VC1owfcDtexVHZFr2w0W+8i9zBGztFfDUZRl8ZsWZtiK5/YAN94x1dxrmlHnBi5AGX
-	 UllWxx8IoYyI42xtIvLOiN8H50YrOUL9Sxu6Cq6KBv/b9VYeliVES7/zrbYGpmmMIl
-	 q+dcBbMFwOzefY4AgGakpdddus3/r2zL2oe21tJqhUPIrLa5XX7ussVOjidcLKHI8x
-	 CfXT+vIWOR1nNzXDIXvemOWNvzbP7OZiymZsd0yyXHSi5p8GtB3uXzwos3LQ2K0umb
-	 4kuExd9htNSzQ==
+	b=TzT62Hy9N4yY0kJRuyflN2z2mecgmq5BuXoTRI+V6TxanGvJopkhwSCun0kCwxHyv
+	 2mEivQSQBKZKYg5tmWBA06WgSHOvAy8eWk9UG+G5wr9rjkri3w+Eq7lX4hy6ctPK9f
+	 pm9UznGpXX+U1xj5pCigZ7MbF+I4YV4Wu+mC9NqKKWc0q8KB3RNMXSvcCfPwoQbg75
+	 069JFhLp3m0CcmIqEXCPlZ8nCWJPO+epXCrscypMfrGceh1x4QdXCsDfNUb/3PySYI
+	 ZI4/febIuWsLWX4iND7KdIqLNnY/zfTGm1DTFUutdMg7rn9vmctkXjwNWOw6HSp8GG
+	 6oCj93VgS5Tmw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id D24D648B9D;
+	by lkml.kernel.org (Postfix) with ESMTP id C0EBC48B8B;
 	Tue, 10 Nov 2026 14:37:52 +0000 (UTC)
 From: Christopher Griffin via B4 Relay <devnull+christophergriffin05.gmail.com@kernel.org>
-Date: Tue, 10 Nov 2026 08:37:53 -0600
-Subject: [PATCH v2 2/2] wifi: ath12k: simplify copying a peer's PPE
+Date: Tue, 10 Nov 2026 08:37:52 -0600
+Subject: [PATCH v2 1/2] wifi: ath11k: simplify copying a peer's PPE
  thresholds
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261110-ath-peer-ppe-thres-loop-v2-2-fced87507920@gmail.com>
+Message-Id: <20261110-ath-peer-ppe-thres-loop-v2-1-fced87507920@gmail.com>
 References: <20261110-ath-peer-ppe-thres-loop-v2-0-fced87507920@gmail.com>
 In-Reply-To: <20261110-ath-peer-ppe-thres-loop-v2-0-fced87507920@gmail.com>
 To: Jeff Johnson <jjohnson@kernel.org>
@@ -92,9 +92,9 @@ Cc: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>,
 X-Mailer: b4 0.16.0
 X-Developer-Signature: v=1; a=ed25519-sha256; t=1794321472; l=1371;
  i=christophergriffin05@gmail.com; s=20261024; h=from:subject:message-id;
- bh=S3RGt5CprtIcKimatDNBeUJCBEBiBnLLAOmHNGumSF4=;
- b=BmEpdxPl6CdaE5UhPvQdnBUSM+EL4w8eQzXAI++AGbmzFyawZBji8QU8DePhVwjpAQn+yBbsY
- qaD4IMT/okDAt28ox/31Y/GuFOttamdcK4jy9SR6+SRqsjPblaR4+Pe
+ bh=+v0/mtei21f+uWsVMg5ZCRb77EqWbxbixU5qhwUbCuI=;
+ b=T4WDyBltYopDh9pNqvEwmGuyvOV4RHN47HxHiexGgQTrBn6RmOIBzBRPZdqVwztDMwGny8RtK
+ HIc+nHYU2v8AVtVXU0y+hawhSJ9xXlLLJ+PAKhqJYa/zEn92c0MlGc/
 X-Developer-Key: i=christophergriffin05@gmail.com; a=ed25519;
  pk=oa9tkTNpiGoFWdGvpDHXLSobApmsh9BfrJRJrRJAvWA=
 X-Endpoint-Received: by B4 Relay for
@@ -122,7 +122,7 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Christopher Griffin <christophergriffin05@gmail.com>
 
-ath12k_peer_assoc_h_he() copies each 6-bit PPE threshold of a peer's HE
+ath11k_peer_assoc_h_he() copies each 6-bit PPE threshold of a peer's HE
 capabilities into the WMI layout one bit at a time, shifting it in from
 the top: val >>= 1, then the new bit at bit 5, six times over. After the
 sixth bit, bit i of the field sits at bit i of val, so put it there
@@ -137,14 +137,14 @@ Suggested-by: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
 Link: https://lore.kernel.org/all/b60c4c56-483b-406e-92ab-643b0fdf2dc8@oss.qualcomm.com/
 Signed-off-by: Christopher Griffin <christophergriffin05@gmail.com>
 ---
- drivers/net/wireless/ath/ath12k/mac.c | 3 +--
+ drivers/net/wireless/ath/ath11k/mac.c | 3 +--
  1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath12k/mac.c b/drivers/net/wireless/ath/ath12k/mac.c
-index 9fd3841f71b71..12dfac1d3b42c 100644
---- a/drivers/net/wireless/ath/ath12k/mac.c
-+++ b/drivers/net/wireless/ath/ath12k/mac.c
-@@ -2731,9 +2731,8 @@ static void ath12k_peer_assoc_h_he(struct ath12k *ar,
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 1a237adaa37d1..d7ae9e8747233 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -2496,9 +2496,8 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
  				if ((arg->peer_ppet.ru_bit_mask & BIT(ru)) == 0)
  					continue;
  				for (i = 0; i < 6; i++) {
