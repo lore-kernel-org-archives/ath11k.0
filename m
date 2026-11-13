@@ -2,72 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40F63606A323
-	for <ath11k@archiver.kernel.org>; Fri, 13 Nov 2026 06:21:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CC7F606A323
+	for <ath11k@archiver.kernel.org>; Fri, 13 Nov 2026 10:21:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OmVW7+4O;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=domov.de header.i=@domov.de header.a=rsa-sha256 header.s=s697561 header.b=MTgf92aA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1PCJlZg9;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=rDpgFnpd
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:
-	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=mZONIYnW8+Xtz/W7yL4lA48kSuBOoYRJ/ql3Y9SPYbc=; b=OmVW7+4OIhVxQG
-	sZcpgnhTIEygQAfsFEcEVwKxstL8QtGrwVvyMR8CW42Bj5RcZ0A0+KGXeJcKUie65LrrCsx6QaJpI
-	iaIPsweSkSshwLw2uAwVav7zhtkk9UaP+3ipJaCxPfj8HCSrkGDJu71hGiiTRJkgkv3hIXlvjdcfy
-	0fWM7zjoHInIaM2wCIJVRUK9dn1ac4VjFXqVGJyI1S9BNno2GcFxcDUt7kEYe9Hf0se6PaArIeKDz
-	h67Z+zDnyGVDrvlDwilEDjJR/10wEmgLVb2BVvcfewTdHQxfr0YB47gDFus12Lv3Jg3zPULgPIeN4
-	v5TmK238fEQ5GyK+39aw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:MIME-Version:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=MAPoy+obUd69nqkSG4F2hKPgASuGSPy3QCknDbxk64I=; b=1PCJlZg9CHZhur8qqfWr610+vX
+	hIg1TqJ5AGAyHVFLwFZFFtlRQDLpDFm5F8jpOVIZyXT4AwJZCR8Lft76PByC+VMig4iwo+O+TlMkW
+	hmejGyZB68jhcQU0JSCpSc1thBTq/+T9H2Nv69Sfvwh6s4MZFy6eZv0idJG2FWSmMFMKz6CYgYRSz
+	raqOXXFubYmpliT5iXgU939qXkO+M1lkpxLHdCPk5WKGgLpmp7Kk2/+cKBqDCHgubBiAO2eMo1kF6
+	fJ5tAKpDST4i8B0Toxxzeds+7EBd5p8gk9qgRCr6iC4NLqQ+9xwtlW8aayMWxWkM6TRZ4b32LQIGx
+	bquHW/jw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRkeg-0000000BlSt-3xMq;
-	Fri, 13 Nov 2026 06:20:58 +0000
-Received: from e3i824.smtp2go.com ([158.120.87.56])
+	id 1xRoPM-0000000CLMy-0vO1;
+	Fri, 13 Nov 2026 10:21:24 +0000
+Received: from mail-lj1-x22b.google.com ([2a00:1450:4864:20::22b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRkee-0000000BlR9-3GAv
+	id 1xRoPJ-0000000CLLq-05F7
 	for ath11k@lists.infradead.org;
-	Fri, 13 Nov 2026 06:20:58 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=domov.de;
- i=@domov.de; q=dns/txt; s=s697561; t=1794550842; h=from : subject : to
- : message-id : date : list-unsubscribe : list-unsubscribe-post;
- bh=mZONIYnW8+Xtz/W7yL4lA48kSuBOoYRJ/ql3Y9SPYbc=;
- b=MTgf92aAE30uC4my6tyTIPvA6CE61r09M+SevdUFvtfHsZ+sBQqyPCsTwx3+TOmWnH5Gy
- WQe9BHIPBF/1G81nJHHKpw+eoP1JoRGJAShCJn7bXjl4FL4/yJaTzdVsm//ysnK+J8Gpp9c
- lcU7glK/xFk0Iu8StBadbSeZsVRCQEXgzgRiO/SLLWVEpRxKxI4oA4W69riFJpvp3/Wib4y
- AdgoZtAHQp9a5cnb7NbDbWov2oUOxtFzY0h0Rdqyj2bJlUeHcKHbW+PYIfhc/6ETz1bcmIa
- MjzDCCPk5N/gsT7nPI5ySfi2yloofXTAKcOO9bqo4Ubpgi5aVzVDX3VTMV6g==
-Received: from [10.240.241.197] (helo=mail.domov.de)
-	by smtpcorp.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256:X25519)
-	(Exim 4.100.1)
-	(envelope-from <ath11k@domov.de>)
-	id 1xRkeN-4o5NDgrnoqH-o3yR;
-	Fri, 13 Nov 2026 06:20:39 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1F7BE44001;
-	Fri, 13 Nov 2026 07:20:36 +0100 (CET)
-Content-Type: text/plain;
-	charset=us-ascii
+	Fri, 13 Nov 2026 10:21:22 +0000
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-3ac97e45a79so8771761fa.3
+        for <ath11k@lists.infradead.org>; Fri, 13 Nov 2026 02:21:19 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794565278; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Zd6/2OhYEqukIFtlmfsKc6UTTlqN+e0Gd8iU6fm87Go5Zoy2PwmNyUyUnjIbDvDcDC
+         AiMn1htVbSng+kbHCqrshYzMPRD/N2Pal9FCG/itB/Vdk3+MYnIUgnoP3aTp6JKvkxoB
+         UUI5lUGwj38xyi7QwR3LeNyalLEjNFJPomUHUF/XMHh04m2SkBRysbI67EdKefxz4+Oq
+         k83yepsRQIca5mRCvSZjW69FEm6Tf58NPThWshgVbFSoXMFJpfVb/8wSTwfmyPWG/AGZ
+         n332QqTo01uz3JCJPh1U4angtJbFJrqlZgWMMMIAwWTB8sl3r/jOfilBBcFcrZwZNpA4
+         g8ag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=MAPoy+obUd69nqkSG4F2hKPgASuGSPy3QCknDbxk64I=;
+        fh=Y/YWOAgPFazwB4n4tg8WI90Hv9MYDRqypMwLLdSQyHQ=;
+        b=Gocihf0ctheuonT0cuCPOMyCAG5COv5tjJdkBZSSzj9R6bDyQyTY6OD2X30Dk9jCP8
+         sZF8d3Q7fXhzxErpatXQeJrweS3tF/h2vpURrTCENPIV/zybN/IRWn0mdkaBfM1QMBLD
+         6wc8J1fmy5Yyz5WLIuHh/WAkS8W89nf3mrXCEKLxHhJYIgjQ4r/xRucWr671DObfRyLQ
+         8+wiWaidkeuS7IOn44OOJlVe7u+CXpvmm3XVsIBvjL9+6NyIJVc2VFted5Ql6pCof4v6
+         iHC62j1fXwCP++0kU7WtX+4wHVCSCigutNA214ZzUpURD15NwoqJ+PU7MUx9SYEhY9tN
+         2Kng==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794565278; x=1795170078; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=MAPoy+obUd69nqkSG4F2hKPgASuGSPy3QCknDbxk64I=;
+        b=rDpgFnpd5bGASGZKmUjSoDfA1BA0mueldZU3ad6Vx9a3tjKzNrKN1uBkRdycsWWQBz
+         EKdutFZwkJwi+LD9CHT9kTiIBnEmyCkVMfXW4GDogpqsmNlIX37eOcZs+dQt6XN2HipC
+         SPXN6jDdVKDwn5RGIuwRXE7YdN5gQS/raDWYqvP5g9RDA+rrcQPNJqCkFFtt/oyJF5+1
+         lGKtxC2q5rdHQBv7rjkaIpke37C+OCAPZiqSyKNR/ZfpqQfR/X4grC+ri9FtS6vKhGmI
+         vAhsMlNHmEBYb8DwcgbQ2QWnznLaM63hNh3lFnFCiSMgFnod+ywAWWvGQKjC/w5cKzw0
+         g5dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794565278; x=1795170078;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=MAPoy+obUd69nqkSG4F2hKPgASuGSPy3QCknDbxk64I=;
+        b=u003UDxnxO3Nr2quXDUvCGL/S4Q6yuCNP5G7026+NxgHfcHlgP7q0dPKFjk/bZ4goQ
+         PYfeXWeoWq2O1WlL08nR4+kdAj4yfjNke/xIi2c4fWUZojmMuF6gC1ZcxOpwxuehNoxc
+         qQsfzG3M1Hl62ChCBwdealR3akIyb747U3lkIF6N9VATrvtbFtYmm6nFJFzRCnPaf4vn
+         +koI0CQd/LivxN+jUlemnInY5SyMVUY3NIuJzxq1dh0QB6VvygB/1L6MQqdQB85NwqcU
+         kXgedDwEBUvnLpd/yds/7q3tCk1d96KT8o1mZaAZiUthcw3ix4xxBtMIhP7qV701AtPG
+         337A==
+X-Gm-Message-State: APuU4Z+WcWxP0AbozACj/ja2+MQQ8HF4JSR4CNnQFqXK2kgslF3tA2rS
+	AmKdrSL6rJREEZ6eAQcn0nXicNmNmEgQBhyQAOmMdTxr7HDwT5wgdUtwQolu5lFY3QJSp0gSA6l
+	ZEKkYuZhv6GWpn10jR01nrBjYVw4pd18=
+X-Gm-Gg: AYBFou1+puzbGCmXhFVC2f0u/fXWxrphBvP50KhVgmqLyabqO5Qm0xjM6PZgI/5Xl2/
+	6zaOkqKc3pPCLl8f7KV5pjYCzhUxZffD4B8+T5ZzTgyxyIZaaPgJN6uMjq+BNtyJvJiIK0TybXc
+	yXOTFzkFNg0IYXMf1fPaAYENX2tts975voZsyIbRhfZK58BEtpJ8Rb4u/5DSpZdGzaSLgrbKRw4
+	5AYa00aWmCTcSZOTL5ZuTIdfOLtJbkSpBj+fM0MRKNfTez/nS3nxvKqaF/XhYjczHjaKE5a+lA9
+	nZYwYCvjPymsbNS0HTqqN6sq2adOp7fnYXAYEiZ9aJrkXqs1o89bps08jvb9PdzWtXFc8mX84tW
+	9jZjfocbSjUcSRFvhT7s10th5mIVIvhfVvSI/23VqFcLvkHDEScw49/qNHPFn3wT67Xam
+X-Received: by 2002:a05:651c:b26:b0:3ab:3bf3:1606 with SMTP id
+ 38308e7fff4ca-3ae2b52ecbemr7965161fa.24.1794565278183; Fri, 13 Nov 2026
+ 02:21:18 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3864.700.51.1.1\))
-Subject: Re: ath11k: 802.11s peer stuck at 1 MPDU per PPDU until DELBA 
- (IPQ8074, WLAN.HK.2.9.0.1-02146)
-From: Andreas Ufert <ath11k@domov.de>
-In-Reply-To: <47133D6D-8DEF-42DB-A432-095B8DDF0974@domov.de>
-Date: Fri, 13 Nov 2026 07:20:25 +0100
-Cc: linux-wireless@vger.kernel.org
-Content-Transfer-Encoding: 7bit
-Message-Id: <C98FFCD8-EEAE-4355-BF18-0FE86D3D623A@domov.de>
-References: <47133D6D-8DEF-42DB-A432-095B8DDF0974@domov.de>
-To: ath11k@lists.infradead.org
-X-Mailer: Apple Mail (2.3864.700.51.1.1)
-X-Last-TLS-Session-Version: TLSv1.2
-X-Report-Abuse: Please forward a copy of this message, including all headers, to <abuse-report@smtp2go.com>
-Feedback-ID: 697561m:697561a_MogmP:697561sOu6w9NKWM
-X-smtpcorp-track: zhQr55HR3nSd.VgcWHdvL4RqT.6eCBIgSfAvh
+MIME-Version: 1.0
+From: Ruben Pedrosa <rubenpedrosa993@gmail.com>
+Date: Fri, 13 Nov 2026 10:21:06 +0000
+X-Gm-Features: AclHuK_25jkOvz0nSARx5Boy1NO9Hrp_-HSBPcW6fvmunFBU0BNcj_ZBBVnqIUg
+Message-ID: <CAJx0sk_pH2iHGYjGjSwg_ODJCPjjh=ogEdun-u6kh8V6KxcDKw@mail.gmail.com>
+Subject: Re: [PATCH ath-next] wifi: ath11k: use smaller DP rings on low-memory syste
+To: eduard.hart@etik.com, jjohnson@kernel.org
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Bad-Reply: 'Re:' in Subject but no References or In-Reply-To headers
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_222057_293978_CDCDFC21 
-X-CRM114-Status: GOOD (  13.83  )
-X-Spam-Score: -2.0 (--)
+X-CRM114-CacheID: sfid-20261113_022121_591346_D49E9BA0 
+X-CRM114-Status: UNSURE (   3.85  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -1.9 (-)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,73 +113,18 @@ List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello,
+Tested on a second TP-Link RE700X (EU v1.0, IPQ5018 + QCN6122,
+256 MiB RAM), OpenWrt main 30a23ae45160 with this patch applied.
+Running as a wired AP with clients on both 2.4 GHz and 5 GHz; both
+radios stay up, no OOM, and settings persist across reboot.
 
-a short follow-up with one more occurrence, this time on TID 7, and
-the first one caught by the tid_flags check from my first mail.
-
-After that mail I added a per-minute check that reads tid_flags
-(HTT_TX_TID_STATS_V1_TLV) for every peer and TID 0-7 and alerts
-when bits 0x4 and 0x8 go from set to clear for three minutes.
-
-13 Nov, 00:30 CET: the check fired for TID 7 on A -> R and B -> R,
-in the same minute. TIDs 0 and 1 stayed set on all links, and an
-hourly iperf3 probe (TID 0) was healthy all night, so without the
-check this would have gone unnoticed. At the onset there was no
-"tx failed" burst, nothing in the logs or dmesg, no re-peering, no
-reboot. Mesh traffic per node around 00:30: A sent 15-54 Mbit/s
-(destination and TID not recorded), B less than 1.2 Mbit/s, R 2-8.
-So, as on 10 Nov, a sender that was almost idle went into the state
-in the same minute as the other one.
-
-Measured at 06:41, 8 s of iperf3 each, htt_stats type 1 on the
-sender, TID 7 via --tos 0xE0:
-
-  sender->peer  TID  Mbit/s   MPDUs  PPDUs  MPDU/PPDU  MSDU/MPDU
-  A->R          7      29.7   21728  21828       0.99       1.03
-  A->R          0       550  131434   8022      16.4        2.91
-  B->R          7      23.2   14646  15063       0.97       1.12
-  B->R          0       407  142674   5705      25.0        1.97
-
-tx_xretry over the same runs: A->R TID 7 2311, TID 0 495; B->R
-TID 7 5199, TID 0 1053. On R (type 2, during the TID 7 runs): from A
-22011 PPDUs, 22300 MPDUs FCS ok, 83 FCS errors; from B 17921, 18015,
-243. Again a clean air link without aggregation.
-
-tid_flags for TID 7 to R read 0x1014000 on both senders, all other
-TIDs in use 0x101400c. On B it read 0x1014800 once at idle before
-the load runs; I have not seen bit 0x800 before. The load did not
-change the flags. agg_status on R showed TID 7 as "RX 1, DTKN 0x01,
-SSN 0x000" for both peers, the same as on healthy TIDs.
-
-Cure at 06:42:51, on R, both peers at once (no control this time):
-
-  echo "rx stop 7" > .../stations/<A>/agg_status
-  echo "rx stop 7" > .../stations/<B>/agg_status
-
-Afterwards TID 7: A -> R 683 Mbit/s, B -> R 372 Mbit/s, tid_flags
-0x101400c on both. Right after the DELBA and before the next TID 7
-traffic the check still saw the bits clear on B for one more
-minute, which fits the reading "aggregation set up" rather than
-"healthy".
-
-So far:
-- the state has hit TIDs 0, 1 and 7, always per peer and TID;
-- twice now (10 Nov and 13 Nov) two senders towards R went into it
-  in the same minute, one of them almost idle;
-- each time a DELBA for that TID from the receiver cleared it (three
-  occurrences, eight peer/TID pairs);
-- it lasted about six hours this time, until I intervened.
-
-Full dumps from before and after the cure are available on request.
-
-Thanks,
-Andreas Ufert
+Tested-by: Ruben Pedrosa <rubenpedrosa993@gmail.com>
 
