@@ -2,79 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 858ED606A8B7
-	for <ath11k@archiver.kernel.org>; Sat, 14 Nov 2026 22:56:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8CD7606A323
+	for <ath11k@archiver.kernel.org>; Sat, 14 Nov 2026 22:59:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MMPi/o4V;
-	dkim=pass (2048-bit key) header.d=bairaktaris.de header.i=@bairaktaris.de header.a=rsa-sha256 header.s=google header.b=gQdNMGZP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=s2BDk3HP;
+	dkim=pass (2048-bit key) header.d=bairaktaris.de header.i=@bairaktaris.de header.a=rsa-sha256 header.s=google header.b=gGA4ukgd
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=txq5guNEURnzloFUxneFtdgs7wfJ4RtNVYK1I5nSsoQ=; b=MMPi/o4VDiCzca
-	v03CPGucu1x+qLffE3u4gOCDtsTUc0QlNuoQU3EXf9O+qUJPBodmtDPqeM+5O3UMiKN9WFicGG8xF
-	c5ukG33DutidfsaetdrBnllsejxBLSoUaOTh9XKN/sRxsMpM1QzK6G2fGi6WmwD6O0urysW6wO8Mk
-	EBZfjrFCVUdRoEXaa9SFrJ01VYKBX82Tk4PGEU3VgMXT8jUVmvhqY/YIADBI4M+pt1T2QTVRGpkIq
-	i52t1/kMEJTVsQMUsSZmQ9ZVsCyNLDRIa6hQBx4pwQWGdZCHYUGM5/zsFJtXftGo8nmTs+JxhARTM
-	PGfkuPYJJRPJWB5JaO9g==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=waR/zWZnBRXU2WEVTfXHQX/34C4JQcWIN/TomKd4jng=; b=s2BDk3HPDVKTUIGLJdgrP3gzDw
+	LijFCgTZZ7hZojzxwP+B782TYcM9DZUlOXSxCbVeF9hEt5C4Ie05O4qK3oPxabj+7aJefpyJueu4J
+	X+blJcLNh610tynJp4XcwvRn0d1RLzqISXBh3r7GGcPxfJBNecatt2KyfBaUZzYo4PV/Rrj+FdHgP
+	hrry9yCy+clz//fPWuEZ2cwij2nE8998NnC/cKr4mPC7skT4wNzABepeyxWyjSgDq0mPrNM73nM03
+	BAYgj4X7a024GsA3ZksQKEBbAq6MTX5UwD+SdGAHnh9GxAS/fCBR6KFE/ETipJKuqeU5GmNJr5nVY
+	JTgwNURw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSMg2-0000000Grcq-0lSF;
-	Sat, 14 Nov 2026 22:56:54 +0000
-Received: from mail-ej1-x630.google.com ([2a00:1450:4864:20::630])
+	id 1xSMiH-0000000GruE-1nbn;
+	Sat, 14 Nov 2026 22:59:13 +0000
+Received: from mail-ej1-x636.google.com ([2a00:1450:4864:20::636])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSMfz-0000000GraA-2XCH
+	id 1xSMiE-0000000Grte-0XMa
 	for ath11k@lists.infradead.org;
-	Sat, 14 Nov 2026 22:56:52 +0000
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-c4203bbb1e9so424462166b.3
-        for <ath11k@lists.infradead.org>; Sat, 14 Nov 2026 14:56:50 -0800 (PST)
+	Sat, 14 Nov 2026 22:59:11 +0000
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-c50933bdf4bso477082366b.1
+        for <ath11k@lists.infradead.org>; Sat, 14 Nov 2026 14:59:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bairaktaris.de; s=google; t=1794697010; x=1795301810; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=txq5guNEURnzloFUxneFtdgs7wfJ4RtNVYK1I5nSsoQ=;
-        b=gQdNMGZPBBEW6Sj+rf0v0S1zGAcB8QqH956B9QDXxjYTB4q4AauUuq2BiT5SvL3APK
-         wqAuivOwW8LbBHMzy/cpXpMV8gGPZ+FpfMPSIqUIsKvSrgB9eePLfdM5T+7D8Z67zCV+
-         eG/9/V8bOOHGRW7Gy6Klz/AgSCwEYYOQmGsCCvfcs6znLrqkqM6KwY+7Q6RhVgYfFsQj
-         zXpEJ73sxh2UhGMeFIKDlILhOu+og+gvOpC7A+VivdG3D7sXu0dKf+CVeOrvBF/ivqL7
-         p7Sr409iSswV767YgugZN2vcdIgtHoYUh/aISn4QAGvFt/H7kCy2Uefzb2ZKOSCJw+Yt
-         BhaQ==
+        d=bairaktaris.de; s=google; t=1794697148; x=1795301948; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=waR/zWZnBRXU2WEVTfXHQX/34C4JQcWIN/TomKd4jng=;
+        b=gGA4ukgdIzfW5iZoHn6roLnd7fn/v8wCo6ClX1a8SSf36umUcdt1Pw3jOuO0mxmlGe
+         rAVLNXm+0UkLkz+YQzInvz3l+r//igW687gByL6PYFcrSKfUTXZ0g9/iL+H2LSlLOFFM
+         HMMr2pibmp3Snb9Jc3K+af1kCY6loBbyZ+3V2yDk0J/74ytyw012X+6Gtgc7v0kKMtZq
+         dWJBc59gdcWT9CU02Lx5EXT18UJ3LRGfPGhJqrndfHrteEoFLLT5/FOqgh3TzxU12js6
+         2VnAPc/UA4AKP7YhMWF+BWhev8/oZlCPpelee/yCzcAX1tVlDurmS+Or+uzfjaLl1bgd
+         XdxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794697010; x=1795301810;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=txq5guNEURnzloFUxneFtdgs7wfJ4RtNVYK1I5nSsoQ=;
-        b=Uh8f7LJvZ/x2c3Ajo9gUfULeiNI6KXr+1+LAcNvPNA9FpP+kTqf7ZegDWiFxJYcqOM
-         sJv+IRES4qORHCMi+rXG5ruJF2XGls46XVKuh/P3baOFjHPM+56q723pSJPP7FM0/iiK
-         HW/R/xUK9r3mUfUyn0CrCU+Ab2Mkxa6ZjfzCYXgf/UTEiNBe4onWJSCCBop5fZ7cf018
-         urOIPtVuEOdxyDMXPjCRGBGl8xbDXw8b4L7ovMxg0SDPieeUyJ9KxADWG2Bq2S31+HMV
-         ebioZ2D2gKEAYlfmd090VHqXZsrxEDr2Hwp6tIX2gVk0oWTMByIVKLeZNlygjbllETTa
-         g94A==
-X-Gm-Message-State: APuU4Z9bCR62niFqsVzWi3VR1yiqT85fF8PBYNj3cenAVnAzAHNfqpMj
-	qorlcKliex4Ke7LeyKcrLimVzdnbvfOA1BJCu7fcKu/UJtG2pU7cfQkGYTdgv8Fxpg==
-X-Gm-Gg: AYBFou0sM+UEzG6CCkd9I97FhVPf+ugvmOqrXQytsImnD4SQqQQmSr5HKu0LbZaR4mf
-	r6zeF77tdyI22JPpIQ5en26YBKVEaNPAu3QBBW2+xXuYv7DX07VpvyjFkMK+duCue1FXkS99Bax
-	0poCXOG3uWZMsqVUcrTDpH7y0vNYjNUCRNTG74IeU4+u57HJsyae1YDVMMs0W7M7Fvp4stUpzKo
-	StAPu2q8ZgjI0SNT4uct4lBtxwKBriLPgs3Xr4JraV4AzF3cDDUYIjT2zc03y9+9z9j+o+iqkHf
-	Ks0mIkk/lX4C53rEZNJRxhBZuJMvsAq8fZEWGWGLe9s9+gQwWkkgjR7/Sx2f8DoVExd/zcGLror
-	ME3/XVZyIgEizD0ak1ReAazKaBdUALO5VZhURW8Hs3vBwLJKfC8L14TMV0eyi7ir2kLJhhBl3YV
-	KpMbZpZQZT5ZJfg2B479OZpCD+od0xaj+lqGynXNxZ4mgGNVRM4+REDY79RZg/2uhL2PXLoxWQR
-	SR4voeDiX0Tws3gg7xGpfOxAkIUrOHqBrO8pKcxvCd7xueZ5lUgqH0sl47usOwZbXuuPjQYNsiZ
-	/lu9mJ7ZX35v0TsfPidLj0XKh8mk2mBx/s7UUcym51J0+/3Z9Luo1E8jyoPSZgvuCNeEofv2kVv
-	UayYuJWv4VRikqQQrezbCpbDcKX3hUaAvcqS11AgMv1HHy9NA1HwWwvwnzKAsxn2FU9FM2LbzJk
-	9z2uXJ8s/fhMCe+azaNhnlV0srh7gnlgbQSC4FntnmfC9qibYHJpgjyEUF8QQpKbTbPxuBk/9e5
-	4nNpXTrl3UbjpZn0O6+6n2/dLKHz6wgZU23jAErzMWIGiMsLGZF2PKhFHUWWdZDOUscGoOOpkH+
-	PINfTCMoZx5iwCu4pXzvaNWK1Qa2g/tc6+Mihj2yDmC+Hr8sohLT3byjI8+4vbrM
-X-Received: by 2002:a05:6402:194a:b0:6b6:f5b0:889a with SMTP id 4fb4d7f45d1cf-6b7c0ccf784mr6027031a12.35.1794697009564;
-        Sat, 14 Nov 2026 14:56:49 -0800 (PST)
-Received: from Desktop.fritz.box (p200300f24709e8006da21e9e53ecde1c.dip0.t-ipconnect.de. [2003:f2:4709:e800:6da2:1e9e:53ec:de1c])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6b7c23c757esm2751595a12.17.2026.11.14.14.56.47
+        d=1e100.net; s=20260707; t=1794697148; x=1795301948;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=waR/zWZnBRXU2WEVTfXHQX/34C4JQcWIN/TomKd4jng=;
+        b=p8VqS8qDZDRly6mr+1umq4/HxvsEyhduEU1Y2fMA7eMekfxGSI7y50noS6bhqtHPLH
+         KgjxahM2V0Qk59j0U8OHcxXxkXP7bhU42mbwhSttChtYJhLnJ1dLFltZ+4odtq/I/fFx
+         wWaBuSsnE/P3zdXvzQOoXBzoTGX41B4dEbU+2TpAVpLxNjJ/A/NsySZCeB62xysHPWZB
+         rcJxNopygcKZb9hnQrKzOgIgI/KoZtGzcDljczeEozBXKAtqMzYXYS6177HRtYL78lzO
+         BIDT6/U9SBxsyKATbLeRpAoMzt019PcuoOVnf+mPUcNwvPeE78huS7d3ZASH83h+gBWc
+         qlOg==
+X-Gm-Message-State: APuU4Z8zWOUgK3lqGx0hWSR1WT2DMQ9uOZbSRTpDxYM+x9idT45PSeEx
+	LcYbfUe40fsAU8HcRaVhbFkzKBKG3a3APHRv6gED/5kcbnjfhfYg+ZisjHDadxRcQA==
+X-Gm-Gg: AYBFou0r1YEmcUY/x6JMvKXxb3nZE6/qEIHZ6DpBuD9oxrJGh8bzaGHgogQXhOhsQlN
+	nEcw05l6JaXswuW2gNN3v2qmimr3PhxtUWXkn5zVLC6WlEyHpIq/MhmFDPSVpc4b7ovkxp/8T0y
+	U9U9ZcZWKhIOHm+i1CsaoEVPEpz/1t7FRgQd9wVNuZPdXnoMiL5WZbyMgwMOr7SaxCQuRKXYOfk
+	cyP33fAlNqS30nqpBR/fchg48SrzPg+eqwbfEbOwIlbT9wXBxH+y67iiGy99+UXJbQ/R1Mss305
+	nAvmGtSoyZFeOu1JUi2nECBNg/lnGKBnnx5HHp4UK+1VxQlhaUKfzVb37bvCjl1Y/cNKWIy01B9
+	8u3HAr2DEuVmQZHePJBqxYfnxndU5EIDuzOLqItUZWEzWg8LRVYLgbdSCSbfOBPAiDY5fBe0LEP
+	DuEWPtozD9OL1eiAEiUyc1s9o6J/o0iMugwi59MpKGx8aApvOyWYM9WDqvGSr5jSvY7oEuoazIT
+	o3F2TkUTSuwThsf9Sz6xSo48fdDzAPqVM+MGTbySitwZqSn89bmVO4tiKveb8eTGul2HGmds5uY
+	uijGG00oboqkqh6MCwCUCe4oSUMN1XuVrtfyYuPQuxHzjQBrw2nhwXYU73YcKA2qI8ry9s3X4sE
+	xYC1S/uKagU/jrg6NRDYsNutWVypGCnUnu+wGWvBMGuUuT4SaVEg1Or0iPLyseGMhrWN2k1+gkg
+	raYZHPK4aG7jshz4VeFBRigmwebe6AD3C2nS/kV9oAUtbuGmLljbK6Y9K17woUnsadKzl0SQKJb
+	AXQgbyY3H58HN0HbnP8J1C07sCMuXH5cLshz/XRiCqI9d7n9CvQFc/U8J8lhw3FOWwc8D2FGqKA
+	7kyvBKrK3SmxotqD68FPxZFD7HTCZhfN3PAThmeN7Y8PGGZcwd0U2w==
+X-Received: by 2002:a17:906:c150:b0:c2e:1b6b:8b19 with SMTP id a640c23a62f3a-c507c41ed34mr840249666b.23.1794697148201;
+        Sat, 14 Nov 2026 14:59:08 -0800 (PST)
+Received: from Desktop (p200300f24709e8000000000000000a27.dip0.t-ipconnect.de. [2003:f2:4709:e800::a27])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6b7c23dafbasm2718936a12.22.2026.11.14.14.59.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Nov 2026 14:56:48 -0800 (PST)
+        Sat, 14 Nov 2026 14:59:07 -0800 (PST)
 From: Julius Bairaktaris <julius@bairaktaris.de>
 To: Jeff Johnson <jjohnson@kernel.org>
 Cc: ath11k@lists.infradead.org,
@@ -82,23 +82,19 @@ Cc: ath11k@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>,
 	Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
-	John Crispin <john@phrozen.org>,
-	Karthikeyan Periyasamy <quic_periyasa@quicinc.com>,
-	Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com>,
-	Rajkumar Manoharan <rmanohar@codeaurora.org>,
-	kbuild test robot <lkp@intel.com>
-Subject: [PATCH ath-next v2 2/2] wifi: ath11k: do not fail down transitions of the station state
-Date: Sat, 14 Nov 2026 23:56:43 +0100
-Message-ID: <20261114225643.962015-3-julius@bairaktaris.de>
+	Sven Eckelmann <sven@narfation.org>,
+	Kalle Valo <kvalo@kernel.org>,
+	Karthikeyan Kathirvel <kathirve@codeaurora.org>
+Subject: [PATCH ath-next v2] wifi: ath11k: replace a pairwise key in place
+Date: Sat, 14 Nov 2026 23:59:05 +0100
+Message-ID: <20261114225905.978606-1-julius@bairaktaris.de>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261114225643.962015-1-julius@bairaktaris.de>
-References: <20261114225643.962015-1-julius@bairaktaris.de>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_145651_660833_88915904 
-X-CRM114-Status: GOOD (  14.11  )
+X-CRM114-CacheID: sfid-20261114_145910_223613_EBD68E17 
+X-CRM114-Status: GOOD (  26.45  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -118,84 +114,211 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-mac80211 requires sta_state to succeed for down transitions and warns
-when the driver returns an error for one. ath11k returns the result of
-WMI commands for ASSOC -> AUTH and NONE -> NOTEXIST, and these fail
-with -ESHUTDOWN while the firmware is down. A station removed during a
-firmware crash then triggers, for the disassociation:
+mac80211 replaces an in-use PTK by calling set_key() with DISABLE_KEY
+for the old key and SET_KEY for the new one, which ath11k sends to the
+firmware as an install of cipher NONE followed by an install of the new
+key. Commit 97acb0259cc9 ("wifi: ath11k: fix group data packet drops
+during rekey") stopped this clear-then-install sequence for group keys,
+and the same sequence fails for a pairwise key. ath11k does not set
+NL80211_EXT_FEATURE_CAN_REPLACE_PTK0, so mac80211 warns "Rekeying PTK
+for STA ... but driver can't safely do that" and flushes the queues,
+which waits ATH11K_FLUSH_TIMEOUT (5 s) for the whole radio whenever a
+busy station keeps frames pending. On an IPQ8074 AP with a station
+downloading at full rate and a rekey every 20 s, the first run of each of
+two attempts logged 7 and 2 of these warnings and 2 and 1 flush timeouts,
+and the station lost the link in both.
 
-  Driver is not allowed to fail if the sta_state is transitioning down the list: -108
-  WARNING: CPU: 1 PID: 5952 at net/mac80211/sta_info.c:1561 ieee80211_sta_eosp+0x119c/0x1668 [mac80211]
+Keep the old pairwise key in the firmware when mac80211 disables it for
+an authorized station, so that the following SET_KEY overwrites it in
+place, as the group key path already does. Outside raw mode the hardware
+encrypts a frame with the key it holds for the peer and generates the
+PN, so a frame queued across the replace leaves with the old key or the
+new one, and the SET_KEY resets the REO PN state. A pairwise key removed
+without a replacement is cleared when the station leaves the authorized
+state; a removal outside that state, as hostapd does for a leaving
+station after closing its port, clears the key at once as before. A TKIP
+fragment chain completed while the host holds no key for the peer is
+dropped, as its MIC cannot be checked. With this, advertise
+NL80211_EXT_FEATURE_CAN_REPLACE_PTK0 outside raw mode, where mac80211
+assigns the PN itself.
 
-and for the removal:
-
-  WARNING: CPU: 2 PID: 2080 at net/mac80211/sta_info.c:1652 sta_set_sinfo+0x1118/0x1144 [mac80211]
-  Call trace:
-   sta_set_sinfo+0x1118/0x1144 [mac80211] (P)
-   sta_info_destroy_addr_bss+0x34/0x48 [mac80211]
-   ieee80211_del_station+0x1c/0x54 [mac80211]
-   nl80211_del_station+0xf4/0x174 [cfg80211]
-
-Two of these failures also skip host cleanup. On a non-AP vdev of a
-device with vdev_start_delay, a failed early vdev stop returns from
-ath11k_mac_station_remove() before the DP peer cleanup and the station
-accounting, and ath11k_mac_op_sta_state() then frees the peer with its
-rx_tid state still in place. For a non-WME station, a failed RTS/CTS
-update returns from ath11k_station_disassoc() before the peer keys are
-cleared.
-
-Warn and carry on with the host cleanup in both, and return success for
-every down transition.
+Tested on an IPQ8074 AP with the same load: three runs with this patch
+completed 3 to 4 handshakes each at 847, 828 and 851 Mbit/s, with no
+warning and no flush timeout, and five station leave and re-association
+cycles each cleared the key and completed the 4-way handshake on the
+first attempt.
 
 Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.12-01460
 
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+Fixes: 436a4e886598 ("ath11k: clear the keys properly via DISABLE_KEY")
 Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
 ---
-Changes in v2: continue the host cleanup after a failed early vdev stop and a
-failed RTS/CTS update instead of returning from them.
+I used Claude (Anthropic) to help write these patches.
 
- drivers/net/wireless/ath/ath11k/mac.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+Changes in v2 (Sashiko review of v1):
+- save the key length with the index and cipher, so the delayed removal does
+  not send key_len 0, which the firmware ignores (len 16 in 3 of 3 runs now)
+- delay the removal only while the station is authorized; a removal in any
+  other state clears the key at once
+- do not advertise NL80211_EXT_FEATURE_CAN_REPLACE_PTK0 in raw mode, where
+  mac80211 assigns the PN
+- drop a TKIP fragment chain completed while the host holds no key for the
+  peer instead of dereferencing the missing key
 
+v1: https://lore.kernel.org/all/20261107133925.3522299-1-julius@bairaktaris.de/
+
+In the three rekey runs one softirq core carried 72-75 % of the load
+(cpu3, cpu3, cpu1; /proc/stat tick accounting).
+
+ drivers/net/wireless/ath/ath11k/core.h  |  9 ++++
+ drivers/net/wireless/ath/ath11k/dp_rx.c |  4 ++
+ drivers/net/wireless/ath/ath11k/mac.c   | 61 ++++++++++++++++++++++++-
+ 3 files changed, 73 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index a0d725923ef2..f56fa9edcbfd 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -571,6 +571,15 @@ struct ath11k_sta {
+ 	bool use_4addr_set;
+ 	u16 tcl_metadata;
+ 
++	/* A pairwise key mac80211 removed but the firmware still holds,
++	 * cleared by the next SET_KEY or when the port closes.
++	 * Protected by ar->conf_mutex.
++	 */
++	bool ptk_clear_pending;
++	u8 ptk_clear_idx;
++	u8 ptk_clear_keylen;
++	u32 ptk_clear_cipher;
++
+ 	/* Protected with ar->data_lock */
+ 	enum ath11k_wmi_peer_ps_state peer_ps_state;
+ 	u64 ps_start_time;
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 6d95f7b343a5..acdff945cd1d 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -3276,6 +3276,10 @@ static int ath11k_dp_rx_h_verify_tkip_mic(struct ath11k *ar, struct ath11k_peer
+ 		key_idx = peer->mcast_keyidx;
+ 
+ 	key_conf = peer->keys[key_idx];
++	if (!key_conf) {
++		dev_kfree_skb_any(msdu);
++		return -ENOKEY;
++	}
+ 
+ 	data = msdu->data + head_len;
+ 	data_len = msdu->len - head_len - tail_len;
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 9c3f577c9562..a86d1b6c0d73 100644
+index 1a237adaa37d..42019e0641f9 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4984,9 +4984,7 @@ static int ath11k_station_disassoc(struct ath11k *ar,
- 
- 	if (!sta->wme) {
- 		arvif->num_legacy_stations--;
--		ret = ath11k_recalc_rtscts_prot(arvif);
--		if (ret)
--			return ret;
-+		ath11k_recalc_rtscts_prot(arvif);
- 	}
- 
- 	ret = ath11k_clear_peer_keys(arvif, sta->addr);
-@@ -9922,10 +9920,8 @@ static int ath11k_mac_station_remove(struct ath11k *ar,
- 	    arvif->is_started &&
- 	    arvif->vdev_type != WMI_VDEV_TYPE_AP) {
- 		ret = ath11k_mac_stop_vdev_early(ar->hw, vif);
--		if (ret) {
-+		if (ret)
- 			ath11k_warn(ab, "failed to do early vdev stop: %d\n", ret);
--			return ret;
--		}
- 	}
- 
- 	ath11k_dp_peer_cleanup(ar, arvif->vdev_id, sta->addr);
-@@ -10079,6 +10075,10 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
- 				    sta->addr);
- 	}
- 
-+	/* mac80211 does not let a down transition fail */
-+	if (new_state < old_state)
-+		ret = 0;
-+
- 	mutex_unlock(&ar->conf_mutex);
- 	return ret;
+@@ -4509,6 +4509,34 @@ static int ath11k_set_group_keys(struct ath11k_vif *arvif)
+ 	return first_errno;
  }
+ 
++static int ath11k_mac_clear_ptk(struct ath11k_vif *arvif,
++				struct ieee80211_sta *sta)
++{
++	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
++	struct ieee80211_key_conf key = {
++		.cipher = arsta->ptk_clear_cipher,
++		.keyidx = arsta->ptk_clear_idx,
++		.keylen = arsta->ptk_clear_keylen,
++		.flags = IEEE80211_KEY_FLAG_PAIRWISE,
++	};
++	int ret;
++
++	lockdep_assert_held(&arvif->ar->conf_mutex);
++
++	arsta->ptk_clear_pending = false;
++
++	ret = ath11k_install_key(arvif, &key, DISABLE_KEY, sta->addr,
++				 WMI_KEY_PAIRWISE);
++	if (!ret)
++		ret = ath11k_dp_peer_rx_pn_replay_config(arvif, sta->addr,
++							 DISABLE_KEY, &key);
++	if (ret)
++		ath11k_warn(arvif->ar->ab, "failed to clear pairwise key of %pM: %d\n",
++			    sta->addr, ret);
++
++	return ret;
++}
++
+ static int ath11k_mac_op_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
+ 				 struct ieee80211_vif *vif, struct ieee80211_sta *sta,
+ 				 struct ieee80211_key_conf *key)
+@@ -4519,6 +4547,7 @@ static int ath11k_mac_op_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
+ 	struct ath11k_peer *peer;
+ 	struct ath11k_sta *arsta;
+ 	bool is_ap_with_no_sta;
++	bool keep_ptk;
+ 	const u8 *peer_addr;
+ 	int ret = 0;
+ 	u32 flags = 0;
+@@ -4614,7 +4643,21 @@ static int ath11k_mac_op_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
+ 
+ 	is_ap_with_no_sta = (vif->type == NL80211_IFTYPE_AP &&
+ 			     !arvif->num_stations);
+-	if (flags == WMI_KEY_PAIRWISE || cmd == SET_KEY || is_ap_with_no_sta) {
++
++	/* The same firmware race hits a pairwise key: a clear followed by
++	 * an install of the same peer's key leaves the firmware dropping
++	 * every unicast frame to the peer. mac80211 replaces a PTK by
++	 * DISABLE_KEY on the old key and SET_KEY on the new one, so keep
++	 * the old key until the new one overwrites it in place. Frames
++	 * queued in the hardware leave with the old key or the new one.
++	 * Only an authorized station gets a rekey, and a removal not
++	 * followed by an install is completed when its port closes.
++	 */
++	keep_ptk = sta && flags == WMI_KEY_PAIRWISE && cmd == DISABLE_KEY &&
++		   peer->is_authorized;
++
++	if (!keep_ptk &&
++	    (flags == WMI_KEY_PAIRWISE || cmd == SET_KEY || is_ap_with_no_sta)) {
+ 		ret = ath11k_install_key(arvif, key, cmd, peer_addr, flags);
+ 		if (ret) {
+ 			ath11k_warn(ab, "ath11k_install_key failed (%d)\n", ret);
+@@ -4656,6 +4699,13 @@ static int ath11k_mac_op_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
+ 	if (sta) {
+ 		arsta = ath11k_sta_to_arsta(sta);
+ 
++		if (flags == WMI_KEY_PAIRWISE) {
++			arsta->ptk_clear_pending = keep_ptk;
++			arsta->ptk_clear_idx = key->keyidx;
++			arsta->ptk_clear_keylen = key->keylen;
++			arsta->ptk_clear_cipher = key->cipher;
++		}
++
+ 		switch (key->cipher) {
+ 		case WLAN_CIPHER_SUITE_TKIP:
+ 		case WLAN_CIPHER_SUITE_CCMP:
+@@ -10056,6 +10106,9 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
+ 		}
+ 	} else if (old_state == IEEE80211_STA_AUTHORIZED &&
+ 		   new_state == IEEE80211_STA_ASSOC) {
++		if (arsta->ptk_clear_pending)
++			ath11k_mac_clear_ptk(arvif, sta);
++
+ 		spin_lock_bh(&ar->ab->base_lock);
+ 
+ 		peer = ath11k_peer_find(ar->ab, arvif->vdev_id, sta->addr);
+@@ -10606,6 +10659,12 @@ static int __ath11k_mac_register(struct ath11k *ar)
+ 
+ 	wiphy_ext_feature_set(ar->hw->wiphy, NL80211_EXT_FEATURE_CQM_RSSI_LIST);
+ 	wiphy_ext_feature_set(ar->hw->wiphy, NL80211_EXT_FEATURE_STA_TX_PWR);
++	/* In raw mode mac80211 assigns the PN, which the hardware must not
++	 * encrypt with a newer key
++	 */
++	if (!test_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags))
++		wiphy_ext_feature_set(ar->hw->wiphy,
++				      NL80211_EXT_FEATURE_CAN_REPLACE_PTK0);
+ 	if (test_bit(WMI_TLV_SERVICE_BSS_COLOR_OFFLOAD,
+ 		     ar->ab->wmi_ab.svc_map)) {
+ 		wiphy_ext_feature_set(ar->hw->wiphy,
+
+base-commit: 1be6c8d3027d4a421dc46b93a89a196c61945614
 -- 
 2.53.0
 
