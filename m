@@ -2,147 +2,137 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81F88606A31C
-	for <ath11k@archiver.kernel.org>; Mon, 16 Nov 2026 15:51:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28197606A323
+	for <ath11k@archiver.kernel.org>; Mon, 16 Nov 2026 18:11:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LI+I3WYg;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=cFYKMGWv;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=UWHlc100
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IqQz7e5t;
+	dkim=pass (1024-bit key, unprotected) header.d=sunydutchess.edu header.i=@sunydutchess.edu header.a=rsa-sha256 header.s=selector1 header.b=s2cYc5mO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=T15AuhE31UhCQiNlKm1KpqpzGHM4L5aNNLLLTI73GWU=; b=LI+I3WYg3W0AWi
-	f0h36bGofM2apn+kgKxRTRs7QLDwiJJN3zr/hz0L1JlyqXlZ3qooX0TK6pRtHetwCG8Hh8MiqoC6B
-	m8jbRp4rRSsj/qwhS4p5pJ24CQJxEcMyT482IGOZnYEJFDr/7uMkYdTr6ci+gWuiUegp1Pp7W6dMe
-	hCbB67K8gfR1XuRPlZTk5BEo8wTpZCcQJEufT9FHGY67lWk782xcUy/sGoUK7hk//9ieHdjLu7KEp
-	H2t2aYJS5pOUJaaL1/1F/bsNDdBGh8xUWfdzFry0oiL0xgKrErOQorGL81MKO8fNjYxQp2Uhnu4UF
-	wjN/Fqrr9+2+Up4d78AQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-ID:Content-Type:Message-ID:Date:Subject:CC:
+	To:From:Reply-To:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=I2jUHuuNNh+AJ5mYvphm1Vmhxtjra84T9NLLmn2BRnM=; b=IqQz7e5tbyNZ8n7b147AAYpBIK
+	5/nTHRxg6/x4yhIA38be8iJu2T8yOmAnS840szAh5FPAWwrHpG9gv86lRI1NKx8dV+VflaaSQLQ5W
+	jJOEdic/MdsUzF53YeCjrlkfgyDaU2AaeISMxCRDDgXh68oSGAzkIOE5tf3a+ttO2Y9U+nTkUsXQs
+	B7L4/K1YXnnmtPsDHOGE27fMFQyMS4skUwtoqDEJwWJC9iaUYqlZ0syvLBPrPCUJYlCEntJ2EaW/J
+	xgKcEtC79ZFuEMyREIH6HRU0ZgBEC5ZjlnPqd2+gjZQ0d11bE5AuLKihI9hRhmJlYKeOYWc+Y5mo6
+	lZyzkI3A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSyz5-000000037qo-3XF2;
-	Mon, 16 Nov 2026 15:51:09 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1xT1At-00000003VKY-3iah;
+	Mon, 16 Nov 2026 18:11:27 +0000
+Received: from mail-westus3azlp170100009.outbound.protection.outlook.com ([2a01:111:f403:c107::9] helo=PH7PR06CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSyz3-000000037qO-0GJw
+	id 1xT1Ar-00000003VIu-1m54
 	for ath11k@lists.infradead.org;
-	Mon, 16 Nov 2026 15:51:06 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AGE31892736954
-	for <ath11k@lists.infradead.org>; Mon, 16 Nov 2026 15:51:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	T15AuhE31UhCQiNlKm1KpqpzGHM4L5aNNLLLTI73GWU=; b=cFYKMGWvCco0P4Ia
-	YGvXIeRz4tpXY7SUeCPNPFk0fOzK34gX/BEUjiEi61jd5nlor/SwMmtSMa49KbIw
-	QvAFMXW7g1RwItsuFqNdgLHJJ0xLG6QbgT6ttORYEt0lhG727wHXL5U0SKj8PeDK
-	ZxR+FWnkxS8Pg5bM+QcFytSdG7akSpp/Q4rU6huCR8IuP/4p0roE1CVsdu1D94jn
-	qIQHYcUZa1hfW+/8FX8MZp/7sI94ei+LVKRjJD49hnTwcbBu38CKM3b0lhx8RWTn
-	ppZmkNpSk/B/DPj67Ofgzvb4XsAhGRLqj/r1U0KVUyC2KkWbZsZxcYre6HQeGNxm
-	GjQJfg==
-Received: from mail-oo1-f70.google.com (mail-oo1-f70.google.com [209.85.161.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j038m8edm-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Mon, 16 Nov 2026 15:51:04 +0000 (GMT)
-Received: by mail-oo1-f70.google.com with SMTP id 006d021491bc7-71adbbb6b26so1498720eaf.3
-        for <ath11k@lists.infradead.org>; Mon, 16 Nov 2026 07:51:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1794844264; x=1795449064; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=T15AuhE31UhCQiNlKm1KpqpzGHM4L5aNNLLLTI73GWU=;
-        b=UWHlc100pHahNZ/fS8jUUVnbJlG2FeqOOWrjvru4ptC9w6bOaIpt/cxuVdEHfh004x
-         p2Rd6P4CU+zPYUlp1eOTe7G7NvpDGvwhi35tSw0V4JXLWzeGXZcY8Con29zhNUL4842Z
-         dykJFULIVJFnwj1uz5HvJJXgrhCWtVj77YQUy7kYZOEaDUNvyVnb2hGAmqqQ5gOUTQoz
-         PwYjIMFEHQyaXOG0wwcRq/BjzvJyKMT66AIIyRwsXA7bu7eOdzwkiB7dAoDJkV43UJLM
-         FtKnsrggC4QwH/BsrgsRbi326D/kVxxRSU5ZOnni6gyYSVkXSNJv0qEMiZk9SIBdi2yM
-         TrKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794844264; x=1795449064;
-        h=content-transfer-encoding:content-type:in-reply-to:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=T15AuhE31UhCQiNlKm1KpqpzGHM4L5aNNLLLTI73GWU=;
-        b=TKk7GUV9i2xG+qR7TtRSs9rA7A23Go13vAB1mXMgooCs11kf24JRw3EoH78NV1Vcvs
-         Dp5Cp5GVC16OohlrdjkCnQzW7KeoXsNAiTEVjmu6n30O84RQmSFXKB47mNFqVSdiT92h
-         Zp2ep7yFwtzTu537j0pApfe3QzIF8gIdYrgI9pd6FM7viPFCWXzRkUv9bJBLhLAqjymD
-         ux7l1OKwBoSM5Z8rz3lslHkrYortJhsk8S/raL6L3bVoLqcAkeTUuOG9J0oRyPhjfxAK
-         NEYksNTbOqpb8Q2TK3EFjvy2Rq1Te/ScWHDz3RgSjtVuHUbEg2cV1Hfcu+8PjThMmQ6J
-         NVcQ==
-X-Forwarded-Encrypted: i=1; AL+hErFNuho0kmN9BdqTwRGlHyFkdiUkfF5f356w7EGIJxfPtT+7d5AYLm0WU7fzP3u1Szqc84TScKc=@lists.infradead.org
-X-Gm-Message-State: APuU4Z/LJL/2mfCFt8B2uKbGAZr06TEg3KYMm9SBQo8ZhIFdCrEulU+R
-	m0ubqRvXZF+F3ZOwfEqwhe6v+/YiptxoSL6EHM/DgL2Eokfwpq1y0NANq/mnyfZrnxP4nBSpU2p
-	iib0Uav4pbdgs3Gd8pPKQrhwtanPWUaqTl84MHE2ZlWD82zqmgQlQ9DaGU2GdGcUQ
-X-Gm-Gg: AYBFou0Pg2P+05BHwm7+Xa5csRxSzMWeFTYzrF1e2BvV9J/atzh99a4cL53UoaEkbGW
-	wk7VLvBVqsj94hxiMEOzqW26r3Vk2Ko3VQQp6pbOiiPgvi6eyIEZpzc8wkDd9ceissz7cuJEEmL
-	0GcxWNUMXXeUJ+qdS02ViN3aNtp/LO9qEXXIN2Joq16FEebSV/LXaKUGj+LkDdGEnnUGKFrjLcC
-	ig0tU9jwyP9aR2eE9X9jP52Qjr5MYIhsXNORyfA3/RfNsX7aH8Oy1W+Uu/p2zsHovdbcNf8fgYh
-	czLyWHy/Ayn7pKT9rvpZc3NH48HQyQqWuSm1LAqyTjIGspcz7kYy8Q5RfkXWJnqemdiUPF0Wldr
-	oAgqpZVOFLHqgx9VVSZEJXLKbqKVloL0sNgIvnGIc2nho4UZeTYO/wJhPDDbJZzOo2FjmxZcVwp
-	S9cDn5ni/ROgBzY8TNS5xAHv0Y2t5r
-X-Received: by 2002:a05:6820:1504:b0:71a:df61:2e3 with SMTP id 006d021491bc7-71adf61140cmr3798210eaf.30.1794844263439;
-        Mon, 16 Nov 2026 07:51:03 -0800 (PST)
-X-Received: by 2002:a05:6820:1504:b0:71a:df61:2e3 with SMTP id 006d021491bc7-71adf61140cmr3798193eaf.30.1794844262849;
-        Mon, 16 Nov 2026 07:51:02 -0800 (PST)
-Received: from [192.168.1.20] (39.sub-97-215-59.myvzw.com. [97.215.59.39])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-71ab42cc12dsm8844447eaf.7.2026.11.16.07.51.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Nov 2026 07:51:02 -0800 (PST)
-Message-ID: <243aa8d2-ca32-4827-8675-70be02b653d9@oss.qualcomm.com>
-Date: Mon, 16 Nov 2026 07:51:00 -0800
+	Mon, 16 Nov 2026 18:11:26 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=zNbWi8aJi6EUoK/W+SoinGjo+UjD43tE4zl/vejwOnd8h8qXk+IQ7aYOGw/KNTb+IQVe1Zl+/HrKOXLS9RaJiWln31GMInCooTMf8wT2YKB+5XI1VDYoRGLGqtBovhT9Msv0NqHvo1cXcdIJJV16lKPkAFrj6cVMpujhaKgEyIEdZb78wWgaqOowF+AwNY7Spi6i/nvkE78cWMAmy8RaJJi8DR4z+TG9sug5MW4D+SxGur+Gl/VPR8QCclMnzk+QK8tgVtaBugaoTLcN/63k8n1K1haPctsUN/kuFOkt290IxC2bD5yTT4q0r85u8hYqpKlz4AOrI3xQaT/lZFJLqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=I2jUHuuNNh+AJ5mYvphm1Vmhxtjra84T9NLLmn2BRnM=;
+ b=jsMcKWykslxUMEbYbs2U5rZFc0dN3RbgJ/gfCTp6XRCdim3rlfO3J83VdkSkLSIZISpIG0KL1ViHLOnUrZtGyCKg1DhsuNU/zFCpMZlZpNUadbPZdbYGxeK3gXWwUz+XY62iEgLFfw9V8Wt3lzjEWvI/jheACUWy3MCJvCrp3lRtI+/oRN3DbWRqAQ32Z+e7CgsVLjAmOot8h/iCBGHdPqi2dsKz8Ar0vVazfuukG1CR1ceJo6prVGH29z3ghlID0JphVW82qEMWcTLE9uHpH9dhvhWvLjgZ0eGPJ8nmvjBk4h5zkquW6/hQ6DZqeeBNg/cIWb/zJXM6nqYAibn1oA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=sunydutchess.edu; dmarc=pass action=none
+ header.from=sunydutchess.edu; dkim=pass header.d=sunydutchess.edu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sunydutchess.edu;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=I2jUHuuNNh+AJ5mYvphm1Vmhxtjra84T9NLLmn2BRnM=;
+ b=s2cYc5mO2ahSgrDF8wyVmxPpnaaYsTDG/OrE68DThtPd4ikw4NxwRSbmIM0/N0VDzdhaEpxU7muwKNBYOrH01jkCzYymludM0k1TOZ8C//ZcJdnVay5kylxcELvaZT+4cnbLHvDVY8Ge3YA6Z0pgHic2eRCwJOyZUI5ZsSO4bxc=
+Received: from SA5PR03MB8425.namprd03.prod.outlook.com (2603:10b6:806:47b::8)
+ by DS3PR03MB989169.namprd03.prod.outlook.com (2603:10b6:8:39c::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.12; Mon, 16 Nov
+ 2026 18:11:19 +0000
+Received: from SA5PR03MB8425.namprd03.prod.outlook.com
+ ([fe80::ad3e:e026:f2fa:bf5f]) by SA5PR03MB8425.namprd03.prod.outlook.com
+ ([fe80::ad3e:e026:f2fa:bf5f%3]) with mapi id 15.21.0615.013; Mon, 16 Nov 2026
+ 18:11:18 +0000
+From: "Ure, Christopher R." <christopher.ure@sunydutchess.edu>
+To: "fernan.tapia@fernandotapia.eu" <fernan.tapia@fernandotapia.eu>
+CC: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>,
+	"jjohnson@kernel.org" <jjohnson@kernel.org>, "linux-wireless@vger.kernel.org"
+	<linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH ath-next] wifi: ath11k: don't create a duplicate peer on
+ the same pdev
+Thread-Topic: [PATCH ath-next] wifi: ath11k: don't create a duplicate peer on
+ the same pdev
+Thread-Index: AQHddfXgZGwzVBjsOkyw6KCqiIbdVg==
+Date: Mon, 16 Nov 2026 18:11:18 +0000
+Message-ID: <9744CE3F-114F-4A08-9A3D-E39DA7D06E1F@sunydutchess.edu>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=sunydutchess.edu;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SA5PR03MB8425:EE_|DS3PR03MB989169:EE_
+x-ms-office365-filtering-correlation-id: 618bf7fb-a221-49ff-66d0-08df440d02f2
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|376014|23010399003|786006|10070799003|366016|18002099003|6133799003|11063799006|56012099006|10067099003|261102123227099003|261021121427099003|38070700021;
+x-microsoft-antispam-message-info: 9z7ZVXt30UJjMiseDRTG7ycOGi42FTRd1WY+a0na1r5c2GYRiIa0pAjobn4nQbhGV481oouwxGfeCftvfpAskCu7P8MViTZz4iR7lGeEs3g8pVueLfNrTIgOGCQyPuuIO7ZwFdO3cED8uVvDVCQW6OmoHQl0fsPVJNmFOald40UR02WQsoo7lpqXSoUMuawQzdgtO+oK4DRPnNPCXJsfI1dtY9ZvbX7CHeCJ+RhIR05YpITX+57Z1bjTXgcJvBZzTi8eCzgCklPkQp7kn4oLKznbw93aS0UbA9GOXVdRLpUwBj3gqmRkns6gCPyd13iSsB7wosGoBOga6L13PszDF8YOQjtHI5h60wM5KHv7ZgtBlYn7NhdGrwGP0b8EiAbq5ChnnerDHARQuYpMRH2U1oo7kRi0KdJU2s6XraUuyeXONNMBtPE0tNrJE2oflWYgGQHLxQ7t62OKZMfp/XpXKtuH5ZO0jEcCuKz4j8wQEQj0jzNdyMnH0REYzjgiBayjKmCH5aizeSo8gTCuQdPWHcXX75xxfsQXTnv3DaCqu3+hGY8sMijyfOQq+oYGnQT+doNGeEVafc0D+dqmzvGtCuAVCK+0C3Bvfi4pa59EHVUAlBZFUQTivxi0/wZhfLkNlcEV/+F46IsT0cZAcRGb+N4bSN+7/oShmElXuRYiRbr4kWeL8NvL2X8uxnOHDIuN0Ir8W5ib4hDdycVrSzQizA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA5PR03MB8425.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(23010399003)(786006)(10070799003)(366016)(18002099003)(6133799003)(11063799006)(56012099006)(10067099003)(261102123227099003)(261021121427099003)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?vDkGGXGXhg84OclYqaSYJ3KrjvHdMi+2O2Xy1LOXR3b/V6RgWlKJKg3MPRuE?=
+ =?us-ascii?Q?GpKbx7r3YI6iHChsYY30uocic8HRThvrplHzhPQuAFi8mDgJY/bWz3uX2T0H?=
+ =?us-ascii?Q?l19vtjHVjLswctP15tFKd0ZUAd9rRLQxl1XKPOMk1gMaJbDCMr7R0j2OMCFE?=
+ =?us-ascii?Q?ZpT9tGVuFtzu/Z2+mNEwS0E1CWUmJOG2BZXeFDD7rvbNsaOZIQara1R/O1sy?=
+ =?us-ascii?Q?TrnXwbhWYwxN+tq9KocRbjE3wF9tfBeKh3amvT68DhkwQZmQ7jdnXdlIDK2C?=
+ =?us-ascii?Q?HUtBn4yIt/HerHpNbcerAO6N7S60ihHwq5Ip4b/Hqj1XxKJS9LnWgxc3X/8B?=
+ =?us-ascii?Q?aL7VU0KmfwaWZi/t8aCr3bBYdcYwWufoRKZPg19bm8icruF/eYFkkZk7ueXM?=
+ =?us-ascii?Q?s+Z7aWvfhKNZZAJo+keYL79eF7e0PHXVlBUFa0wf4pWMjJ9N2+HCICxcppNH?=
+ =?us-ascii?Q?vzJzdi4PYd9cvxS9JXncICTBATtAh0L1WVEdFanAn7LdypdT8lRvdZ/KLYIP?=
+ =?us-ascii?Q?IvQE7sQaY1zE4I5K83eU4r7it3fJFkINiY/L2Thyyzu5li188HTNPjQBVOfi?=
+ =?us-ascii?Q?uTnsDbckr/YxcnlajuI+Sh8XMTkvMxOUl0UHtDAG9GTK8LZmTI63ZK8wrdg2?=
+ =?us-ascii?Q?eSRQ8CweOvwINNrt+jOXHWenQGa22kAT24Ez5jNLq7z7nsmMOF167hfwsQYR?=
+ =?us-ascii?Q?UknsNBTQPB2342ox9IyH3vvB+Or8uPe7LUIho5Ymjj96mtpkgupyvkX8zjjr?=
+ =?us-ascii?Q?2tymZP2p6sLskF9kxpEEbEtZCQhKoKioRR9C1/M2TD1M+/e+q3i9N8XfNo+6?=
+ =?us-ascii?Q?TxtnE/f60Vih0VxpxWRSSPBK3v9O4ISvdIGHq+8KgLSgMyNoLC+693W8Z0gZ?=
+ =?us-ascii?Q?tGYV8z8ex3ls2anjdYYlMTZ3sNFQnbftcTJeiOHB5+JR3Zo+t4yRq+f3/ZLa?=
+ =?us-ascii?Q?kNZVhZar87Eodx6mrW+0NBn2Vao99lPdHfuI9gJOHeZx7c+GokdbJEThd4HK?=
+ =?us-ascii?Q?M3sQ4HK0pwbTCx2R/f1BOFlybGnylv87S3yZ7q3yT0UW/j9CPAvFjX0dukdH?=
+ =?us-ascii?Q?igyDW0kHuL/1KmewRa3s6d17436Ul+dRMAQsLzI+cTI45MLaWQYIucj3Uy3j?=
+ =?us-ascii?Q?Kl0GVun4tjL0Qypet6sMWQLnl/wyrtfNTW97aS+5QOmbY2n4aYf0kyVEkHWv?=
+ =?us-ascii?Q?Ds/VjPJxLP9LOCQjVjjOVlzi/H/iJlX4vTfKBLK1TRvIKzskCZUYYr+YrtTU?=
+ =?us-ascii?Q?22M3Jw0gBOKc/9NDiux+oTep40ckvQ354SepzCCewV3RN+mraLYQ0Bpfv9Fu?=
+ =?us-ascii?Q?i7Wjp4KJbCZbf/nKJgQJnvj63OtaT4gdPmN1pOiUOv3VomUpT/PO7O/kxH9T?=
+ =?us-ascii?Q?dTYd5EZnjDgUkDQ7fe6C5xeSTCv6MDRjVvtJRqcWWpGUTWGbQQXHlxP8dQVE?=
+ =?us-ascii?Q?rVmp8Iz0pnj8QgXcNejsc786qJ7c0gYYaTnt3KVDzoKvExNjWQreyQhLeiQ3?=
+ =?us-ascii?Q?3yJLumETtMmhs8RINvN9eTdlHM/jquBo05BKsK5nuXqeUbq5BPg9cPF+iJdO?=
+ =?us-ascii?Q?QufWf3xyKWrBtYiwCnlRIkmljnLr9NjWPpFSSlHsdCgcYUocMPOc34o4zIzK?=
+ =?us-ascii?Q?bEka1g7syPwzpELdeWGoxXxK7mrvu/spSYORBt0S7TZEpFA8Aj+Ky5L5FxSE?=
+ =?us-ascii?Q?yyrTSoEBta9yz4OVOufynhGKem7GsJk0KvNi5KIAaIefnD4mi3Sn7NAbi6pf?=
+ =?us-ascii?Q?FW1YppA/7mwHXYOmm8qvUdiTBItXAeTt4i8e8zggJnpAni661ipB69cufG8J?=
+x-ms-exchange-antispam-messagedata-1: ERJCepL2Vr7U+65UYMqh4tjE2fb15eAyOW2q3ma/l0VCMZTc8W9wooNx
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <413F39D44F759841B239EC113AEE70BE@namprd03.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: ath11k: read a station's TX rate under base_lock
-To: Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
-        christophergriffin05@gmail.com, Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-        Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
-        Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
-References: <20261114-ath11k-sta-txrate-lock-v1-1-8331a03b1000@gmail.com>
- <a346e622-8fe9-4912-9ded-b531b1bdc82e@oss.qualcomm.com>
- <f7ecb009-4c95-4ef2-b569-3b2069298c41@oss.qualcomm.com>
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <f7ecb009-4c95-4ef2-b569-3b2069298c41@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE2MDA2MyBTYWx0ZWRfXybXagcq6ZMh3
- TQuLtj2QbxWO+0GtFHbfrsS/z82mb4/68pyf/6rbNjyy3A8juxt3w1d+LPKx+jT5aaztvGgqjSn
- ir+d9Ms9/UtOA23l/f53dcRjPUuctRE+zTIFpFq1cR1WlFy08QJAihQq7tjbi6pDyJJsnXoIeTD
- bL1Zg6oBv+ZwxoeulcXYldCLeHB18w5K/Iz9w1UCqhtRad1c+ItcxkotT6hTQSVerNBJtGBJNLR
- qYFWqDFqqfPasOtIE6oerYhhQrPniAlOtiy2guOTKLGBwroB9vPWarZ0faPASQ1Q3uEjoAhRPvt
- iOPe19zYm5S5ZtWBPYACZeD1fAdFyNrb8yH0nQOf4jTvgneC/oLeABMvOwbgX032Alm6PZ5sWpF
- ljDs9D3n3n/LDKSuxUmfURs1alfoEmNwKC6nsNsLNE+qBPhSsUyC8yWj9jSsiCj7AlIvb/y9S47
- Lmk6IZS+BH8+a8y48wA==
-X-Authority-Analysis: v=2.4 cv=TckDJhQh c=1 sm=1 tr=0 ts=6afb2668 cx=c_pps
- a=lkkFf9KBb43tY3aOjL++dA==:117 a=7UwXyAtrHAWG9Tdc5CO1EQ==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
- a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8 a=VJsjqyxQDCAMHoR8YxEA:9 a=QEXdDO2ut3YA:10
- a=k4UEASGLJojhI9HsvVT1:22
-X-Proofpoint-ORIG-GUID: Bg0rmInf710bFMV0nd_ZP-13_GT-V7we
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE2MDA2MyBTYWx0ZWRfXwX3DtEYHQUhe
- BPqvQk4FBWklWlu6V1AKVzmvuts0P7AkbABxXYgWjr4f0Qz6Q0Vv2d8CyHlOse0BfPruZcBC2PJ
- w3xGg78rHRegZdE+cLwGNmZoYNz2clk=
-X-Proofpoint-GUID: Bg0rmInf710bFMV0nd_ZP-13_GT-V7we
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-16_04,2026-11-16_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 lowpriorityscore=0 phishscore=0
- suspectscore=0 clxscore=1015 spamscore=0 malwarescore=0 adultscore=0
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
- definitions=main-2611160063
+X-OriginatorOrg: sunydutchess.edu
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SA5PR03MB8425.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 618bf7fb-a221-49ff-66d0-08df440d02f2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Nov 2026 18:11:18.4436
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 8f5b3bd5-b312-4dde-9df7-41fa4bc1d9cf
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 3l/TYU2ycfDk3SCyi71hrb/qXu3wVkzyC8qDj7iWC4ujk2gJ3Wr5pOnHf5w2H0r3eWI6YLc8eImU6Y8SEOfZ+Yim+zNDcFbgi4HIZUE0+iu6zvG4oAHSPr5eUawXU+D1
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS3PR03MB989169
+X-Bad-Reply: 'Re:' in Subject but no References or In-Reply-To headers
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_075105_141504_CC6B5767 
-X-CRM114-Status: GOOD (  15.52  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261116_101125_475542_4664AEE1 
+X-CRM114-Status: UNSURE (   4.67  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -153,85 +143,18 @@ List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-22.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/16/2026 7:00 AM, Jeff Johnson wrote:
-> On 11/15/2026 7:03 PM, Baochen Qiang wrote:
->>
->>
->> On 11/14/2026 10:34 PM, Christopher Griffin via B4 Relay wrote:
->>> From: Christopher Griffin <christophergriffin05@gmail.com>
->>>
->>> ath11k_update_per_peer_tx_stats() and ath11k_dp_tx_update_txcompl()
->>> rewrite arsta->txrate under ab->base_lock: they clear it, then fill in
->>> its fields one by one. ath11k_mac_op_sta_statistics() copies it into the
->>> station info without that lock, so a station dump that runs while a TX
->>> status updates the rate can copy the HE flag with an nss of 0, and
->>> cfg80211 warns:
->>>
->>>   WARNING: CPU: 3 PID: 30429 at net/wireless/util.c:1581 ieee80211_get_vht_max_nss+0x474/0x868 [cfg80211]
->>>   Call trace:
->>>    ieee80211_get_vht_max_nss+0x474/0x868 [cfg80211] (P)
->>>    cfg80211_calculate_bitrate+0x1e0/0x4f4 [cfg80211]
->>>    nl80211_put_sta_rate+0x50/0x1230 [cfg80211]
->>>    nl80211_put_sta_rate+0xa30/0x1230 [cfg80211]
->>>    nl80211_dump_station+0x4b8/0x7e0 [cfg80211]
->>>
->>> (the line is the nss check in the inlined
->>> cfg80211_calculate_bitrate_he()). It was seen once in about a day on an
->>> IPQ8074 AP whose stations are dumped periodically by a monitoring agent.
->>>
->>> Copy the rate under base_lock and report from the copy, as ath12k reads
->>> its peer rate info under its DP lock.
->>>
->>> The change and this message were written with Claude, an AI coding
->>> assistant.
->>>
->>> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
->>> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.r4-00683-QCAHKSWPL_SILICONZ-1
->>> Tested-on: IPQ6018 hw1.0 AHB WLAN.HK.2.5.0.1-03982-QCAHKSWPL_SILICONZ-3
->>>
->>> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
->>> Signed-off-by: Christopher Griffin <christophergriffin05@gmail.com>
->>> ---
->>> Found on an Arista C-360 (IPQ8074 + QCN9074) running OpenWrt, from a
->>> warning in its kernel log; the cause was found by reading the code.
->>> ath12k already reads its peer rate info under its DP lock.
->>> ---
->>>  drivers/net/wireless/ath/ath11k/mac.c | 26 ++++++++++++++++----------
->>>  1 file changed, 16 insertions(+), 10 deletions(-)
->>>
->>> diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
->>> index 1a237adaa37d1..d76eeb1ca0019 100644
->>> --- a/drivers/net/wireless/ath/ath11k/mac.c
->>> +++ b/drivers/net/wireless/ath/ath11k/mac.c
->>> @@ -9425,6 +9425,7 @@ static void ath11k_mac_op_sta_statistics(struct ieee80211_hw *hw,
->>>  {
->>>  	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
->>>  	struct ath11k *ar = arsta->arvif->ar;
->>> +	struct rate_info txrate;
->>>  	s8 signal;
->>>  	bool db2dbm = test_bit(WMI_TLV_SERVICE_HW_DB2DBM_CONVERSION_SUPPORT,
->>>  			       ar->ab->wmi_ab.svc_map);
->>> @@ -9435,18 +9436,23 @@ static void ath11k_mac_op_sta_statistics(struct ieee80211_hw *hw,
->>>  	sinfo->tx_duration = arsta->tx_duration;
->>
->> arsta->rx_duration and arsta->tx_duration are u64 and are also only updated under
->> ab->base_lock, so on 32-bit they can tear the same way. Since the lock is taken here
->> anyway, moving those two reads into the same critical section would cost nothing, and is what
->> ath12k_mac_op_link_sta_statistics() does under dp_lock.
->>
->> Not a blocker, fine to leave it for a separate patch.
-> 
-> I'll incorporate this suggestion into the patch in my pending branch
+After modifying the build script to target 25.12.6 and applying the patch t=
+o my devices, I was able to associate a Tuya device that had previously tri=
+ggered the bug.
 
-Please check:
+Currently at 2.5 days of uptime with no issues to report.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git/commit/?h=pending&id=9d8c2294a34e5ec38b674a8a1a5223522cfe3842
+Tested-on: Linksys MX8500 OpenWRT v25.12.6 kernel 6.12.112=
 
