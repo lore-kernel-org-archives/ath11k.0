@@ -2,115 +2,97 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 520B6606A31C
-	for <ath11k@archiver.kernel.org>; Tue, 17 Nov 2026 06:57:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6632606A32C
+	for <ath11k@archiver.kernel.org>; Tue, 17 Nov 2026 08:51:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yWDm+Piy;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=hu0j+pYj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rAru5R21;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=fT3+sKgy
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=z0MIPVZXK5dLXw1tyO6HXqNIWUn9zD5Y4K9IC8LKwB0=; b=yWDm+PiyYTq5uT47d4ykn0DxT4
-	CV6XLxzDmkwkSSmsZ/XVw/kVRQ4U8L9jfH7vrYIXQe3e9Lt1S5wZRyfmiL86/WshEDJLZcROOR/SC
-	YJqDiaM5FVTyGeyCYS6kIIG4lIEMjF4nABaNWCGm57edfgaLHlhP9NTczf0KyjyxVbuGfJQBPRWQq
-	VgvAp65MCtHE7eqRC/4Lkr9AXWyHpHZ0qLhUu8FWaaKux/2qst8IbS6R8UIsSk0tjOSpWbAsceQnv
-	G5+T/Hm6OU+d1rF5Wm7iToKDmpOzO+h8Be5iZhL3OHxYvoApfmFaRoG4jeRAWyJMnYfrxVfRb2iG1
-	S9iltCKw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:
+	Subject:Cc:To:From:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
+	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=OEz0oomxzwceKTZdD3ONuk5L7dJU/L1SCWIJ/2NpyuA=; b=rAru5R21gCg5SQ
+	UsREre2+2TtBm5bC0JarpOnEXwjF4BhU34CkWrwQoUd2RQuw3an+7mATY/iFgeLNs65VablCAUYkq
+	QZHTL+WHpu2kHK7/YZyIVp/uG7OqZpBfr0zm95ETlujnoPcnWKl+lujM2tvoy7cwQTPqr4O6P3PUu
+	j2qrK+JlW4ofjjrXuSonzeoydI/30nDLz/mU/LiAwReABczya3ZyvyAr16v42SCxW0SCrF+ixGbjt
+	4LfAzFpqY8GFULOPMvfkZmkr+ieJ6G8r1GuVBGnuo4RorI0TErM9Px76cKsEvFPRByjHTuaT+fw6w
+	lhoMxPXJwE37sUym5hYw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTD8Q-00000004hTg-0EP2;
-	Tue, 17 Nov 2026 06:57:42 +0000
-Received: from mail-vs1-xe2d.google.com ([2607:f8b0:4864:20::e2d])
+	id 1xTEuf-00000004xul-27lV;
+	Tue, 17 Nov 2026 08:51:37 +0000
+Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTD8N-00000004hTL-1QE9
+	id 1xTEud-00000004xuL-1dgP
 	for ath11k@lists.infradead.org;
-	Tue, 17 Nov 2026 06:57:40 +0000
-Received: by mail-vs1-xe2d.google.com with SMTP id ada2fe7eead31-7d2db6408cfso3391929137.1
-        for <ath11k@lists.infradead.org>; Mon, 16 Nov 2026 22:57:38 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794898657; cv=none;
-        d=google.com; s=arc-20260327;
-        b=CUR0I+XTy+89cjZELJRlScjrNNSxU646fVg8BZJai4KgFXYEI2NwAG2NR3wShZpBm3
-         mCJnYmjnZXk/8vrQ6QBJ3RQyq2cpqtcl4mU9+6iTXm06fbbYkbxxy1kiDyDExDMl7RRe
-         A/2iyDAH/OLEGCk86bmD5haZKTt0lI903ywtBHxwf2IpbenX1hy+vhEUvE2YlGEQaxOe
-         RknCBg56GzFUZTTktXYvXkZDGtI1xbc3F/1dkh0XaWpaA7+zXXuhbZ3wbYpAeNXda1St
-         n1vQ3mJ2nH3LVAAO+juhcdu2rv5gS7ezUnpJKGhSFLpvAsfX1ISuC1Cl0YNmBWpT/eIz
-         es1g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=z0MIPVZXK5dLXw1tyO6HXqNIWUn9zD5Y4K9IC8LKwB0=;
-        fh=jOjeusGo2wCH5ON3Pcxw62uTlATFxd1/gqV5CB/O+nY=;
-        b=s1V3uV0dlZefXEsI8zdsq6SoZjTNh1/AiBoymMTPvBcqY/5mlaOK6yqrJD8+9PQXJI
-         nAl7QJob2o21eCnVQUGqnT9hrx7gEK8pRmUThGFh5eNsjrpsxBA33epu2yBW9HaQ5t9n
-         4zQWZASaPQMmH/RY7QlfWN+S15VzApEMUEwhHBnKsMGoTYDIMQv1FmvuE8iky3vLCzG6
-         AjN1mGV/P02rXO1kQxrCLWIzla296I+9wdg5lhB3BsJUFXuRuPf90Wb+PleX2g1CmQRu
-         jo2oUwXHWMNdlxEZTgs0Gp9DLSsZiQEVLsEPxetTAhVVc9X8PQB7P7cy9+2nm2VTdW0j
-         CP1w==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	Tue, 17 Nov 2026 08:51:36 +0000
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-4a358881793so387653f8f.0
+        for <ath11k@lists.infradead.org>; Tue, 17 Nov 2026 00:51:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794898657; x=1795503457; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=z0MIPVZXK5dLXw1tyO6HXqNIWUn9zD5Y4K9IC8LKwB0=;
-        b=hu0j+pYjmkYgC9wJVkLKFKPfTRBfxXsfHTUDseIywRkyUzqlXLSOKai78zsgMHltNQ
-         aoHak6v4dS5P6VFCyqvQ+JOvin3kiQiQ1Js3yt99hbZWhtdL9pDGwZ+Uv7s+39KhLXDe
-         d7rzsAz7ZzjMQq/c96cXIKJE/3s5RljXQTc3X1Fl7gC/TyAUPWYe21cgIr4xOSAFZNXE
-         kYqpcu9Y8mwll4GDlIXqKKC59YlwWcSe60Sbx72O39tQQsS2z+QL1Ync6kPXYo8p4e3W
-         UWvP+iZt3UKfKOk9Z+ISCAEv0B8wYCVbqm+XaaFgAdMNhEFAibPMJczMJvO0Y7GlZCaR
-         cvYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794898657; x=1795503457;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+        d=gmail.com; s=20260707; t=1794905493; x=1795510293; darn=lists.infradead.org;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-type:content-transfer-encoding:mime-version:from:to:cc
          :subject:date:message-id:reply-to:content-type;
-        bh=z0MIPVZXK5dLXw1tyO6HXqNIWUn9zD5Y4K9IC8LKwB0=;
-        b=vGzGfZedexe7eRWe5AMRnXL5xAw8yt/7C9tHbDBwsIwQhqGBcKfqm7HxhHFvaK3TiS
-         /HMTItVuXcrybAadoncwcFO1w+XRyGY9TL27z6KPHY9THOHJqySVgRMMGZD6awvfZsFH
-         z8nnZ8p3GR+YeTh4mUwnqY1FegqxXGgqIzBh+fcl/Im2um5n0t/FRHS6m37tk2bRObYX
-         U6oQXzAFGWAePNBk1RaBFHzWV/PSA8Ce0yCKfgGwYWatScI4qy0HzWKgc/bFLUwyxt7T
-         RcnknrbP6UAljYvRKlSEyDcH05uNhnaLAZudwcrct+NOYsdbteA8B1Q5I9cNQ8xaIii5
-         +j0Q==
-X-Forwarded-Encrypted: i=1; AL+hErEGyteQ6weY0V8buqRHAHeqLa2uqbNjegLNYRXakfsEZI7KrQzq9IP3rtpli81FqYd62mvkxrc=@lists.infradead.org
-X-Gm-Message-State: APuU4Z/WLxeDDza0LHC/w79LfBqNVaagXq1KUqpsmPe4TQ1i91LgLaBv
-	IMkqPsYHIQy6of3QtuJHT1yEkZw4E3K6nJiaHDlJqDEHYrpZaFYxCZaHG1b54m6TGcCPL3zx8uQ
-	bsPrQ+HNQ8odEaAjkQOE/yHBmKPR/J9Q=
-X-Gm-Gg: AYBFou1N1tOm6LsiqURRfLY2YSG+pMnly9w3SKGxe4y2LGPoTZfHu9GYDpL/QDNT39N
-	ilHgEJjHR/IyHGEv4KhRTPdK301/BGYoIom3aXnFG/GH2MHhn38yO0nQwuWTaux+XvdWQOHApn3
-	S1YWKrV4MtNQcX3unaWuXYti9qcTWnaqTul9rl62mAaGG282uI4Bi37tTkQ72dzsK3hAUhFd8Os
-	164R+SJRB66z62Qyyo0zdlr/Q5Kp8u/XkqZm/qHQz/ABX1dc6lg+yl5j1WopZ+jPM0lk7ODZmlO
-	KkUgPL17xPJ1iJrpumDwQrglLu1xj4LtZUHTg9qJfyY1a5KGOCUj4qa0TD8MntLacS5JIPhXunO
-	tUacGK9PQcsSVLlEMeetBREDPO4KxVGn8HQCgxJgaMP2A8hMbHD2xf6YvJrQmrf2dOPXOjHRp/X
-	sUr/VpBaEt6b4KMo72
-X-Received: by 2002:a05:6102:6446:b0:7ab:af4a:f2f3 with SMTP id
- ada2fe7eead31-7d64d85ce1amr5054681137.26.1794898657452; Mon, 16 Nov 2026
- 22:57:37 -0800 (PST)
+        bh=OEz0oomxzwceKTZdD3ONuk5L7dJU/L1SCWIJ/2NpyuA=;
+        b=fT3+sKgyysqdnTCsYBxMEnFCUv2l+Yx2u4R7z27qefEVKregTOvFgljYk4F0vWVsaO
+         NgN8mNJ1WTSIHUNgjEdiXqK+Zu0WcUOxtRYumdIsnUaNQ19JysdRyLXa3jg3VXbnPE6p
+         +NO14IWfNkGvcUtixLzH/DUySkai9tu+VjLNBIH67MjhoTywbBTnX8FAxhvWJDPgkQIN
+         TVWH7nIuEWYyFQDs8dQMlTKWb4k02rSPWqefcb9FX/qvYua+IgihlSx3QIk6kcxxp6/x
+         pQ8kJhfm/DWSzO71TZ3ODKTt+yvZTd4RD1Y+5bPSLl5aelE3g8hlDUNHDe6hwC64RfaZ
+         3mKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794905493; x=1795510293;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-type:content-transfer-encoding:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=OEz0oomxzwceKTZdD3ONuk5L7dJU/L1SCWIJ/2NpyuA=;
+        b=ryuzLjCzyetncCayg8nWmkHoyGHgM9h0Po2Dk6vuUUrE8BFJvw21erYVHhK17/KO5r
+         5fnYCF16i4aXbOD7rHgr9oc7F7NwrSL+YREbHq1WeLQiqT+I9sR56WMFlVw6FbHTniVj
+         XVGIZY1C5QcCtxm3tdDHCdQQY1jlC5QaD4EsHO23XNeIPLWCu+BuqVLwMT54tW2fU9aP
+         pjcwtEOqnsRLJxuoMmxqVVXwSJY+bNiQyBZkPLb+LsWPuzLUCgF4m8IWkXgkT+ImhFA5
+         CTxmQYKS4bWAxVSOARqeCLE6mr0ufr4eUnum8Ye+Am7B1NaaQ0/9p4fv+Moo+e/CNyPm
+         UJdw==
+X-Forwarded-Encrypted: i=1; AL+hErGXXWhvY677i6hxFOt7VNYKe4v1yZieK3c+T/QAxuTfCq5adsErEGtSgw1E73NhHPwzWRKWnSw=@lists.infradead.org
+X-Gm-Message-State: APuU4Z8MYLIQQtcBZleimypi+JHqNmdsgLGSHv/QF9Q8rgWNtd+M5OH1
+	wwhST4OrOcDex6FAUQpwWHuJUA3trW+TgL4umpoRkilzwW5sBdkH2R9M8TE8Lg==
+X-Gm-Gg: AZFdTZcvtzz6K2Kw0enpOfi133WwYvhgGCS7xY4DDWqCcMF8kjUrUT9lTQgtm47LG0z
+	fpmfcXVx883mTzomopppaiEHxGwo4iEhXjheNj+SELqCFcdtniswCVhc/ELYynxrLjBiPMyybb1
+	aHjp6477X8zINlyNHFu8JHSylMTs+WczXJBJaT6IaTq+n7OIrBo2WYsqkaKbXmetIVbbMxoAcgR
+	c7xXvg9q8Y0rPznK6p45DJ3CypNWK/sTneASJ3F7+VR+PaYblZtMOnXSKvAhhQ1JBigyNIp4L0D
+	cCRFJbR/PYiuK3s0tgA6RMJXpAhs9ONsva+x47R5vqnWNx0XBM41KkgLGjvkfMhkoa6B6qtFMOp
+	ovKjMVhkczAK81TC05ThhTw4TlG2JrmqDddSt9Nlp04iqHSJcbym9vpdEwPx7+oE+LFyB13lUJu
+	0Rmkrwt2AtkFU9t7Q6RJnBj8EWZTjtpfktqIMlVX3L+pyGJzaX42fJiY2vC5zHOpOK4SclGbdKS
+	ccJWLQlGCs6PkIEN1nmbt0PmCFkjb2UOk8TvBziI7nh2AjqqDxp4t6xS4wJOgZllMQuq9EF7fr0
+	FyZiVCMziwJzGBZx3g3oL8b1X2c7gLw5yHgGKdI7OYR5aws1s2oSc7A578NBKaihde4/hdmBKX2
+	kobez9R4ChiXsP1fOf0tR/iqhNFLM97x7EBO14f1OShl1Dyw=
+X-Received: by 2002:a05:6000:1886:b0:4a4:973c:352a with SMTP id ffacd0b85a97d-4a4973c3697mr1788407f8f.47.1794905493247;
+        Tue, 17 Nov 2026 00:51:33 -0800 (PST)
+Received: from localhost (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c888b90d4sm26881579f8f.9.2026.11.17.00.51.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Nov 2026 00:51:32 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-References: <20261114-ath11k-sta-txrate-lock-v1-1-8331a03b1000@gmail.com>
- <a346e622-8fe9-4912-9ded-b531b1bdc82e@oss.qualcomm.com> <f7ecb009-4c95-4ef2-b569-3b2069298c41@oss.qualcomm.com>
- <243aa8d2-ca32-4827-8675-70be02b653d9@oss.qualcomm.com>
-In-Reply-To: <243aa8d2-ca32-4827-8675-70be02b653d9@oss.qualcomm.com>
-From: Christopher Griffin <christophergriffin05@gmail.com>
-Date: Mon, 16 Nov 2026 22:57:25 -0800
-X-Gm-Features: Aa3M54pFYlC-Sgy5IGuVMCgESJNKj3RQrP5QPbH7nXAX8LDwNvkwZk57mpQ5SL0
-Message-ID: <CAKobHXA957LGe7d7+NdXrXWNYrF-7rs7WUx_YVS4Ft4q4kq9rg@mail.gmail.com>
-Subject: Re: [PATCH] wifi: ath11k: read a station's TX rate under base_lock
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Cc: Baochen Qiang <baochen.qiang@oss.qualcomm.com>, Jeff Johnson <jjohnson@kernel.org>, 
-	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
-	Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 17 Nov 2026 09:51:32 +0100
+Message-Id: <DMXCW8192G9S.19BCMYODX8KSK@gmail.com>
+From: "Nicolas Escande" <nico.escande@gmail.com>
+To: "Fernando Tapia" <fernan.tapia@fernandotapia.eu>,
+ <ath11k@lists.infradead.org>
+Cc: <jjohnson@kernel.org>, <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH ath-next] wifi: ath11k: don't create a duplicate peer on
+ the same pdev
+X-Mailer: aerc 0.22.0-0-gc2f86b7abde3
+References: <20261113120325.2913-1-fernan.tapia@fernandotapia.eu>
+In-Reply-To: <20261113120325.2913-1-fernan.tapia@fernandotapia.eu>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_225739_407786_623D686D 
-X-CRM114-Status: UNSURE (   9.38  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261117_005135_446552_79DED10A 
+X-CRM114-Status: GOOD (  19.66  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,33 +105,49 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=no
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/16/2026 7:51 AM, Jeff Johnson wrote:
-> Please check:
+On Fri Nov 13, 2026 at 1:03 PM CET, Fernando Tapia wrote:
+> ath11k_peer_create() accepts an address that is already a peer on
+> another vdev, assuming the station is moving to another band. That holds
+> when the old vdev is on another pdev. When both vdevs are on the same
+> pdev, for example two AP interfaces on one 2.4 GHz radio, a station that
+> moves between the two BSSes is authenticated on the new one while hostapd
+> still has it on the old one. The WMI_PEER_CREATE for the second vdev then
+> makes the IPQ8074 firmware (WLAN.HK.2.9.0.1-02146) assert:
 >
-> https://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git/commit/?h=pending&id=9d8c2294a34e5ec38b674a8a1a5223522cfe3842
+>   wal_peer_control.c:2904 Assertion is_graceful_to_handle failed
+>
+> followed by "failed to find peer ... after creation" on the host, and on
+> AHB the whole SoC reboots. Tuya devices in pairing mode, which try both
+> BSSes of a radio within a second, cause a reboot loop.
+>
+> Refuse the peer with -EBUSY while the address is still a peer on another
+> vdev of the same pdev, without sending the command to the firmware. The
+> station add fails as it already does after the assert, hostapd rejects
+> that authentication, and the client succeeds on a retry once its old
+> station is removed.
+>
+> Tested on a Xiaomi AX3600 (OpenWrt 25.12.5, kernel 6.12.94 with ath11k
+> backported from 6.18.26) for 8 days. A smart plug moved between the two
+> SSIDs of the 2.4 GHz radio in both directions, the sequence that had
+> rebooted the router 8 times before: the new warning appears, the client
+> connects on the retry about 4 s later, no firmware assert, no reboot.
+>
+> Assisted-by: LLM
+> Signed-off-by: John Macias <dencity7@gmail.com>
+> ---
 
-Looks good to me, thanks. Reading rx_duration and tx_duration in the
-same critical section as the txrate copy is right, and the filled bits
-set after the unlock are fine.
+Guys, I'm all for fixing bugs, but at some point you need to start reading
+and searching the mailing list before pointing your LLM to any crashing
+target. This is the third time someone posted a fix for this issue:
 
-Two notes on the commit as it stands:
-
-- The Tested-on tags are from v1. The two added reads are reviewed
-  only, not run on the boards. I can run the pending version on the
-  IPQ8074, QCN9074 and IPQ6018 units if you want that before it goes
-  to ath-next.
-
-- The sentence saying the change and the message were written with an
-  AI coding assistant is no longer in the changelog. I'm fine either
-  way, I only mention it in case that was not intended.
-
-Thanks to Baochen and Rameshkumar for the reviews.
-
-Christopher
+https://lore.kernel.org/linux-wireless/1316ed692b84f1d956e4854d9e974569a396=
+1795.1784792420.git.repk@triplefau.lt/
+https://lore.kernel.org/linux-wireless/20261001164139.370144-1-patricktlawl=
+er@gmail.com/
 
