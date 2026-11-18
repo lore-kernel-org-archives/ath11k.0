@@ -2,92 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 608F660A2620
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 621BA60A2622
 	for <ath11k@archiver.kernel.org>; Wed, 18 Nov 2026 15:30:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lGH9uig9;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=Jovu05dA;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ZtFzCMPs
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NeVIBYO1;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=WaXy1LfJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=rHS9B+0BHde2X4jb3Xb3RONvqSby0IcB+XScTmz0upM=; b=lGH9uig9At7mp+2b5EpGq3onWX
-	JmOh5qQVRO2v21EfWzwtafLFElQ0ObZchU4hY+Fq0/KCdixwTHygTncQUhgw01yHAPnxv5mQeL0Vp
-	qGGaEaB8JK0fDA9czEGmCoQVG4QeBKhfPM1YA3wiWRNM2WIf7zvzBgPXWteAff/yD6h0EKHdi4z2j
-	JR6dMdy2r94kpl/iH3RNPeSOU/tlPjNfTWEmV+iSO+VyILdyA7tZdRyN0nr4Y0Tux1nPgi7eZMkdH
-	eCO69BZG4QTlEU/SjR5oMnsp0DEyV7qCL9aqaJNIKfYEY5WNIsxRaiSn8SleJ6XCVlyg24E64Y2SF
-	j5fbkBsw==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=q1uTWmN4NrrhHRY9maAq9K2SZl1nt7OOy9DAyvWQOgE=; b=NeVIBYO1P7IK0S
+	4e9JmMKEmpHgwaTje8BN4xtS9CqDjT6bH75GnGG9t0DfCvHxkIZNq5u7PzouM6co4OSjE2xFfeGz/
+	NKoKZ8juUoVbdGzbrFHEN6JM2DJaTM0WKntXRkJrv2jEwF/P3VtTONhaPb11tuki6v8eflm70uCv5
+	9WvwyzBZbBKyqtMPGL+TsJHu81wbzrlsze4JmNRm0rycoB4u9IlOtF1r1HSQqHdwlUYrYEEY6K/SE
+	tiHi5RWHZ6YUetlY1tuHqgek3Prg3dJiXbUHEygtnAwcby8OkQiKEAwReHXcOl1x6xaiqpHLa5f1g
+	Va0dszuFhn/4U2F9uvvg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThcC-00000009InJ-15SE;
-	Wed, 18 Nov 2026 15:30:28 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThcB-00000009IlU-2CMz
-	for ath11k@bombadil.infradead.org;
+	id 1xThcB-00000009Ily-0BEt;
 	Wed, 18 Nov 2026 15:30:27 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:In-Reply-To:References;
-	bh=rHS9B+0BHde2X4jb3Xb3RONvqSby0IcB+XScTmz0upM=; b=Jovu05dA0hwbxKcH8y0H1kqbAn
-	qyUQ596YdC10jgfB0W3t9zc2ee0yFQD/kBxuGy2A9px1e1UjxAwMONZLTxkx2ma/6upTfKxXRs0w0
-	uCYeDRolhH7lWjey/86skzHSz8GMO81djXcJIUps+lf4BVZZVSyM5qrKFancgAS3n01ipoBmv7BCw
-	f2KC39XDd90LErhNUh0V7wUNCRSkwjW5HUIKFmkV9cKhZCYoMG7qbOzcdnpz/90dP2KtkD8UVufz4
-	FPqhgPVIKdtai4ICMjWFeRYwc6tb3oFQvFafvCB9m9WJLmfAoiBBKR3ivUmWUsZunCbhL5wSOy9vW
-	XgVrFrjQ==;
-Received: from mail-dy1-x132b.google.com ([2607:f8b0:4864:20::132b])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThbz-0000000GD7N-0vo4
+Received: from mail-dy1-x1336.google.com ([2607:f8b0:4864:20::1336])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xThc8-00000009Iju-2YtO
 	for ath11k@lists.infradead.org;
-	Wed, 18 Nov 2026 15:30:22 +0000
-Received: by mail-dy1-x132b.google.com with SMTP id 5a478bee46e88-33fb4680717so2700957eec.1
-        for <ath11k@lists.infradead.org>; Wed, 18 Nov 2026 07:30:12 -0800 (PST)
+	Wed, 18 Nov 2026 15:30:25 +0000
+Received: by mail-dy1-x1336.google.com with SMTP id 5a478bee46e88-3282db206d3so3064714eec.0
+        for <ath11k@lists.infradead.org>; Wed, 18 Nov 2026 07:30:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795015811; x=1795620611; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=rHS9B+0BHde2X4jb3Xb3RONvqSby0IcB+XScTmz0upM=;
-        b=ZtFzCMPsykE4EyQRjx6evy7wKbzEtpAVGDuiheyAlpo6bSosBi44x7ifwRFOECd5FA
-         BszkB06xhJsA3ET+OBBi06jvEsqqjNvHX40xaBwpOdE/cs6MC+/fOCxVl/zsGHCHjrZb
-         NvwiYoJJjkHCzVUYsH3P7xdKN2STo/R8+MIZMVvLRTGeThp+uxVMSVjsA4ORILEnti4N
-         QsHZkcUmqyZxClaH+ZXg9FlvBB9A1ctkSG9gw8katIY/AFz37eTjgWsPu7KfY7/Pic5P
-         rv0pbhqovgqDV/M1Fz2mmQmO4pn65G5HzWE86lLtnpD9SvHnmkY6V9r+x10c9OBCa+x8
-         kV0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795015811; x=1795620611;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20260707; t=1795015823; x=1795620623; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=rHS9B+0BHde2X4jb3Xb3RONvqSby0IcB+XScTmz0upM=;
-        b=pbmHkvnA2ROrhJLxMHuIty1AhI6QlaE/0eo1rZ0PSShEkaXtIMqBSjLF4WcH/wpdhV
-         mTsot2leWGTof19kJsNZf/0gp7C5j/Hvo1hsRxgAVAdFVDO+ZCZDeo9CoY4Vcg3Q5xoz
-         zwMz2RqJ2lPwvsv5CN+HKPxWR5xycK7xE+gwJiJ9Aompa5jj2gPo3F5fsEw2iYQOLkm0
-         XTJwDfYx3bGBEBrpYrxPwpcmAbJDAS5Cl29iXF3WLOotxiS7nQyBWoH5mjg9R5WHXtIY
-         gmzH+DbzJBA7h08bYK6wanyhTTrR7u3A45o6shpJc78Zvkl1oOchYQD2Hz4KmQg+I24w
-         WKAQ==
-X-Forwarded-Encrypted: i=1; AL+hErEaiukaPM/NvO00A4VMgo10TaHLbmdfyJSuhnZGLSg5VU9+7oWSApbvA4LBYK/adwiGVOjOOYw=@lists.infradead.org
-X-Gm-Message-State: APuU4Z+U4wvcxM3EMkkcLRaMG42nlgpmFot3hMddl4ngdR/ujeiVCDB5
-	gmrIOVNkoHpzMtEUw5WOVgvXSHYS3/AIXD8HrdXjmCjXbFPQOzA7TAmo
-X-Gm-Gg: AZFdTZf2P5wInU0ikK2Nf/4aSn9Kv+BN3nMaE/hZoIwzWI2DYBQn94z8pPtZfAAqCVa
-	MOH/hQUtaHFjH44V46IZoK5Ewi5A/2bh9mTNQufauFD/a7xLcItY6qYedUbD71jazni0QuhZZx1
-	9rVlFhQTV7UMOJF8DMS+gsGWyfj1jHhpX5QuQE+0f2SVgkRNQkr4MoCu0XOziQmUar2kNHk8waU
-	7k4AO1DNczNfNvrRKB1WP5L4y8fXUcn+k0LQHbO4/kl/VgxaEFLkaueO3embV67jSW/aSYsQCdz
-	0YS7OdSbQFkEsMyz0YqgvwL9KmSe9YYBeE7k/r+5wW/vUffdNgNHc9hCC0umdk2h7D+TH/mN+zl
-	Uer0S1vzHo5muYmVQs62U/9Jq9DgBn90btvAZxptIZB09Mn7ruZvcGvgaQ3pX313GagpNajvMpJ
-	J4tpgI7fL1jbx1y/dQV7bf0Arc5BwTD+X3ldAVOgCgdK3xfVwKDpZKfRn2R9cWVhvtamKRyz9/v
-	i5w7F7hOsISoosXEi9iEaMRmM6FHe59PF/+xn6hr2XEkJ+hdN1+RJXGOOFe/vaeyg5tgk/ZSr2o
-	IYRFeAAG6iW3qlSaw/cvaAmJfmj8WClnJvTMN8GIuqwLq8MKWQwHTMFWgDE=
-X-Received: by 2002:a05:7300:50ca:b0:381:7f3b:3c13 with SMTP id 5a478bee46e88-382803787demr2845493eec.23.1795015810729;
-        Wed, 18 Nov 2026 07:30:10 -0800 (PST)
+        bh=q1uTWmN4NrrhHRY9maAq9K2SZl1nt7OOy9DAyvWQOgE=;
+        b=WaXy1LfJGeo3mmhwtWoVB6S6iLeQIHj0FQQYmeVtL4ErVYuvMGyPrW6j9oLngXijpt
+         RXNZ1RgOXm5KZV32P8J2geZiqoVwCxLJT4Z+EH9XkK439V3UQfiJY5cZXjL7tdh8ccoz
+         W8fbKuvyQYNVceODbGnp2sv/S4aQmldhT8ZQvacPK5a9x7Nkrh2vbsi22TPgC7vwhi8m
+         g0DfcCzuDDzzogaO2mfP8nO1wp1TF7NkO/LIiwSdjRMCoebcKjImPI+hX0X3fAIkm/i/
+         j3QPv14UVD5uc77GEITYkd7A8qI2HIbsbxA+mZFIhbjb/Yz+MlVOueXUyNfejrtVzf9Y
+         256w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795015823; x=1795620623;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=q1uTWmN4NrrhHRY9maAq9K2SZl1nt7OOy9DAyvWQOgE=;
+        b=dX6r2yJlP5gx/UHyxLxnT1RkEaPT8eb6q2/46pOfboSGuQVakqW3tnk5hibKM365PP
+         62Q4xjjtYHJoWh74heLIkNEIoiqbS8GPGBKWr9uMrpI90Z8WjGzShFypWE57CghnxsZJ
+         4DS58MhSqLbTcFITn9JCZ/uXH1F4cpWplyreA37ml663TDY99mCDZJ3Q6Vpx+2nRsfip
+         WCJKhbIriIjqQ4boU6ROboJc1N7mPw9tMoboMe70L8P5n0j6CCgBpfXLZEUKK6T33riZ
+         S+a+JLpWKXZTFg4UFnPFlBgJS6dZiy1+x1JqMl3IfSlqvkl12Vt4PsBacrsk/3FCQHla
+         oCnw==
+X-Forwarded-Encrypted: i=1; AL+hErEnURQwXJifHR9BI+2Sl2HKU7MQvgUFVCD7dhmHWv0Uz7rbxhRdzD5dzAUXFo3ZTomm7inEx/Q=@lists.infradead.org
+X-Gm-Message-State: APuU4Z9CcCdFjS1z5Xm65LcG8+KSVRu9K9GAlTdDF+B41D52hZVPKgTv
+	yme1ADc1bw3ruUktG2wNeiIDIR7VZbC9SIHd67+RTkkmB14SbbXgpzqG
+X-Gm-Gg: AZFdTZePMXDpsH528sHU5I2KKP1UshwRTNYj88Hod5EwuuGYP3J5epD00sTrUuKoEdR
+	rKyJclFCRzu7D8M4+i+7l2woIu9eGiYu9m9rngSWbOYX2jnKHHtWFyM93A7dgGX8xrqNhTO+mUR
+	U0BqvZTKvTLxkcKwo8SObkXL5JYkihxQ/a2nvsS1A7+MedwsUIscVVhRFheoWS211MsfDrpqzF0
+	e/Yvr+gNImKc+foqN480y0lZInXDuvy7bUcFsI95LuR7LcYKafNEakPxXgZYec0XBFx68O9kZjj
+	diJ98zZwLvMMkzMMfdR41DoBju+/GIBPhxvmgEwHbTu1Z3iuGIVxHw421bcV7EMNs5s4U3NoGTw
+	D+hMzFWFRhXkJiwx1gopI1PlBIIYh5Otf6A4Wlm4+rc9U+STFwaoFkaAKkbYCMVyz8dAai1coHJ
+	Bj79/2xwAtCVARUG8obSWwegrHwCLPPhMs78kND5svUsfSkyKEmvZfVh7tUsvm6QZ9iEyE32RcW
+	LJCJSvN0Uc4J0h7QCv1xsy6LFUFOlAZn3H8jT70Qa9dKi2KYXGu93ULxsb7wKEYfeB1QjELPbvw
+	/xwb2xz92OfebZKFdr+Niuhq33zXicLfejQ2Ri344sz36ePc/ZNgFYiI5BVj1wpaYCgEhuAd0r1
+	4wHW9QQ==
+X-Received: by 2002:a05:7300:e009:b0:370:a11f:dcb7 with SMTP id 5a478bee46e88-3828161f1d8mr2879861eec.41.1795015822594;
+        Wed, 18 Nov 2026 07:30:22 -0800 (PST)
 Received: from G7XWH7K1F3 ([2408:8256:2e80:7371:2c16:ada8:2d24:d03])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-382a630517asm8922616eec.8.2026.11.18.07.30.03
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-382a630517asm8922616eec.8.2026.11.18.07.30.13
         (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Wed, 18 Nov 2026 07:30:10 -0800 (PST)
+        Wed, 18 Nov 2026 07:30:22 -0800 (PST)
 From: Zhao Li <enderaoelyther@gmail.com>
 To: Jeff Johnson <jjohnson@kernel.org>
 Cc: Kalle Valo <kvalo@kernel.org>,
@@ -96,18 +81,22 @@ Cc: Kalle Valo <kvalo@kernel.org>,
 	Anilkumar Kolli <quic_akolli@quicinc.com>,
 	linux-wireless@vger.kernel.org,
 	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH ath-current 0/3] wifi: ath11k: give the regulatory state the lifetime of the device
-Date: Wed, 18 Nov 2026 23:29:39 +0800
-Message-ID: <20261118152942.62838-1-enderaoelyther@gmail.com>
+	linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org,
+	Zhao Li <enderaoelyther@gmail.com>
+Subject: [PATCH ath-current 1/3] wifi: ath11k: don't walk an unallocated regulatory info store
+Date: Wed, 18 Nov 2026 23:29:40 +0800
+Message-ID: <20261118152942.62838-2-enderaoelyther@gmail.com>
 X-Mailer: git-send-email 2.56.1
+In-Reply-To: <20261118152942.62838-1-enderaoelyther@gmail.com>
+References: <20261118152942.62838-1-enderaoelyther@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_153020_658290_BE0F66A0 
-X-CRM114-Status: GOOD (  11.10  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261118_073024_666253_1CFA146C 
+X-CRM114-Status: GOOD (  13.32  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,42 +107,59 @@ List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-ab->reg_info_store, with the rules it holds, and the default_regd[] and
-new_regd[] domains live as long as struct ath11k_base, but their
-teardown does not follow that lifetime. The SERVICE_READY_EXT error
-path frees the store from a transient event handler, and the remove
-paths that follow a failed start never call ath11k_reg_free().
+ath11k_reg_free() resets the regulatory information of every radio in
+ab->reg_info_store before it frees the store, without checking that the
+store exists. SERVICE_READY_EXT counts the radios before it allocates
+the store, and since commit 64828f091c7d ("wifi: ath11k: fix
+reg_info_store leak in ath11k_service_ready_ext_event()") its error path
+can also free the store after a firmware restart, so ab->num_radios can
+be set while the store is NULL. A later ath11k_reg_free() then resets
+the radios through the NULL store and faults on the second radio.
 
-Patch 1 lets ath11k_reg_free() cope with a store that was never
-allocated. Patch 2 moves ath11k_reg_free() into ath11k_core_free(), so
-that every teardown path frees the regulatory state. Patch 3 then drops
-the free from the SERVICE_READY_EXT error path. In this order no step
-adds a crash or a leak.
+Reset the radios only when the store exists.
 
-A separate patch, sent on its own, makes a failed SERVICE_READY_EXT
-fail the start instead of letting SERVICE_READY_EXT2 complete it.
+AI assistance was used.
 
-Zhao Li (3):
-  wifi: ath11k: don't walk an unallocated regulatory info store
-  wifi: ath11k: free the regulatory state when the device is freed
-  wifi: ath11k: keep the regulatory info store on a SERVICE_READY_EXT
-    error
+Fixes: 7004bdceef60 ("wifi: ath11k: store cur_regulatory_info for each radio")
+Cc: stable@vger.kernel.org
+Signed-off-by: Zhao Li <enderaoelyther@gmail.com>
+---
+Found by code review. Tested in QEMU with KASAN, using a test module
+and a test-only allocation failure in the SERVICE_READY_EXT handler that
+leave a two-radio synthetic device without a store, and then calls
+ath11k_reg_free(): without this change the call faults in
+ath11k_reg_free(); with the series applied it completes.
 
- drivers/net/wireless/ath/ath11k/core.c | 2 +-
- drivers/net/wireless/ath/ath11k/reg.c  | 6 ++++--
- drivers/net/wireless/ath/ath11k/wmi.c  | 9 ---------
- 3 files changed, 5 insertions(+), 12 deletions(-)
+No new W=1, sparse or smatch warnings.
 
+ drivers/net/wireless/ath/ath11k/reg.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-base-commit: b1ed5a45b994a6473ca1cf34f35a1bf87f1d8e2a
+diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
+index 1030e119fd90..13e2ac96a12c 100644
+--- a/drivers/net/wireless/ath/ath11k/reg.c
++++ b/drivers/net/wireless/ath/ath11k/reg.c
+@@ -1049,8 +1049,10 @@ void ath11k_reg_free(struct ath11k_base *ab)
+ {
+ 	int i;
+ 
+-	for (i = 0; i < ab->num_radios; i++)
+-		ath11k_reg_reset_info(&ab->reg_info_store[i]);
++	if (ab->reg_info_store) {
++		for (i = 0; i < ab->num_radios; i++)
++			ath11k_reg_reset_info(&ab->reg_info_store[i]);
++	}
+ 
+ 	kfree(ab->reg_info_store);
+ 	ab->reg_info_store = NULL;
 -- 
 2.56.1
 
