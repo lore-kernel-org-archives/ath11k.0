@@ -2,12 +2,12 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EBD3606A32A
-	for <ath11k@archiver.kernel.org>; Thu, 19 Nov 2026 09:23:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 838A6606A333
+	for <ath11k@archiver.kernel.org>; Thu, 19 Nov 2026 09:23:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0Ff83GSb;
-	dkim=pass (2048-bit key) header.d=westermo.com header.i=@westermo.com header.a=rsa-sha256 header.s=270620241 header.b=hWbMq7OA;
-	dkim=pass (1024-bit key) header.d=beijerelectronicsab.onmicrosoft.com header.i=@beijerelectronicsab.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-beijerelectronicsab-onmicrosoft-com header.b=CkZ2OJpm
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pstFNeQP;
+	dkim=pass (2048-bit key) header.d=westermo.com header.i=@westermo.com header.a=rsa-sha256 header.s=270620241 header.b=hp/+48Uf;
+	dkim=pass (1024-bit key) header.d=beijerelectronicsab.onmicrosoft.com header.i=@beijerelectronicsab.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-beijerelectronicsab-onmicrosoft-com header.b=LFKkZn/X
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Cc:To:
@@ -15,45 +15,45 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Subject:Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Ix3a93gzuul6VROQSvquCtYBwqaHNQ36gYa8xcv+gKc=; b=0Ff83GSbN35DseWx5SZMW/7S/h
-	lLvA417Lgt2lz7Lj57j+Zc5pnUAKYGtUE/LnVw8LuqHK6cJMz2S4ys0Mgnj0YaHyuQclp/2mCDpfg
-	/CH+MyE4Vtkraz//9AvFoX1XIEX+m2ozianlZKqD8lCgk55arjP4BdLw3ZQBmlK+SANGupQFdGkns
-	I/itAW1hQ0Z/E5S+8+Ls3tB9y+pmi6C+2rhQsSeRy7LjESN5c1gu4jwRAUGt5H4lN5pro0xJ8PDtI
-	kKpi0DvyW3T2OkWHJ1HDASzfxP1RQ9qmP7H0/XmR63DTiHmy6waIuw6j3InZ14a+tGSt2z8Uf+qgZ
-	CWQLxCQw==;
+	bh=0Bmgp71NLgnnd3bTOWoVyAlw6YFw8FFfsZ5hubjs1JY=; b=pstFNeQP2BOfOx5e7OlXPd1PZL
+	O+NVd+ZujYjCjXbSaEuatuQegwh2T8BQ3Um4xgxfh2QF+QkmmUmtVTLkNHyy2YuDAO8u9Zt5+qeAp
+	L0Tv3+9lhCHS1hUiwdp5tgr0xnjHVAAs5nc3S7vxKfPyQU18/+FeW92knhSYTsH1aS33vBkaDQWx2
+	JxRsFU/CHwHudmXPREso5c2CQndw2TARuq0Of2xpzooz2tBTGx0/lh/X+s3685r+0hbLKYKCswlZv
+	iJAnKZ+QEcGNutP61UeYlTK5wHXzttswzzVb3q3HckiOZyHcFI9sH/4UcA1IlzyslR3dP2MtC7szs
+	aPaysadQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTyMy-0000000BNnW-07PJ;
-	Thu, 19 Nov 2026 09:23:52 +0000
+	id 1xTyN0-0000000BNpa-0sWp;
+	Thu, 19 Nov 2026 09:23:54 +0000
 Received: from mx07-0057a101.pphosted.com ([205.220.184.10])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTyMv-0000000BNmA-3BgE
+	id 1xTyMv-0000000BNmS-3Md2
 	for ath11k@lists.infradead.org;
-	Thu, 19 Nov 2026 09:23:51 +0000
+	Thu, 19 Nov 2026 09:23:52 +0000
 Received: from pps.filterd (m0214197.ppops.net [127.0.0.1])
-	by mx07-0057a101.pphosted.com (8.18.1.12/8.18.1.12) with ESMTP id 6AJ6wHHu460507;
-	Thu, 19 Nov 2026 10:23:43 +0100
+	by mx07-0057a101.pphosted.com (8.18.1.12/8.18.1.12) with ESMTP id 6AJ6vbmM459417;
+	Thu, 19 Nov 2026 10:23:45 +0100
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=westermo.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=270620241; bh=
-	Ix3a93gzuul6VROQSvquCtYBwqaHNQ36gYa8xcv+gKc=; b=hWbMq7OA+sW4gUwR
-	ADV9+eOL9YSh0ciurth06NWVN4ca3Edc10NTNniBGW5TV39sDajHAjt3K52rNE/m
-	f+c9eXa2qYRZ+YLmSUI109V3ywHuberrh+KcijIg33zkNN6XbPoBr6wiV8vIemy5
-	T/oPGbGVi+dQV2LgTktHbdNI/2CKlJ9095A8CqU71W/ww0oCW9uaH4Pt/9k6z199
-	LslyJBdlrz4GJ9DfXXnQqQk1CTcBz8tff3H+/4I+U4glAmfsUdTdfbeCbaAyNV2k
-	pTd5Fvivmf7A/As0DgowhMKNAZhSDe6RITAeca+AVLPJO+iMiK52SVfUQWUgy/x0
-	+Xg3yg==
-Received: from am0pr83cu005.outbound.protection.outlook.com (mail-westeuropeazon11020115.outbound.protection.outlook.com [52.101.69.115])
-	by mx07-0057a101.pphosted.com (PPS) with ESMTPS id 4j1qgbgdfd-1
+	0Bmgp71NLgnnd3bTOWoVyAlw6YFw8FFfsZ5hubjs1JY=; b=hp/+48UfRiEJBMDE
+	NQHlQ7EejRUO9Q1kJyhxzGfFdLoMp6X9noL4ZuGkB7aDH1GosSMlkirbn1b9g/OR
+	j1zXDkao6UzUklwqRqhek9QPX5dqrK/iQ9CjxwL3augdXFZbak1Q9kC5nPfxWcAP
+	Hnb+JfevwrSxkpads9ErEzvi2/NhW63FLgcdUrNuBGYuQA0at4PfZt4gpR+yCKJ2
+	1o+TzIaG0JS+b7jAVeJBd8SHhiNJ7NDkc0J+2WA8kEQomb8nMoIMpopLRSa5E2kM
+	BYR6h2ufdvsNMXTL06ERg0TwbfzkogbyInGYUGiOF1T5dzEh69Zl/kvKj0isuxgu
+	jTkJzg==
+Received: from am0pr83cu005.outbound.protection.outlook.com (mail-westeuropeazon11020112.outbound.protection.outlook.com [52.101.69.112])
+	by mx07-0057a101.pphosted.com (PPS) with ESMTPS id 4j1qgbgdff-1
 	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT key_exchange=secp256r1);
-	Thu, 19 Nov 2026 10:23:43 +0100 (CET)
+	Thu, 19 Nov 2026 10:23:45 +0100 (CET)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QS0P7dKqlGn0JhGANzPzjuuqLjka1nnlcaBubu9jW8CB+zYyEHFmBNzKYMSkfIRYzl9WwoAvmCAiz+cIw7HkZstUxnja3CuB9w2IPAPaIeVuWvc2GQ+EdjUin9vjwPTyNaqiKNXZKaCnA6oBK5iAyGKoZybohLbRn3W/JIA9K/JnJOhY6xIZR0p7SunlcKT/4CKvcF8k8C9y3vRAhiT4PENlu0xAu8qV3fFTK9zV4HueTihyNNfAUKBLqOX9lENOKzAh6gOcf7Kt7YU5I17MVcJP/c3D0cQTKopOdwodGJjgcilLsM+oT9GJ20KCOITc0JQVxaH4del5g6cwIb78vg==
+ b=DvP0USB+BbgezEzkNc07uBQadRE6uOd/uOpFyJra3zp6LwCfvWDFS2S0uDsFd7SoBikcVdVxWrLDNljiSXz3FY5KU7moVgzNhwLJvIvTy/NPuD6vOjhbhqzgPL79Bfwgu0pdXiR1zP/gT6jYpY1hwEtvz3gcztpX+aL7CzX4iCRsWTIKpKbVZTjkEDnSt1+kh+lvqmf7mzcmW/+jFbHTGqUfpBoy7t+6lNRtKY9QtXWVZhy0DCRIU3U+aU+Hjp8mWfc9K3Jd2rvUAl5ijLSjG3KMEN5K1IwusNITyujCNYjimEyTcQX1SSbhD67/FXYqc43u1pRYdoYCHleio3HWiA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ix3a93gzuul6VROQSvquCtYBwqaHNQ36gYa8xcv+gKc=;
- b=rfpCSWmu9xyjji5tiy6Y2Xikd5GMFAiQLgxLEotnD7DXcxOmvCm9QubxvCExb8zsGikbvbsk4gu3OighiqlGZl8Rk/EE2Hkf5iPPCnWDTuXHfR0tCE3JbFHd3JRjfapLOod8/adDeqDFsK6GFfxJVb5SJBPjD0QdD4kOw6sOSDkOGT0j3G7ehOmEHrNSClehbhiXhL70vgFbfiF/vT7gduRS2AmVSM83dAA3Klgo+1pw7jxjvpWoLmAjkJKeR8tWO7AFJBC1Et0VRHOS3diQUEfiX/2jFt+jviIDvnedEbXEIg2pdiKMssUwkNmGpjb2wCQ2rspvIxVEXmI9/xXlJA==
+ bh=0Bmgp71NLgnnd3bTOWoVyAlw6YFw8FFfsZ5hubjs1JY=;
+ b=gzHR0A+1ciEPPxF87QDwwSSag6jX31oc4Hqe9tRaNbbimFhx5tBKshxdOpjFQXqBeOWCBHel+ltmS9SIxKcYSI738/B1HnYhy5JjxqQvspDIq474NRg5VYO1Vp7eRypEzYNLT+kUNVKZRkqG4yXGIA/oH/w96hLR8foeCsOi4XcgUcWTL3cnujMsaokOAYpnRfqTuo2zS19b/catuh2KQMT7JOh8f8oe7/HzBGPb9W01UoGNf1uARjCfig450uE3tGwGEI3CFDJqjOsoFginlg6wkYEjqcm0349rUfD0Ua5bZwaAMIO55R+VpzdNQXCtTMFesum37Bq8CNxDug310A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=westermo.com; dmarc=pass action=none header.from=westermo.com;
  dkim=pass header.d=westermo.com; arc=none
@@ -61,98 +61,98 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=beijerelectronicsab.onmicrosoft.com;
  s=selector1-beijerelectronicsab-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ix3a93gzuul6VROQSvquCtYBwqaHNQ36gYa8xcv+gKc=;
- b=CkZ2OJpm55+7cf34ZhL736BHmR57F3nY/NM64SsQ5wA6hBcigk2UM6+fCkYzCU+uA0OSBEYETVRCbJwdHk+arlSD8WCadsJrW/v0BkdcCOY/wCT2bDGK1N1QNPjtZddy36qBOS/9SCJhdwFcw+k8o3Tww3TMseTXcrcBLTo49/c=
+ bh=0Bmgp71NLgnnd3bTOWoVyAlw6YFw8FFfsZ5hubjs1JY=;
+ b=LFKkZn/XBHCkok4UjQkaiPTULsW4snQSeJHKM/PElTb7BIdEvGEUJuJ454VVtsRWQHCNSPPrDYDBwkZZ2tL4l9kFyj/YSR7LMzRxcMhjED2agDQSF5O0c0brOnsJ8OLR0v/q00tTDaEVWR+UkQMV8mhV5JKPMDZHhrU+yrUFM58=
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=westermo.com;
 Received: from DB9P192MB3090.EURP192.PROD.OUTLOOK.COM (2603:10a6:10:5e2::11)
  by PR3P192MB0893.EURP192.PROD.OUTLOOK.COM (2603:10a6:102:ac::6) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Thu, 19 Nov
- 2026 09:23:41 +0000
+ 2026 09:23:44 +0000
 Received: from DB9P192MB3090.EURP192.PROD.OUTLOOK.COM
  ([fe80::656d:42d4:bdce:a46b]) by DB9P192MB3090.EURP192.PROD.OUTLOOK.COM
  ([fe80::656d:42d4:bdce:a46b%6]) with mapi id 15.21.0615.015; Thu, 19 Nov 2026
- 09:23:41 +0000
+ 09:23:44 +0000
 From: Alexander Wilhelm <alexander.wilhelm@westermo.com>
-Date: Thu, 19 Nov 2026 10:17:53 +0100
-Subject: [PATCH RFC 1/7] wifi: ath11k: remove CE byte swap for big endian
- hosts
+Date: Thu, 19 Nov 2026 10:17:54 +0100
+Subject: [PATCH RFC 2/7] wifi: ath11k: convert HTC messages to little
+ endian types
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261119-ath11k-support-big-endian-hosts-v1-1-c82fe63f9859@westermo.com>
+Message-Id: <20261119-ath11k-support-big-endian-hosts-v1-2-c82fe63f9859@westermo.com>
 References: <akYnvuVkIQrPcjkO@FUE-ALEWI-WINX> <20261119-ath11k-support-big-endian-hosts-v1-0-c82fe63f9859@westermo.com>
 In-Reply-To: <20261119-ath11k-support-big-endian-hosts-v1-0-c82fe63f9859@westermo.com>
 To: Jeff Johnson <jjohnson@kernel.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
         Alexander Wilhelm <alexander.wilhelm@westermo.com>
 X-Mailer: b4 0.14.3
-X-ClientProxiedBy: OL1P279CA0048.NORP279.PROD.OUTLOOK.COM
- (2603:10a6:e10:14::17) To DB9P192MB3090.EURP192.PROD.OUTLOOK.COM
+X-ClientProxiedBy: GV3PEPF0001DBF6.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:158:400::306) To DB9P192MB3090.EURP192.PROD.OUTLOOK.COM
  (2603:10a6:10:5e2::11)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DB9P192MB3090:EE_|PR3P192MB0893:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5312cb46-0b7d-457c-6d76-08df461eccc6
+X-MS-Office365-Filtering-Correlation-Id: 908378a4-4a3f-4986-a819-08df461ece97
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|376014|366016|1800799024|261102123227099003|10067099003|261022115727099003|4143699003|261026130827099003|261026121527099003|11063799006|261102130727099003|56012099006|261026140227099003|261026135527099003|261021130227099003|261021123027099003|261022105027099003|261021121427099003|261021133027099003|261022075727099003|261028144727099003|261022113327099003|261021135927099003|261009223027099003|6133799003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: LYeBxgsSNc2fsa334+X0WflDqu/eO99A11/yJWQDCzLintZirqmJuBNfBlSfgYhJabxbj5NFVpCtn+f3Qu++dxpWX3VSIxOpuBtRP1UwSkYBy2WWFR3GkdCCLv47ILJaHrBMPWZ/ZGR7N+P0gim/NstI/8g0530/SB6sk1C+m2MiCrdGJaT+/9wJb4y3Zt4iQdsZ+KbhKLpPG16oed9qPfXYGRtl/x1jKxVJwWeONAEk/ZbnTekZtG2aZnYNOfQykNJyi33WNSM8g1RLIfzu1DYwFRXOAjPfsJtl5dvq76bOn/iPJyVFGRFJZ0sDQUnezC22jZlajhiMS1jJhUSfK+rwjrR5OpYBoL5G/nDOewuvD6uLWOidWqNa3K7U8uT5VP6Xo6CQtsTim/sF1KeStsBcfLS0p2tabbuGvPvV/JrPwcC4RrxXGrFieAWSM//qHkfYcZ+MbeFX29LQm7tPR82JCPVIjTv8FM1Wheh24+iukRuKg9c9S+jlJM+U8Sx34Bfs7GcLC0t7MaLRqsDhqg2qG5OjHVJH65Tqu4U5Uy1H8pJA6eakpEyIolIaTFHUpqHbf4tdLFsKHcxbcxoP33cP92ejS/xnK+k2/kkVKrTHjh42FdsunA7P/Ji1ZuwM5b9Ygi1oaoveYU2zwAndsJJe6DRXtDtfccNHuc2UyDk=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9P192MB3090.EURP192.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(261102123227099003)(10067099003)(261022115727099003)(4143699003)(261026130827099003)(261026121527099003)(11063799006)(261102130727099003)(56012099006)(261026140227099003)(261026135527099003)(261021130227099003)(261021123027099003)(261022105027099003)(261021121427099003)(261021133027099003)(261022075727099003)(261028144727099003)(261022113327099003)(261021135927099003)(261009223027099003)(6133799003)(22082099003)(18002099003);DIR:OUT;SFP:1102;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|376014|366016|1800799024|261102123227099003|10067099003|4143699003|11063799006|56012099006|261026140227099003|261021123027099003|261022105027099003|261021121427099003|261028144727099003|261009223027099003|261009221227099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: 7cxmnITnTClhIZyajBDfsPTTThamdZum63UCxOdYTyigaq1vupHAoOVX8jp6XtGwDGT9BUoLI4BuQbshFSMWcyCLNlgo7n8M8d+5GxVkSQvzXkbhS3V4eW0+w3v9LKIt7YxFlENXhdx/ls39CtvsXzj/j5Ub53cQTF8iNX0AKussF9+T3omWxx0kSN0xA/LSgJFOPaB6M3rGHGjgtvIpxHmH1UESppcDurbWz/vPAmrgzbIb8MMnQSDgnYXljEd4thDq3ylQ5HhPKMDRIhhtdt+54QtLhJbrqDq1tS4q2ImAeFP3uvoTqJ4Bz5E2v9W6/VZXAF58uSFluT58kzR3g/gaeK/MLHeS/Tc3Bsemxium7thYW8BZN7VoJ/euLSN2pMIrh7DGtY/UgcVlCXX7javj8BQOM8RgSpgp8ZaSuINzlHJDMfKbzlJwi+vKWgNaco/Rt1fsCzl1hvRVbHdX4hi8DdhtNn1JrgkRiuwr1wqFZvdNQccILNyWKCFmr+9CCWUF+haAMgnfH5/dHNDBZdYeMHl3n/XSUyT71XeYzZzFtJwi4qSgrviW6qGayCuW9huw9pxUnZvfMRwO5C2sJhQyXSOL1iREM7e2PumhBHREjUWwiTXR9UzD2+ZDFZrwPyG4OJH6Pl6IeqgGTttwElo91XaO4v4ejOAf7X11VxI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9P192MB3090.EURP192.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(261102123227099003)(10067099003)(4143699003)(11063799006)(56012099006)(261026140227099003)(261021123027099003)(261022105027099003)(261021121427099003)(261028144727099003)(261009223027099003)(261009221227099003)(22082099003)(18002099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WU9sMk1TWmxGeGtXQ3RLeEwrdjMrSnh4TEVBTFJIbXFMQ0dxSnBnaWcxblc2?=
- =?utf-8?B?ZTRUeUxFd0Yyb3IyZEZFMWtWeFZndzlUR1FLMmhJc25iZ05lSjZYNFprZTVE?=
- =?utf-8?B?RGFUU0d4UGFnUlNFRTJzaWNLSEEzWm9EVER5ODh6T1VmU2tjT05oRWNuOU12?=
- =?utf-8?B?S1hZWkl0SXdKZ3RlMURNcDc2b1ZaeWpTODFmNnNGSS9Rbnpld3JNaTI1TkRN?=
- =?utf-8?B?QUpkV3pKUXNuc0VvMTQ0ZlFqWU5kZW5QZjhFUDFrT2xwQ2tHd2Z3b3NHZDE5?=
- =?utf-8?B?ZTRJQmVYS3g5SWhkVnEyTGxibjMxUktWVzdVN20wRXpCaGVEK0RiNUhKVk55?=
- =?utf-8?B?ZjFDN2hGMXR1cnJzTlNhSHhxQTduZ0RxWWYwY2phY3hHdDJLQWtCekF0U1Vz?=
- =?utf-8?B?NXI2WlFQaUNIeVZGWUc3dFhYRmEzVmlIVTFiS2U0VWxqRkI3YlFNTzhnbWxv?=
- =?utf-8?B?V0c3aGhFdlFuNkNJaHc5SU5QT3pLd3RYZGVEd25hMjY0OWJDQ0Z1bm96WGp4?=
- =?utf-8?B?ZmdIMmNwMGlJZnJ2Y0FPN29CdU5oOUsrLzEwWWZOTHZ6Tmg0VkhOOXdhMzVP?=
- =?utf-8?B?MmE2YUJsYUtyUHNJTHJaVlg2WVJHTWw5eG9oUEJQMmlqZ3poMW1jTFlZMi9i?=
- =?utf-8?B?Uk1DTXd4M2Z2bmNTdlBRd1ZBVFc0MWs1R04zOW5ScVNpU1ZOYWMyVnBSQUlo?=
- =?utf-8?B?V3l1V0dKMjZEWFROK0pyZGN3WHFhdEp6MVhqVllhenFCWStyNGJ1ZHFYSjJK?=
- =?utf-8?B?eHJCNjdmZ053a291K3lmU216UlEwMU1sQkxjeWFIWXg0N3crbmVKREZkYmpo?=
- =?utf-8?B?VERWZHJXOWQ1NExxSmFTcXU5UGVRTWcrdnc0d0oyQUpJVk1RNVJ6NmVsMnRo?=
- =?utf-8?B?Vk9TaTMzY1l0eGNFbS9wQUJyV1JwZFk4VGc3RDZWbWpVY0E3Q0VMNVM0U0xY?=
- =?utf-8?B?N2FFbnpENlhUK1poOGpDcVJkOS9TMzNyclAwZWtScjRBL0Mza3h1NzBrQ1VR?=
- =?utf-8?B?SUtzNmt5eThhTDYycmxNbmJLR1RwakZxOHdHQzdQUWQySTd1dElDRGt6bTF6?=
- =?utf-8?B?K2lycXBzWVJ0MWVwWUpnU2VkRWF3cEtEUUE5QlM5SnRuNzJEb1VSU084Qk45?=
- =?utf-8?B?V29SM2FCcTFyeTh4Wm9XTmpsaSt5VFI1bUxHNCtvNHlYL3VsZ2xiZkUrRHJm?=
- =?utf-8?B?ZHl6SHhDU2NQMDhLVml1QVAwQW05NkFJVkJrTHFJb2lZOUkvQUpFY3VGem1L?=
- =?utf-8?B?d3ZnWFU2ZmVEcnRzM3R4OU0yc1daR01CcDFIbHFCb2ZEMkVHWGtHbUdmUWNG?=
- =?utf-8?B?QndqYzFmM2hpM0lnN0NxQklTeVBsWUZwSGpCc3AzSjBtTXVsbXdWcElrejNY?=
- =?utf-8?B?czlHUDJxN1k0bTc4RVRHeVBRSzc4a0lyQjYwK0tUMGNLNXZYYk9yQ0hoVWZ0?=
- =?utf-8?B?czhaTjRGQlg0NUQ5Nzhaczg0RFBRU1V5RWloNEZDUDlsQitWT2lIVEFya2NI?=
- =?utf-8?B?SWZFNGplb3I0U0dvell3cGUvWTdoZWhyaDJ2NGVibnp6dlZkK0EvZkFOZFlo?=
- =?utf-8?B?NUNTSDVNS0JNYkp6UFpac2huVGtWQWhmUWpLUkViNE1aYlRuNUtNUTgzcmxP?=
- =?utf-8?B?eUNjU3JkUFJnU1NYclgzRXN4L056TUFXREY5WXdLR1pQSFBFOWVuUjVlUlN0?=
- =?utf-8?B?WWk3VEprMDFlNndYTmJsT3d3SHQ5TmJhM3Jlck5nS1JNN3QrUCtUOUhUTUZQ?=
- =?utf-8?B?V29ZdFdLYXN5bVUyUHBMSWdwY2pvcWhHd2NRRHhwYW13Qm9CbTNjVjlIVHFI?=
- =?utf-8?B?VWptN1g4eVJwSFVlNmtaMHhBUHNjUEpxZmk2VGZhQzk5MFNtK0tMMnFyN0hp?=
- =?utf-8?B?d2p6UC9lRXVUTFRoRTZLVFVzS0hPaXU0YmtvcCt4SDJSaXB2ZUI4R0xiTm94?=
- =?utf-8?B?RFNFOERYbzY0U3AwWmFCczIyRGxzOHk4SXdkUzVZSGZXaU5YK3VDK2VUVVVr?=
- =?utf-8?B?RiszQmpIQlUraVJZcDdnT2pmOEdlRmlqVTJTUXZid2JKQi83YzB5Tm1zdk9o?=
- =?utf-8?B?NWtUbHhhZVpXcUxJOE95YkRNTDhHYWhPVGhLdWJKZlZ3ZnNLUG94enFlZzBk?=
- =?utf-8?B?dXJGUWhPOVlSREhLcjVxUEZTK3ZJcE5yc0dUWGdrTGpNYno1TWJ4b3gzeDRK?=
- =?utf-8?B?OEIvQ3g3Qm8zYVQzaFlab1BGckxCaUlrVXp2OHNwZEZxbDcxTG40TjlMKzJt?=
- =?utf-8?B?QWROYnNBdmJFSFlHMkFZUG1YZ3M2ZTl3MlhvWG1ZR0tpeGhwSElTL1ZyV0Er?=
- =?utf-8?B?QlVCU05FbjlyVmVLUWJVM3NqV3V3SVVEeENlbllCTUxWdGdUU3lIZz09?=
-X-Exchange-RoutingPolicyChecked: MQTqQSG8+WoRAKKwvaZ/N8BkdwlSZ5zba/NvFnh8Uo9qIJIOebG6T2c5Wve9nif/bN0XND/8MBhK6TrsdwyuU9IG7VkDDnfRE76GubDPC3to3TJ3eGW75KpAljrXyDPxcu8cIgHz4L4+nyv/JwiqgB6STtkCn5Zff2mMZRDYwbQ/H/3ua/m9eGMm6kw2mRqIL2ztl2O1DFf96ELHQLR9pL1Jmdkz+x7Usm9GJf28/+rguJSfQA67cIg/OjZMpWWLyeMh1u0bWlxKtFCNal9ETgx7Hc4La0vnEmUI7yRESixJrfYzKFwaNDuDl5afud1e3DtjdS8Q7B2iqe56mPEeMw==
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TVBobFo4cmU5U2svZTROZ0VsNTNVUTlqSkNmNlF3WFNvNkVjZkpYbFhyMnBM?=
+ =?utf-8?B?TUpLK0ZNbDhNVXl3NVdFSVZoRUNHTG52S3R3dlphY2xpRDhTUmNocGIwNUk5?=
+ =?utf-8?B?clIrZEZyQUhrK2ZzeFhLbjY3Zng5c0FQTDZ6VE03eWo3aHU0SHhNNVdIalFr?=
+ =?utf-8?B?WWc0cFJyOHFrRC8ycTZWM2Z4eU4xeGVDV1JyWHZLVGFmbERJOFRMZ1FzWFRJ?=
+ =?utf-8?B?MGtSRlNRcG1EQVgwU0x0UnNKbWNMcVZucWMzZzRTd0xRaTF2VGhkR01TaW9o?=
+ =?utf-8?B?Y1Vna09IcjFhclJnMmlwazJmZFYrNFV6MDZVYWVmMmdWdk02Sk8rWkp6NzU0?=
+ =?utf-8?B?NE9ZeG8ybXd0a2l0Q1lGMXpiMEJ6aDhudjdBZVF2bFhwdFVPRllRdllta0dT?=
+ =?utf-8?B?djgwL05vT29RNnFvOVpsVk5PSzRkeEVWUExCV3Jacm9rMlY0WXNaV1lPNU1N?=
+ =?utf-8?B?dldqUHdsV0FzWkRKdnAzdlhEOHh1SkV4NjN3WjNRaHdLRGd4cHNDdm5ZcVJF?=
+ =?utf-8?B?YUQ4T3BxeHNxaTRGV0ZEWXpSckhqRi9BS2tuanBSWXdma3VXQ2RFMzFvMlpD?=
+ =?utf-8?B?SmhUOWp4TUhiUUd3YXVaL2hSbVlUREwvVTJJU1dvNTA4aWhDaVdYM2YwTnVa?=
+ =?utf-8?B?cjV2VWlOazh5Y3JnaWx4aDI5WjE4K2ZqNGJXRURpWmxBWE04SlpVQnJxSVEx?=
+ =?utf-8?B?eFp5QzVSTGJhREZkMVhxRExCWktVNUEwZU1ZTGQvMzM0N3VNeUx2c085RnM4?=
+ =?utf-8?B?cXJVWmJqZTZCOWt3a2k5SGV3OEtOb3pROGJ5OEdUZGtKN1RuTG54bGtvNHo2?=
+ =?utf-8?B?QTJjSTRUbHU3MVhqNFc3TUhaUnBLVGtGT0lLanB5cFpTOWZjN0NEUnNLVkRY?=
+ =?utf-8?B?MTFaNUJXQXc3K0Y4K2hWRGV2K2FSSmE4QktNakQ4L3J5bmlqTTJYWjZSYVhw?=
+ =?utf-8?B?Z0ZLQ1VCd1NJenZ6NVkya0cwc0Z1b1ZPeXlyK21RbzVDdmNudlJ2SklSS2RK?=
+ =?utf-8?B?TjhyVUhBMHJsQzRsZWZhRGNhSWg3Z3diK1k2eFdDOHlsQmoxa3UwcEpGVlEy?=
+ =?utf-8?B?dUJRSE5mY1lLRkphRVVMSitLa1U5d0dhL2lxN0V2TnJId2hSS1R2bEJhdWVF?=
+ =?utf-8?B?dzUyQ3I5M0sza3I3UXQvVVpUeWFHRnlmd2hxYjFkcGIrSno3S2J5cUpmWG9B?=
+ =?utf-8?B?RGxVNjAzcDY4VCtyM2xVTTdIRnRKRUorbFAyZkE0cG5hNmVvQVhCQis3UUh5?=
+ =?utf-8?B?ZHJ3SEZQMTc3TnpKd3lBTFViRllEbDF2UjFPNUVyblV5SEN4K1lEWXJnUHI1?=
+ =?utf-8?B?U1ZjTTRaSnhwSHhVRFh1UWtmb29RNk1pTm5GZFZldnh5Q2dxb3VyMGVXd2w5?=
+ =?utf-8?B?MzNZZnBDVXcwdzZ3Z2hQSlZsL1ZUT2V5dzRTbUM5RUJMa0hmVzRNUzlCejh3?=
+ =?utf-8?B?RzhRRVJBSldRSm41UnJSQ2FHYk5KVWRmanhMWmdFWVJtYXBKbUxYRnpzOHQy?=
+ =?utf-8?B?V3hUZWg4MUJSMGRFdTg5QVo5WnJrUHVtNm1rT1hsZ3VLbHhBSjdPUGQycDJR?=
+ =?utf-8?B?alE2TXZGTDdLVThoWDV4anBMV3ZHamlCOUtOLzA5Y1JOZUtBc0xMVmF5US9K?=
+ =?utf-8?B?d2tQTDZaNUswQWNiRlFoNmJ3NndQVXMzTTdDZUZkc3BQa21yblpGZ0JjMmc3?=
+ =?utf-8?B?RU5sdVVVODJsUkxGWTBzd1ozUzU3dXBjdE15K3JQMTRaNmg2RWl0MWtuQmFQ?=
+ =?utf-8?B?RGtnU2haN2tXNlhmbklWaTBhcnNmMit4REFjd2dHSHNESUR4NzZpOU1qOE5Q?=
+ =?utf-8?B?S0pwNUdKWVd1L1V1cFNXcEp5YTROOFovTmRoVVpwVnhKbktUNC83NlB0TjN6?=
+ =?utf-8?B?eElhUEVyK3E5L1BMQVcwQkw1aGZQdUlFY0YyKzBGNFFXQmgzT252YWN2YndD?=
+ =?utf-8?B?T3c5Y0tQcm5mV09UYXBDYW9kZzJKOWMxWFVaT3luQWE1a2lWeVRSR1RWbG96?=
+ =?utf-8?B?eWxTUkRKaVI1OHJyaUpVUm4rM0JKMDY2RnFPV3BRaWxScitYaFB4Y05CN0NF?=
+ =?utf-8?B?U3RZRE9rSlpxd2xYVTg1YXlhVlk5U2pQcWpGVVVoZWtKeG0wT0ZHYXlmYml0?=
+ =?utf-8?B?Tjk4VU5JSnVXREpwdFpUSStXcENJYjJKdFhMVjh0clk1MDdYY0NkanQ4Sk9O?=
+ =?utf-8?B?cStkajZHZVZOL0hLZmZnS3FWSnJzM2N6ZnhtdnNFL3I3NTIxc0JadkJ4TFJT?=
+ =?utf-8?B?Ukd3djdsT211NGM1ejZYMmtEVWJQdm1mSDhoU05EcWEySGJraUF6QTdzUjJ0?=
+ =?utf-8?B?SFluU2NRK0tlc2JZQm1MSWtsUmNCdTdSVDBmVlgzUEsxaVNUaUljQT09?=
+X-Exchange-RoutingPolicyChecked: fmHOMaEfWW8C3jXQQmayVjOa1LY6WVf16j7SDT0iEpgGhYgGcJaAVEvwxYsdua4HzktHG69RTAzu4KDnmmt5G2BblE/+qJ7SCbZIgKRzAihy0/OZrvCSORDr4bNtBUaZx5Da3xujSpl2E5gjZQnz7zY0Pd4cqdudqhx/Pwbl8yGZEaSJOe+kjxD24eFavMGfA/wYNiOItPG4s6SGmUz8h3xgD1xlPEzxTfZ+Sccotcc0xni5uEOccgpEzP9V+VZ9oYrNgL4egWiCkp0mInrxFvNrus+FdsFopEj26MwtaEM+nHS2Vu5Ly/YmrLh8U9V36SCjIP7taEAGCb5Db9eRsg==
 X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: lHsOGmUYQzxhmvUWa/hc0b+u/21J0m6aEWt3QAZ2Aey38G5wQ4bNOJ/76MWWv0Mwn0sI/i93h15ZmLiteBMCEDel365XZHPdGy/Z+Ae++NTIaedWIv8Gxb/jI727D/XZPRABh1RcKcJ2U0JdMVDim7OP9i+niJecqJ3QCgAlcCcPWYk7Ng09DrJvZoJkSweE22T6tsBJCOCSlqLD51lF5D3tXeKbT4KiCDxdMBjFX3yXJ6pnFNIEGNydRASS3DVMp5kkrCYzeRrTFSHK+tE3cCV1oxFHZJwusfpfC1ZzbdEV0sUl/hEQSAHQm17wxqJfg5oM11LkJIfUhBKX2TfLz5uFgMJwOl9Me8KjL14yuoXM0eSI/mjfCL5J8WtZLJJuAgNcC621tJktY5acxpCaneM6wQr3h2RRlISSnhaptqlGFRs92SptPjucNy9ck4f5yx2GLfKw81TiNUEMHXv9PqAeAcf46Ua1XFfudzkQkpjq0onwxiV6yYEjwRxU9ULDlH5JupUp5XjDjLGa3FBck6nyLsvU8SYU0T7jf+AIbA+N49u/OZkaOIdHW1pqXgWaSZ2Y1j1lw4iBzm4a+2aYX5TVbL0bwxRkrnoddERkJicH+qY9ZANlgWWt+g9bWeFV
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: iHSQJEC7tw3EtYyR73qvttQhnSmY/axLiLi/AM10D73PzbSOrgLJDMUADAWNW/SeCsVzIuysf8ZFZMYDWBawEtMLSBlwexDaFkZU1hkneAVuNyLDjM3jbMRrZqX3SCL16cAgBZt/vAkoVupZb8oc8slLzh+sJ5F8cRemCZN7YC0Nv/X7GZ3L89r1AcTqOWl13olrp4WkwTsYjicCsqciN3/pLV3Zgiui/ga/bBtA3/3NtBJcwcFffX/eQSHlWsnlr5G6SQsbEni8xSUPZczmIWXDJcI1B2mleTew7qB9SgG33Xwky2t7VHB0lkLLeTnBVGJ0Pew3zApL9xMQImgjj43Jg/pthL8MEZUXVn565fI1WMkss9J0Sxc+wditn8FCRyj1CcCw1omqon+hn6yWLp/gQMCn/SCxcaH6Bpy3O6RZQdtKgx1sKTbjXLEW9SbaI9s2y4skCJOAB/sz4cOh1UX+NrTPhhoYATkyduaWwig6Sd94bmokIig8gVPJhN0bp+FpxvI1jJe6FMxhLKncSi3VUc0IJqVRESzHXXd+YxjVxDiJL6ktV0ml8SZJhIFl9gl/0ffTzhuJGKu8oRvOS7aIvUDcxatl7M0/c/enSt1zZtnFoKeKEPH33Z8+Bh4K
 X-OriginatorOrg: westermo.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5312cb46-0b7d-457c-6d76-08df461eccc6
+X-MS-Exchange-CrossTenant-Network-Message-Id: 908378a4-4a3f-4986-a819-08df461ece97
 X-MS-Exchange-CrossTenant-AuthSource: DB9P192MB3090.EURP192.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 09:23:40.9251
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 09:23:44.0426
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 4b2e9b91-de77-4ca7-8130-c80faee67059
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: g25cUAeBf6ETR1wNFpJiZC0RBMWpQ8Dq1h7nnmvVAhKn4l1qlFVg61b5UY/EV2eB210KHtYqBlMVOYLlC/1TZw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9XPWoZOr2DNuCqQKwNlI8OssSAQq2m7TKdh34RuhvPsC8L5E9Bitj0pDvrfILMjbjGNJuyNZg3EPxYTXb+m+nA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3P192MB0893
 X-MS-Exchange-CrossPremises-AuthSource: DB9P192MB3090.EURP192.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossPremises-AuthAs: Internal
@@ -166,29 +166,30 @@ X-MS-Exchange-CrossPremises-Antispam-ScanContext: DIR:Originating;SFV:NSPM;SKIP:
 X-MS-Exchange-CrossPremises-SCL: 1
 X-MS-Exchange-CrossPremises-Processed-By-Journaling: Journal Agent
 X-OrganizationHeadersPreserved: PR3P192MB0893.EURP192.PROD.OUTLOOK.COM
-X-Proofpoint-GUID: 8n7RbMBzHMZshL7w15DYlY62TormUTB5
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE5MDAzNyBTYWx0ZWRfX8rTl2TQMH1SK
- ugRBqdABf4z6YZ47LeZsxtfhLm9x1hvdPt8h+EC2SohbgDFhhT/9cY9BCnL262q6QCjv4cclYLg
- gIIQozrgZt2z4QL4NOqEmqRKsils/YY=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE5MDAzNyBTYWx0ZWRfX3pIkgCak+vZp
- RV+9e73mvp7GDwJAr2iOOByUgaR5KN2Gc4pb6bLYXw9Z7Siud9PXy/3yMZfmAOcbVsOrghzzCCb
- cvwRBQtURFhKKAMpEK2Q8U17ut1k/dKdE7aaKZu03AYY5vFpMGVkbJSv9lTjT40fTPGcsTL1fhy
- LkpmqWUYzdvuLouFFWNVf8VNUoUIVCvulBevZmCjk8fE3Zrd5LSKT4+unExiXmzYYTiVUmHPK1c
- mER9PB876tDkN6frunETGy0+PzGcNUNAOQ+C26vMqp6jFfPkR1E7HnB6ojrqembcBziJvu1iIbK
- 4LdP2QvCQG9/fu18xB/6h+olqEK8dNCcGEbMIPm5DBBU4fRJh1h5lo2L0PpdwmzR0Q5jzMzddG4
- hGuYib8RaKv7vMwhyFwWxpCBjBpFt+IRM4qUY5d70aT6Mi9GEU/uWcPMeEAqTSODO4fNImVucBt
- JqWxhySIs3yrVSo5FgQ==
-X-Authority-Analysis: v=2.4 cv=e6KT2qp/ c=1 sm=1 tr=0 ts=6afec01f cx=c_pps
- a=liNU4DyYNKSIpXKgFlKCpg==:117 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19
+X-Proofpoint-GUID: aHk0JV1ATuZD-FWmwuCZ70SxFA6eaifF
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE5MDAzNyBTYWx0ZWRfX/qedaMofVngF
+ P4ANO1yzer7cYZ+WFHWqbQiAs4MYI/pQASp9sJ9sX3RgfHyHF35qew5IB8YauatWWlKAEiEiKSv
+ rKSPC53zD/cK9S8l3zhNwiWVH306mCI=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE5MDAzNyBTYWx0ZWRfX9LHV03rQdpFD
+ lby23IRIJ1ixkvMCDOJsj4ffRsxwEA+dR7sL5QAu5XJugQRubtrBXoFv2t3jheNp1HAXNuDxaCM
+ T72FXUdwGl2L8XQxwThmZU6SlneFNH5pyrTPlqVhBcMUO7H2ryB+HfdMoVxy/+qRVzy3UpwH9jd
+ bTGv12AfFdJqAphu7pS5t4XnJGxEbn3d5V2iwYT1nTKnlZnmVw+QlJQ4OplIM180ScnXzEvc91+
+ npjusJYJcCAvyZPx7l0pCDDncitkTyQpYFUTpi93Yu7hY+VjLDw6GXfq7LO8uDk6Rjg4+t1+8Gv
+ LwXAw+HdfSI1qyXNBxGUbCIm5QcMeDFSb2oNOz/cdnzIb4aouZhpTR/WN8CYEKF2XZ4ejH8pet9
+ EPVRCM8wC8SBpofla2EhK7BvWHupBjZc8cQNBAFDVqGBM92CJUbF/JEJwMpRpm+2qM0MyO/1RZA
+ 6M/OONdpBh46r1oNjKg==
+X-Authority-Analysis: v=2.4 cv=e6KT2qp/ c=1 sm=1 tr=0 ts=6afec021 cx=c_pps
+ a=Wl/vruDC58w1PVykjF/zIA==:117 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19
  a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
  a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=8gLI3H-aZtYA:10
  a=VkNPw1HP01LnGYTKEx00:22 a=tr3XZvuDWTETL0Uaxejn:22 a=8ys4xmT3Mru1TjC2zVq1:22
- a=N9GNhs4bAAAA:8 a=ayrFxtdICWJgHmJ6DOoA:9 a=QEXdDO2ut3YA:10
+ a=N9GNhs4bAAAA:8 a=eCwy-lng9wtVnUzYFvkA:9 a=QEXdDO2ut3YA:10
  a=PZhj9NlD-CKO8hVp7yCs:22
-X-Proofpoint-ORIG-GUID: 8n7RbMBzHMZshL7w15DYlY62TormUTB5
+X-Proofpoint-ORIG-GUID: aHk0JV1ATuZD-FWmwuCZ70SxFA6eaifF
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_012350_119034_294AF39E 
-X-CRM114-Status: GOOD (  12.48  )
+X-CRM114-CacheID: sfid-20261119_012350_181260_4DB4B371 
+X-CRM114-Status: UNSURE (   9.91  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.8 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -207,169 +208,296 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On big endian hosts the copy engine is configured with
-CE_ATTR_BYTE_SWAP_DATA, so that the hardware swaps the transferred data in
-32 bit words. In addition, ath11k_ce_byte_swap() swaps selected byte array
-payloads back into their original order.
+The HTC header and control messages exchanged with the firmware are defined
+as little endian, but the corresponding structures use host endian u32
+fields accessed with FIELD_PREP()/FIELD_GET(). On big endian hosts this
+results in wrong endpoint IDs, payload lengths and message IDs, so HTC
+setup with the firmware fails.
 
-The byte swapping in the copy engine does not work reliably. The root cause
-is unknown and the resulting byte order may differ between firmware
-versions, so data exchanged between host and firmware ends up corrupted.
-Relying on the CE byte swap therefore cannot provide working big endian
-support.
-
-Disable the CE byte swap and remove ath11k_ce_byte_swap(). Instead,
-endianness is handled in the driver itself by converting all structures
-shared with the firmware to __le types and using the appropriate accessors,
-as done in the following patches.
+Convert the HTC structures to __le32 and use le32_encode_bits(),
+le32_get_bits() and cpu_to_le32() for all accesses. Adjust the format
+specifiers in the debug and warning messages accordingly, since
+le32_get_bits() returns u32 instead of unsigned long.
 
 Signed-off-by: Alexander Wilhelm <alexander.wilhelm@westermo.com>
 ---
- drivers/net/wireless/ath/ath11k/ce.c  | 19 -------------------
- drivers/net/wireless/ath/ath11k/ce.h  |  6 ------
- drivers/net/wireless/ath/ath11k/wmi.c | 17 -----------------
- 3 files changed, 42 deletions(-)
+ drivers/net/wireless/ath/ath11k/htc.c | 83 +++++++++++++++++++++++++++++++++++++++++------------------------------------------
+ drivers/net/wireless/ath/ath11k/htc.h | 30 +++++++++++++++---------------
+ 2 files changed, 56 insertions(+), 57 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
-index 1e08b0970b14..16f13d25baea 100644
---- a/drivers/net/wireless/ath/ath11k/ce.c
-+++ b/drivers/net/wireless/ath/ath11k/ce.c
-@@ -1050,25 +1050,6 @@ int ath11k_ce_alloc_pipes(struct ath11k_base *ab)
- }
- EXPORT_SYMBOL(ath11k_ce_alloc_pipes);
+diff --git a/drivers/net/wireless/ath/ath11k/htc.c b/drivers/net/wireless/ath/ath11k/htc.c
+index 07fc959ed74c..99d4dd3fc5dd 100644
+--- a/drivers/net/wireless/ath/ath11k/htc.c
++++ b/drivers/net/wireless/ath/ath11k/htc.c
+@@ -58,16 +58,16 @@ static void ath11k_htc_prepare_tx_skb(struct ath11k_htc_ep *ep,
+ 	hdr = (struct ath11k_htc_hdr *)skb->data;
  
--/* For Big Endian Host, Copy Engine byte_swap is enabled
-- * When Copy Engine does byte_swap, need to byte swap again for the
-- * Host to get/put buffer content in the correct byte order
-- */
--void ath11k_ce_byte_swap(void *mem, u32 len)
--{
--	int i;
--
--	if (IS_ENABLED(CONFIG_CPU_BIG_ENDIAN)) {
--		if (!mem)
--			return;
--
--		for (i = 0; i < (len / 4); i++) {
--			*(u32 *)mem = swab32(*(u32 *)mem);
--			mem += 4;
--		}
--	}
--}
--
- int ath11k_ce_get_attr_flags(struct ath11k_base *ab, int ce_id)
- {
- 	if (ce_id >= ab->hw_params.ce_count)
-diff --git a/drivers/net/wireless/ath/ath11k/ce.h b/drivers/net/wireless/ath/ath11k/ce.h
-index 308f425fcec0..b97eca14be7d 100644
---- a/drivers/net/wireless/ath/ath11k/ce.h
-+++ b/drivers/net/wireless/ath/ath11k/ce.h
-@@ -16,17 +16,11 @@
- #define CE_ATTR_DIS_INTR		8
+ 	memset(hdr, 0, sizeof(*hdr));
+-	hdr->htc_info = FIELD_PREP(HTC_HDR_ENDPOINTID, ep->eid) |
+-			FIELD_PREP(HTC_HDR_PAYLOADLEN,
+-				   (skb->len - sizeof(*hdr)));
++	hdr->htc_info = le32_encode_bits(ep->eid, HTC_HDR_ENDPOINTID) |
++			le32_encode_bits((skb->len - sizeof(*hdr)),
++					 HTC_HDR_PAYLOADLEN);
  
- /* Host software's Copy Engine configuration. */
--#ifdef __BIG_ENDIAN
--#define CE_ATTR_FLAGS CE_ATTR_BYTE_SWAP_DATA
--#else
- #define CE_ATTR_FLAGS 0
--#endif
+ 	if (ep->tx_credit_flow_enabled)
+-		hdr->htc_info |= FIELD_PREP(HTC_HDR_FLAGS,
+-					    ATH11K_HTC_FLAG_NEED_CREDIT_UPDATE);
++		hdr->htc_info |= le32_encode_bits(ATH11K_HTC_FLAG_NEED_CREDIT_UPDATE,
++						  HTC_HDR_FLAGS);
  
- /* Threshold to poll for tx completion in case of Interrupt disabled CE's */
- #define ATH11K_CE_USAGE_THRESHOLD 32
- 
--void ath11k_ce_byte_swap(void *mem, u32 len);
--
- /*
-  * Directions for interconnect pipe configuration.
-  * These definitions may be used during configuration and are shared
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 82f85df481cb..08babb0cb534 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -700,8 +700,6 @@ int ath11k_wmi_mgmt_send(struct ath11k *ar, u32 vdev_id, u32 buf_id,
- 
- 	memcpy(frame_tlv->value, frame->data, buf_len);
- 
--	ath11k_ce_byte_swap(frame_tlv->value, buf_len);
--
- 	if (tx_params_valid) {
- 		params =
- 		(struct wmi_mgmt_send_params *)(skb->data + (len - sizeof(*params)));
-@@ -6016,8 +6014,6 @@ static int ath11k_pull_mgmt_rx_params_tlv(struct ath11k_base *ab,
- 	skb_pull(skb, frame - skb->data);
- 	skb_put(skb, hdr->buf_len);
- 
--	ath11k_ce_byte_swap(skb->data, hdr->buf_len);
--
- 	return 0;
+ 	spin_lock_bh(&ep->htc->tx_lock);
+-	hdr->ctrl_info = FIELD_PREP(HTC_HDR_CONTROLBYTES1, ep->seq_no++);
++	hdr->ctrl_info = le32_encode_bits(ep->seq_no++, HTC_HDR_CONTROLBYTES1);
+ 	spin_unlock_bh(&ep->htc->tx_lock);
  }
  
-@@ -9547,9 +9543,7 @@ int ath11k_wmi_wow_add_pattern(struct ath11k *ar, u32 vdev_id, u32 pattern_id,
- 			     FIELD_PREP(WMI_TLV_LEN, sizeof(*bitmap) - TLV_HDR_SIZE);
+@@ -295,7 +295,7 @@ void ath11k_htc_rx_completion_handler(struct ath11k_base *ab,
+ 	hdr = (struct ath11k_htc_hdr *)skb->data;
+ 	skb_pull(skb, sizeof(*hdr));
  
- 	memcpy(bitmap->patternbuf, pattern, pattern_len);
--	ath11k_ce_byte_swap(bitmap->patternbuf, roundup(pattern_len, 4));
- 	memcpy(bitmap->bitmaskbuf, mask, pattern_len);
--	ath11k_ce_byte_swap(bitmap->bitmaskbuf, roundup(pattern_len, 4));
- 	bitmap->pattern_offset = pattern_offset;
- 	bitmap->pattern_len = pattern_len;
- 	bitmap->bitmask_len = pattern_len;
-@@ -9697,8 +9691,6 @@ ath11k_wmi_op_gen_config_pno_start(struct ath11k *ar,
- 				WMI_NLO_CONFIG_RANDOM_SEQ_NO_IN_PROBE_REQ;
- 		ether_addr_copy(cmd->mac_addr.addr, pno->mac_addr);
- 		ether_addr_copy(cmd->mac_mask.addr, pno->mac_addr_mask);
--		ath11k_ce_byte_swap(cmd->mac_addr.addr, 8);
--		ath11k_ce_byte_swap(cmd->mac_mask.addr, 8);
+-	eid = FIELD_GET(HTC_HDR_ENDPOINTID, hdr->htc_info);
++	eid = le32_get_bits(hdr->htc_info, HTC_HDR_ENDPOINTID);
+ 
+ 	if (eid >= ATH11K_HTC_EP_COUNT) {
+ 		ath11k_warn(ab, "HTC Rx: invalid eid %d\n", eid);
+@@ -304,7 +304,7 @@ void ath11k_htc_rx_completion_handler(struct ath11k_base *ab,
+ 
+ 	ep = &htc->endpoint[eid];
+ 
+-	payload_len = FIELD_GET(HTC_HDR_PAYLOADLEN, hdr->htc_info);
++	payload_len = le32_get_bits(hdr->htc_info, HTC_HDR_PAYLOADLEN);
+ 
+ 	if (payload_len + sizeof(*hdr) > ATH11K_HTC_MAX_LEN) {
+ 		ath11k_warn(ab, "HTC rx frame too long, len: %zu\n",
+@@ -319,7 +319,7 @@ void ath11k_htc_rx_completion_handler(struct ath11k_base *ab,
  	}
  
- 	ptr += sizeof(*cmd);
-@@ -9722,8 +9714,6 @@ ath11k_wmi_op_gen_config_pno_start(struct ath11k *ar,
- 		memcpy(nlo_list[i].ssid.ssid.ssid,
- 		       pno->a_networks[i].ssid.ssid,
- 		       nlo_list[i].ssid.ssid.ssid_len);
--		ath11k_ce_byte_swap(nlo_list[i].ssid.ssid.ssid,
--				    roundup(nlo_list[i].ssid.ssid.ssid_len, 4));
+ 	/* get flags to check for trailer */
+-	trailer_present = (FIELD_GET(HTC_HDR_FLAGS, hdr->htc_info)) &
++	trailer_present = le32_get_bits(hdr->htc_info, HTC_HDR_FLAGS) &
+ 			  ATH11K_HTC_FLAG_TRAILER_PRESENT;
  
- 		if (pno->a_networks[i].rssi_threshold &&
- 		    pno->a_networks[i].rssi_threshold > -300) {
-@@ -9842,14 +9832,11 @@ static void ath11k_wmi_fill_ns_offload(struct ath11k *ar,
+ 	ath11k_dbg(ab, ATH11K_DBG_HTC, "rx ep %d skb %p trailer_present %d\n",
+@@ -328,7 +328,7 @@ void ath11k_htc_rx_completion_handler(struct ath11k_base *ab,
+ 	if (trailer_present) {
+ 		u8 *trailer;
  
- 			memcpy(ns->target_ipaddr[0], offload->ipv6_addr[i], 16);
- 			memcpy(ns->solicitation_ipaddr, offload->self_ipv6_addr[i], 16);
--			ath11k_ce_byte_swap(ns->target_ipaddr[0], 16);
--			ath11k_ce_byte_swap(ns->solicitation_ipaddr, 16);
+-		trailer_len = FIELD_GET(HTC_HDR_CONTROLBYTES0, hdr->ctrl_info);
++		trailer_len = le32_get_bits(hdr->ctrl_info, HTC_HDR_CONTROLBYTES0);
+ 		min_len = sizeof(struct ath11k_htc_record_hdr);
  
- 			if (offload->ipv6_type[i])
- 				ns->flags |= WMI_NSOL_FLAGS_IS_IPV6_ANYCAST;
+ 		if ((trailer_len < min_len) ||
+@@ -357,7 +357,7 @@ void ath11k_htc_rx_completion_handler(struct ath11k_base *ab,
+ 	if (eid == ATH11K_HTC_EP_0) {
+ 		struct ath11k_htc_msg *msg = (struct ath11k_htc_msg *)skb->data;
  
- 			memcpy(ns->target_mac.addr, offload->mac_addr, ETH_ALEN);
--			ath11k_ce_byte_swap(ns->target_mac.addr, 8);
+-		message_id = FIELD_GET(HTC_MSG_MESSAGEID, msg->msg_svc_id);
++		message_id = le32_get_bits(msg->msg_svc_id, HTC_MSG_MESSAGEID);
  
- 			if (ns->target_mac.word0 != 0 ||
- 			    ns->target_mac.word1 != 0) {
-@@ -9893,7 +9880,6 @@ static void ath11k_wmi_fill_arp_offload(struct ath11k *ar,
- 			/* Copy the target ip addr and flags */
- 			arp->flags = WMI_ARPOL_FLAGS_VALID;
- 			memcpy(arp->target_ipaddr, offload->ipv4_addr[i], 4);
--			ath11k_ce_byte_swap(arp->target_ipaddr, 4);
- 
- 			ath11k_dbg(ar->ab, ATH11K_DBG_WMI, "arp offload address %pI4",
- 				   arp->target_ipaddr);
-@@ -9988,14 +9974,11 @@ int ath11k_wmi_gtk_rekey_offload(struct ath11k *ar,
- 
- 		/* the length in rekey_data and cmd is equal */
- 		memcpy(cmd->kck, rekey_data->kck, sizeof(cmd->kck));
--		ath11k_ce_byte_swap(cmd->kck, GTK_OFFLOAD_KEK_BYTES);
- 		memcpy(cmd->kek, rekey_data->kek, sizeof(cmd->kek));
--		ath11k_ce_byte_swap(cmd->kek, GTK_OFFLOAD_KEK_BYTES);
- 
- 		replay_ctr = cpu_to_le64(rekey_data->replay_ctr);
- 		memcpy(cmd->replay_ctr, &replay_ctr,
- 		       sizeof(replay_ctr));
--		ath11k_ce_byte_swap(cmd->replay_ctr, GTK_REPLAY_COUNTER_BYTES);
- 	} else {
- 		cmd->flags = GTK_OFFLOAD_DISABLE_OPCODE;
+ 		ath11k_dbg(ab, ATH11K_DBG_HTC, "rx ep %d skb %p message_id %d\n",
+ 			   eid, skb, message_id);
+@@ -394,8 +394,8 @@ void ath11k_htc_rx_completion_handler(struct ath11k_base *ab,
+ 			ath11k_htc_wakeup_from_suspend(ab);
+ 			break;
+ 		default:
+-			ath11k_warn(ab, "ignoring unsolicited htc ep0 event %ld\n",
+-				    FIELD_GET(HTC_MSG_MESSAGEID, msg->msg_svc_id));
++			ath11k_warn(ab, "ignoring unsolicited htc ep0 event %u\n",
++				    le32_get_bits(msg->msg_svc_id, HTC_MSG_MESSAGEID));
+ 			break;
+ 		}
+ 		goto out;
+@@ -556,10 +556,10 @@ int ath11k_htc_wait_target(struct ath11k_htc *htc)
  	}
+ 
+ 	ready = (struct ath11k_htc_ready *)htc->control_resp_buffer;
+-	message_id   = FIELD_GET(HTC_MSG_MESSAGEID, ready->id_credit_count);
+-	credit_count = FIELD_GET(HTC_READY_MSG_CREDITCOUNT,
+-				 ready->id_credit_count);
+-	credit_size  = FIELD_GET(HTC_READY_MSG_CREDITSIZE, ready->size_ep);
++	message_id   = le32_get_bits(ready->id_credit_count, HTC_MSG_MESSAGEID);
++	credit_count = le32_get_bits(ready->id_credit_count,
++				     HTC_READY_MSG_CREDITCOUNT);
++	credit_size  = le32_get_bits(ready->size_ep, HTC_READY_MSG_CREDITSIZE);
+ 
+ 	if (message_id != ATH11K_HTC_MSG_READY_ID) {
+ 		ath11k_warn(ab, "Invalid HTC ready msg: 0x%x\n", message_id);
+@@ -635,8 +635,8 @@ int ath11k_htc_connect_service(struct ath11k_htc *htc,
+ 	memset(skb->data, 0, length);
+ 
+ 	req_msg = (struct ath11k_htc_conn_svc *)skb->data;
+-	req_msg->msg_svc_id = FIELD_PREP(HTC_MSG_MESSAGEID,
+-					 ATH11K_HTC_MSG_CONNECT_SERVICE_ID);
++	req_msg->msg_svc_id = le32_encode_bits(ATH11K_HTC_MSG_CONNECT_SERVICE_ID,
++					       HTC_MSG_MESSAGEID);
+ 
+ 	flags |= FIELD_PREP(ATH11K_HTC_CONN_FLAGS_RECV_ALLOC, tx_alloc);
+ 
+@@ -653,9 +653,9 @@ int ath11k_htc_connect_service(struct ath11k_htc *htc,
+ 		disable_credit_flow_ctrl = true;
+ 	}
+ 
+-	req_msg->flags_len = FIELD_PREP(HTC_SVC_MSG_CONNECTIONFLAGS, flags);
+-	req_msg->msg_svc_id |= FIELD_PREP(HTC_SVC_MSG_SERVICE_ID,
+-					  conn_req->service_id);
++	req_msg->flags_len = le32_encode_bits(flags, HTC_SVC_MSG_CONNECTIONFLAGS);
++	req_msg->msg_svc_id |= le32_encode_bits(conn_req->service_id,
++						HTC_SVC_MSG_SERVICE_ID);
+ 
+ 	reinit_completion(&htc->ctl_resp);
+ 
+@@ -675,9 +675,9 @@ int ath11k_htc_connect_service(struct ath11k_htc *htc,
+ 
+ 	/* we controlled the buffer creation, it's aligned */
+ 	resp_msg = (struct ath11k_htc_conn_svc_resp *)htc->control_resp_buffer;
+-	message_id = FIELD_GET(HTC_MSG_MESSAGEID, resp_msg->msg_svc_id);
+-	service_id = FIELD_GET(HTC_SVC_RESP_MSG_SERVICEID,
+-			       resp_msg->msg_svc_id);
++	message_id = le32_get_bits(resp_msg->msg_svc_id, HTC_MSG_MESSAGEID);
++	service_id = le32_get_bits(resp_msg->msg_svc_id,
++				   HTC_SVC_RESP_MSG_SERVICEID);
+ 
+ 	if ((message_id != ATH11K_HTC_MSG_CONNECT_SERVICE_RESP_ID) ||
+ 	    (htc->control_resp_len < sizeof(*resp_msg))) {
+@@ -686,13 +686,13 @@ int ath11k_htc_connect_service(struct ath11k_htc *htc,
+ 	}
+ 
+ 	ath11k_dbg(ab, ATH11K_DBG_HTC,
+-		   "service %s connect response status 0x%lx assigned ep 0x%lx\n",
++		   "service %s connect response status 0x%x assigned ep 0x%x\n",
+ 		   htc_service_name(service_id),
+-		   FIELD_GET(HTC_SVC_RESP_MSG_STATUS, resp_msg->flags_len),
+-		   FIELD_GET(HTC_SVC_RESP_MSG_ENDPOINTID, resp_msg->flags_len));
++		   le32_get_bits(resp_msg->flags_len, HTC_SVC_RESP_MSG_STATUS),
++		   le32_get_bits(resp_msg->flags_len, HTC_SVC_RESP_MSG_ENDPOINTID));
+ 
+-	conn_resp->connect_resp_code = FIELD_GET(HTC_SVC_RESP_MSG_STATUS,
+-						 resp_msg->flags_len);
++	conn_resp->connect_resp_code = le32_get_bits(resp_msg->flags_len,
++						     HTC_SVC_RESP_MSG_STATUS);
+ 
+ 	/* check response status */
+ 	if (conn_resp->connect_resp_code != ATH11K_HTC_CONN_SVC_STATUS_SUCCESS) {
+@@ -702,12 +702,11 @@ int ath11k_htc_connect_service(struct ath11k_htc *htc,
+ 		return -EPROTO;
+ 	}
+ 
+-	assigned_eid = (enum ath11k_htc_ep_id)FIELD_GET(
+-						HTC_SVC_RESP_MSG_ENDPOINTID,
+-						resp_msg->flags_len);
++	assigned_eid = le32_get_bits(resp_msg->flags_len,
++				     HTC_SVC_RESP_MSG_ENDPOINTID);
+ 
+-	max_msg_size = FIELD_GET(HTC_SVC_RESP_MSG_MAXMSGSIZE,
+-				 resp_msg->flags_len);
++	max_msg_size = le32_get_bits(resp_msg->flags_len,
++				     HTC_SVC_RESP_MSG_MAXMSGSIZE);
+ 
+ setup:
+ 
+@@ -725,14 +724,14 @@ int ath11k_htc_connect_service(struct ath11k_htc *htc,
+ 
+ 	/* return assigned endpoint to caller */
+ 	conn_resp->eid = assigned_eid;
+-	conn_resp->max_msg_len = FIELD_GET(HTC_SVC_RESP_MSG_MAXMSGSIZE,
+-					   resp_msg->flags_len);
++	conn_resp->max_msg_len = le32_get_bits(resp_msg->flags_len,
++					       HTC_SVC_RESP_MSG_MAXMSGSIZE);
+ 
+ 	/* setup the endpoint */
+ 	ep->service_id = conn_req->service_id;
+ 	ep->max_tx_queue_depth = conn_req->max_send_queue_depth;
+-	ep->max_ep_message_len = FIELD_GET(HTC_SVC_RESP_MSG_MAXMSGSIZE,
+-					   resp_msg->flags_len);
++	ep->max_ep_message_len = le32_get_bits(resp_msg->flags_len,
++					       HTC_SVC_RESP_MSG_MAXMSGSIZE);
+ 	ep->tx_credits = tx_alloc;
+ 
+ 	/* copy all the callbacks */
+@@ -775,13 +774,13 @@ int ath11k_htc_start(struct ath11k_htc *htc)
+ 	memset(skb->data, 0, skb->len);
+ 
+ 	msg = (struct ath11k_htc_setup_complete_extended *)skb->data;
+-	msg->msg_id = FIELD_PREP(HTC_MSG_MESSAGEID,
+-				 ATH11K_HTC_MSG_SETUP_COMPLETE_EX_ID);
++	msg->msg_id = le32_encode_bits(ATH11K_HTC_MSG_SETUP_COMPLETE_EX_ID,
++				       HTC_MSG_MESSAGEID);
+ 
+ 	if (ab->hw_params.credit_flow)
+ 		ath11k_dbg(ab, ATH11K_DBG_HTC, "using tx credit flow control\n");
+ 	else
+-		msg->flags |= ATH11K_GLOBAL_DISABLE_CREDIT_FLOW;
++		msg->flags |= cpu_to_le32(ATH11K_GLOBAL_DISABLE_CREDIT_FLOW);
+ 
+ 	status = ath11k_htc_send(htc, ATH11K_HTC_EP_0, skb);
+ 	if (status) {
+diff --git a/drivers/net/wireless/ath/ath11k/htc.h b/drivers/net/wireless/ath/ath11k/htc.h
+index 945c409bc08f..76a8fdb3d480 100644
+--- a/drivers/net/wireless/ath/ath11k/htc.h
++++ b/drivers/net/wireless/ath/ath11k/htc.h
+@@ -56,8 +56,8 @@ enum ath11k_htc_rx_flags {
+ };
+ 
+ struct ath11k_htc_hdr {
+-	u32 htc_info;
+-	u32 ctrl_info;
++	__le32 htc_info;
++	__le32 ctrl_info;
+ } __packed __aligned(4);
+ 
+ enum ath11k_htc_msg_id {
+@@ -97,37 +97,37 @@ enum ath11k_htc_conn_svc_status {
+ };
+ 
+ struct ath11k_htc_ready {
+-	u32 id_credit_count;
+-	u32 size_ep;
++	__le32 id_credit_count;
++	__le32 size_ep;
+ } __packed;
+ 
+ struct ath11k_htc_ready_extended {
+ 	struct ath11k_htc_ready base;
+-	u32 ver_bundle;
++	__le32 ver_bundle;
+ } __packed;
+ 
+ struct ath11k_htc_conn_svc {
+-	u32 msg_svc_id;
+-	u32 flags_len;
++	__le32 msg_svc_id;
++	__le32 flags_len;
+ } __packed;
+ 
+ struct ath11k_htc_conn_svc_resp {
+-	u32 msg_svc_id;
+-	u32 flags_len;
+-	u32 svc_meta_pad;
++	__le32 msg_svc_id;
++	__le32 flags_len;
++	__le32 svc_meta_pad;
+ } __packed;
+ 
+ #define ATH11K_GLOBAL_DISABLE_CREDIT_FLOW BIT(1)
+ 
+ struct ath11k_htc_setup_complete_extended {
+-	u32 msg_id;
+-	u32 flags;
+-	u32 max_msgs_per_bundled_recv;
++	__le32 msg_id;
++	__le32 flags;
++	__le32 max_msgs_per_bundled_recv;
+ } __packed;
+ 
+ struct ath11k_htc_msg {
+-	u32 msg_svc_id;
+-	u32 flags_len;
++	__le32 msg_svc_id;
++	__le32 flags_len;
+ } __packed __aligned(4);
+ 
+ enum ath11k_htc_record_id {
 
 -- 
 2.53.0
