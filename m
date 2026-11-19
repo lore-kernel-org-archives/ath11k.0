@@ -2,112 +2,166 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05B4B60A2608
-	for <ath11k@archiver.kernel.org>; Thu, 19 Nov 2026 09:35:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDE45606A330
+	for <ath11k@archiver.kernel.org>; Thu, 19 Nov 2026 12:57:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pkXzntRa;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=EQR5k/S5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hFqoTWrq;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=fIZblRxw;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=OgbkgInY
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=JOFWnryy22U8bQSzM6KdqLeAcd1quBBtSo308pXYk6c=; b=pkXzntRa8HLqwV
-	m8ekV/A1Hyrt2tXPiFT05Wp99d+KA4N42ZOXGlBDzESxaJag0I9ebiTfD8ASbrKuOlmUfF5l6vc+o
-	tRiy9HtXqmXFQz9dP392PN0j4GkKzLuEVrR2anCKNg5s3EEMfk78R4bNE4rTSlmsPDiLRhlgl2eC7
-	7TfQiTIWZ2/SUsDU4vCadmrqGAlVBUmGhnmtq55Z/I6uSnit5xqduoNqFle+1KzLQZcg4+JeSryIL
-	CIArqNHoiR9LeXOOIuHizMbJ/CEhfhnaYqejMzkfKYLkN2G/m6QSaXhICLmvCprwAAj20L1I9tFbM
-	wy8DES4Gi0tw//Un+qKg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=7UUr3XN27pzO9qr9ag8ZevkfZdqCw2bsfUtTHzErF/Y=; b=hFqoTWrqB1ocABLch943ib7kc9
+	7rqrF0WCfPIvn3cvblPlAMNqj4SS3tko7EGtNpbVKBuGZ8YID7zYFz6SCDfNJ72q24BL4DNt1qlCv
+	I82oqr5M7wExB1ksv38SzWDmQ9Ept/JVSHjveDvvgZrP4SROutU7SvyFJ60iifMlXHCxkxHxiwae/
+	sMRmQ6heLn0HJUNbe+0oXmXyEktDEaUBVzMk9H18Oij53hbwMkRoI9V6uGT0zFev+6XA+afenaiws
+	VZRTZAHZa+p/pylHGfYWWetQWH9o5M5Dk4CqpXNE2jLb2pYXHih3XBFyE/Eckg6OfpDRNvqf8VqHB
+	fsAAbfsw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTyYY-0000000BPeX-0k0y;
-	Thu, 19 Nov 2026 09:35:50 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1xU1hF-0000000BwF0-1Sev;
+	Thu, 19 Nov 2026 12:57:01 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTyYT-0000000BPaQ-2J0L
+	id 1xU1hC-0000000BwEO-0Ws6
 	for ath11k@lists.infradead.org;
-	Thu, 19 Nov 2026 09:35:49 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1795080943;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=JOFWnryy22U8bQSzM6KdqLeAcd1quBBtSo308pXYk6c=;
-	b=EQR5k/S5gX9O2isyt9+JvCb312lvuQU3o+Tqp4+vCflfecSErAFIy3ykBo3xSvgGk7dPsT
-	WtLZujzuVFLpnfLmbSdniorq0OACjUOdcLIFEz/ECXMSvzNp4wZQd8wSw/fRHMsunSPAJf
-	JibFbSVVIP21JAtWnem5KUV1Mh1omDw=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-652-Rhc59mljO-SJbVjWo07biw-1; Thu, 19 Nov 2026 04:35:41 -0500
-X-MC-Unique: Rhc59mljO-SJbVjWo07biw-1
-X-Mimecast-MFC-AGG-ID: Rhc59mljO-SJbVjWo07biw_1795080940
-Received: by mail-wr1-f72.google.com with SMTP id ffacd0b85a97d-490d2ac331bso1916077f8f.0
-        for <ath11k@lists.infradead.org>; Thu, 19 Nov 2026 01:35:40 -0800 (PST)
+	Thu, 19 Nov 2026 12:57:00 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AJBk7xi3320024
+	for <ath11k@lists.infradead.org>; Thu, 19 Nov 2026 12:56:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=7UUr3XN27pzO9qr9ag8Zev
+	kfZdqCw2bsfUtTHzErF/Y=; b=fIZblRxw+YcbxmWXxefDMZ1IdOlvw+Oq5LrSRS
+	UV0ELhvK3g8yiaZCO16jmILsOD7v1KiJ5Cz+1goYH+Hism7jOua9/65uq0oWWzR7
+	gAX3+YSgl4d8eWnUy84vbNIrnAdSeE3tkYe4VTpz0a4PKXJPpgjJGvScFovx8+XJ
+	mSlgUlba+axpCkevFm6iTZQvx1LtTNUMPscxqfLNNIOF+NxQmdIkRmY6RA5mV1Yv
+	ogMSuPD5hWqVbszDimYUNgdpdDg/veoDrQv/bsgeBt2ua/rfU6M6GpMDzmzK1Dd2
+	xIxusONtuMyxCb3bz/fkRkodMff5uyPzuICwd6tVBc4FlFgA==
+Received: from mail-dy1-f200.google.com (mail-dy1-f200.google.com [74.125.82.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j1xx18n7y-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Thu, 19 Nov 2026 12:56:55 +0000 (GMT)
+Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-384c78aa0dbso396491eec.0
+        for <ath11k@lists.infradead.org>; Thu, 19 Nov 2026 04:56:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1795093015; x=1795697815; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=7UUr3XN27pzO9qr9ag8ZevkfZdqCw2bsfUtTHzErF/Y=;
+        b=OgbkgInY1VCB2vghhhnY96JXeqNuWwxoOO79YFJlcbHZz6JJOflNnZLAqqjcra5rJO
+         9DHChfdPLrNxPGxX1ztiU47o8bEvmifkxE1Qph5hta/folcgEtLBGj0Tc8/OB41AFjMl
+         1ubkXgvBBgJ93HQHSRP+rIIbE3axSbMX7Rv9KUYNRJ81/7Pa6PkgsJjuFdkgfzQ2tnV+
+         R2s7Fjja81tQyDsKF4UMKs1w539dXrJq/pH1mwV2sbNN/KSa7/AaTtxM3IYDZG8M3byi
+         5a/swv3ghtlhIVS2BBjr/FqnszLVZgTuFO8fQgI8Jak3ogDsjxgJniaFsTHhSCfDwnMV
+         kH+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795080940; x=1795685740;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=JOFWnryy22U8bQSzM6KdqLeAcd1quBBtSo308pXYk6c=;
-        b=qFokTaa4jtKxT42U49UhbfRic/s8zQMiqPkT8s2qq8xyDUBh0NayPj4fxrnQb3A5bJ
-         nyB1U4mzdiksWRhumh4h/cs0yoa+fSkms1U0GT7tOkaparyHPd5c/HA0BCzHVBA+gzAz
-         RcGct88omiJf9WDvBZQd66EYtSiQtXsxevBrvsE7ycFF7ez7zsnN1JnKT5LYhY8WFqow
-         ReeOQaF1MJ+QmtG7xvteMJr1lMPoJQR6+lW8OGBR5Bu7JkiMBeSJ9W9g3i5moGy9hTAz
-         0B8/ZwbvuUwcm/kYjmhbSUZSKy/N86T48aZCsaCdYGHRhNJ3KSqCxP3HYHLTHZZ2XLWk
-         pTQw==
-X-Forwarded-Encrypted: i=1; AL+hErEFzMxOboMEtJpg50Opj+DvZ5U5makrlvlhKemfst73D0etV9NjhWRAS5t1/NcxTGQixuHRdXs=@lists.infradead.org
-X-Gm-Message-State: APuU4Z+l/VboUNkoZ5YwnCJxNRrL54EbjodGQ2FpiE6l/Js9NmWPdK6X
-	HgyEUri5XkXD01STvjijgpIiybsCaujPLnuO9HjVAjncLRRYfaXqfmzxXr9RxQuBlUwtfH6QUD0
-	dqMjIQ3QitU31tgdZzZZqY4S92U0lrxOdno//qTgm4HkGP/LiSDqEZTAihPMUXyU=
-X-Gm-Gg: AZFdTZdS2mmunkM5mLWOK3WopXas6fZaB0ix2jio+oNJhedSfvjv1o1G5bK7LNONtaS
-	TyrsBqTRT3JnuYLhNrZ+ZmgB1xuvM7icYLSYc3vm0V4Hwwee1V0CKznqkYK0bnW4tZPaid3Mnyd
-	0cKa8hQeBjzOlf09wOnr3au8SbYUNuMVdPFU5RxmKj3YPyySdCJf6ivlKRq/OPMCol5RfbQ0OEH
-	q9YhlRRKzkZIqPljYi/B3hEGb0z3/p530h1K+Ye0De5COkwGGOIDMt5X2jtBCjPNBOhDxkghI5t
-	9C6RtId062yVC9HePGt0w8WScfS86esDr9NEHrCTD5IvEDoiY/kmTAD6XyyO/bvuiaDCfslUIQa
-	JdXS3u7G/6VmG17y5twHgB72To0Hh35Pnu9vtQDKazAiiX7YdEVLMurNxehnQ8k5uWmdLGNtKBe
-	+YK0H6QuVrtNy3DmEQnLIZzucSzPNrkyxn0bqk6I6nq7ET
-X-Received: by 2002:a05:6000:184b:b0:48f:bcdf:6f7d with SMTP id ffacd0b85a97d-4a63b6fbd88mr11817851f8f.34.1795080939768;
-        Thu, 19 Nov 2026 01:35:39 -0800 (PST)
-X-Received: by 2002:a05:6000:184b:b0:48f:bcdf:6f7d with SMTP id ffacd0b85a97d-4a63b6fbd88mr11817756f8f.34.1795080939199;
-        Thu, 19 Nov 2026 01:35:39 -0800 (PST)
-Received: from [192.168.88.30] (ip231-128-192-82.pool-bba.aruba.it. [82.192.128.231])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a654a8c39bsm9495655f8f.17.2026.11.19.01.35.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Nov 2026 01:35:38 -0800 (PST)
-Message-ID: <4eea6d32-4200-4cd1-860a-70e81356678e@redhat.com>
-Date: Thu, 19 Nov 2026 10:35:36 +0100
+        d=1e100.net; s=20260707; t=1795093015; x=1795697815;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=7UUr3XN27pzO9qr9ag8ZevkfZdqCw2bsfUtTHzErF/Y=;
+        b=W1gUq7nUHmYRPEceJFEKLo6cwmadTp6vnuBr0rApB8/0N74A5PCMmKa3dCA1/XaGpc
+         cCgE3pc4uonCS64RmLREwRsW3h3QaX1g83FsjuyUD1yPNjJT5tgZs2YDiHyB8cFXT81R
+         ATwNLVW3EiFdDamoUL+MuGIaMCCuty0NZOyP9lf+aVE4PzED+N/XZxkTUtoQsg77q1jU
+         bIqjVS6Hluc37f28hAErR61tNqJ6gojebcxx6XfrUoJpBRZiEc5uRfI3VENCBeDUyQjh
+         n6iwekxk5t1Rtc99toqSnR13IVmHEFiUGSvd77yGmErqX3RaeKoQNpVCbhaUPI2S3Qlz
+         Kw/A==
+X-Forwarded-Encrypted: i=1; AL+hErHuwfyBdjeO+6bNFoqlhzIfNPzdXUauvWZcpn6h5dwmNAyXIwmir0gIEHb5O6187DO7ghS2z+I=@lists.infradead.org
+X-Gm-Message-State: APuU4Z+AtXLisecwFnl4pdw6+ysfJaNgzv/E6GxrqwGW/IfS88TnqB9Z
+	QXlZI3C4uiuP4SxsDu6U0Nmmi6STt76h70GjajM1MtIKQoVRO808ePGAI4W4Dn8bBhfX9iu9hNm
+	ub6q1l+irSf8F5G4jm+BLFdv20IA5RsxZch0LWDW2n2NPZrFa8Og68iZLHh3Zk2Rv
+X-Gm-Gg: AZFdTZf8ItEIvTB4MmvYo0CqFbQ1Vx++74wQszoJJ3chuRUngxIYTgEe5vtdoUiuetw
+	/jYojom28uvth8QiHNI0sDTlmuCY4ERdjswL8Ow8/YkURh/rDT/iqzTFvDgU1SoG0qUcwlWZj6l
+	3Y4eJD5+vcEGnyBZFMlhpm9KD6e01o52kvbLv0eRtD23OzsgqsgeFEoYFCg6osmMMyU6ov6vI6/
+	UvOqfMCN5ukRIWqJ74mFJ2fZ9e1yMi6P0H38shiVSMP+xQQw8SbOs5qUkn0xgJM6Ps+PDxtPBIe
+	b98I8HcING3WrDfWcHUXh4Ma0p+UE4fC7seC++dojoVAVut/UpdbAPOCndlI1zxC9py/k1TjSeb
+	mZTB54H0Dqt1XpxJTX9t8paTlRAwvswjHsaacVRPeCScfaNyVappT18LQwLFVJSQAF5Tm8HsPCU
+	GYcHHA+sev
+X-Received: by 2002:a05:7301:710e:b0:36c:3b8a:8090 with SMTP id 5a478bee46e88-3827db0e75bmr5822767eec.2.1795093014707;
+        Thu, 19 Nov 2026 04:56:54 -0800 (PST)
+X-Received: by 2002:a05:7301:710e:b0:36c:3b8a:8090 with SMTP id 5a478bee46e88-3827db0e75bmr5822743eec.2.1795093014062;
+        Thu, 19 Nov 2026 04:56:54 -0800 (PST)
+Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-382a7fbceffsm18529369eec.28.2026.11.19.04.56.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Nov 2026 04:56:53 -0800 (PST)
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Subject: [PATCH v6 0/7] bus: mhi: host: Add support for mhi bus bw
+Date: Thu, 19 Nov 2026 18:26:32 +0530
+Message-Id: <20261119-bwscale-v6-0-9a9a715fcb46@oss.qualcomm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v6 1/4] net: qrtr: Allow the host QRTR to assign
- a unique node id
-To: netdev-bot+sashiko@kernel.org, manivannan.sadhasivam@oss.qualcomm.com
-Cc: mani@kernel.org, davem@davemloft.net, kuba@kernel.org, horms@kernel.org,
- jjohnson@kernel.org, edumazet@kernel.org, linux-arm-msm@vger.kernel.org,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
- ath12k@lists.infradead.org, andersson@kernel.org,
- christopher.lew@oss.qualcomm.com, deepak.singh@oss.qualcomm.com,
- raj.bhagat@oss.qualcomm.com, juha-matti.tilli@iki.fi,
- jeff.hugo@oss.qualcomm.com, daizhuang.bai@oss.qualcomm.com,
- jeff.johnson@oss.qualcomm.com
-References: <20261114-qrtr-multi-ep-v6-1-2eb9885659e2@oss.qualcomm.com>
- <179478985187.3136.15328141866524028119@kernel.org>
-From: Paolo Abeni <pabeni@redhat.com>
-In-Reply-To: <179478985187.3136.15328141866524028119@kernel.org>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: zGmjDsI_lH2JZZ8l3_94PQgtfHnYeyZsksUpOvI_KjM_1795080940
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAHy/moC/22QzW6DMBCEXwX53EXYxjbklPeoqsiYJXHLX7xAG
+ kW8ew2JemkvK412/M2sH4wweCR2SB4s4OLJD30U+i1h7mL7M4Kvo2YiEzoruITqRs62CLmUpsy
+ U1dwqFt1jwMZ/76T3j6emufpEN23PX46A1zlGTE8b65DI7hGHZA8wWQGj82Bp7CDiYJGQga5qI
+ 3LFTa7x+IWhxzYdwnlj/iHknMNE7jT5uLr3DhYBHHQjVGNEWZhKHgei9Drb1g1dl8bBtroXT9M
+ Q7vs/LGpv9zq5/D15UVuZGq0pTaEraf5Brev6A+HTLd1UAQAA
+X-Change-ID: 20260813-bwscale-4337905a61a5
+To: Bjorn Helgaas <bhelgaas@google.com>,
+        =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Rob Herring <robh@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>
+Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev,
+        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+        qiang.yu@oss.qualcomm.com,
+        Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+        Val Packett <val@packett.cool>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
+        Miaoqing Pan <quic_miaoqing@quicinc.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795093007; l=8369;
+ i=krishna.chundru@oss.qualcomm.com; s=20230907; h=from:subject:message-id;
+ bh=VLNJ2kNApRFQWIrk83A8PXfiyUmEUbUCCAi05AM4yws=;
+ b=6+3aQtRYO/NDo5yufRI/VM5N4TNOxJx1y33gBzQsDLWAW9C5IdDC8tcdJIlGDVAMqzDn+aI0V
+ IhBUI4LzZ7ED9/GfjEdz4FnSLbr5HtMRG5ccl3AuIfRT0RAoQMUceL7
+X-Developer-Key: i=krishna.chundru@oss.qualcomm.com; a=ed25519;
+ pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
+X-Authority-Analysis: v=2.4 cv=PcBqFShd c=1 sm=1 tr=0 ts=6afef218 cx=c_pps
+ a=PfFC4Oe2JQzmKTvty2cRDw==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=bC-a23v3AAAA:8 a=1XWaLZrsAAAA:8
+ a=QyXUC8HyAAAA:8 a=pGLkceISAAAA:8 a=KKAkSRfTAAAA:8 a=NufY4J3AAAAA:8
+ a=JfrnYn6hAAAA:8 a=oSm90M4pHhn_kxORmmIA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=6Ab_bkdmUrQuMsNx7PHu:22 a=FO4_E8m0qiDe52t0p3_H:22 a=cvBusfyB2V15izCimMoJ:22
+ a=TPcZfFuj8SYsoCJAFAiX:22 a=1CNFftbPRP8L7MoqJWF3:22
+X-Proofpoint-ORIG-GUID: xdmBCjvtO-mDyR6CAVHi7s-NHk3LDIBH
+X-Proofpoint-GUID: xdmBCjvtO-mDyR6CAVHi7s-NHk3LDIBH
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE5MDA1MSBTYWx0ZWRfXwaG8IkecH2VH
+ xQNxvZWFXxoSg6Q6nyAc7W/jGzX3F7IQWfnlq89aD2TCfhWrWmV4yDFb8WLBqs+Z+jEEQwqCwyl
+ Dn5zd5FPvKu7v4JPw43nYUEmprrZsC4kZqS27XHonld/x6AEsLP84OfY0QncmU3T9jib2mXZ7WH
+ vdohZ31r/0wcosEqZBTo/EmafqWGcBC1ZBtoba3RlDMoDkDcCznpH+s/imxBMq13QujWiVoschn
+ v4XtXg8Mpd4SP8ipygLHoPHrtaBZhEqbqHQ+iC2dpqGSevR67RfDJTE38vV52aSj84CSoW/fLSs
+ whA2fb03hPPDLZ1iPDAHa9QMHaYqcAdifsFm7TDcIhgtiUWiMZwvat5w+6Vpu9OQ3sjt8YtpoaF
+ 1O2QYjdlXIJXEOVIQfTmWKPPkZZQEyaQjoFoITn0MlQhMmzUWH7DrFYDBu8Ks7vYBAXZ92DB5lH
+ eiyhCGEokfGrZ5lbxuQ==
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE5MDA1MSBTYWx0ZWRfX06cLdqLxmZzB
+ AcHXLyokPm4PZ5w/aLGkORZWxYMjF1gdpKvmx/pDnuDYW1F42oC5TMgrdjP8eVoT/GXk39T5wK2
+ p0DIfJzHqEp+6BGyc3RbIT5k6+EyJsQ=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-19_03,2026-11-19_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 spamscore=0 clxscore=1015 impostorscore=0 malwarescore=0
+ bulkscore=0 priorityscore=1501 phishscore=0 lowpriorityscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611190051
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_013545_748285_BBEED1A7 
-X-CRM114-Status: GOOD (  10.73  )
+X-CRM114-CacheID: sfid-20261119_045658_293052_B81C2CA4 
+X-CRM114-Status: GOOD (  26.47  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -119,39 +173,178 @@ List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/16/26 01:44, netdev-bot+sashiko@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 5 potential
-> issue(s) to consider.
-> 
-> Critical: 0 · High: 0 · Medium: 2 · Low: 3
-> 
-> If you believe none of the issues are legitimate, please reply to each
-> issue of Medium severity or higher and explain why the AI is wrong.
-> If any of them are legitimate and you plan to respin, please let patchwork
-> know by including "pw-bot: cr" as a separate line at the end of your reply
-> (one such reply per series is enough).
-> 
-> - [Medium] A failed node-id insert now drops the packet, where the old
->    code still delivered it, and a dropped HELLO is never recovered.
-> - [Medium] In AUTO mode, nid and ep_nid can end up different, which the
->    commit message says cannot happen, and the rewrite logic then…
+As per MHI spec sec 14, MHI supports bandwidth scaling to reduce power
+consumption. MHI bandwidth scaling is advertised in devices that contain
+the bandwidth scaling capability registers. If enabled, the device
+aggregates bandwidth requirements and sends them to the host in the form
+of an event. After the host performs the bandwidth switch, it sends an
+acknowledgment by ringing a doorbell.
 
-The first concern above looks relevant, and the 2nd deserves at least an
-explicit answer.
+if the host supports bandwidth scaling events, then it must set
+BW_CFG.ENABLED bit, set BW_CFG.DB_CHAN_ID to the channel ID to the
+doorbell that will be used by the host to communicate the bandwidth
+scaling status and BW_CFG.ER_INDEX to the index for the event ring
+to which the device should send bandwidth scaling request in the
+bandwidth scaling capability register.
 
-In general you need to address (either debate or fix) every AI comment with
-prio >= Mid.
+As part of mmio init check if the bw scale capability is present or not,
+if present advertise host supports bw scale by setting all the required
+fields.
 
-Next patch as more of such comments.
+MHI layer will only forward the bw scaling request to the controller
+driver, it is responsibility of the controller driver to do actual bw
+scaling and then pass status to the MHI. MHI will response back to the
+device based up on the status of the bw scale received.
 
-/P
+Add a new get_misc_doorbell() to get doorbell for misc capabilities to
+use the doorbell with mhi events like MHI BW scale etc.
+
+Use workqueue & mutex for the bw scale events as the pci_set_target_speed()
+which will called by the mhi controller driver can sleep.
+
+This series depends on the PCI/ASPM patches[1] that are currently under review
+and not yet merged upstream. The ASPM patches provide the infrastructure
+(disable_aspm_for_retrain flag and related functionality) that this MHI bandwidth
+scaling series builds upon. While the ASPM patches are still being reviewed, we
+are sending this series now to enable early review and feedback on the MHI
+bandwidth scaling implementation. Once the ASPM patches are merged, this series
+can be applied on top without any conflicts.
+
+This series also depends on the mhi read capability patch[2], this patch
+is not merged as there is no user to use it, we can apply it along with
+this series.
+
+To: Bjorn Helgaas <bhelgaas@google.com>
+To: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+To: Jingoo Han <jingoohan1@gmail.com>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Krzysztof Wilczyński <kw@linux.com>
+To: Rob Herring <robh@kernel.org>
+To: Jeff Johnson <jjohnson@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-pci@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-msm@vger.kernel.org
+Cc: mhi@lists.linux.dev
+Cc: linux-wireless@vger.kernel.org
+Cc: ath11k@lists.infradead.org
+Cc: qiang.yu@oss.qualcomm.com
+
+Link [1]: https://lore.kernel.org/all/20260708-pci-aspm-fix-v3-0-6bd72451746e@kernel.org/ 
+Link [2]: https://lore.kernel.org/all/20260411-tsc_timesync-v2-1-6f25f72987b3@oss.qualcomm.com/#t
+
+Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+---
+Changes in v6:
+- Restore ASPM after link retraining with pci_force_enable_link_state(),
+  as a plain enable does not re-enable states disabled by
+  pci_disable_link_state() (Val)
+- Include link width in the OPP lookup: key is now (per-lane rate * width,
+  LNKCTL2 target link speed).
+- Fix pcie_set_target_speed() using a stale list cursor as the downstream
+  device when the bus has no function 0.
+- Use the unlocked ASPM helpers, as callers do not hold pci_bus_sem.
+- Move the BW scale doorbell into mhi_event_config and drop the
+  get_misc_doorbell() callback (Mani)
+- Add MHI bandwidth scaling support for ath12k (WCN7850).
+- Move the BW scale doorbell into mhi_event_config and drop the
+  get_misc_doorbell() callback (Mani).
+- Couple of nits (Mani).
+- Link to v5: https://patch.msgid.link/20260819-bwscale-v5-0-6dea79786b37@oss.qualcomm.com
+
+Changes in v5:
+- remove pre/post_link_speed_change (Bjorn)
+- Use opp directly in pci directly to scale bw votes (Mani).
+- Use disable aspm on link retrain field in host bridge (Mani).
+- In case bw scale failure, remove workqueue etc (Mani).
+- couple of nits in mhi & pci (Mani).
+- Link to v4: https://lore.kernel.org/r/20250609-mhi_bw_up-v4-0-3faa8fe92b05@qti.qualcomm.com
+
+Changes in v4:
+- Remove leftover type case, change the function names to pre/post_link_speed_change(Ilpo Järvinen)
+- Add check's for capability read and convert le32 to cpu (Jeffrey Hugo)
+- Add macros for GENMASK & BIT() (Ilpo Järvinen)
+- Link to v3: https://lore.kernel.org/r/20250519-mhi_bw_up-v3-0-3acd4a17bbb5@oss.qualcomm.com
+
+Changes in v3:
+- Move update speed logic to pwrctrl driver (Mani)
+- Move pre_bus_bw & post_bus_bw to bridge as these are bridge driver specific ops,
+it feels to me we need to add these in the host bridge driver similar to recently
+added one reset_slot.
+- Remove dwc level wrapper (Mani)
+- Enable ASPM only if they are enabled already (Mani)
+- Change the name of mhi_get_capability_offset to mhi_find_capability() (Bjorn)
+- Fix comments in the code, subjects etc (Mani & Bjorn)
+- Link to v2: https://lore.kernel.org/r/20250313-mhi_bw_up-v2-0-869ca32170bf@oss.qualcomm.com
+
+Changes in v2:
+- Update the comments.
+- Split the icc bw patch as sepertate one (Bjorn)
+- update the aspm disablement comment (Bjorn)
+- Use FIELD_GET & FIELD_PREP instead of hard macros and couple of nits
+  suggested by (Ilpo Järvinen)
+- Create a new function to change lnkcntrl2speed to enum pci_bus_speed (Jeff)
+- Link to v1: https://lore.kernel.org/r/20250217-mhi_bw_up-v1-0-9bad1e42bdb1@oss.qualcomm.com
+
+---
+Krishna Chaitanya Chundru (6):
+      PCI/bwctrl: Set host bridge OPP and optionally disable ASPM around link retraining
+      PCI: Export pci_set_target_speed()
+      PCI: Add pci_lnkctl2_bus_speed() to convert lnkctl2speed to pci_bus_speed
+      bus: mhi: host: Add support for Bandwidth scale
+      wifi: ath12k: Add support for MHI bandwidth scaling
+      PCI: qcom: Enable ASPM disabling during link retraining
+
+Miaoqing Pan (1):
+      wifi: ath11k: Add support for MHI bandwidth scaling
+
+ drivers/bus/mhi/common.h                    |  13 ++++
+ drivers/bus/mhi/host/init.c                 |  90 +++++++++++++++++++++-
+ drivers/bus/mhi/host/internal.h             |   7 +-
+ drivers/bus/mhi/host/main.c                 | 114 +++++++++++++++++++++++++++-
+ drivers/bus/mhi/host/pm.c                   |  10 ++-
+ drivers/bus/mhi/host/trace.h                |   7 ++
+ drivers/net/wireless/ath/ath11k/mhi.c       |  29 +++++++
+ drivers/net/wireless/ath/ath12k/mhi.c       |  16 ++++
+ drivers/net/wireless/ath/ath12k/mhi.h       |   2 +
+ drivers/net/wireless/ath/ath12k/wifi7/mhi.c |  12 +++
+ drivers/pci/controller/dwc/pcie-qcom.c      |   2 +
+ drivers/pci/pci.c                           |  15 ++++
+ drivers/pci/pcie/bwctrl.c                   |  66 +++++++++++++++-
+ include/linux/mhi.h                         |  11 +++
+ include/linux/pci.h                         |   2 +
+ 15 files changed, 388 insertions(+), 8 deletions(-)
+---
+base-commit: 6a8f5b35d182229795bf2e75de1feff722da3dab
+change-id: 20260813-bwscale-4337905a61a5
+prerequisite-message-id: 20260708-pci-aspm-fix-v3-0-6bd72451746e@kernel.org
+prerequisite-patch-id: 88006da4a3c4d94facb6ff3cb8e47269fb3e5636
+prerequisite-patch-id: e9132f8e053568f4259ae33a5f0dfa7d14f6bb43
+prerequisite-patch-id: 034cbc5c4004f7384122e454edaf10118495bb1c
+prerequisite-patch-id: 3f415cab42569c0fd8d88d3de9775a57b719f82e
+prerequisite-patch-id: ba94f33f11b19e08820dee482209dd1ba0d57523
+prerequisite-patch-id: 060f698bfdb0e16c64735abd90e21f699f975ece
+prerequisite-patch-id: 0451e6b0527b17f006d6649158abef8ae9010170
+prerequisite-patch-id: c7e7e403930415790a6075778b9c4851629f54d5
+prerequisite-message-id: 20260411-tsc_timesync-v2-1-6f25f72987b3@oss.qualcomm.com
+prerequisite-patch-id: 898bad65110d5bb8a51ebadebc00d21b0c0eddee
+prerequisite-patch-id: 927a45a5a418489c14481413149cd37840019354
+prerequisite-patch-id: 927b714345dfaeecc74ab17645bd73c62a0ed51d
+prerequisite-patch-id: 607cbbae4ab145955ba10db4c0eb2ec507c476c2
+prerequisite-patch-id: 3eeed070306fd8e1dd9a2edc11eaa91ea3cc9115
+prerequisite-patch-id: 77a89f3deee3b2a415c008fa533f3faab7e709ad
+
+Best regards,
+--  
+Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 
 
