@@ -2,98 +2,197 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FCD0606A324
-	for <ath11k@archiver.kernel.org>; Thu, 19 Nov 2026 07:56:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DA79606A326
+	for <ath11k@archiver.kernel.org>; Thu, 19 Nov 2026 09:23:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4LK01dgX;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=dEjgIL5n
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3hIngPlg;
+	dkim=pass (2048-bit key) header.d=westermo.com header.i=@westermo.com header.a=rsa-sha256 header.s=270620241 header.b=rqlJcjNZ;
+	dkim=pass (1024-bit key) header.d=beijerelectronicsab.onmicrosoft.com header.i=@beijerelectronicsab.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-beijerelectronicsab-onmicrosoft-com header.b=Kzx6XCuA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=zD4vWVrzj0m5l3wwaVzmZX6fctqf45aDG3D9ksl4C6c=; b=4LK01dgXzR0Qsw/w7txWuqKcEC
-	FAXN2kZX8TMI+TU2Kt8mqMlTRcD2lhqfU3WMuAPXhOIHMjIeRx2LLtsMoJtPY6B8IA5k6oQVIJyn/
-	OHqZCRjWjNr6KOhZOE7TUJvH5k+CHhp+rk7a64239W1DNVmfNmDQD9DgyzyHgKaHhbGLrhiA3dsNv
-	wE25Zqt1yQQ8Ioub2dIjtZQBjnJk3SHds5Wvd5LhT8u1FgNKcdYEMubKGxyygbs5jYnmw8naEtHEV
-	dQgcREFyYTxJtoZzp/26CLPUllJ6VvxK6641PbFHWh+kHABh8sBbpjEswXl2NHNjOQagegnk+8p+i
-	7laXW1EQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Cc:To:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-Id:Date
+	:Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=eSOkzvHvLkZlOkjNS5gKigfq3xQy7ScxxB1Ud4OJl3Q=; b=3hIngPlg7pZzKl
+	4nb90i7t5VNf8of3RIRcldvO7pLn/LnaTC1WEr05a45ot66Vo2DzC7v8pEvmTYmWi0BUq6RqO6GCX
+	cApkqmopCOp1Rv4eMOosLH+/ReQPA9qktQRie65sgiWnTv9dodVVdjH8fQzPwrEerI4oiaRfHKcuB
+	1qxJZdVJ2Wdj7gr+96p5O68RCvmYDUPCe1bJAwithak4P+nwkwigO305Nr+MuTzhUuGi6a5hnvF/K
+	8SciMrKR68KI1AgLMQvEDfeH6OFgTY/BX614Y5mCJWd5wNTAxzp2rbzVlX4Y2RUFchigG7TEO5jl9
+	PTJA2Yv8bVq9z15+2REA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTx0S-0000000B7J1-17Ya;
-	Thu, 19 Nov 2026 07:56:32 +0000
-Received: from mail-pl1-x631.google.com ([2607:f8b0:4864:20::631])
+	id 1xTyMy-0000000BNna-0OPj;
+	Thu, 19 Nov 2026 09:23:52 +0000
+Received: from mx07-0057a101.pphosted.com ([205.220.184.10])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTx0O-0000000B7IF-2Czg
+	id 1xTyMv-0000000BNm9-3CPU
 	for ath11k@lists.infradead.org;
-	Thu, 19 Nov 2026 07:56:30 +0000
-Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-2e9d7791b00so20331265ad.0
-        for <ath11k@lists.infradead.org>; Wed, 18 Nov 2026 23:56:28 -0800 (PST)
+	Thu, 19 Nov 2026 09:23:51 +0000
+Received: from pps.filterd (m0214197.ppops.net [127.0.0.1])
+	by mx07-0057a101.pphosted.com (8.18.1.12/8.18.1.12) with ESMTP id 6AJ6veSI459461;
+	Thu, 19 Nov 2026 10:23:43 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=westermo.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=270620241; bh=
+	eSOkzvHvLkZlOkjNS5gKigfq3xQy7ScxxB1Ud4OJl3Q=; b=rqlJcjNZP4qw2uVK
+	CJv1FbdxFaHheUUtaDxa73+iLsbU6T6HZAfj1fRmoAJzlePvQ5zQ3w4xGpDO+EDv
+	2ToDmqleIGN8vDSOTad217GDFSaLz3En5odqTiPa6fpFXRxtTaN4Hccpb2vNPTSN
+	wYPHyZivt4Ya0ndZuWfmSGJFf+u1XT3uKvEMJbkePaPgF06V+ciJAC0YND6Au23l
+	QuJqcfzIy+1Ke2ZPAvy488xu+1iUIQ/zM5w1uULBRjYqRHv1sziZ7LgFMOY1ePgb
+	CKVAcJQTqNebhOomvSTbilKFPYNwl1rtH1CuVlisEk41Ngt0340Rk7S9Ai3m4m/K
+	hPPkFA==
+Received: from duzpr83cu001.outbound.protection.outlook.com (mail-northeuropeazon11022112.outbound.protection.outlook.com [52.101.66.112])
+	by mx07-0057a101.pphosted.com (PPS) with ESMTPS id 4j1qgbgdfc-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT key_exchange=secp256r1);
+	Thu, 19 Nov 2026 10:23:42 +0100 (CET)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bZGG4hae9/qRqlIcqundFK7PupDAJALvdl7+BhNmxp0KkNoCAo8jz5cjQgAi2I4fW7vjG8QL2A96rvTaxjQvC3SN4CGhem68W5L1sKiX7v2D0BWpMQDQC3D+/KLASZDLT+f003Ffx6Tj9eMO5PPkKKEcuNYMHlVLvGKzmkqihBSCf93MuHYUrd5ZmzzYNbigqUVSegjuQFpjDo+0x1kIsT8OUoRWhBls0fgvqqunEsBoPMkOyV3GaG9ah6e3ngRoWXxom/rL8YYBe8soQt5gEXawIjgoGyNYZKiCJGrrZqFbq1bP5fp0RYsJL2zG0RRSLmVzSpAZsSjqpMZbUzDAFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eSOkzvHvLkZlOkjNS5gKigfq3xQy7ScxxB1Ud4OJl3Q=;
+ b=XiRKsjHpgb7DP+zu/ULnd8gHI42f/CYKw5dkNDNpIJ36RE+FiG3y+Kclwy0Qpb1k3Q2PYuJZBSFlLUHI+9uVtwZF7WH/EqegADvdJdByCS3i0uhybIfXH6WBlLN88UhOLlBEaT7N38PKx4U9tr6BAJWKWj6Xw98x3SiCypGJ27ydDnKXYoTdjRhBTPrIIAcWiOysuuOOACaJlvmZJtgOD5qjSGgeiNOiFAD5HiFDc5WyOcdHUs1QiJDW7B58/pA4+rZscNxuYcIwc716wXLFEDprnEggTPWUnENHQAnLK2Hl8rVHlO8ZvtZMNTQ5iRgCK0X+Jj2wan0Tc0+fafj21w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=westermo.com; dmarc=pass action=none header.from=westermo.com;
+ dkim=pass header.d=westermo.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795074987; x=1795679787; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=zD4vWVrzj0m5l3wwaVzmZX6fctqf45aDG3D9ksl4C6c=;
-        b=dEjgIL5n7/PXsyNA3XvZclqpcmmHf3IkqmXgn2s6W3Ba/Kj1QpyNVgkK/TGbwQbG6V
-         GlhwVtamZUrht1+pO5xKOM6TB1V2taHHtJ/MP/sJw8J/hBIOyiZx4ZdTfh1dUqNuLO3n
-         Lw+NpYcwoffD9X2Q3nndVS6a9dDeDcJwM2gj/TeJaQyepyM3knNSpeXJlN96lCfo77HR
-         QUpXFJZmps/7SyczXH+FKxAAkGcpqOrWftrg6AzZGf3Rh/rOm/HwuAsYEQpWrssLryBe
-         /bVD/I5fnyVBb+jWGh3Lhd3KXCu+EnuRdRIWad+B4OUntmKOMVhqwNyGGCygrxJHTEFi
-         7y/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795074987; x=1795679787;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=zD4vWVrzj0m5l3wwaVzmZX6fctqf45aDG3D9ksl4C6c=;
-        b=pwe5NZZYqovqf4+I/u4yXeiypYfpCBFUG+rjQ1NOQwatrFonCN74L6xlatzSs7B3sa
-         dx73vphIa8FtC9qi7nAigWw9M2XF7g1sFVg4SZZzxaZmHUmjPTQUunT84yepJt2a8FSw
-         eAYI0ocQD10JaNidkTv1JPxhgBcVdqZqi4r7sm2Y5gDNRyTPRrJ9/Vta8HeyJvd4Pb4M
-         RQxmla3bMvhdjNxmrdsXIFK5uCPXAJ0vU7+h+m7NqgqN6SmRskmnNobR45QobOXjiZSl
-         N3nMqZ1OToyeC2phI2keafVnfVBZ+e03pmQnOj34vr7wMqVWHLo0vrLyAl0SDbegH1UQ
-         GHAA==
-X-Forwarded-Encrypted: i=1; AL+hErHcjRDY2mk/MHn9jPJ+8JEHfB3bs4DVeJ5fnHPY/eSSO4oZ0YCiubDN+Jz+nGXW9MoEMkXoQ9Q=@lists.infradead.org
-X-Gm-Message-State: APuU4Z8u2qZ5yCDhebA5ohDW28/7ZYQX9GeGiBMmgAugQZZQWiMYVTgT
-	J9NvHKDVFGZFk507fKTcSXstxtXjMXxTNCWKnLPuPWmGc95idqalgSWbS0C3RgYqHZs=
-X-Gm-Gg: AZFdTZeFxMSzfnKRRmFT0Bl10nJAlfipQIOZKMrvdPYnTxEguAmT9l3OcfvdbKstGmW
-	eC02xFBkUpk6m4cLA5DtwxYU66SjAyhuHapKIvHADn8FgNIM1t2/TmATG6Zgp/KLAxUXfcFONeM
-	HBOAbdV3Fk+uTnZ5EXFkwuuMtT4wUotO9GAbVBWzWCC7nYK3s4B72Ql/tYylNAqViNW6BLeinFn
-	hLAm9XXrl8L6gHVtQVpJy03s64Jm+AUnNm+jj0lN1LudgLZ1vG3Y/Vvqcqon+4TApg9BiQM8aF0
-	rbcXI3mq0oRqNcPdKSwYHkTqIQB/tahDwXelQTZ8UOKB6NAdyP4Kg406umD9n/SlzTMzApn7Wc+
-	YfzeQMS0Gc0SzvtvHBOXut6t6Sz4p5q5TmRQDWiMDgJwM2H3vc0bWqk97BwD5LnL2dc6mPzbQGN
-	1dKpLtEc7lq5JNJcMiLklXB6zK9vi2jFArjKxMco1l2mFVFUYp8r7QAkzmZshLk2krCrb4ZAmhn
-	96U2vAcGF8FVp1TjfI7mCwEPgj8UCgFyTD/ORH3c965yn6M/WK62M8ieXhHM5ePPgVHY6oGps2k
-	+hu9s8h53Jzp+kyPd/ItDx0XFXLOYZCFF+clbApZ2shiqK97wD04ezPkThmu
-X-Received: by 2002:a17:902:ea03:b0:2df:90d4:7758 with SMTP id d9443c01a7336-2eff72f4385mr44649885ad.23.1795074987036;
-        Wed, 18 Nov 2026 23:56:27 -0800 (PST)
-Received: from G7XWH7K1F3 ([2408:8256:2e80:7371:84c0:a687:3d35:47b0])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2eff6183f8csm25817825ad.31.2026.11.18.23.56.16
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Wed, 18 Nov 2026 23:56:26 -0800 (PST)
-From: Zhao Li <enderaoelyther@gmail.com>
+ d=beijerelectronicsab.onmicrosoft.com;
+ s=selector1-beijerelectronicsab-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eSOkzvHvLkZlOkjNS5gKigfq3xQy7ScxxB1Ud4OJl3Q=;
+ b=Kzx6XCuASGsnuIxzxZtkbN1Sm+3lZ+UEpbNVURO0Zm9nXroqp39yt6WYY0dIXet6GfHRHejAeD+nThhOqy8SF4wR+9Ijc/VyVVMCnvfMl7Txs1yGRQsu1qb+wWU8dSQ3r6nrFns2iyEstUMDWjDe7bwmgEB7QYeZT87Z6BOqP4c=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=westermo.com;
+Received: from DB9P192MB3090.EURP192.PROD.OUTLOOK.COM (2603:10a6:10:5e2::11)
+ by PR3P192MB0893.EURP192.PROD.OUTLOOK.COM (2603:10a6:102:ac::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Thu, 19 Nov
+ 2026 09:23:38 +0000
+Received: from DB9P192MB3090.EURP192.PROD.OUTLOOK.COM
+ ([fe80::656d:42d4:bdce:a46b]) by DB9P192MB3090.EURP192.PROD.OUTLOOK.COM
+ ([fe80::656d:42d4:bdce:a46b%6]) with mapi id 15.21.0615.015; Thu, 19 Nov 2026
+ 09:23:38 +0000
+From: Alexander Wilhelm <alexander.wilhelm@westermo.com>
+Subject: [PATCH RFC 0/7] wifi: ath11k: support big endian hosts
+Date: Thu, 19 Nov 2026 10:17:52 +0100
+Message-Id: <20261119-ath11k-support-big-endian-hosts-v1-0-c82fe63f9859@westermo.com>
+In-Reply-To: <akYnvuVkIQrPcjkO@FUE-ALEWI-WINX>
+References: <akYnvuVkIQrPcjkO@FUE-ALEWI-WINX>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3NQQrCMBBA0auUWTvQSbBYt4IH6FZcpHbSDEISM
+ lGE0rsbunyb/zdQLsIK126Dwl9RSbGBTh28gosroyzNYHozENGIrgaiN+on51QqzrIix0VcxJC
+ 0Ko7e0mWwpvdnC62SC3v5HYcHTPcbPPf9D4E3m5V2AAAA
+X-Change-ID: 20261119-ath11k-support-big-endian-hosts-9f3186320f53
 To: Jeff Johnson <jjohnson@kernel.org>
-Cc: Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com>,
-	Karthikeyan Periyasamy <quic_periyasa@quicinc.com>,
-	John Crispin <john@phrozen.org>,
-	Kalle Valo <kvalo@kernel.org>,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org,
-	Zhao Li <enderaoelyther@gmail.com>
-Subject: [PATCH ath-current] wifi: ath11k: fail the start when a service ready event fails
-Date: Thu, 19 Nov 2026 15:55:59 +0800
-Message-ID: <20261119075559.10177-1-enderaoelyther@gmail.com>
-X-Mailer: git-send-email 2.56.1
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+        Alexander Wilhelm <alexander.wilhelm@westermo.com>
+X-Mailer: b4 0.14.3
+X-ClientProxiedBy: OS6P279CA0142.NORP279.PROD.OUTLOOK.COM
+ (2603:10a6:e10:3a::16) To DB9P192MB3090.EURP192.PROD.OUTLOOK.COM
+ (2603:10a6:10:5e2::11)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9P192MB3090:EE_|PR3P192MB0893:EE_
+X-MS-Office365-Filtering-Correlation-Id: 00515112-a871-4912-d071-08df461ecafd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|376014|366016|1800799024|261102123227099003|10067099003|260925021911599003|261026121527099003|11063799006|56012099006|260925022911599003|261026140227099003|261021123027099003|261022105027099003|261021121427099003|260925021311599003|261022075727099003|261028144727099003|261009223027099003|6133799003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: pc8HciRS70/FMPUdibPc6yCyqBzZMV8oFSrMlTBxbNCVFtmUVOzVeYED0503wtPujBZJw/PDGz/EPc7lz2FVPa4s0U4NMSAursC1O7Ei1mClBW673LtYIhniDpAuVgkQfhYLXP72rxtJltEM7iaspUaO9+kzluaFJI+q5ydnHsGcg9olE8QWXBGlpzNheWf8Rj6OwhaxCJmnhWWlVkssWau9pKjZElA2tLuZ+2K6ie5VcBD3CS4crrLNUcla3AOQm0GO0wWJOn2yUa9s6LjRRV2EJT94cvYinLJIMnpm7Wnde+r4sUfEq0cADer3+IXhrpy7czR3nEj9TPY2SdbihZLivVTfBqnPIE5s/6kGfseWAAIYxMEwJFM91k6M0OXfvhSg8mQklP1ZEa1qgEcnOvvaJ7IsuqRVO9kZFjbBd/J9/7284IF2ktHmDn7mmPvPzGa/bhNBgJkfCvEHjuggQQRRzMCwL9IASoAvIo4nRyzxKJ7T/vK0WzD/3je3sto4lPYXNlUsiH5v/75TsAKkdPIDn37AoRujsw/E9rzrqJOLqCTCZnHo4UnKrQfktHZoPaI+l+BpvrM+5gYaAuFZvsCx+thKZ4zX4Vu4RwV8N7g=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9P192MB3090.EURP192.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(261102123227099003)(10067099003)(260925021911599003)(261026121527099003)(11063799006)(56012099006)(260925022911599003)(261026140227099003)(261021123027099003)(261022105027099003)(261021121427099003)(260925021311599003)(261022075727099003)(261028144727099003)(261009223027099003)(6133799003)(22082099003)(18002099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M2o2bDRodGVERTluVU1NRE16bzl4WG1GQW1EdWJsWU9tZElpOEI2ZFI5RDNJ?=
+ =?utf-8?B?U0RtMjlhbFR1WnlseTJsZkdWQWdCdFBLQXR1VXd6akhoZXlEQmsyN2JQb1kx?=
+ =?utf-8?B?Rk5JaTBvSGQxcHh3UVd5R0F6YVRnTFlrdUJIQ01CSnRWVGRQVVNRV081M3B4?=
+ =?utf-8?B?VmpFZGxzdlR2N1hiT3U0R0VrNGVvdmIrYnBjelgvMGtHWjI2VytUYXFOdFJS?=
+ =?utf-8?B?ZStLYzgxYTJqVXNreUltQ2ZCN1gvYkpQTjkvdjNySkpjWUUwOWpsYUNWU1BT?=
+ =?utf-8?B?ekdyUW9vZEFZd2FzTXB0ckpzN0JZcHY1TGd1K29sV2JydVJOTnZPVkFxbGdC?=
+ =?utf-8?B?RksvZkJlRTRVbVc4VXlMcStjTTJGNlpKVkhUMHpyR2FmYnJsd21icjVwbHVH?=
+ =?utf-8?B?NFRmbFd4MldPd3JRY3EwYWsvRlg3WlJZbGk3dHdEbUk5eG13VExQOUtoWHVL?=
+ =?utf-8?B?UmViSDFJS1JuMTlCUjdOcWlXQ1ZVelplV1pja28yOGpLMmYraXJvOWZkYzQ0?=
+ =?utf-8?B?eCtHZFdZRG5saUJHaUhwT21GOHpVeTBmeXNvYklNZ0RFQ2d6bmtUekcwTUdj?=
+ =?utf-8?B?VFJvUU5SSXNLZGhaYnNRZmZDakllaE11b1o5aWhISEFvZmxubktCa3VZM2xl?=
+ =?utf-8?B?NHhlT2cwRzJuU0ZpSjJ5Q09CWndXZEdFYnN3UllEanVaZmlyNlNaMDZOSkU4?=
+ =?utf-8?B?dEluOFZ0ZmlOTnNzdnpHVGZNRlNMQ2VVY1FONVYvM0R3QkpGdzk5VGpoUGFV?=
+ =?utf-8?B?SnNwWVdrNjUzYTdkUkRxUzlZM1pyZHVtUjI0YjFkajByWFdFRGxKekZKa3FP?=
+ =?utf-8?B?U1RhTDczSTZRclZFWlhoRXB5QkYveTdQU242WkJIRUZYZlpPZlFJWURkRVJx?=
+ =?utf-8?B?SVgzclRidnVyQW1vamlURDF0RFpiYUhtU2tSUzN5RWlGZysxNE04MmlaaUVt?=
+ =?utf-8?B?UUZacUZyc3JETnpaNWdZVHlOSkU5RnR6UGMraWZtb2F0SWkzdStOamR3eW5x?=
+ =?utf-8?B?akl2M2FiUjZZUngxYXk3MmpDNjNlSkF1WVJjOXQwRzlTMEFKUldOd1RLRFZI?=
+ =?utf-8?B?Q0d3YlE3OGYrdFR2SzJpRTFZOWpPVGNwZmJjSHdvR29oSFJ3SGdFTlZRM1py?=
+ =?utf-8?B?V05jQS92aUd4MU1FVTI2bXo5SkovWlNzRVFORTk3ZFBRQmtFOWtGZGFVZGRZ?=
+ =?utf-8?B?bTM5MncxWlV6YWFXelN4TU8zd2ZtM0Jod2hsTjM3VXVYMG1GMHJJMTdtUitx?=
+ =?utf-8?B?WitGY000ck1kWURNRGVhME1PT3Y4TklLTVZ4alR3TTJzUkNuN3cySWFVdzFt?=
+ =?utf-8?B?K3hBckpidWVldjZNdEJHTWpNMjBHV09mYlpMdW9aYVdjUzBxMXVZcldETmd4?=
+ =?utf-8?B?dUFKdHJxditYN3YyaEV0NEk4U0ZmRDgzTXc4YWxzVkZMV0JYTFZGeVAzZE9B?=
+ =?utf-8?B?V2U3U3NOMGpTbUFYUEQzWUlBOGczc1k2Z0xMQlYxL1RDSEEvV0tRZXk0dUY2?=
+ =?utf-8?B?Zlg2U0p6dkRWSWNqRituU25kYWlEckJwemtQNngra3IvZTdlOXUwYzNXNmdI?=
+ =?utf-8?B?RmtPNUdWYTFIYzFwUTZ1SnpwWHpVR0JhdUJPRWhsTmZnMFo4NnFpeUJ1WGtX?=
+ =?utf-8?B?UlpUVFVwODlXclkrejBVQ1FTNU5ueXhaU1lQQnNmZVFSZm1XNTFWU1Jva00w?=
+ =?utf-8?B?bzFiR3hxWU1TYnlZd2oybm1IZVBUaWp0OXduVExDbUJJNENxRHNiSWFSUjBz?=
+ =?utf-8?B?TC9rNWNxV3VheHBlWDFSWWpKUnFvb0s2Yi90OFdQSXFRajdGTzY2emxvbTNa?=
+ =?utf-8?B?cUhvbThVRFBqOVpNR2N3WFBiNmVvMG9iTlhKZUNtTzkyS3FIYkpVWWk4SEtV?=
+ =?utf-8?B?TmVIbU5NVUZMQTRCN3d5b1pqTjgrTm9HRFA1Q2ZyM3UvaUZWbnRxOG9OVFdM?=
+ =?utf-8?B?WE9Yd0d5YzJSOXgxUVZieFcwK0ZqVUY0dHMvMlRZYUdDSEZUNjZIYWw1cjBY?=
+ =?utf-8?B?aU00S3d5NDBuZ01KNGpXMTFxcHZXSE9zc3JIZ3R4cHpieWxjMEcyNCtIVTNH?=
+ =?utf-8?B?NjF5akg4ZTlCSjJZb3NPZ2o1eWdMaGJ1RGdublVNZnd2ZUJtSlJ6YzZWdFIv?=
+ =?utf-8?B?S2NSRGh0U2M0TmZsZWhscDBzUnd3NXR3SERvbThlRTNjeHNObnFEMjRKWEpz?=
+ =?utf-8?B?a2l1WlY3Mm5XZXdPTmZQZVRnQkhXZ3RiNnVUTnNPZUovVXpMRTRnTEJBQ25Y?=
+ =?utf-8?B?NE9NMXZYSDd4M1VnNjV2YWRhQWZuRVJROExaVnNXM09VeUNoaW1GZmg4U2VJ?=
+ =?utf-8?B?SnA3MkZFWUJXNHYwaHVBNDNyY1VNVXd5MCtSYjdiUnNubVo0bE4wZz09?=
+X-Exchange-RoutingPolicyChecked: keJ6PGKKtQ9XfLk1ur0ERl2qUjgxefOyHOk1Y9aXcELdRrzABiOnLe/yzdBXiJ/cnIW8tNoxQ5XhjdNXOFBMVsPMlHcArnKDOp8/PzR/H0RYdzW/ba+1s9bXN4uBntYZWBw/3nCTQkj1v1PNzXGR6tUnv6c6SxFZl9QyxvRR8s/fTDKkXTCx7s+K+6ChU8nKvoppbr9Y4Yw2Qe7Vb2dK/NBbtHNCN0q/dfzR52yIwu4jRRyP+aNLPbeiyNhaZzlUKYS7Y9ssj6BC7YV5X//82ewXg27vfMkcvL5/+N4caNGpy/MX3oVoCgwjLAeypqkw1QGw5lwToc/QxYyaB+zbXg==
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: 0O0TYaz0lKAb38UXcIAJ/lSZh88eDfjFCCsWo+oMFRb+NOH07N6xiauBTTpB0tKpdShp0wHvGLXRQXGoFFCRYdESKMASAyFehfNfyFpbNc5Ijenp/kj4woToeu2zX9IAaPugmD7FfH9694hBkVF/H05Q+o45vHMjqEB7pJ0pVcluUWvrhpCD+1VxWOK1iAZgcbAj/WjvAVPNA7jO6U8lwAob2FxUYDasv0zaTYlkghGty9fDZD9r2Z3UuixnV9sp597SusaSCMSBWKJ3xMSeLIf82X1tEu/8z1rR1ijlHFGABIObGTPkKc3/Ejl2kOdUAHG4gQsdFZUDBa4t9Tg37cr1gfIgC64qrl7FfJtukUVhCmKh1E/8FqXBoj5U0rexCEFnTQGtPbRPpZcXtDsnsc+RUoLHDXqFyVm5d6P80t3iDejEp8wtEJ8qwWcAf17dGLfj494i6XV55ZrFa/3mlHAzSzu98RV29xYIYkgqCtBnNcUt8hpwQPW0Z4xq1BrkGcNJgkJn+YDi7Tfn8/D1K80sT6lqnRn0VZCKS2qBVeZ+kkIkQ3TrPMCt0FftBMzAF3tLMmj/GW7pflc7r4DdmvergaK20nAz1Lm/AR93yGIKtIU2rj8usEZOE6ZK6l/m
+X-OriginatorOrg: westermo.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 00515112-a871-4912-d071-08df461ecafd
+X-MS-Exchange-CrossTenant-AuthSource: DB9P192MB3090.EURP192.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 09:23:37.9737
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4b2e9b91-de77-4ca7-8130-c80faee67059
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UMcmdeyG0dOo/gJVfxvHiw6OX8gwxL2RlkTTyGe0DUqFGNsCLgCiOVJAdSGDILbadYvKpve1cfWXU/yMxKD78g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3P192MB0893
+X-MS-Exchange-CrossPremises-AuthSource: DB9P192MB3090.EURP192.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossPremises-AuthAs: Internal
+X-MS-Exchange-CrossPremises-AuthMechanism: 14
+X-MS-Exchange-CrossPremises-Mapi-Admin-Submission: 
+X-MS-Exchange-CrossPremises-MessageSource: StoreDriver
+X-MS-Exchange-CrossPremises-BCC: 
+X-MS-Exchange-CrossPremises-OriginalClientIPAddress: 104.151.95.196
+X-MS-Exchange-CrossPremises-TransportTrafficType: Email
+X-MS-Exchange-CrossPremises-Antispam-ScanContext: DIR:Originating;SFV:NSPM;SKIP:0;
+X-MS-Exchange-CrossPremises-SCL: 1
+X-MS-Exchange-CrossPremises-Processed-By-Journaling: Journal Agent
+X-OrganizationHeadersPreserved: PR3P192MB0893.EURP192.PROD.OUTLOOK.COM
+X-Proofpoint-GUID: SdVqk4UIsZSEKkkn898J-m5ytxOYXfhU
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE5MDAzNyBTYWx0ZWRfXzikWmqKtK3iw
+ GmVHKSSgqyKBoV+vT5EKuGH0TEr35dSYte1HCLTFJVCoNsGb1T/8ZP7cf3A/TJbO4kqSBHUQySw
+ PZl6Jq4SQELHjkWsRDUken9Wz/2J8B8=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE5MDAzNyBTYWx0ZWRfX0EYRIeBNvyZB
+ tr7vVW2EB4zEAmMf3lht0dgIs8NCylkE67sizr6aipVVYc45aV/gTWy7MhdWgq0nUfhf1B2mpFR
+ k00ho0CV0zqOmT7zcyzrHk0mipzVncaF/+EXz92mpLvw6aRAeZaMa2n9irYd4+2ViweetGgaoPm
+ HOQZkrjre0r2PQA3Xd92jZcez3zxGJbLMpAk/yeEQk0peHncleRp00k/TGj5hkXwEPXFidPA3py
+ /knwnYsAA/qQXQH+XzUGtmyIpzVwFU4zsJfdUNSqdl0d5QAfpPMs9XXuSGv2GIkNtYvAH+GyqGj
+ pWQz50z1Fuya2t312schfcmDUn9Fpv9XMfhFXTGOrmU9xyF6OCub+LY3G2mqr9qkOLx6jqG+xB+
+ F8RXd3vXSSemyjmBy5Nt2WmhyQt0XA0qaALiBzJtJMDyjnCJq94AtT8onc84hIObPDiLOLc2+6i
+ mBP/dfHkMb2OKZ3k2ZA==
+X-Authority-Analysis: v=2.4 cv=e6KT2qp/ c=1 sm=1 tr=0 ts=6afec01e cx=c_pps
+ a=yfNaQ/2DOX43yGgd4xgpDA==:117 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19
+ a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
+ a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=8gLI3H-aZtYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=tr3XZvuDWTETL0Uaxejn:22 a=8ys4xmT3Mru1TjC2zVq1:22
+ a=VwQbUJbxAAAA:8 a=N9GNhs4bAAAA:8 a=wzxbn169AbrpDypWWU0A:9 a=QEXdDO2ut3YA:10
+ a=PZhj9NlD-CKO8hVp7yCs:22
+X-Proofpoint-ORIG-GUID: SdVqk4UIsZSEKkkn898J-m5ytxOYXfhU
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_235628_579455_60CE7617 
-X-CRM114-Status: GOOD (  15.37  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261119_012350_118948_DDBCCFA3 
+X-CRM114-Status: UNSURE (   9.26  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.8 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,147 +203,90 @@ List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-ath11k_core_start() waits for the service ready handshake, in which the
-firmware sends SERVICE_READY, SERVICE_READY_EXT and, if it supports it,
-SERVICE_READY_EXT2. Only the last of these events completes the wait,
-whenever its own TLVs parse, so the start goes on after an earlier event
-failed (for example, on -ENOMEM or a malformed TLV), with capabilities
-that were only partly extracted. An event that arrives again, even after
-the start, is handled again and rewrites the capabilities under a
-running driver.
+This RFC series follows up on the discussion in [1]. It moves all byte
+swapping for big endian hosts from the target into the ath11k host driver,
+the same approach ath12k already uses.
 
-Track the next service ready event that this start accepts. Each handler
-takes only its own event in turn, closes the handshake before parsing
-and opens it for the next event only on success. A failed event then
-makes ath11k_wmi_wait_for_service_ready() time out, and any event out of
-turn, including one after the handshake completed, is ignored.
+Today ath11k asks the target to swap copy engine data
+(CE_ATTR_BYTE_SWAP_DATA) and SRNG ring contents (HAL_SRNG_FLAGS_*_SWAP). In
+my tests this did not work, and I could not find the root cause. As Kalle
+mentioned in [1], the firmware branches seem to handle the swapping
+differently. In practice the upstream driver never worked on big endian
+hosts.
 
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Fixes: bd6478559e27 ("ath11k: Add direct buffer ring support")
-Cc: stable@vger.kernel.org # needs adjustments for <= 6.1
-Signed-off-by: Zhao Li <enderaoelyther@gmail.com>
+The series disables the hardware swapping and converts all host/target
+structures to __le32 types, using the le32_{get,encode}_bits() and
+{cpu,le32}_to_cpu() helpers. On little endian hosts the conversions are
+no-ops, so the generated code should not change:
+
+  1. remove the CE byte swap
+  2. HTC messages
+  3. HAL CE descriptors
+  4. remaining HAL descriptors and SRNG swap flags
+  5. DP and HTT messages
+  6. WMI and testmode messages
+  7. QMI target CE and service configuration
+
+I am aware of the concerns raised in [1]: the risk of regressions, the
+impact on downstream projects such as QSDK and OpenWrt that carry patches
+on top of ath11k, and the possible performance cost compared to hardware
+swapping. I am sending this as an RFC to discuss whether this direction is
+acceptable for ath11k. I have split the series by subsystem to make the
+review and any downstream rebasing easier.
+
+[1] https://lore.kernel.org/linux-wireless/akYnvuVkIQrPcjkO@FUE-ALEWI-WINX/
+
+Signed-off-by: Alexander Wilhelm <alexander.wilhelm@westermo.com>
 ---
-Found by code review. Tested in a QEMU guest with KASAN and a test hook
-that feeds service ready events to a synthetic device: without this
-change the start completed after a failed SERVICE_READY or
-SERVICE_READY_EXT, and duplicate or out-of-turn events were parsed again
-after the handshake; with it the failed start timed out and those events
-were dropped before parsing.
+Alexander Wilhelm (7):
+      wifi: ath11k: remove CE byte swap for big endian hosts
+      wifi: ath11k: convert HTC messages to little endian types
+      wifi: ath11k: convert HAL CE descriptors to little endian types
+      wifi: ath11k: convert remaining HAL descriptors to little endian types
+      wifi: ath11k: convert DP and HTT messages to little endian types
+      wifi: ath11k: convert WMI and testmode messages to little endian types
+      wifi: ath11k: fix endianness of QMI target CE and service configuration
 
-No new W=1, sparse or smatch warnings.
+ drivers/net/wireless/ath/ath11k/ce.c                |   19 -
+ drivers/net/wireless/ath/ath11k/ce.h                |    6 -
+ drivers/net/wireless/ath/ath11k/core.h              |    4 +-
+ drivers/net/wireless/ath/ath11k/dbring.c            |   44 +-
+ drivers/net/wireless/ath/ath11k/debugfs.c           |    2 +-
+ drivers/net/wireless/ath/ath11k/debugfs_htt_stats.c | 2229 +++++++++++++++++++++++++++++++++++++++++------------------------------------
+ drivers/net/wireless/ath/ath11k/debugfs_htt_stats.h | 1638 +++++++++++++++++++++++++++++----------------------------
+ drivers/net/wireless/ath/ath11k/dp.h                |  200 +++----
+ drivers/net/wireless/ath/ath11k/dp_rx.c             |  270 +++++-----
+ drivers/net/wireless/ath/ath11k/dp_tx.c             |  217 ++++----
+ drivers/net/wireless/ath/ath11k/hal.c               |   96 ++--
+ drivers/net/wireless/ath/ath11k/hal.h               |    8 +-
+ drivers/net/wireless/ath/ath11k/hal_desc.h          |  258 ++++-----
+ drivers/net/wireless/ath/ath11k/hal_rx.c            |  712 +++++++++++++------------
+ drivers/net/wireless/ath/ath11k/hal_rx.h            |   14 +-
+ drivers/net/wireless/ath/ath11k/hal_tx.c            |  106 ++--
+ drivers/net/wireless/ath/ath11k/htc.c               |   83 ++-
+ drivers/net/wireless/ath/ath11k/htc.h               |   30 +-
+ drivers/net/wireless/ath/ath11k/hw.c                |    9 +-
+ drivers/net/wireless/ath/ath11k/p2p.c               |   30 +-
+ drivers/net/wireless/ath/ath11k/qmi.c               |   24 +-
+ drivers/net/wireless/ath/ath11k/qmi.h               |   16 +-
+ drivers/net/wireless/ath/ath11k/spectral.c          |    8 +-
+ drivers/net/wireless/ath/ath11k/testmode.c          |   42 +-
+ drivers/net/wireless/ath/ath11k/wmi.c               | 2834 ++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------------------
+ drivers/net/wireless/ath/ath11k/wmi.h               | 2013 ++++++++++++++++++++++++++++++++++-----------------------------------
+ 26 files changed, 5635 insertions(+), 5277 deletions(-)
+---
+base-commit: e7f0f07b3267676087a62949a35ae919a9a8e218
+change-id: 20261119-ath11k-support-big-endian-hosts-9f3186320f53
 
-AI assistance was used.
-
- drivers/net/wireless/ath/ath11k/wmi.c | 22 +++++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/wmi.h |  9 +++++++++
- 2 files changed, 30 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 08fd6795ed9e..5f9b18338478 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -612,6 +612,11 @@ static int ath11k_service_ready_event(struct ath11k_base *ab, struct sk_buff *sk
- 	struct wmi_tlv_svc_ready_parse svc_ready = { };
- 	int ret;
- 
-+	if (ab->wmi_ab.svc_rdy_next != ATH11K_WMI_SVC_RDY)
-+		return -EPROTO;
-+
-+	ab->wmi_ab.svc_rdy_next = ATH11K_WMI_SVC_RDY_NONE;
-+
- 	ret = ath11k_wmi_tlv_iter(ab, skb->data, skb->len,
- 				  ath11k_wmi_tlv_svc_rdy_parse,
- 				  &svc_ready);
-@@ -622,6 +627,8 @@ static int ath11k_service_ready_event(struct ath11k_base *ab, struct sk_buff *sk
- 
- 	ath11k_dbg(ab, ATH11K_DBG_WMI, "event service ready");
- 
-+	ab->wmi_ab.svc_rdy_next = ATH11K_WMI_SVC_RDY_EXT;
-+
- 	return 0;
- }
- 
-@@ -5118,6 +5125,11 @@ static int ath11k_service_ready_ext_event(struct ath11k_base *ab,
- 	struct wmi_tlv_svc_rdy_ext_parse svc_rdy_ext = { };
- 	int ret;
- 
-+	if (ab->wmi_ab.svc_rdy_next != ATH11K_WMI_SVC_RDY_EXT)
-+		return -EPROTO;
-+
-+	ab->wmi_ab.svc_rdy_next = ATH11K_WMI_SVC_RDY_NONE;
-+
- 	ret = ath11k_wmi_tlv_iter(ab, skb->data, skb->len,
- 				  ath11k_wmi_tlv_svc_rdy_ext_parse,
- 				  &svc_rdy_ext);
-@@ -5128,7 +5140,9 @@ static int ath11k_service_ready_ext_event(struct ath11k_base *ab,
- 
- 	ath11k_dbg(ab, ATH11K_DBG_WMI, "event service ready ext");
- 
--	if (!test_bit(WMI_TLV_SERVICE_EXT2_MSG, ab->wmi_ab.svc_map))
-+	if (test_bit(WMI_TLV_SERVICE_EXT2_MSG, ab->wmi_ab.svc_map))
-+		ab->wmi_ab.svc_rdy_next = ATH11K_WMI_SVC_RDY_EXT2;
-+	else
- 		complete(&ab->wmi_ab.service_ready);
- 
- 	kfree(svc_rdy_ext.mac_phy_caps);
-@@ -5180,6 +5194,11 @@ static int ath11k_service_ready_ext2_event(struct ath11k_base *ab,
- 	struct wmi_tlv_svc_rdy_ext2_parse svc_rdy_ext2 = { };
- 	int ret;
- 
-+	if (ab->wmi_ab.svc_rdy_next != ATH11K_WMI_SVC_RDY_EXT2)
-+		return -EPROTO;
-+
-+	ab->wmi_ab.svc_rdy_next = ATH11K_WMI_SVC_RDY_NONE;
-+
- 	ret = ath11k_wmi_tlv_iter(ab, skb->data, skb->len,
- 				  ath11k_wmi_tlv_svc_rdy_ext2_parse,
- 				  &svc_rdy_ext2);
-@@ -9315,6 +9334,7 @@ int ath11k_wmi_attach(struct ath11k_base *ab)
- 	/* TODO: Init remaining wmi soc resources required */
- 	init_completion(&ab->wmi_ab.service_ready);
- 	init_completion(&ab->wmi_ab.unified_ready);
-+	ab->wmi_ab.svc_rdy_next = ATH11K_WMI_SVC_RDY;
- 
- 	return 0;
- }
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index b2dade0516ac..c69037c8a114 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -5849,6 +5849,13 @@ struct wmi_peer_sta_ps_state_chg_event {
- 	u32 peer_ps_timestamp;
- } __packed;
- 
-+enum ath11k_wmi_svc_rdy {
-+	ATH11K_WMI_SVC_RDY_NONE,
-+	ATH11K_WMI_SVC_RDY,
-+	ATH11K_WMI_SVC_RDY_EXT,
-+	ATH11K_WMI_SVC_RDY_EXT2,
-+};
-+
- struct ath11k_wmi_base {
- 	struct ath11k_base *ab;
- 	struct ath11k_pdev_wmi wmi[MAX_RADIOS];
-@@ -5857,6 +5864,8 @@ struct ath11k_wmi_base {
- 
- 	struct completion service_ready;
- 	struct completion unified_ready;
-+	/* Next service ready event this start accepts */
-+	enum ath11k_wmi_svc_rdy svc_rdy_next;
- 	DECLARE_BITMAP(svc_map, WMI_MAX_EXT2_SERVICE);
- 	wait_queue_head_t tx_credits_wq;
- 	u32 num_mem_chunks;
-
-base-commit: b1ed5a45b994a6473ca1cf34f35a1bf87f1d8e2a
+Best regards,
 -- 
-2.56.1
+Alexander Wilhelm <alexander.wilhelm@westermo.com>
 
 
