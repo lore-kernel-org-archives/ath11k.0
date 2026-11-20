@@ -2,109 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1F8F606A325
-	for <ath11k@archiver.kernel.org>; Fri, 20 Nov 2026 14:54:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1FC4606A325
+	for <ath11k@archiver.kernel.org>; Fri, 20 Nov 2026 17:07:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=w+8CBqqY;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=FOXyi8RR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BtopkW4Z;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Da7eOPDc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:MIME-Version:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=l086nUfGT3q2rZ2LvcCHUdhAGopSJtpRfCPg3hLnd+4=; b=w+8CBqqYZ4gzcyL1bqct9DIpTg
-	3j/srfBZ8TEIkf11XeE2Jeyk5ZT64UFyQtClw4xVb/5m3bE9QfA83k7777TRCrTVx4me4acHJIO8O
-	6OsH6xbe/AnJa0gwjV758L1ovHB7/amDe+piOT+E1a0iFgn6MdMtvK6Fmtt0ir6w0HpK86zc8XFmz
-	rPCuLEyukIRQ3PxQW3ohaBtOjHyKK9UPxh0/Lc06WwbfT18g039+6TJ7hxhKoYB3bTRZAtITP4HG2
-	xv4CO63h6Khz6RhRExRfCEj8XU1z0L7f9hpdHczjocir3NghU8tR15yJiNtK4fwZ5SJiW1nXXrA5y
-	EGOLt9sw==;
+	bh=phOjL0w+VRiN+NhcbEJ2zR/nluvM+fUE8X10MN17x2s=; b=BtopkW4ZVVs+vCPz5ZjodIlWmL
+	kyMPkhxOtSjxRknIZckXs23uxsjqd0bOvRoDsfRderncc0XmPN5L8Sgx6uFwncCmzZl5z/6zMpm4h
+	Ssi3bRaGukA5uZeEvCpMQYsx6UQ1bCXfnomMXumFHgX01xhbDQjQzo26nTfU1a9ZhLOEB8HtPSzW5
+	nG2XPs9aBz37qzIhK2D1Cd1sQBmFdu2eHJ7C82XQ+/GnQbvzmKz5jJgKvYJerXVX6QrtR4M16b7EB
+	dE1G9jiRHn2NRk3uViJ+bL8HKzPcAyPKnLQ1aLLKKQCZBktNrANukc/Iu7EFlOrgJ6SEAuzO3Ed3X
+	0fGzzBFA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUQ0Y-0000000FJjr-3pUF;
-	Fri, 20 Nov 2026 14:54:34 +0000
-Received: from mail-vk1-xa33.google.com ([2607:f8b0:4864:20::a33])
+	id 1xUS5A-0000000FchV-0i1Q;
+	Fri, 20 Nov 2026 17:07:28 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUQ0S-0000000FJiZ-1qwW
+	id 1xUS58-0000000FchM-3U54
 	for ath11k@lists.infradead.org;
-	Fri, 20 Nov 2026 14:54:33 +0000
-Received: by mail-vk1-xa33.google.com with SMTP id 71dfb90a1353d-5eab93a9862so247865e0c.0
-        for <ath11k@lists.infradead.org>; Fri, 20 Nov 2026 06:54:27 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795186467; cv=none;
-        d=google.com; s=arc-20260327;
-        b=D2yr/nNme6yYsFODOomooV/O4fNStj+5AWd8SdKXrWcfEmt81lsMWfr/1eQ6OSUYc1
-         s/JCYcn6hPYS+dzIeOU/sarUaiHAMpxp0M3WvIlECRBVgE+k55i5oeu/AVa3TQ4ZkHCC
-         lgOLAl76PXGA6s9uGv+iplDtD0JdzNk13hlgQb6AixlFeWYpCzvawjtL/JVG5ukbKAc8
-         YdZtLhnLxdlrNlze/A+DQsPM3475/YcDIMFvOpqnm07zoz6V99iUE24VUjKwzDsG0ywy
-         HkC0HJxBh8SRMp2c+SqWvl/wmi75tGZXvSNnaLeGr1lWWSzgikNN7YDxT6aUvmrAUC7c
-         lY7w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
-        bh=l086nUfGT3q2rZ2LvcCHUdhAGopSJtpRfCPg3hLnd+4=;
-        fh=6cbl+D3NNyud4jXTd8ezym50NAZEqu7/8Jrox0wa7G0=;
-        b=kgyc/NAriTPR/K5vV9VgmTkwTepchyhHsf36HMaY5qtOWnnE9ztcVFX90XDk7f7QDs
-         ej77CybqSWAqMj70bo6SFjen9oFz4Xow3lEwSZxBUwse6TlhyAIiFNACl8TGZsd4mNEu
-         MoGZtL174lDw5Tv4nZz+xC4XyUZSf08d3Hl4KwzqPUGDQ4HCeCvFFANSLbUK1jDPH+WY
-         wZuxablqeDRJpVYG6vVJXza8i2UbeM14JSkQL9VF04AHfJ9FB+h7MtpNQtTB+dtBCBJN
-         /CeFPt5r20aAvqrZ4PoJxA/kfp/SmBNldI01iPnwZDovzhQJtO/klipqiy0mlq7WqOUR
-         nNmQ==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795186467; x=1795791267; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:from:mime-version:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=l086nUfGT3q2rZ2LvcCHUdhAGopSJtpRfCPg3hLnd+4=;
-        b=FOXyi8RRgJllpH1l8nrnIIcGWzLDe7NGPWGhjFmQCnrhrKM1O6G1eJUE+QwhL/dHuz
-         yWKjEFBiCtDDlhVi/JXlBDn5/jKj1jXbtKh0ccwvRGSvfxKwYgAUHJHPRvt42p1m4HFA
-         X+UY82CPr2cJ0f4YGwc7oWc+1JqpwGKqZueEBO/ADndMFNfLkjtp27FdMLYgqwvtNjek
-         FAB16Fs/tV88qcC0RiG2iJaVl6UmfPYtwHCr7EITE7d6e02Ig1d+DS4c0mlCl629V77/
-         zPX17IUsPZE3u+Nvg3QCEB01EKtldycOJBSTKq68BEkoV8w3XOWWXJqzSNzjKiMgS1L7
-         6kgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795186467; x=1795791267;
-        h=content-type:cc:to:subject:message-id:date:from:mime-version
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=l086nUfGT3q2rZ2LvcCHUdhAGopSJtpRfCPg3hLnd+4=;
-        b=rLCiua5wHVtoj+KyWx0JkneTDS2q8Ds1FJCNorncDhEEmPtLEDASr4n7g1KYI/dbPj
-         qgeagB3XdR7hBQl30lRCk+EyM0hMoXptSX5crtpae6cT47o6M8rIabijgU1u5SJ7VcvW
-         8rtEJZKzOOEzvchH3RHdzM7YnFEiGTe1RhELaIU3ifEEGWwJB7kTaenzI77Uv10MwRML
-         6mJkke+87Zr11cyg7MHKKipOoz+z8U0f59jnSVFNItD/cIzXAWWkO/n/WW5rTu/gUMBZ
-         Cccx5guq9fPwMQht+DzF5HZtUmrmQsfxoI118XrzbyQHR/SFO41A5ra6blpY6Zy7CWSn
-         L40g==
-X-Forwarded-Encrypted: i=1; AL+hErGYpSmN6aqiNfaMRwIZaquuUuTqxUeDje1H85smVTPcOXMSvEOOPtLKLGwq7NgDbTG7oebbjzo=@lists.infradead.org
-X-Gm-Message-State: APuU4Z9dvXJHt83AWv2bIA7wH6dXOvxiTY0JjBuks4p5Vms+ZyLh9+bV
-	yNZEnfbBbsmCuXij0lIolLkzIwAWmdwtYx3Y+FEzbgAMSdFEQt7MFl00zGZ7yd9EFC2BD161I7e
-	9ANNqdMo327B+RXMpKA4oIh7fKK8cRkg=
-X-Gm-Gg: AZFdTZcsftnZKUGqQfL2J+HJ+ch5KPalhYhMAKwbfEI96OmZLJq3KKKF0WpWFrc7R2+
-	tEQ0FgJUNYhuuPONAchJnmjhOHruuKPLYt3Q/S5Slu2xpoRPrgk/pVAQSIaHLR83HuBzcZM1Q36
-	YEIxmRHKRbLHJZecUxBCGijvz56eIkZeLyFjs7nG6TMC4Qq66FMc8ZVHM58zDPCXPSlm43jodXn
-	uzYDK15dycrrE1kl5XonNI60MspMirQJeBKBycpSmBpZ3aajUmcNyWWqsYDbJgI9lBZw5GpOvGV
-	c6OJAELbbcDktLg6JIrAQ2qxfLoo8p1QE9zTPt818WKmDJOWfi8XQKbwJ3aHFcpyHOEVMMurpge
-	KADFT8fDrvNGxnCJBvNBfbJEnpT9dOjC7teVzHVFfM6nrKcVqF1Viz5v9gjKoKs5GcgrulvV167
-	NCNUczJSj9XXfPPsGDnA==
-X-Received: by 2002:a05:6122:3a19:b0:5ec:b6d7:9b46 with SMTP id
- 71dfb90a1353d-5ee8ade9b3amr1350725e0c.3.1795186466579; Fri, 20 Nov 2026
- 06:54:26 -0800 (PST)
+	Fri, 20 Nov 2026 17:07:27 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 2236845555;
+	Fri, 20 Nov 2026 17:07:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EB201F000C6;
+	Fri, 20 Nov 2026 17:07:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795194445;
+	bh=phOjL0w+VRiN+NhcbEJ2zR/nluvM+fUE8X10MN17x2s=;
+	h=Date:From:To:Cc:Subject:In-Reply-To;
+	b=Da7eOPDchXz2Kj3exn9wy+clU1mj33INfXEXB8ylea+f2OvZrSHNdgtxpKwQNSSWW
+	 uAKHXidzc7d6LAMV4oYvljXMhyLCRT47HEQQMcYSbPz+1kttrMdd6G4v5wfZ0UITVf
+	 eOwBtH8Ln/DwSgxnQXZZWDDRnRP71OSc8sj9DOvH6Xq+vshEZBlk8wZ7CTSBJcSKV4
+	 WVK1ntZnq/5L02Vzle4vy0CzpF0qoupHIkEObrEwm/dni7AFXPiO472N+R5j94qF94
+	 gmo7zhl5IS9PMk39p/O5BzH9813fi2RGInHrUjBUY8cU3q5KRgRUZJNQARg/1HBz4f
+	 c7wxZc87suYPA==
+Date: Fri, 20 Nov 2026 11:07:24 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Rob Herring <robh@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev,
+	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+	qiang.yu@oss.qualcomm.com, Val Packett <val@packett.cool>
+Subject: Re: [PATCH v6 1/7] PCI/bwctrl: Set host bridge OPP and optionally
+ disable ASPM around link retraining
+Message-ID: <20261120170724.GA889135@bhelgaas>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-From: Christopher Griffin <christophergriffin05@gmail.com>
-Date: Fri, 20 Nov 2026 08:54:15 -0600
-X-Gm-Features: Aa3M54oeS5uX-0Ck4ISDiMv4gz1OVwu_ru9ceyr_rXX6mPr_8kmYpVXPxRxJ0eY
-Message-ID: <CAKobHXBMM5CL1Vqaate=+DrXunEzcjKFbSSx1r7a1Oj+7ziMwg@mail.gmail.com>
-Subject: QCN9074: HE SU TX A-MPDU stops at 64 MPDUs with a 256 BA agreement
-To: Baochen Qiang <baochen.qiang@oss.qualcomm.com>, 
-	Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
-Cc: Jeff Johnson <jjohnson@kernel.org>, ath11k@lists.infradead.org, 
-	linux-wireless@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_065428_619763_6F73C50B 
-X-CRM114-Status: UNSURE (   6.98  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261119-bwscale-v6-1-9a9a715fcb46@oss.qualcomm.com>
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,66 +77,189 @@ List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello Baochen, Rameshkumar,
+On Thu, Nov 19, 2026 at 06:26:33PM +0530, Krishna Chaitanya Chundru wrote:
+> PCIe host bridge devices may need their operating point raised before
+> retraining to a higher link speed so that hardware resources (e.g., RPMh
+> votes on Qualcomm platforms) are available at the requested data rate.
+> After retraining, the operating point must be updated to reflect the
+> actual negotiated speed.
+> 
+> Add pcie_set_opp() to look up an OPP on the host bridge parent device
+> using a key of (total link rate in kHz, LNKCTL2 Target Link Speed
+> level). The total link rate is the per-lane rate multiplied by the
+> link width, so that OPP tables can carry separate entries per generation
+> and width, e.g. Gen 3 x1 and Gen 3 x2.
+> 
+> In pcie_set_target_speed(), call pcie_set_opp() before retraining only
+> when upscaling (speed_req > cur_bus_speed), since only raising the
+> operating point requires pre-staging hardware.  After retraining, call
+> pcie_set_opp() unconditionally with the actual cur_bus_speed to settle
+> the votes.  Both calls are skipped for downstream ports of PCIe switches,
+> as those are outside the host controller's scope.
+> 
+> Some controllers also require ASPM to be disabled around link retraining.
+> Add a disable_aspm_for_retrain flag to pci_host_bridge; when set,
+> pcie_set_target_speed() saves the child device's ASPM state, disables
+> all ASPM link states before retraining, and restores them afterward. The
+> child device is used because the ASPM core ignores requests made on the
+> Root Port itself and configures the link through its downstream device.
+> The states are restored with pci_force_enable_link_state(), as a
+> plain enable does not undo pci_disable_link_state().
 
-A firmware question on QCN9074 hw1.0, separate from the boot problem in
-my thread "ath11k: QCN9074 public firmware stalls at QMI cap request on
-C-360".
+This ASPM part looks like it should be split into a separate patch.
+Apparently the ASPM retrain issue is controller errata, not PCIe spec
+behavior, so it should be separated and described that way.
 
-As a 6 GHz AP (160 MHz, HE-MCS 11, 2 streams to a WCN7850 client),
-the QCN9074 never puts more than 64 MPDUs in an HE SU PPDU, although
-the BA agreement is 256: ath11k sends WMI_VDEV_PARAM_BA_MODE 3, and the
-client's ADDBA response carries buf_size 256. With full 7-MSDU A-MSDUs
-a PPDU is about 2.3 ms of the 5.484 ms allowed, and with preamble,
-RTS/CTS, BlockAck and backoff about 15% of the air goes to per-PPDU
-overhead. Downlink stops at 1.82-1.83 Gbit/s TCP.
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> Tested-by: Val Packett <val@packett.cool> # x1e80100-dell-latitude-7455
+> ---
+>  drivers/pci/pcie/bwctrl.c | 65 ++++++++++++++++++++++++++++++++++++++++++++++-
+>  include/linux/pci.h       |  1 +
+>  2 files changed, 65 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/pcie/bwctrl.c b/drivers/pci/pcie/bwctrl.c
+> index 3b1122461ffd..c1e749df5bbe 100644
+> --- a/drivers/pci/pcie/bwctrl.c
+> +++ b/drivers/pci/pcie/bwctrl.c
+> @@ -28,9 +28,11 @@
+>  #include <linux/mutex.h>
+>  #include <linux/pci.h>
+>  #include <linux/pci-bwctrl.h>
+> +#include <linux/pm_opp.h>
+>  #include <linux/rwsem.h>
+>  #include <linux/slab.h>
+>  #include <linux/types.h>
+> +#include <linux/units.h>
+>  
+>  #include "../pci.h"
+>  #include "portdrv.h"
+> @@ -98,6 +100,37 @@ static int pcie_bwctrl_change_speed(struct pci_dev *port, u16 target_speed, bool
+>  	return pcie_retrain_link(port, use_lt);
+>  }
+>  
+> +static int pcie_set_opp(struct pci_dev *pdev, struct pci_host_bridge *host,
+> +			enum pci_bus_speed speed)
+> +{
+> +	struct device *dev = host->dev.parent;
+> +	struct dev_pm_opp_key key = {};
+> +	int ret, freq_mbps, width;
+> +	unsigned long freq_kbps;
+> +	struct dev_pm_opp *opp;
+> +	u16 lnksta;
+> +
+> +	pcie_capability_read_word(pdev, PCI_EXP_LNKSTA, &lnksta);
+> +	width = FIELD_GET(PCI_EXP_LNKSTA_NLW, lnksta);
+> +
+> +	freq_mbps = pcie_dev_speed_mbps(speed);
+> +	if (freq_mbps < 0)
+> +		return -EINVAL;
+> +
+> +	freq_kbps = freq_mbps * KILO * width;
+> +	key.freq = freq_kbps;
+> +	key.level = pci_bus_speed2lnkctl2(speed);
+> +	opp = dev_pm_opp_find_key_exact(dev, &key, true);
+> +	if (!IS_ERR(opp)) {
+> +		ret = dev_pm_opp_set_opp(dev, opp);
+> +		if (ret)
+> +			dev_err(dev, "Failed to set OPP for freq (%lu): %d\n",
+> +				freq_kbps, ret);
+> +		dev_pm_opp_put(opp);
+> +	}
+> +	return 0;
+> +}
+> +
+>  /**
+>   * pcie_set_target_speed - Set downstream Link Speed for PCIe Port
+>   * @port:	PCIe Port
+> @@ -118,9 +151,12 @@ static int pcie_bwctrl_change_speed(struct pci_dev *port, u16 target_speed, bool
+>  int pcie_set_target_speed(struct pci_dev *port, enum pci_bus_speed speed_req,
+>  			  bool use_lt)
+>  {
+> +	struct pci_host_bridge *host = pci_find_host_bridge(port->bus);
+> +	bool is_rootbus = pci_is_root_bus(port->bus);
+>  	struct pci_bus *bus = port->subordinate;
+> +	struct pci_dev *child = NULL, *dev;
+> +	int aspm_state = 0, ret;
+>  	u16 target_speed;
+> -	int ret;
+>  
+>  	if (WARN_ON_ONCE(!pcie_valid_speed(speed_req)))
+>  		return -EINVAL;
+> @@ -130,6 +166,27 @@ int pcie_set_target_speed(struct pci_dev *port, enum pci_bus_speed speed_req,
+>  
+>  	target_speed = pcie_bwctrl_select_speed(port, speed_req);
+>  
+> +	/*
+> +	 * Host Bridge resources may need to be scaled for targeted speed
+> +	 * otherwise link might not come up at requested speed.
+> +	 */
+> +	if (bus && is_rootbus && host) {
+> +		/* Get function 0 of downstream device */
+> +		list_for_each_entry(dev, &bus->devices, bus_list) {
+> +			if (PCI_FUNC(dev->devfn) == 0) {
+> +				child = dev;
+> +				break;
+> +			}
+> +		}
+> +
+> +		if (child && host->disable_aspm_for_retrain) {
+> +			aspm_state = pcie_aspm_enabled(child);
+> +			pci_disable_link_state(child, PCIE_LINK_STATE_ALL);
+> +		}
 
-Numbers from htt_stats PDEV_TX (mpdu_count_tqm / num_data_ppdus_tried_ota),
-iperf3 TCP x8, 20 s runs, client at -37 dBm, HE-MCS 11 on 98% of PPDUs:
+The current pci_disable_link_state() only works when called for the
+downstream device, but it's sort of weird to have to look up a
+downstream function 0 here.  I wish we had a way to say "this device
+(either a Downstream Port or an Upstream Port (an endpoint)) doesn't
+support this link state; please configure the link accordingly".  But
+I don't think we have that today, so this is probably the best thing
+we can do.
 
-  WLAN.HK.2.5.r4-00683            64.0 and 64.3 MPDU/PPDU, 7.00 MSDU/MPDU
-  WLAN.HK.2.15.0.1.r2-00004       67.6 and 63.6 MPDU/PPDU, 6.99 MSDU/MPDU
-  2.5.r4, A-MSDU limited to 2     71.0 MPDU/PPDU in a ~0.7 ms PPDU
+> +		if (speed_req > bus->cur_bus_speed)
+> +			pcie_set_opp(port, host, speed_req);
+> +	}
+> +
+>  	scoped_guard(rwsem_read, &pcie_bwctrl_setspeed_rwsem) {
+>  		struct pcie_bwctrl_data *data = port->link_bwctrl;
+>  
+> @@ -154,6 +211,12 @@ int pcie_set_target_speed(struct pci_dev *port, enum pci_bus_speed speed_req,
+>  	    !list_empty(&bus->devices))
+>  		ret = -EAGAIN;
+>  
+> +	if (bus && is_rootbus && host) {
+> +		if (child && host->disable_aspm_for_retrain)
+> +			pci_force_enable_link_state(child, aspm_state);
+> +		pcie_set_opp(port, host, bus->cur_bus_speed);
+> +	}
+> +
+>  	return ret;
+>  }
+>  
+> diff --git a/include/linux/pci.h b/include/linux/pci.h
+> index 9cbcadd08f3d..352079393edb 100644
+> --- a/include/linux/pci.h
+> +++ b/include/linux/pci.h
+> @@ -673,6 +673,7 @@ struct pci_host_bridge {
+>  	unsigned int	msi_domain:1;		/* Bridge wants MSI domain */
+>  	unsigned int	broken_l1ss_resume:1;	/* Resuming from L1SS during
+>  						   system suspend is broken */
+> +	unsigned int	disable_aspm_for_retrain:1; /* Disable ASPM before link retain */
 
-The last line suggests the limit counts MPDUs, not airtime or bytes.
+s/retain/retrain/
 
-None of these moved it (each accepted, status 0, one at a time and all
-together):
-
-  WMI_PDEV_PARAM_MAX_MPDUS_IN_AMPDU 256
-  WMI_PDEV_PARAM_SET_PPDU_DURATION_CMDID 5400
-  WMI_VDEV_SET_CUSTOM_AGGR_SIZE_CMDID tx_aggr_size 256, A-MPDU, with
-    and without the 256 BA bit
-  WMI_VDEV_PARAM_ENABLE_RTSCTS 0
-  peer_max_mpdu in WMI_PEER_ASSOC from 65535 to 8388607 bytes
-
-WMI_PDEV_PARAM_AGGR_BURST 5400 made PPDUs shorter (~31 MPDUs). Setting
-WMI_VDEV_PARAM_BA_MODE to 0, 5 or 6 instead of 3 also gave shorter
-PPDUs (~40 MPDUs) but RTS on a quarter of the PPDUs instead of ~60%.
-
-Two questions:
-
-1. Is 64 MPDUs per HE SU PPDU a design limit of the QCN9074 firmware,
-   or is there a WMI or INI setting that enables 256-MPDU HE SU TX?
-
-2. If it is the firmware, could a QCN9074 build that sends up to 256
-   MPDUs per HE SU PPDU be published in linux-firmware?
-
-These cards only boot release-branch builds (2.5.r4, 2.15.0.1.r2; the
-other thread), so a build from such a branch is what I could test. I
-can run any build or setting you suggest on two QCN9074 cards and send
-htt_stats, logs or a capture.
-
-Thank you,
-Christopher
-
-The tests and this note were prepared with Claude, an AI coding
-assistant.
+>  
+>  	/* Resource alignment requirements */
+>  	resource_size_t (*align_resource)(struct pci_dev *dev,
+> 
+> -- 
+> 2.34.1
+> 
 
