@@ -2,81 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ECF1606A689
-	for <ath11k@archiver.kernel.org>; Sun, 22 Nov 2026 21:05:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA495606A6A3
+	for <ath11k@archiver.kernel.org>; Sun, 22 Nov 2026 21:05:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=om0A9fwV;
-	dkim=pass (2048-bit key) header.d=bairaktaris.de header.i=@bairaktaris.de header.a=rsa-sha256 header.s=google header.b=Ddz0USLc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2PCZQ2cf;
+	dkim=pass (2048-bit key) header.d=bairaktaris.de header.i=@bairaktaris.de header.a=rsa-sha256 header.s=google header.b=Vz23vfco
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=0Bkx2jlQcxYbAjWN1LA9t9bAHgweEVF16qJ99FDl9R4=; b=om0A9fwVdNadbW
-	8/wR/dGQmSwTagOTZH5rC+i0MDz8tg1Ddl5veSUU7/OJe0jueNhYbIOQpR1Ippnmryq+oAl1PkoRI
-	Ip529Rrv5AmVwjyJBDJseaIjooMstNXUiSYQZGKEe/jdn3NIacav85rwPEmAIIX85t5szkfQ07qEo
-	D7jpibs93m+EyIML/Uct3MOiPd+Q7cx4Q17Qs/ux9wmIcX5H+8porutDohEDYBXLchAHRCADLtnDK
-	2o37vCwcb+aEjKDIfzxdOWwielM7dYjNfCCSAbjsoHKwz60EDD9AfRc0q0yPmyKi7TiaWIUqRMlEb
-	JfDZzji3Blgh/c5eWBuQ==;
+	List-Owner; bh=QCEpjMx3kdrE6DA4xpjKx+hhlCUfgttQ3iyKZdx+PN0=; b=2PCZQ2cf0X4Nns
+	NIb/yveArrx8lpIEC80HgMoitomsjlA4PxWR+0pwhmubi/62O2X2tysELzZZ8OMXk9aFZWVOo2S3F
+	9UzxaZvtdmS4+DI9IrAerdmFKIO7joFKlyqtRRX9bHQzR5mwKQD8gRLv03V1YnnJOeGQcCmUt4ji2
+	MmNU78Trrx7opVPUW7C4wy6V46c8dm4LfNWIDyxBGvuv5kOuobH5wh923r4/A5+NYnzejFs73vcjs
+	9TpKFqsmgm0UeJH6fcUGPCzRWS1nYujJfSNivj5gCigGYr35Vkdu+CMfX7fRMkheFjrcZb5ie+afl
+	D5/jDuUxvt/7x9tnvDlQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVEkc-00000001kkF-3sbL;
-	Sun, 22 Nov 2026 21:05:31 +0000
-Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
+	id 1xVEke-00000001knO-239c;
+	Sun, 22 Nov 2026 21:05:32 +0000
+Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVEkZ-00000001kgg-3fng
+	id 1xVEkY-00000001kg6-3iZw
 	for ath11k@lists.infradead.org;
 	Sun, 22 Nov 2026 21:05:29 +0000
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-c4322d310e7so467902466b.0
-        for <ath11k@lists.infradead.org>; Sun, 22 Nov 2026 13:05:27 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-c4d28f75d62so440914166b.0
+        for <ath11k@lists.infradead.org>; Sun, 22 Nov 2026 13:05:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bairaktaris.de; s=google; t=1795381526; x=1795986326; darn=lists.infradead.org;
+        d=bairaktaris.de; s=google; t=1795381525; x=1795986325; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=0Bkx2jlQcxYbAjWN1LA9t9bAHgweEVF16qJ99FDl9R4=;
-        b=Ddz0USLcE+g5Pc6bL4JElBeGzfMWXOEzm6DM1SohdpiEcpq+NMUwEOpIuZdZfu8X2J
-         +WTgYZc/hH/mAHB5WnyIYl8R/RM2jdyigoGw3rordRd+fP3s49enVrWlJNbLAR7AngAM
-         YUSQPZMpv+scKWcIC5U4oScPRsvFm+qc/xXq+JdRuNXdFnJdboWhPurMRY0p6ZZftAeY
-         +QwMYVuL2J60jljUP8Uu6x9k2F3iHfhp88Y2oxq4SI/zbSOvWG8zYs4+DKpIbgZ+Yagu
-         lGV2Om//MiUXwDcj9kfGpkb3/n2cmndCYaAuEoMvtFwh5U53dVuAj/IHGzsT9RGBHcpG
-         Y50A==
+        bh=QCEpjMx3kdrE6DA4xpjKx+hhlCUfgttQ3iyKZdx+PN0=;
+        b=Vz23vfco7F4zoTrfeWZbRu7TbDzbOZhd+h7koX3Gi4gdcfWbAbbv58EKF0i2umsyfR
+         arXzLmNqN5uGu3Rv6aQP3lOczK3hZyj9ZpWr3OyesUkEZYkAz0Q7zGHAqpegWfpnb1bJ
+         l1smFcFMiz4E+5BLLHouUVLuUHX4qNGCBR9mR4gUQ+Kk3GvaPLbIcUmWUmkadH3dewTg
+         YqjZlvTRWqwY9CSNW41VGCVh0gx2tVXzfDhT1hIxJD7Gzf//GLSSY9ayu6OmYGA+9XLY
+         F5rOxCd36airCiYInR9U9c68nXn17hiJbzPuNdaZs91Mj2iwvuxMGmVqluyeIdmCu3T8
+         yg5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795381526; x=1795986326;
+        d=1e100.net; s=20260707; t=1795381525; x=1795986325;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=0Bkx2jlQcxYbAjWN1LA9t9bAHgweEVF16qJ99FDl9R4=;
-        b=MFvsikvx1FViQ3EfLp85HoIINrgOuq44LzmubztrI53D5zjdMph+eoQ7NE00l2mTCv
-         W/FmrZ223jSZy0J3vImaj/c9Q6HvnABLNp1GyYke0/E/BOxCOn89avAFxyJIOBddW5JG
-         qtkxwA2JChUWfGbbYtjwJJgAWWNwB6P9fiR3eHUhj72nNs8Fqb+yHOGvYEICYOTOAx1N
-         QcKZNZq/CgQDEQdMmnUCTfJ9JJNAxFZretz/BntUtC3v3QC4gKRd8LagZdcd0Ou8aYzt
-         AIbil+/EIoseF7MejxXnDnH+gbEJMdQU1HLPHs00NWUj945QmNe7XuDrkpTTLGU9gMDN
-         WscA==
-X-Forwarded-Encrypted: i=1; AL+hErHJOA5WUJsKNFfbulgu9Y8A0bl0MDc5gqjx3fY5dZYH2HDsQRaEcTTw/wUQdQ1L9bNc97FQa6k=@lists.infradead.org
-X-Gm-Message-State: APuU4Z/8P62D1EXb/5yifVYfnWZLeyKHucaLj0q/XprvZeUqtz8CJ9m8
-	xm+Os6pk390QhBh6dOcRaYWX+Y1dF+ChvJixdxwzvYIFtz7fJj+ZeIIeN4MkQZ8HPg==
-X-Gm-Gg: AZFdTZeVcEyIghgLRHHhYdEFJRT4u0yG2SlcZp+judva8egMvIZWUa+c8IKW6u39awK
-	J17PQ1sTsbKBDM7v1twAWA3lbBVsk8vunHUeaGqU3d5e/x1laH7UoeSDD2CN6YUjbOZVjy9hJIt
-	c+KjGxqQtsRlUXEtm2w1RSIrMF4DgcwikdClWGY6uedKuTxwB5iQHn2UhSyeMvNd0s+Dh5EoV91
-	EOc0fJg7hIXoJ+1DC27MhZdOxOoMJzD+vYzqCgWZcZkzDzOv7o7TUm0MA7vVAae3UigB0A1Idtm
-	a/GaauLYprASlU7aRN1t2Mp1Lu/sddBYyOAcHUGKTKpwB511DXGBGG4f3i3p3gQrSiieUCKDgwU
-	DFV/h/vJCqk6aYlkqGAdWwq5IIdP7DJjGFdm3geG14itCh3L8gAw38G0KkDIeIjCnEEH4qy3XvH
-	VQGNTTPX5rcxGL9fjN9H6DC3gZoi2eipwo3+VNa2f5c6wXV6/wyR/OBXV6ZjTOb3RFXXwYb0Rs7
-	SDBwlaTclT0MvZzpWw8cJb47T/Xtd5phd/Fn8pyEKJFd9Doe1KkwZCWbGxec2ipRribWsVriQb9
-	vabslTAnLZtPrzEJWkL7Twc3UXYG+XCMw57aGkA/UaPsXV7qDOLMCmVWT0oCk0NsL/9/UGi+URe
-	475WWNz6x71ZmduXQZeNqzwEHjCG/io97A2+1UrAUztf17LzUQDnvqNVopa/8hcR7MOKLBBt99J
-	42xMlzZm4LZD9+kx1UX0gQl4fZ8CCOljpbbFUaWiEmcVBas6sQJMuJPdMB1d/yTDNy9aG4Vt+lO
-	ZcfvDnb0aRA3v9k5MyC9XYBEOWJKdsBlz+Rk3pRqv6jN06kXaTadJ30OFPfZOdFlE8FfUU60xyX
-	XK12nBdqfO4v7DbOfzLNPdm7gWymapjdSy3r8+/L/5YVtuJ5EeCulxZBAI8GIy+jhUN2Xpsjsw=
+        bh=QCEpjMx3kdrE6DA4xpjKx+hhlCUfgttQ3iyKZdx+PN0=;
+        b=GyjQjDb1E3hjRk6yqzlxRQLY0i+yLUP8D1m+IUcr4CmGwP70B8LLscUi8SudAzKBxz
+         nbKxS0AA8Z/v3Srk6kJD4dOPqVCfk4iPV/df5ypEGtXp9aVTUunEnYEE10tbSUae/o+f
+         i/JRCV3sXObf/ubanXxedModKIHoa5JbO/01sshH2zxTDWcabKjIC1UwAfdB2/DEqYhd
+         eJnb/60sBWz+6dm/Xgcg0d38tsNCJAr6XmxncJnQ1h/+pKq8+/J9CwS3k0xNXKfn55mU
+         9TY5ueFDWsRU5hlUceCylG1/IFAb4GQPIfNmdHyZd9Vxiv8Hc1LPrKxrTqWHUzG7tdNn
+         DEFQ==
+X-Forwarded-Encrypted: i=1; AL+hErE2sNT8HmRkLPYD5w1CR9VV9NmFb7VCDiHfw54UBBedwJmhvTB1QBgJb3eoQYy6O9A7j2cHv0w=@lists.infradead.org
+X-Gm-Message-State: APuU4Z/+mTQPSf+ho2844KEkn/MwRku/k2WgPC7aiVMLFQSF8F9Sd60e
+	ET8K9J8iEujHzawc5x07YqAUnTU0KOcum8Zj//C3daLQwfnrcy5EN7Sk/T/TOEIwyQ==
+X-Gm-Gg: AZFdTZdVZorekDzKVEdTsY0w4EOn6GcXm8MdU9xr9j7/yW4Cw1596ER+1i2xOWP6yrI
+	zVphHkduvhDJHTE/Z39UrkSkLNuyTPaNCYbGc6msogAmKGup+0VnJUs0XVrayyTbv43QHGCVjVp
+	xPNfrE+bk+jcPP0Tpfo6zafZu0spEs8RDDJFH76dBqSSOU77iQ1M8c+tl6QVrC7HUol6FFfuMSr
+	09AINj1Eei6/8brybNmwOCncRHWbrY5Bn9my0g13K66cIK/+OyRQVWPWWtXOoI9BDi4PEohJBb/
+	UvsI3xm/Z7Yn77HePhrZ0HV3yiz9fv9ztH1rXkDKjse/jj/USXdkDbFzc18YT9/Q2WfNl7pjbsL
+	a1oWTmDYLvNtxWtoqXkc9uxQimHp+Y2wBuJPdwp0CUYUBR4Zf0IegFD/Y6TCCa3pEe4p5pv94AS
+	oCszYVDZmylbAtxQtKjZV+2MxgXutapDaAFNDx/RSDRgdRVzJDqCoWvchCMIkRd4401LzHblmHQ
+	cGU+ML+3z4IIK6KIuUNIGm7boyFIV+6SLYdiWmV1VgWdcZ3A1nCd8tI9u7N6Yn38eRRffzosK32
+	60Zs6SvT37NJ+VScO0Knm+02x5J4D0FeAKiKsx3W3NMsbl8xYjsDt+TnvfVDWfxGjUyjWqGlP0l
+	ZfvHoHrp0iFHm5SSdjC3BcaLV8mho2ys4inJLlir1U/K+y+NBN9LjUqvELP56o6of1qP0h1lrt0
+	n/RbIgSCIZWbQ7FMiUmgcwPMUDG0hF5SoBGEIz6yLpfL0pOLSIF1PwQrhTJbYtoEN6WQouZ/1j+
+	wjrpFnuseEI5sgHEy2TaUENwJT43eicfej03AiEhfZecxqQZHm1WGFR0Yi0p97Q939v1v9URa/R
+	uohrt+cBfwakJ2568y6qbq2jCS83VQxF0y5kfLaWB+XY9AtEqaDZyh3+30WjJhi8WCJYepva5Q=
 	=
-X-Received: by 2002:a17:907:c13:b0:c4c:c997:8711 with SMTP id a640c23a62f3a-c513ac67123mr760146366b.38.1795381525929;
-        Sun, 22 Nov 2026 13:05:25 -0800 (PST)
+X-Received: by 2002:a17:907:1396:b0:c48:a838:c16d with SMTP id a640c23a62f3a-c513ab4925bmr529622866b.30.1795381524970;
+        Sun, 22 Nov 2026 13:05:24 -0800 (PST)
 Received: from Desktop.tail070c67.ts.net (p200300f24713d300ad8e04c1718a6e78.dip0.t-ipconnect.de. [2003:f2:4713:d300:ad8e:4c1:718a:6e78])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c513afc2455sm339935766b.57.2026.11.22.13.05.25
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c513afc2455sm339935766b.57.2026.11.22.13.05.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Nov 2026 13:05:25 -0800 (PST)
+        Sun, 22 Nov 2026 13:05:24 -0800 (PST)
 From: Julius Bairaktaris <julius@bairaktaris.de>
 To: Jeff Johnson <jjohnson@kernel.org>
 Cc: linux-wireless@vger.kernel.org,
@@ -106,9 +106,9 @@ Cc: linux-wireless@vger.kernel.org,
 	Carl Huang <quic_cjhuang@quicinc.com>,
 	Maharaja Kennadyrajan <quic_mkenna@quicinc.com>,
 	Govindaraj Saminathan <quic_gsamin@quicinc.com>
-Subject: [PATCH ath-next 2/6] wifi: ath12k: only trust the RX checksum of a frame the hardware checked
-Date: Sun, 22 Nov 2026 22:05:21 +0100
-Message-ID: <20261122210525.2076058-3-julius@bairaktaris.de>
+Subject: [PATCH ath-next 1/6] wifi: ath11k: only trust the RX checksum of a frame the hardware checked
+Date: Sun, 22 Nov 2026 22:05:20 +0100
+Message-ID: <20261122210525.2076058-2-julius@bairaktaris.de>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261122210525.2076058-1-julius@bairaktaris.de>
 References: <20261122210525.2076058-1-julius@bairaktaris.de>
@@ -116,8 +116,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_130527_986542_54C86813 
-X-CRM114-Status: GOOD (  14.34  )
+X-CRM114-CacheID: sfid-20261122_130527_289983_B7C3E6B1 
+X-CRM114-Status: GOOD (  17.60  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -132,160 +132,193 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-ath12k_wifi7_dp_rx_h_csum_offload() marks every received MSDU
-CHECKSUM_UNNECESSARY unless the MSDU end TLV reports an IP or TCP/UDP
+ath11k_dp_rx_h_csum_offload() marks every received MSDU
+CHECKSUM_UNNECESSARY unless the attention TLV reports an IP or TCP/UDP
 checksum failure. Those bits report a checksum the hardware computed
 and found wrong, so both are also clear for a frame whose transport
 checksum it never computed: any protocol other than TCP and UDP, such
-as ICMP, ICMPv6 or GRE, a TCP or UDP frame whose headers it did not
-parse, and an IP fragment, which carries only part of the datagram its
-checksum covers. icmp_rcv() then takes the checksum as verified, and a
-UDP datagram whose fragments all carry CHECKSUM_UNNECESSARY keeps it
-after reassembly.
+as ICMP, ICMPv6 or GRE, and a TCP or UDP frame whose headers it did not
+parse within the first 256 bytes. An IP fragment carries only part of
+the datagram its checksum covers.
 
-ath11k has the same check. Extract the protocol, fragment and
-header-parsed flags of the MSDU end TLV with the other descriptor
-fields on each chip, and mark a frame CHECKSUM_UNNECESSARY only when it
-is TCP or UDP, not a fragment, and its IP and TCP/UDP headers were
-parsed.
+The stack then skips the checks it would make: icmp_rcv() takes the
+checksum as verified, and reassembly keeps CHECKSUM_UNNECESSARY when
+every fragment carries it, so a UDP datagram that arrives in fragments
+is never checked. By the code this holds for every ath11k chip and frame
+mode and
+for any frame an associated peer sends.
+
+The MSDU start TLV carries the flags that say what the hardware parsed:
+TCP, UDP, IP fragment, and whether the fixed IP header and the TCP/UDP
+header were parsed. Mark a frame CHECKSUM_UNNECESSARY only when it is
+TCP or UDP, not a fragment, and both headers were parsed;
+ath10k_htt_rx_get_csum_state() already leaves a frame that is neither
+TCP nor UDP to the stack. The flags sit in a different descriptor
+layout on each chip family, so add a hw_ops accessor for the MSDU start
+word that holds them.
 
 Found by reading the code with an AI review tool.
 
-Fixes: d889913205cf ("wifi: ath12k: driver for Qualcomm Wi-Fi 7 devices")
+Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
 Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
 ---
- drivers/net/wireless/ath/ath12k/hal.h               |  1 +
- drivers/net/wireless/ath/ath12k/wifi7/dp_rx.c       |  8 +++++++-
- drivers/net/wireless/ath/ath12k/wifi7/hal_qcc2072.c | 11 +++++++++++
- drivers/net/wireless/ath/ath12k/wifi7/hal_qcn9274.c | 12 ++++++++++++
- drivers/net/wireless/ath/ath12k/wifi7/hal_wcn7850.c | 12 ++++++++++++
- 5 files changed, 43 insertions(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 23 +++++++++++++++++++++--
+ drivers/net/wireless/ath/ath11k/hw.c    | 22 ++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/hw.h    |  1 +
+ 3 files changed, 44 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath12k/hal.h b/drivers/net/wireless/ath/ath12k/hal.h
-index 343e1636b4cc..003baf0d3ea0 100644
---- a/drivers/net/wireless/ath/ath12k/hal.h
-+++ b/drivers/net/wireless/ath/ath12k/hal.h
-@@ -732,6 +732,7 @@ struct hal_rx_desc_data {
- 	    is_decrypted:1,
- 	    ip_csum_fail:1,
- 	    l4_csum_fail:1,
-+	    l4_csum_checked:1,
- 	    is_first_msdu:1,
- 	    is_last_msdu:1,
- 	    mesh_ctrl_present:1,
-diff --git a/drivers/net/wireless/ath/ath12k/wifi7/dp_rx.c b/drivers/net/wireless/ath/ath12k/wifi7/dp_rx.c
-index 473887ed4bb1..4a57d89669ab 100644
---- a/drivers/net/wireless/ath/ath12k/wifi7/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath12k/wifi7/dp_rx.c
-@@ -344,7 +344,13 @@ int ath12k_wifi7_dp_rx_tid_delete_handler(struct ath12k_base *ab,
- static void ath12k_wifi7_dp_rx_h_csum_offload(struct sk_buff *msdu,
- 					      struct hal_rx_desc_data *rx_info)
- {
--	msdu->ip_summed = (rx_info->ip_csum_fail || rx_info->l4_csum_fail) ?
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 6d95f7b343a5..93425ee02774 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1865,13 +1865,32 @@ static void ath11k_dp_rx_h_csum_offload(struct ath11k *ar, struct sk_buff *msdu)
+ 	struct ath11k_skb_rxcb *rxcb = ATH11K_SKB_RXCB(msdu);
+ 	struct rx_attention *rx_attention;
+ 	bool ip_csum_fail, l4_csum_fail;
++	u32 info2;
+ 
+ 	rx_attention = ath11k_dp_rx_get_attention(ar->ab, rxcb->rx_desc);
+ 	ip_csum_fail = ath11k_dp_rx_h_attn_ip_cksum_fail(rx_attention);
+ 	l4_csum_fail = ath11k_dp_rx_h_attn_l4_cksum_fail(rx_attention);
++	info2 = ar->ab->hw_params.hw_ops->rx_desc_get_msdu_start_info2(rxcb->rx_desc);
+ 
+-	msdu->ip_summed = (ip_csum_fail || l4_csum_fail) ?
+-			  CHECKSUM_NONE : CHECKSUM_UNNECESSARY;
++	msdu->ip_summed = CHECKSUM_NONE;
++
++	if (ip_csum_fail || l4_csum_fail)
++		return;
++
 +	/*
 +	 * The failure bits only report a checksum the hardware computed, so
-+	 * they are also clear for a frame it did not check: anything but a
-+	 * TCP or UDP frame whose headers it parsed, and an IP fragment.
++	 * they are also clear for a frame it did not check. It checks the
++	 * TCP or UDP checksum of a frame whose IP and TCP/UDP headers it
++	 * parsed; an IP fragment does not carry the whole datagram the
++	 * checksum covers.
 +	 */
-+	msdu->ip_summed = (rx_info->ip_csum_fail || rx_info->l4_csum_fail ||
-+			   !rx_info->l4_csum_checked) ?
- 			   CHECKSUM_NONE : CHECKSUM_UNNECESSARY;
- }
- 
-diff --git a/drivers/net/wireless/ath/ath12k/wifi7/hal_qcc2072.c b/drivers/net/wireless/ath/ath12k/wifi7/hal_qcc2072.c
-index f579fdfc7c1d..23a07ca5aaa9 100644
---- a/drivers/net/wireless/ath/ath12k/wifi7/hal_qcc2072.c
-+++ b/drivers/net/wireless/ath/ath12k/wifi7/hal_qcc2072.c
-@@ -347,6 +347,16 @@ static bool ath12k_hal_rx_h_l4_cksum_fail_qcc2072(struct hal_rx_desc *desc)
- 			       RX_MSDU_END_INFO13_TCP_UDP_CKSUM_FAIL);
- }
- 
-+static bool ath12k_hal_rx_h_l4_csum_checked_qcc2072(struct hal_rx_desc *desc)
-+{
-+	u32 info11 = __le32_to_cpu(desc->u.qcc2072.msdu_end.info11);
++	if (!(info2 & (RX_MSDU_START_INFO2_TCP | RX_MSDU_START_INFO2_UDP)) ||
++	    (info2 & RX_MSDU_START_INFO2_IP_FRAG) ||
++	    !(info2 & RX_MSDU_START_INFO2_IP_FIXED_HDR_VALID) ||
++	    !(info2 & RX_MSDU_START_INFO2_IP_TCP_UDP_HDR_VALID))
++		return;
 +
-+	return (info11 & (RX_MSDU_END_INFO11_TCP | RX_MSDU_END_INFO11_UDP)) &&
-+	       !(info11 & RX_MSDU_END_INFO11_IP_FRAG) &&
-+	       (info11 & RX_MSDU_END_INFO11_IP_FIXED_HDR_VALID) &&
-+	       (info11 & RX_MSDU_END_INFO11_IP_TCP_UDP_HDR_VALID);
++	msdu->ip_summed = CHECKSUM_UNNECESSARY;
+ }
+ 
+ int ath11k_dp_rx_crypto_mic_len(struct ath11k *ar, enum hal_encrypt_type enctype)
+diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
+index 93f9a03c48dc..096366b85849 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.c
++++ b/drivers/net/wireless/ath/ath11k/hw.c
+@@ -272,6 +272,11 @@ static u8 ath11k_hw_ipq8074_rx_desc_get_decap_type(struct hal_rx_desc *desc)
+ 			 __le32_to_cpu(desc->u.ipq8074.msdu_start.info2));
+ }
+ 
++static u32 ath11k_hw_ipq8074_rx_desc_get_msdu_start_info2(struct hal_rx_desc *desc)
++{
++	return __le32_to_cpu(desc->u.ipq8074.msdu_start.info2);
 +}
 +
- static bool ath12k_hal_rx_h_ip_cksum_fail_qcc2072(struct hal_rx_desc *desc)
+ static u8 ath11k_hw_ipq8074_rx_desc_get_mesh_ctl(struct hal_rx_desc *desc)
  {
- 	return !!le32_get_bits(desc->u.qcc2072.msdu_end.info13,
-@@ -421,6 +431,7 @@ static void ath12k_hal_extract_rx_desc_data_qcc2072(struct hal_rx_desc_data *rx_
- 	rx_desc_data->msdu_done = ath12k_hal_rx_h_msdu_done_qcc2072(ldesc);
- 	rx_desc_data->l4_csum_fail = ath12k_hal_rx_h_l4_cksum_fail_qcc2072(rx_desc);
- 	rx_desc_data->ip_csum_fail = ath12k_hal_rx_h_ip_cksum_fail_qcc2072(rx_desc);
-+	rx_desc_data->l4_csum_checked = ath12k_hal_rx_h_l4_csum_checked_qcc2072(rx_desc);
- 	rx_desc_data->is_decrypted = ath12k_hal_rx_h_is_decrypted_qcc2072(rx_desc);
- 	rx_desc_data->err_bitmap = ath12k_hal_rx_h_mpdu_err_qcc2072(rx_desc);
- }
-diff --git a/drivers/net/wireless/ath/ath12k/wifi7/hal_qcn9274.c b/drivers/net/wireless/ath/ath12k/wifi7/hal_qcn9274.c
-index dd12b1684cf7..4f0a4daf7b41 100644
---- a/drivers/net/wireless/ath/ath12k/wifi7/hal_qcn9274.c
-+++ b/drivers/net/wireless/ath/ath12k/wifi7/hal_qcn9274.c
-@@ -872,6 +872,17 @@ bool ath12k_hal_rx_h_l4_cksum_fail_qcn9274(struct hal_rx_desc *desc)
- 			       RX_MSDU_END_INFO13_TCP_UDP_CKSUM_FAIL);
+ 	return FIELD_GET(RX_MSDU_START_INFO2_MESH_CTRL_PRESENT,
+@@ -449,6 +454,11 @@ static u8 ath11k_hw_qcn9074_rx_desc_get_decap_type(struct hal_rx_desc *desc)
+ 			 __le32_to_cpu(desc->u.qcn9074.msdu_start.info2));
  }
  
-+static inline
-+bool ath12k_hal_rx_h_l4_csum_checked_qcn9274(struct hal_rx_desc *desc)
++static u32 ath11k_hw_qcn9074_rx_desc_get_msdu_start_info2(struct hal_rx_desc *desc)
 +{
-+	u32 info11 = __le32_to_cpu(desc->u.qcn9274_compact.msdu_end.info11);
-+
-+	return (info11 & (RX_MSDU_END_INFO11_TCP | RX_MSDU_END_INFO11_UDP)) &&
-+	       !(info11 & RX_MSDU_END_INFO11_IP_FRAG) &&
-+	       (info11 & RX_MSDU_END_INFO11_IP_FIXED_HDR_VALID) &&
-+	       (info11 & RX_MSDU_END_INFO11_IP_TCP_UDP_HDR_VALID);
++	return __le32_to_cpu(desc->u.qcn9074.msdu_start.info2);
 +}
 +
- static inline
- bool ath12k_hal_rx_h_ip_cksum_fail_qcn9274(struct hal_rx_desc *desc)
+ static u8 ath11k_hw_qcn9074_rx_desc_get_mesh_ctl(struct hal_rx_desc *desc)
  {
-@@ -1042,6 +1053,7 @@ void ath12k_hal_extract_rx_desc_data_qcn9274(struct hal_rx_desc_data *rx_desc_da
- 	rx_desc_data->msdu_done = ath12k_hal_rx_h_msdu_done_qcn9274(ldesc);
- 	rx_desc_data->l4_csum_fail = ath12k_hal_rx_h_l4_cksum_fail_qcn9274(rx_desc);
- 	rx_desc_data->ip_csum_fail = ath12k_hal_rx_h_ip_cksum_fail_qcn9274(rx_desc);
-+	rx_desc_data->l4_csum_checked = ath12k_hal_rx_h_l4_csum_checked_qcn9274(rx_desc);
- 	rx_desc_data->is_decrypted = ath12k_hal_rx_h_is_decrypted_qcn9274(rx_desc);
- 	rx_desc_data->err_bitmap = ath12k_hal_rx_h_mpdu_err_qcn9274(rx_desc);
- }
-diff --git a/drivers/net/wireless/ath/ath12k/wifi7/hal_wcn7850.c b/drivers/net/wireless/ath/ath12k/wifi7/hal_wcn7850.c
-index de6247aa3b2b..090ed78589a3 100644
---- a/drivers/net/wireless/ath/ath12k/wifi7/hal_wcn7850.c
-+++ b/drivers/net/wireless/ath/ath12k/wifi7/hal_wcn7850.c
-@@ -485,6 +485,17 @@ bool ath12k_hal_rx_h_l4_cksum_fail_wcn7850(struct hal_rx_desc *desc)
- 			       RX_MSDU_END_INFO13_TCP_UDP_CKSUM_FAIL);
+ 	return FIELD_GET(RX_MSDU_START_INFO2_MESH_CTRL_PRESENT,
+@@ -626,6 +636,11 @@ static u8 ath11k_hw_wcn6855_rx_desc_get_decap_type(struct hal_rx_desc *desc)
+ 			 __le32_to_cpu(desc->u.wcn6855.msdu_start.info2));
  }
  
-+static inline
-+bool ath12k_hal_rx_h_l4_csum_checked_wcn7850(struct hal_rx_desc *desc)
++static u32 ath11k_hw_wcn6855_rx_desc_get_msdu_start_info2(struct hal_rx_desc *desc)
 +{
-+	u32 info11 = __le32_to_cpu(desc->u.wcn7850.msdu_end.info11);
-+
-+	return (info11 & (RX_MSDU_END_INFO11_TCP | RX_MSDU_END_INFO11_UDP)) &&
-+	       !(info11 & RX_MSDU_END_INFO11_IP_FRAG) &&
-+	       (info11 & RX_MSDU_END_INFO11_IP_FIXED_HDR_VALID) &&
-+	       (info11 & RX_MSDU_END_INFO11_IP_TCP_UDP_HDR_VALID);
++	return __le32_to_cpu(desc->u.wcn6855.msdu_start.info2);
 +}
 +
- static inline
- bool ath12k_hal_rx_h_ip_cksum_fail_wcn7850(struct hal_rx_desc *desc)
+ static u8 ath11k_hw_wcn6855_rx_desc_get_mesh_ctl(struct hal_rx_desc *desc)
  {
-@@ -638,6 +649,7 @@ void ath12k_hal_extract_rx_desc_data_wcn7850(struct hal_rx_desc_data *rx_desc_da
- 	rx_desc_data->msdu_done = ath12k_hal_rx_h_msdu_done_wcn7850(ldesc);
- 	rx_desc_data->l4_csum_fail = ath12k_hal_rx_h_l4_cksum_fail_wcn7850(rx_desc);
- 	rx_desc_data->ip_csum_fail = ath12k_hal_rx_h_ip_cksum_fail_wcn7850(rx_desc);
-+	rx_desc_data->l4_csum_checked = ath12k_hal_rx_h_l4_csum_checked_wcn7850(rx_desc);
- 	rx_desc_data->is_decrypted = ath12k_hal_rx_h_is_decrypted_wcn7850(rx_desc);
- 	rx_desc_data->err_bitmap = ath12k_hal_rx_h_mpdu_err_wcn7850(rx_desc);
- }
+ 	return FIELD_GET(RX_MSDU_START_INFO2_MESH_CTRL_PRESENT,
+@@ -914,6 +929,7 @@ const struct ath11k_hw_ops ipq8074_ops = {
+ 	.rx_desc_get_encrypt_type = ath11k_hw_ipq8074_rx_desc_get_encrypt_type,
+ 	.rx_desc_get_decap_type = ath11k_hw_ipq8074_rx_desc_get_decap_type,
+ 	.rx_desc_get_mesh_ctl = ath11k_hw_ipq8074_rx_desc_get_mesh_ctl,
++	.rx_desc_get_msdu_start_info2 = ath11k_hw_ipq8074_rx_desc_get_msdu_start_info2,
+ 	.rx_desc_get_ldpc_support = ath11k_hw_ipq8074_rx_desc_get_ldpc_support,
+ 	.rx_desc_get_mpdu_seq_ctl_vld = ath11k_hw_ipq8074_rx_desc_get_mpdu_seq_ctl_vld,
+ 	.rx_desc_get_mpdu_fc_valid = ath11k_hw_ipq8074_rx_desc_get_mpdu_fc_valid,
+@@ -954,6 +970,7 @@ const struct ath11k_hw_ops ipq6018_ops = {
+ 	.rx_desc_get_encrypt_type = ath11k_hw_ipq8074_rx_desc_get_encrypt_type,
+ 	.rx_desc_get_decap_type = ath11k_hw_ipq8074_rx_desc_get_decap_type,
+ 	.rx_desc_get_mesh_ctl = ath11k_hw_ipq8074_rx_desc_get_mesh_ctl,
++	.rx_desc_get_msdu_start_info2 = ath11k_hw_ipq8074_rx_desc_get_msdu_start_info2,
+ 	.rx_desc_get_ldpc_support = ath11k_hw_ipq8074_rx_desc_get_ldpc_support,
+ 	.rx_desc_get_mpdu_seq_ctl_vld = ath11k_hw_ipq8074_rx_desc_get_mpdu_seq_ctl_vld,
+ 	.rx_desc_get_mpdu_fc_valid = ath11k_hw_ipq8074_rx_desc_get_mpdu_fc_valid,
+@@ -994,6 +1011,7 @@ const struct ath11k_hw_ops qca6390_ops = {
+ 	.rx_desc_get_encrypt_type = ath11k_hw_ipq8074_rx_desc_get_encrypt_type,
+ 	.rx_desc_get_decap_type = ath11k_hw_ipq8074_rx_desc_get_decap_type,
+ 	.rx_desc_get_mesh_ctl = ath11k_hw_ipq8074_rx_desc_get_mesh_ctl,
++	.rx_desc_get_msdu_start_info2 = ath11k_hw_ipq8074_rx_desc_get_msdu_start_info2,
+ 	.rx_desc_get_ldpc_support = ath11k_hw_ipq8074_rx_desc_get_ldpc_support,
+ 	.rx_desc_get_mpdu_seq_ctl_vld = ath11k_hw_ipq8074_rx_desc_get_mpdu_seq_ctl_vld,
+ 	.rx_desc_get_mpdu_fc_valid = ath11k_hw_ipq8074_rx_desc_get_mpdu_fc_valid,
+@@ -1034,6 +1052,7 @@ const struct ath11k_hw_ops qcn9074_ops = {
+ 	.rx_desc_get_encrypt_type = ath11k_hw_qcn9074_rx_desc_get_encrypt_type,
+ 	.rx_desc_get_decap_type = ath11k_hw_qcn9074_rx_desc_get_decap_type,
+ 	.rx_desc_get_mesh_ctl = ath11k_hw_qcn9074_rx_desc_get_mesh_ctl,
++	.rx_desc_get_msdu_start_info2 = ath11k_hw_qcn9074_rx_desc_get_msdu_start_info2,
+ 	.rx_desc_get_ldpc_support = ath11k_hw_qcn9074_rx_desc_get_ldpc_support,
+ 	.rx_desc_get_mpdu_seq_ctl_vld = ath11k_hw_qcn9074_rx_desc_get_mpdu_seq_ctl_vld,
+ 	.rx_desc_get_mpdu_fc_valid = ath11k_hw_qcn9074_rx_desc_get_mpdu_fc_valid,
+@@ -1074,6 +1093,7 @@ const struct ath11k_hw_ops wcn6855_ops = {
+ 	.rx_desc_get_encrypt_type = ath11k_hw_wcn6855_rx_desc_get_encrypt_type,
+ 	.rx_desc_get_decap_type = ath11k_hw_wcn6855_rx_desc_get_decap_type,
+ 	.rx_desc_get_mesh_ctl = ath11k_hw_wcn6855_rx_desc_get_mesh_ctl,
++	.rx_desc_get_msdu_start_info2 = ath11k_hw_wcn6855_rx_desc_get_msdu_start_info2,
+ 	.rx_desc_get_ldpc_support = ath11k_hw_wcn6855_rx_desc_get_ldpc_support,
+ 	.rx_desc_get_mpdu_seq_ctl_vld = ath11k_hw_wcn6855_rx_desc_get_mpdu_seq_ctl_vld,
+ 	.rx_desc_get_mpdu_fc_valid = ath11k_hw_wcn6855_rx_desc_get_mpdu_fc_valid,
+@@ -1114,6 +1134,7 @@ const struct ath11k_hw_ops wcn6750_ops = {
+ 	.rx_desc_get_encrypt_type = ath11k_hw_qcn9074_rx_desc_get_encrypt_type,
+ 	.rx_desc_get_decap_type = ath11k_hw_qcn9074_rx_desc_get_decap_type,
+ 	.rx_desc_get_mesh_ctl = ath11k_hw_qcn9074_rx_desc_get_mesh_ctl,
++	.rx_desc_get_msdu_start_info2 = ath11k_hw_qcn9074_rx_desc_get_msdu_start_info2,
+ 	.rx_desc_get_ldpc_support = ath11k_hw_qcn9074_rx_desc_get_ldpc_support,
+ 	.rx_desc_get_mpdu_seq_ctl_vld = ath11k_hw_qcn9074_rx_desc_get_mpdu_seq_ctl_vld,
+ 	.rx_desc_get_mpdu_fc_valid = ath11k_hw_qcn9074_rx_desc_get_mpdu_fc_valid,
+@@ -1155,6 +1176,7 @@ const struct ath11k_hw_ops ipq5018_ops = {
+ 	.rx_desc_get_encrypt_type = ath11k_hw_qcn9074_rx_desc_get_encrypt_type,
+ 	.rx_desc_get_decap_type = ath11k_hw_qcn9074_rx_desc_get_decap_type,
+ 	.rx_desc_get_mesh_ctl = ath11k_hw_qcn9074_rx_desc_get_mesh_ctl,
++	.rx_desc_get_msdu_start_info2 = ath11k_hw_qcn9074_rx_desc_get_msdu_start_info2,
+ 	.rx_desc_get_ldpc_support = ath11k_hw_qcn9074_rx_desc_get_ldpc_support,
+ 	.rx_desc_get_mpdu_seq_ctl_vld = ath11k_hw_qcn9074_rx_desc_get_mpdu_seq_ctl_vld,
+ 	.rx_desc_get_mpdu_fc_valid = ath11k_hw_qcn9074_rx_desc_get_mpdu_fc_valid,
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 4996536fbd14..8725e119707b 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -249,6 +249,7 @@ struct ath11k_hw_ops {
+ 	u32 (*rx_desc_get_encrypt_type)(struct hal_rx_desc *desc);
+ 	u8 (*rx_desc_get_decap_type)(struct hal_rx_desc *desc);
+ 	u8 (*rx_desc_get_mesh_ctl)(struct hal_rx_desc *desc);
++	u32 (*rx_desc_get_msdu_start_info2)(struct hal_rx_desc *desc);
+ 	bool (*rx_desc_get_ldpc_support)(struct hal_rx_desc *desc);
+ 	bool (*rx_desc_get_mpdu_seq_ctl_vld)(struct hal_rx_desc *desc);
+ 	bool (*rx_desc_get_mpdu_fc_valid)(struct hal_rx_desc *desc);
 -- 
 2.53.0
 
