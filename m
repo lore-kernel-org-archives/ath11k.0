@@ -2,80 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6EEB606A32C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF987606A330
 	for <ath11k@archiver.kernel.org>; Sun, 22 Nov 2026 13:42:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=J6SM6fs+;
-	dkim=pass (2048-bit key) header.d=bairaktaris.de header.i=@bairaktaris.de header.a=rsa-sha256 header.s=google header.b=UqIX2NFx
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=W7AEqRmF;
+	dkim=pass (2048-bit key) header.d=bairaktaris.de header.i=@bairaktaris.de header.a=rsa-sha256 header.s=google header.b=Nxi2vvbN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=gsbux4xB1cx2A5qfbVry4VrITyTzzyacDp3E10MmRsQ=; b=J6SM6fs+sRugV4
-	JtAvYrAQLSBhP5er9t2I9gf6zWHOFGrBrP04wEkJrpTyWx6PIP9PREuP4dGE5bUzRLCGvcTIsAPZ6
-	wl9pSY2TMaFwLsRlIXhxr4HNy6VoqOWVl3cqL9IZluvWswNWG5R6Q3n16lanVJl+vRzHPKYRg8t07
-	r4t0Vp7ZcFLC++ZZ+gQ7P5l8OJTmWrOczLakX/mFM37Bjd9mA9SHTJrmVA+luBnes/GnbyDIHbD8n
-	lhJ+GHZUBt8oRV8dHNqpYRmJx5ogTGxOa8q4fKmZqw7z4uQ/qPi0bLaSlKNbGIPSn2iG5Mnl2/hzI
-	8nngm6CdnSPIFC3LD+0w==;
+	List-Owner; bh=nfBVe7oeliVCYRMEEI0YTZZ5kge0cS6jQivTz9dt6BY=; b=W7AEqRmFeQQSec
+	gpUfEDfkbCSUYWv9X9Iu9wIxlegLVW4HmevwNteMBW68zF+Wu2ZKvvQA75Y/3/Cywo3vy/OhErulJ
+	sjqpq2nOpkzc6qCi9OCQ8g5EEsizYX6jhn6U7jKqGxYClgsmaN2RXPXpjJwQPamQAmr6UFIVekWiy
+	toSrcdiUE/kOkg4dUrVasHkgOMEmSVzECZagbCW1GAf7pQwjc6XqybxmzPZujs24tRqL+GsFvL7qz
+	F2XxZm3YlPyu2/bt7rz56ikd/0MUsAz/j38+IrjXS1t3B70bJBKdAJSpv4nvWz8h0Y6ncR4jwEumf
+	ATODv8xOmCDl+7zU9arw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV7q6-000000019fn-1ocs;
+	id 1xV7q6-000000019fA-12kB;
 	Sun, 22 Nov 2026 13:42:42 +0000
-Received: from mail-ed1-x531.google.com ([2a00:1450:4864:20::531])
+Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV7px-000000019XN-2Bhv
+	id 1xV7pv-000000019VZ-1cDD
 	for ath11k@lists.infradead.org;
 	Sun, 22 Nov 2026 13:42:36 +0000
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-6b7ddb99db4so3042885a12.0
-        for <ath11k@lists.infradead.org>; Sun, 22 Nov 2026 05:42:33 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-c5154989984so234539366b.1
+        for <ath11k@lists.infradead.org>; Sun, 22 Nov 2026 05:42:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bairaktaris.de; s=google; t=1795354952; x=1795959752; darn=lists.infradead.org;
+        d=bairaktaris.de; s=google; t=1795354949; x=1795959749; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=gsbux4xB1cx2A5qfbVry4VrITyTzzyacDp3E10MmRsQ=;
-        b=UqIX2NFx8nfCALPpWps/WtBn+VodbWPQNEugyZ4cVey0XRxGl60v0j8lTYb6DzdLdt
-         Fd4dZr29r4YhPwhdNapxvJRd2B5cdXtaT1dEqQy3cgQoga94LzVUBycSkSQaGWvl4CYm
-         /tmo2oQBZLUJ9VoaPDHjtI0JFs3bb4Si1iajOFcJUcR0P2u9nTd7ngRyHAE6bpi6Sb/u
-         0t+HZ9w/VEsJP1EPVHW8dyI/nO1+eeLUvvpO3ZZXz8tIAu9opGVQpW76X9mlXoA6HReb
-         bQKegW5qqO1OkaEKs8fwaacLPl8PVxFtXT7OfkQIJAydptd6Gt6uhGCSEagzbFinYOQn
-         2ysQ==
+        bh=nfBVe7oeliVCYRMEEI0YTZZ5kge0cS6jQivTz9dt6BY=;
+        b=Nxi2vvbN1AoUPGLlffCpKI553u8np1n3+NH4E3+QPIo6RBsvnuhwNCstpmo4fizSRh
+         y3wKytw4soiH71LGQQGOweKWDdpkZapc6Oxuuin4z969UxORsrI5I3awfoI6wp1UOLBU
+         FAmZmc+TDwGyV9RADHQlj6kM3RscJt+v2Ihut/ETyz+ue329L91dxVpYPPJIxipX++d/
+         k/1smF06p2Fa+A0RFSfyomBwupNXYQMc0YvzxLiiBQF+fsHNSODTDfoVvwR57dlDozho
+         htkLjcuQYFqGvTLXNcJgCFGC0Mp2U+fBiqIxk8RnsBMFaqVmD4OTQLaO2e5qV959p6an
+         EASw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795354952; x=1795959752;
+        d=1e100.net; s=20260707; t=1795354949; x=1795959749;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=gsbux4xB1cx2A5qfbVry4VrITyTzzyacDp3E10MmRsQ=;
-        b=j+amH1uz9DtFnNeXLs8ScfIBHl6hWmlreP975ddt5bMkpS7ZMCMq1eKRP6O33uZrV8
-         4g6QZ9rpvuqIkBJdtOrmJVmNkA800sKMbYeHGw8UkCatE8XAlJ4m8XMlVfNMNk+iXdoa
-         K7t0cijJwQRu1PbGDLCtH123fG+LOot68Gj0PjSA53bu1Tv21k3Tn5m/U4C/OvuXCsQl
-         IPwJEK9RoQmZRKG7DJ1bkygFPtt3lpQRf9yGZuiK7jb6Tv0GXT4RrG0INcovaKt2G+Am
-         cK3va5QJG2G3eifqnR04+fFJbJT4qGcj/mw125CeLpvi3OzBru6uZVS5b3FxH2s/uMxt
-         z9+g==
-X-Forwarded-Encrypted: i=1; AL+hErGr5mjF4NCUgY69izujPINi9Y33lUaIALJX6ZLkK0NEBw0i3jKpO5CKY7PaxpxyVU05SCMyX44=@lists.infradead.org
-X-Gm-Message-State: APuU4Z/9NpvxssQyG8zeFoB3PYdcnYxmG2nTlk425+EzPm6YbFkvj6w2
-	xyz3nH0XHYzEljYfBYIMHtPlEnc/REf7FdVdMdW+iW33NdZkyvsJV91VkGaydN/Dng==
-X-Gm-Gg: AZFdTZeCrGV4hsO19lNz+lY3Q52GjxsIupULpzhr02MCtGjmKyvgSUg4wHAIbh3FZmL
-	PswNoyvPxLykBDlxjMBcFISOIagH41OPt9VvpOJ2bHBwO3JbYVcdYiOz8odXZD0AC1nrGr73MwP
-	KPzinV3fsq6vKpbRYDl78mWAU1JNv2c1S2IXdakpm+8pItF1VFe6mdlQK6uvp2P+EigndhHRB9Z
-	mVI2fVGhW9jKoXLntcLamS1nQBhLrQNHYRIJJOc0pwNPqQEqNExsYMhAmZFkIZOvvzi8RDrvBFq
-	RvzVoZuznFhj/FkXzhAybge/XI5t1AjxG/57uLfTpNOJ4j4gdic0DBzhsR4T/Dv9zMIIipn4OuT
-	Sy4Om0c4LlupAXuJAJG65vpPuhIo1UBKrVCrkcXMhQsiu+y3BxU/STV+Yk+kKdZxocbCsJOKCRv
-	brWzSUo+5/QiGCzodxA86QhBPKUSi4hwVI1mIFXSwIjAUnoqLDAbPPn4j5H91xWEc29icRcpHAP
-	4rwI2XWlG5x0SbBwcto5G7LF/8xhJaa4ftoQtIGJpGMQiLLtPaxRTV5ayAaZnZfyd7wVKVzp1AM
-	WcvUfC8aAbgqIwq8aknyFw+vZ4s0YV6uKVq/OCKowan72S1C64yWU6JSo09nl46F3mcVs3wDg/2
-	nQGU2Yrki3XrkwxzS8gsXeIodiW0ob/awIHkBfJq8nc+7+NulYDEnVe6r2Ou8E63Fh95oRpDBV0
-	PxZP5cxu9ZqvDoOVgofCZrn3FLeHs5qTLyvSHm5Q0TPPhfNlMdJExZqq5LjC0jrBIGQxQcC4eCS
-	eforZHWN/ON+j8eZ8nR1BEmEAj5DD01lxOWr3RvreGwGcbE8xG6WfZ+97cjgNyXHcJQfAAexpKp
-	pBbokJoR6TnwXyaRB8FZEecnmkVFDSY7M9WBIsbwKO0ufu4KweLSUiI=
-X-Received: by 2002:a05:6402:2745:b0:6ba:9d0c:cca4 with SMTP id 4fb4d7f45d1cf-6ba9d0cced2mr898964a12.33.1795354951690;
-        Sun, 22 Nov 2026 05:42:31 -0800 (PST)
+        bh=nfBVe7oeliVCYRMEEI0YTZZ5kge0cS6jQivTz9dt6BY=;
+        b=dT32OcdHcWC1Wk69HJHcUgcEQ7VttRjgjEBZELMYRPAd2sGTWzIvrxsB8iVeyrJ/u8
+         aBa+ehVI0nx0Z0ULQKbRz/UFMz13fkHWTjDkWxvRQFqn297N3eDa+PXari4nP9Eu+yoh
+         GdpltZ091m5uIjoOCp/WLr8nj+voN9wxXlSshiYIkfbLKncHVQ3EhPt/eFofkgFI1sQy
+         zIWxgr8s+St0PNNOquTcDQFscp0Js26fk7MKTlxu3t+fzz+qr4b3WG90YqUHuWIbNVrV
+         QDagZ0f5867JETYzR6L1V0Rcbyv5Prefgq3eEnWxMo9oo0vRN/ZKi8AAjDiiKSN6jOPT
+         ENxQ==
+X-Forwarded-Encrypted: i=1; AL+hErFUSVY128ZjHffrKXWNthueDqnn5bPEkTq6pw7cRoJ9HewOQtvqFQ1VxSgF9oBusOmjagAKfH4=@lists.infradead.org
+X-Gm-Message-State: APuU4Z+E3nX6ykmpj2GG/SuZ0jFHh3OpU622BFQEElDyl2cq5hDLXquj
+	ZNJCR+YMA1lICXgASKb8eayn37Vei4x6QNMtlGyCfIfxZ+fORWi5HdOQ1aQCXKPYRg==
+X-Gm-Gg: AZFdTZekDy4A6YBOhIPNSKsZeaR6VzWAsS4H7dIrXd1093pF72mrSOZxsWw82guNNwK
+	JzEDA2vwd7GNFFKmPjVUSrO15zzarGcncRAclpQggr6FjGkk+r6XkhDPgoQ1sbIlhxry77wWHVW
+	YnuaMl4AzTKRAd0DQdV/J/3MUgq96sOydi+76ffN+1JK45ESdElCe3+mwETyVDgasLPOAuAhXNm
+	gQsYUIvNBGXJsaLdtBwwTVZ8FpnznXucSCMrCQIlnHqq/NT9FUpsl/wdurjYEILIsP/6wYJ34rx
+	3aHpnhUJ4pcVLcZ5siLT/ZNmoj1yjuoK7On33TV3H7usKL+Fted64q62JrnC19Uah+w8f3JTDnF
+	cvip1M0gQaomuHoWv1EipqI5975Ko/0Tk0iTkQgR86Coqq/j9/7KdWuNeUwqtqT6aitCz21IYci
+	4RD9yfbt2ntfPtZZOoh0wzTxTbkeA5gMkr1isurtm5LiKT2F7tV7+AZr39+/41VBMMIvXW+LKYN
+	ZWKfxoNBxJ386o78aLzSLbQJS82/Ojcm/gnik4UbKOs5Q5+R3ZS2Bga7Bl4UXxnv3rgEZbW0UFT
+	WMzMlAJfIolH5+RJ6z8ieHclTVq+xhVFttfv8QvRAERmQZpqW6awasI2izczIyr0Rq66AMfwSfF
+	NAd6Ez7pxVSGcCYzEtmJIc7dQADNotxVAEnuPxeHv4xuZqEzUsqf0b8ebxefiDvXCB0P7S6aW5k
+	BfvJjGNnQaj4kDDu4t98sdNpSyuPxUMYb8TZ6clexb+c+VA0XDFaT/NtnBXMswRdkDIVrDBv9n9
+	fhJvopddP0HM1bfkcY3o9DQXWCdF42SHzWZCdCTMHO5MKep4EkM1WLMOCmNk/453iBS6EpC7wwU
+	CoU9siC/SjBbfe55zt0tkwQLgr0/75mdY6fGV+l/0Uydhn57l1llzUE=
+X-Received: by 2002:a17:907:2d13:b0:c50:ca93:19a0 with SMTP id a640c23a62f3a-c513aab9bcemr746699366b.40.1795354949578;
+        Sun, 22 Nov 2026 05:42:29 -0800 (PST)
 Received: from Desktop.tail070c67.ts.net (p200300f24712e3000000000000000a27.dip0.t-ipconnect.de. [2003:f2:4712:e300::a27])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c513ad010bcsm326020566b.1.2026.11.22.05.42.31
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c513ad010bcsm326020566b.1.2026.11.22.05.42.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Nov 2026 05:42:31 -0800 (PST)
+        Sun, 22 Nov 2026 05:42:29 -0800 (PST)
 From: Julius Bairaktaris <julius@bairaktaris.de>
 To: Johannes Berg <johannes@sipsolutions.net>
 Cc: linux-wireless@vger.kernel.org,
@@ -85,9 +85,9 @@ Cc: linux-wireless@vger.kernel.org,
 	ath11k@lists.infradead.org,
 	ath12k@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH wireless-next 4/4] wifi: ath12k: pass the TID of a received 802.3 frame to mac80211
-Date: Sun, 22 Nov 2026 14:42:28 +0100
-Message-ID: <20261122134228.956044-5-julius@bairaktaris.de>
+Subject: [PATCH wireless-next 2/4] wifi: mac80211: take the TID of an 802.3 frame from the driver
+Date: Sun, 22 Nov 2026 14:42:26 +0100
+Message-ID: <20261122134228.956044-3-julius@bairaktaris.de>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261122134228.956044-1-julius@bairaktaris.de>
 References: <20261122134228.956044-1-julius@bairaktaris.de>
@@ -95,9 +95,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_054234_069758_2DA28605 
-X-CRM114-Status: UNSURE (   7.29  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261122_054231_932591_82FE71FC 
+X-CRM114-Status: GOOD (  14.42  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -117,26 +116,64 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-ath12k_dp_rx_deliver_msdu() delivers frames with Ethernet decap as
-RX_FLAG_8023, and mac80211 counted all of them on TID 0. Pass the TID
-the driver already took from the receive descriptor into rxcb->tid.
+__ieee80211_rx_handle_8023() clears struct ieee80211_rx_data and never
+sets seqno_idx, so ieee80211_rx_8023() counts every frame received with
+RX_FLAG_8023 in rx_stats.msdu[0], whatever its TID. The native path
+takes the TID from the QoS header, which an 802.3 frame no longer has.
 
+Add a tid field to struct ieee80211_rx_status for the driver to fill,
+and use it as seqno_idx on the 802.3 path. A driver that does not set it
+leaves it 0, which counts the frame on TID 0 as before.
+
+Fixes: 80a915ec4427 ("mac80211: add rx decapsulation offload support")
 Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
 ---
- drivers/net/wireless/ath/ath12k/dp_rx.c | 1 +
- 1 file changed, 1 insertion(+)
+ include/net/mac80211.h | 4 ++++
+ net/mac80211/rx.c      | 3 +++
+ 2 files changed, 7 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath12k/dp_rx.c b/drivers/net/wireless/ath/ath12k/dp_rx.c
-index 36be543b7c50..fc381945d163 100644
---- a/drivers/net/wireless/ath/ath12k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath12k/dp_rx.c
-@@ -1413,6 +1413,7 @@ void ath12k_dp_rx_deliver_msdu(struct ath12k_pdev_dp *dp_pdev, struct napi_struc
+diff --git a/include/net/mac80211.h b/include/net/mac80211.h
+index 8eac4d50d06c..d601070810fb 100644
+--- a/include/net/mac80211.h
++++ b/include/net/mac80211.h
+@@ -1770,6 +1770,9 @@ enum mac80211_rx_encoding {
+  * @ampdu_reference: A-MPDU reference number, must be a different value for
+  *	each A-MPDU but the same for each subframe within one A-MPDU
+  * @zero_length_psdu_type: radiotap type of the 0-length PSDU
++ * @tid: the TID of a frame received in 802.3 format (%RX_FLAG_8023), or
++ *	%IEEE80211_NUM_TIDS if it has none; counts the frame in the per-TID
++ *	statistics of its station. Not read for other frames.
+  * @link_id: id of the link used to receive the packet. Set and used by
+  *	mac80211 internally, it uses @freq set by the driver to identify the
+  *	correct link per vif. Set to %IEEE80211_LINK_UNSPECIFIED for non-MLD
+@@ -1813,6 +1816,7 @@ struct ieee80211_rx_status {
+ 	u8 chains;
+ 	s8 chain_signal[IEEE80211_MAX_CHAINS];
+ 	u8 zero_length_psdu_type;
++	u8 tid;
+ 	u8 link_id:4;
+ };
  
- 	rx_status = IEEE80211_SKB_RXCB(msdu);
- 	*rx_status = *status;
-+	rx_status->tid = min_t(u8, rxcb->tid, IEEE80211_NUM_TIDS);
+diff --git a/net/mac80211/rx.c b/net/mac80211/rx.c
+index a2356cd17691..9fabc9b5a976 100644
+--- a/net/mac80211/rx.c
++++ b/net/mac80211/rx.c
+@@ -5303,6 +5303,7 @@ static void __ieee80211_rx_handle_8023(struct ieee80211_hw *hw,
+ 				       struct sk_buff *skb,
+ 				       struct list_head *list)
+ {
++	struct ieee80211_rx_status *status = IEEE80211_SKB_RXCB(skb);
+ 	struct ieee80211_local *local = hw_to_local(hw);
+ 	struct ieee80211_fast_rx *fast_rx;
+ 	struct ieee80211_rx_data rx;
+@@ -5313,6 +5314,8 @@ static void __ieee80211_rx_handle_8023(struct ieee80211_hw *hw,
+ 	rx.skb = skb;
+ 	rx.local = local;
+ 	rx.list = list;
++	/* the MSDU count of the station is kept per TID */
++	rx.seqno_idx = min_t(u8, status->tid, IEEE80211_NUM_TIDS);
  
- 	/* TODO: trace rx packet */
+ 	I802_DEBUG_INC(local->dot11ReceivedFragmentCount);
  
 -- 
 2.53.0
