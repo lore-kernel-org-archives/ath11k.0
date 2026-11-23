@@ -2,80 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06309606A31A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB87D606A31A
 	for <ath11k@archiver.kernel.org>; Mon, 23 Nov 2026 13:50:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iOy94eoi;
-	dkim=pass (2048-bit key) header.d=bairaktaris.de header.i=@bairaktaris.de header.a=rsa-sha256 header.s=google header.b=Qk0djgsR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0ZsJlV8w;
+	dkim=pass (2048-bit key) header.d=bairaktaris.de header.i=@bairaktaris.de header.a=rsa-sha256 header.s=google header.b=LZ7bVsG5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=17KYrYGAaWICw+QBtHzm1gh/PguJ64qmvrlG7WKJrow=; b=iOy94eoi8ot37Y
-	SCaOECDK3Ti5C9NCPE5cmXhDP9V4cSoS8VvWjKQYlUkZdmyFY6eB7w5pLnzV/Ld2BrgfB111CoVVZ
-	o2/9adL2k6MKB66QXUNNQqhG4sJoegWDm/g2ju7y6JCetnxadRK3YLyRTILIn/6IAW7yrkrHjhb3z
-	Dk1OJsvOrfupXaoHr9XqwxPZ0xcWhbr6lV2b2ekD5Qot0wYdAPA16hT4Su3/Nsoo7ExcqgiRBs1Ah
-	92l//K4owRCvKiHTRv2OBQlfUH2O6GItS6ZwEaInT7bid4NI27G3W40X5UNv/EMvc8eHScbputI50
-	XuXb/avuG0IXiqaufU+w==;
+	List-Owner; bh=kZAWfOVV6szfbsnxGNpL1TPV/6g7LyK5WV+tYnXzkHs=; b=0ZsJlV8wouq7WY
+	4cAWodAIqIf2g7slMyfMhh3EsgujLYbAGX3CTYYF8ggqd/DAqH1pDdV0oTFPYrFa1eJl7El0I7GjE
+	CJuspvUP3raK4GdYqJmn2WrlzMM4xbqQSRMtRzmWxagRQEW+MAZqXNNNuu1fPPsK65TkxCpmY36/Q
+	zQul3Mlr6cISMYth6btWsHEWZiNYxkUyuJppq6piuCCoRLlkWMZclFv3Y6cG35QVeB1EDiVzOt87e
+	E9zhc8cSWO0OvsHPZa0BPMyR4LmXLnVsVIldMg7zhgApg0jMK0fNTAxVmHf8vUPa2OvoLAMmreTGr
+	Q8k0H6vXKtZ7+gLl5hiQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVUR2-00000003dLt-2uZm;
-	Mon, 23 Nov 2026 13:50:20 +0000
-Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
+	id 1xVUR2-00000003dMn-492G;
+	Mon, 23 Nov 2026 13:50:21 +0000
+Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVUQx-00000003dGu-1crn
+	id 1xVUQy-00000003dI0-32NM
 	for ath11k@lists.infradead.org;
-	Mon, 23 Nov 2026 13:50:18 +0000
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-6b596afb4c5so3608636a12.1
-        for <ath11k@lists.infradead.org>; Mon, 23 Nov 2026 05:50:14 -0800 (PST)
+	Mon, 23 Nov 2026 13:50:19 +0000
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-6b87a92c17eso4604826a12.3
+        for <ath11k@lists.infradead.org>; Mon, 23 Nov 2026 05:50:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bairaktaris.de; s=google; t=1795441814; x=1796046614; darn=lists.infradead.org;
+        d=bairaktaris.de; s=google; t=1795441815; x=1796046615; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=17KYrYGAaWICw+QBtHzm1gh/PguJ64qmvrlG7WKJrow=;
-        b=Qk0djgsRTKYHY0YDlHti8kS4INt9167/0xWKJO9dkDlc55kQFOvOddEGwcpnHkh9V3
-         0DR6ucOuq9WUfmb3ESj/QNCNyHLQhJMNNUFSMMtMNZotooMNd75Yv7Scr9htHwEvkjgP
-         6KC1tK+S+gXLsUVY9o7sYT+8B6Lf1u923UdepqQo5EtpzbS0pyD4CfzPzF9apRQINMCj
-         1bpQ+q0lieV76hCPDHVxO9417ZfP4H6I9oJmfzgjJoaEPFh/YghVtf4mnHfucUXitBmn
-         keHVUfO+P3EfxCpu0dtfPtBXVsSKsSNzFwQRo/swtbiSbhBgXiFTAbmD2cg4FVZbKx3F
-         alpQ==
+        bh=kZAWfOVV6szfbsnxGNpL1TPV/6g7LyK5WV+tYnXzkHs=;
+        b=LZ7bVsG5U+yphhK5LmR8uj5F8Si8C9TZvMrhkN0Qdz4DkNw1J8JPfRVpGpxeKSummu
+         BUPZGodNZN/pI0Jc0m64aDe5c5GnI630DKOLdKXVyWmA6pdEGTn/KgHyi6p1vL/4k99q
+         HF5cdWwmDHGwnyaUpdWuEznJGZL17DyWqQ7c3lNw55ryd3RoYalxyWrd/NJbDdmwNpRf
+         bf+9oI6JrwqRDC/+L35ZEh0GRObRn0aCZ2L24UkN5IbYJwv5FcJI5Eh5M/gbyAfv8kBm
+         8MkMSVnkq0V/dx6ILcdluDaEEfcguzuMraADQBCVmPGPtOWRbB7UNG4Ht/vL66mqp6AC
+         KLsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795441814; x=1796046614;
+        d=1e100.net; s=20260707; t=1795441815; x=1796046615;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=17KYrYGAaWICw+QBtHzm1gh/PguJ64qmvrlG7WKJrow=;
-        b=TuqBgzvGyHxzLPLG5tH1yjNSPtWr59YkoHjJ9HBHAM1tOVnVoMDNEb6efoWe0INV0q
-         Xz9SaJCfcOXNPgm6frTzCVZw4xKJ4Glax00J4TaPUMVFeO2WdeH0QTG/k1rVPhwlEnMV
-         ktdAuBKvYBhCwmhLWRGT/WeBB2/GzJEHrW5/O97rDGLYbxUyv1l+SE7TQVAwdv8qGKk4
-         NBhrEQCOYub2j/K+oV/03SN2b8x3jdeBVkaG6wif4kyShEj5sBTSQ+Ld4s7cr4II7jfK
-         24DSigtfXmi69ZPEGg3CqzJfsmZcXqeN0lsgfUrW+wKYp/ulEGw8FlQWPp4AXTJyBo6Z
-         J7yg==
-X-Gm-Message-State: APuU4Z/KmBi7IumVmbrdw5/pSU2B2bxZ/iXp0kc85T/KJ9PFolUHsIeA
-	RlOUFpPWJyCWHto3H+4F6yi2QboT2sLB2mMUxltUQ8JCOqk9c+GIBG17YSJTgrOJVQ==
-X-Gm-Gg: AZFdTZeO0jTd9khZpIa8YF1wTBwtGD28Ry7pWQI/AasdV6hdirP0ZnMtFH3esnj1w0E
-	rWmx8gpk2qLwRrmFoHhll0sl9/CeZ1Nc0joOCnVaUCd/7UZM8xfYLAM4BTa0bLIVNiqSMBr65X6
-	PUxf9L8htutJaqxmSY9tnGj9gwFu17b9JNwzFrbu7e+bFTbeWTr/XmURUW6wUU5V5fs7TXDwy6E
-	DbZl81ktxggYN+Vg0Taa+3AgwaGRFfdn15LWaRYhvh0mDSlyzcQnQxJhob5BrnI4Cz8pvWbTmlF
-	EohatVwbA0NJH4OQJGsm8COqXloeDxEZpOQc3gbEDnTgij0X6qqNP4Jy/se+88T3X+UbECOFsH+
-	ALprAHDE1NQxrf76QipRGdIRic75wF3Bw2ur+QCvpHDDWg12mq6qe1OkcpCXbIIUNTJYYkov7Zm
-	mB5BlVQQpQ/riPikIilfQdf1DZo3/L24IY998yLv/hNFKJvYuAfc8KVXUUu3zpMftPFmfbkBQAu
-	gutMoSSQ4ryKNOToMjMruj4a9uyTwXxoCyxFYThIyMoWqgE1sh1Ok0Cd7rlkHjjHKdMWeC097MU
-	HSXWhFv2O2BKYWPOrjDAgBa4cGts6VukA+uPbb6eQEYs+LX42mJZi8KopepZXtC/GPUMpU3fFOt
-	7zCaCcAL3w0mFYdF8qJCNrdoWxhFCj4Ay9ZrZmh1evukVNwOIImf69yQqmyR1qKqWa1M7ywumTZ
-	WsGGko+0kzI1tEMBCDJnwf8LoRqIDih++bp+uEwX0Ggg8PXqUoGl2SkjPb8AMQ3tz4IJj7xa3a8
-	SO6vVr3rHE69d7CSaDWAxR0+P8/VdzOSTmUo5Iw+/lziZWz75gBMLw4YO4yAoyCI+cgMEIxQV+n
-	bqAZOqk+LBUi8/moWByj85TKsVAEhlL+P9iFXccN6e12UhPJFEIF3B2K3xDsH8gpqOYkKOfKOA=
-	=
-X-Received: by 2002:a05:6402:1f0b:b0:6b5:87cb:d8ce with SMTP id 4fb4d7f45d1cf-6ba37edf001mr8720032a12.41.1795441813634;
-        Mon, 23 Nov 2026 05:50:13 -0800 (PST)
+        bh=kZAWfOVV6szfbsnxGNpL1TPV/6g7LyK5WV+tYnXzkHs=;
+        b=phfd7Br9cmUbOR/ltyUtWf4DkBNtnxsethXw/IE3iryaaa3FhxAlxrO6qgdDgf3DHe
+         WHIhRmwFfjybhFK9xufcmun8tlPoBQ7NVXs19ypucKnFvQJwXSNsbt4N2Ya/MZv151c4
+         O0JPg04kd41Ot4Otmm7eZjPUQpdIWSEpMqRnwpCrCRxhdLdLMc2vvS2sxhztueqRJPzy
+         bcp+kvJyZugVOyT4B1cRnXmRST9e1Vi0Ii81qra5Pvi0dhE7B1PMvq2q16KMsabuZlr3
+         af8ajwDw2mluxBm9PMTkA6bZT0G7Dn343iZ+SVusUubLeNZ0dHF6pS6FfM/Jib6JFPJg
+         pvYQ==
+X-Gm-Message-State: APuU4Z/YNr0fcwFVxeV4LFQCPlSQ1qEbIFM47M5DWurB0vKIOUNRCXNf
+	ifTviWRGKMStmfyyvL2fNb85DbVpIBL7eV46yVKO2EB7EvbHNp76UBnu8YNIXbQKUQ==
+X-Gm-Gg: AZFdTZe+MZU7nFMqVBztZnXv+wLD3JXNsZbTGXkLkyg9V3ZJhv/e/2zK/UlJL+HhvkC
+	Tkmxst5SIeIgdxmbxmhbeG6AZqlEAuYbyZyoopbQ+E66JtlRC1XKuIMw3dNiHQcy+uHbZ7bStew
+	THnS10EIcT/6pEyZDxPqnm1QisDEkcfQxkSDOsvSEbWLWc9OgXPQ5hlgwGn7u1RE5awRfgklgby
+	GZQw7ajXwNKYuJ+o8XqDnquwGBtlLu4H+VsRmaI+PSaPChrEBDkctwUeKxkfEXJoXHajAw9c2Gw
+	uW6VWth5WNmZfgFaDJGC7tJNGplc5ZmkZB1U3AyllU1dAaIFuFld6BaJaqXpYEK34dDWyEt3FNx
+	rUFBJNwveFV4LSAdWJpkaOFOYclQHuwU6HBLOR2zUPcP1GZmhuKFGiAB6wzHGwxcWxPXnixp0x8
+	nY/RFT1lRYzsh9u3tCBv1AiMO4TSmLj0anbRL2DWG01LUGeesXvwROSBM84DuiNNeLDT5mOWJru
+	C6rabsfhGNr4urws7qOffWna1zjSCIdfWgaW3N51yB/vr13bgUiGjIf8MniJQ20ZY7erFdEM/5W
+	U86j265gVTE92oK5kcMJ6maeZ2FQ/5Gdx0rMmTl5Uv13vhSKSTj3RKX/kR1L88UHHPG9AdKtYna
+	9+3BWHuUdC/PkJLNy+yvdNtF5NSO3wz2N0KVdY82/gSgOiqkXZ4uYOQO03kkz9PKKCd2ZgGT/Kn
+	yE/arDDckrsR+Rp7IxMJ6JQWa7IMJRF/6IY9na3W7lO2fmW1Q3ZAJh+bkzSPv6JtFQRIWUQ3+x7
+	0HC65oIq7P80C1fBc6slSk+TAH3ssUURtorkWlaS1CPUoGnwfCEmO5DAS7Uf/nv1PDP0lCg3dgq
+	uZ2XmrLUQ7IzQjmcomoBaqOXpASu0rflPm/RKHX3u8Sq7Q/DpnasFmEw5EANuQi2IabCimYblAS
+	B5Vh9Zd/i7FjRBszogak=
+X-Received: by 2002:a05:6402:1941:b0:6ba:7bee:e0b0 with SMTP id 4fb4d7f45d1cf-6ba7beee4dfmr4339768a12.8.1795441814619;
+        Mon, 23 Nov 2026 05:50:14 -0800 (PST)
 Received: from Desktop.tail070c67.ts.net (p200300f247012000e9a6b19fb24a0d13.dip0.t-ipconnect.de. [2003:f2:4701:2000:e9a6:b19f:b24a:d13])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6ba370fa8a4sm5357732a12.21.2026.11.23.05.50.12
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6ba370fa8a4sm5357732a12.21.2026.11.23.05.50.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 05:50:13 -0800 (PST)
+        Mon, 23 Nov 2026 05:50:14 -0800 (PST)
 From: Julius Bairaktaris <julius@bairaktaris.de>
 To: Jeff Johnson <jjohnson@kernel.org>,
 	Johannes Berg <johannes@sipsolutions.net>
@@ -100,9 +100,9 @@ Cc: ath11k@lists.infradead.org,
 	John Crispin <john@phrozen.org>,
 	Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com>,
 	Ramya Gnanasekar <quic_rgnanase@quicinc.com>
-Subject: [RFC PATCH ath-next 2/3] wifi: mac80211: tell a driver the netdev a station's 802.3 frames reach
-Date: Mon, 23 Nov 2026 14:50:09 +0100
-Message-ID: <20261123135010.721107-3-julius@bairaktaris.de>
+Subject: [RFC PATCH ath-next 3/3] wifi: ath11k: merge the TCP segments of a station in a REO reap
+Date: Mon, 23 Nov 2026 14:50:10 +0100
+Message-ID: <20261123135010.721107-4-julius@bairaktaris.de>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261123135010.721107-1-julius@bairaktaris.de>
 References: <20261123135010.721107-1-julius@bairaktaris.de>
@@ -110,8 +110,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_055015_495995_1CEB32FC 
-X-CRM114-Status: GOOD (  13.85  )
+X-CRM114-CacheID: sfid-20261123_055018_043027_4EC85E3F 
+X-CRM114-Status: GOOD (  27.79  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -131,71 +131,577 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-A driver that merges the received frames of a station as GRO on the
-netdev would has to know that netdev: whether GRO is on there, whether
-it builds frame lists, and which host sockets it looks up. The netdev
-is not the vif's for a station on an AP_VLAN interface, and only
-mac80211 knows which one the frames reach: the device of the station's
-fast_rx, which __ieee80211_rx_handle_8023() delivers them to and drops
-them without.
+Every MSDU the REO ring hands over goes to mac80211 on its own:
+ieee80211_rx_napi() runs the 802.3 receive path for it (the station and
+its fast_rx, the station and netdev counters, the control port check,
+the internal forward lookup) and passes it to napi_gro_receive(), where
+the TCP GRO of the netdev parses it again and merges it into the
+aggregate it was building. For a TCP upload of one station at
+850 Mbit/s that is about 70,000 frames a second through all of it. In a
+profile of such an upload routed by an IPQ8074 (one run), the GRO
+functions (dev_gro_receive(), tcp_gro_receive(), inet_gro_receive(),
+tcp4_gro_receive() and their helpers) take 7.9 % of all samples and the
+mac80211 802.3 receive path 5.2 %.
 
-Add ieee80211_sta_rx_netdev(), which returns that device under RCU, or
-NULL while the station has no fast_rx.
+Merge the consecutive segments of one TCP stream of one station and TID
+of a reap in the driver, as GRO on the netdev would merge them, and
+hand the run to mac80211 as one GSO frame. A run is opened by a plain
+ACK segment, and joined by the next segment of the same stream with the
+same receive status, Ethernet header, IP and TCP headers but for the
+ID, sequence and checksum; any other frame ends the run before it is
+handled itself, so the frames of a stream keep their order and no frame
+waits behind another stream's. The run ends at a segment that pushes, a
+short one, the GRO size of the netdev and its segment bound, and at the
+end of the reap; nothing is held across reaps.
+
+The checks that decide how mac80211 takes a frame stay per MSDU, since
+the run is built from MSDUs after ath11k_dp_rx_process_msdu() and
+ath11k_dp_rx_h_mpdu(): only a frame that goes the 802.3 path to a
+station on its own merges (Ethernet decap, unicast, a peer with a
+station, not EAPOL, not of a 4-address station, one buffer, a checksum
+the hardware verified, no FCS or MIC error), and the PN and decryption
+status every segment had is the one of the run, which is the same for
+all of them. Every segment has the Ethernet header of the run, so the
+source address mac80211 sees is the one each segment carried. A mesh
+interface has no decap offload in ath11k and is not merged. mac80211
+counts a GSO frame as its segments.
+
+The form is the one GRO on the netdev the station's frames reach would
+build, so nothing after it changes: none with GRO off or an XDP program
+there; a frame list when the netdev has rx-gro-list and no socket of
+the host takes the stream, as tcp4_check_fraglist_gro() and
+tcp6_check_fraglist_gro() decide; else a frame with fragments, whose
+segments give their buffer to the head through skb_try_coalesce() and
+free their skb. GRO takes a frame list it is handed whole and a TCP GSO
+frame as its segment count.
+
+The station of a run is used within the NAPI poll that looked it up,
+as ath11k_dp_rx_deliver_msdu() uses the station of its frame. Frames
+take the 802.3 path only with Ethernet decap, the frame_mode=2 module
+parameter; with the native Wi-Fi default nothing is merged.
 
 Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
 ---
- include/net/mac80211.h | 17 +++++++++++++++++
- net/mac80211/rx.c      |  9 +++++++++
- 2 files changed, 26 insertions(+)
+ drivers/net/wireless/ath/ath11k/core.h    |   3 +
+ drivers/net/wireless/ath/ath11k/debugfs.c |   4 +
+ drivers/net/wireless/ath/ath11k/dp_rx.c   | 444 +++++++++++++++++++++-
+ 3 files changed, 450 insertions(+), 1 deletion(-)
 
-diff --git a/include/net/mac80211.h b/include/net/mac80211.h
-index 76ff86ff9974..3c6784ad62c7 100644
---- a/include/net/mac80211.h
-+++ b/include/net/mac80211.h
-@@ -5472,6 +5472,23 @@ void ieee80211_rx_napi(struct ieee80211_hw *hw,
- 		       struct ieee80211_link_sta *link_sta,
- 		       struct sk_buff *skb, struct napi_struct *napi);
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 6b05b2e4d926..d1fdc0593d38 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -903,6 +903,9 @@ struct ath11k_soc_dp_stats {
+ 	u32 rxdma_error[HAL_REO_ENTR_RING_RXDMA_ECODE_MAX];
+ 	u32 reo_error[HAL_REO_DEST_RING_ERROR_CODE_MAX];
+ 	u32 hal_reo_error[DP_REO_DST_RING_MAX];
++	/* runs of received TCP segments merged into one frame, their segments */
++	u32 rx_merge_aggs;
++	u32 rx_merge_segs;
+ 	struct ath11k_soc_dp_tx_err_stats tx_err;
+ 	struct ath11k_dp_ring_bp_stats bp_stats;
+ };
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
+index b936101d6fa5..870e00ec7569 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs.c
+@@ -705,6 +705,10 @@ static ssize_t ath11k_debugfs_dump_soc_dp_stats(struct file *file,
+ 			 soc_stats->hal_reo_error[2],
+ 			 soc_stats->hal_reo_error[3]);
  
-+/**
-+ * ieee80211_sta_rx_netdev - the netdev the 802.3 frames of a station reach
-+ * @sta: the station
-+ *
-+ * A frame the driver hands over with %RX_FLAG_8023 for @sta enters the stack
-+ * on this netdev: the station's AP_VLAN interface if it is on one, else the
-+ * interface of its vif. A driver that prepares such frames for the receive
-+ * path of the netdev, as merging them the way its GRO would, reads the
-+ * netdev's settings from it.
-+ *
-+ * Must be called under RCU; the netdev may be used until the read side
-+ * critical section ends.
-+ *
-+ * Return: the netdev, or %NULL while frames of @sta take no 802.3 path.
-+ */
-+struct net_device *ieee80211_sta_rx_netdev(struct ieee80211_sta *sta);
++	len += scnprintf(buf + len, size - len,
++			 "\nReceived TCP runs merged into one frame: %u, their segments: %u\n",
++			 soc_stats->rx_merge_aggs, soc_stats->rx_merge_segs);
 +
- /**
-  * ieee80211_rx - receive frame
-  *
-diff --git a/net/mac80211/rx.c b/net/mac80211/rx.c
-index fd7dbd4b0611..397f5fc71a1b 100644
---- a/net/mac80211/rx.c
-+++ b/net/mac80211/rx.c
-@@ -5310,6 +5310,15 @@ static bool ieee80211_prepare_and_rx_handle(struct ieee80211_rx_data *rx,
- 	return true;
+ 	len += scnprintf(buf + len, size - len, "\nSOC TX STATS:\n");
+ 	len += scnprintf(buf + len, size - len, "\nTCL Ring Full Failures:\n");
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index a85edaf19bfb..062281dfbae6 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -10,6 +10,8 @@
+ #include <linux/kernel.h>
+ #include <linux/net.h>
+ #include <linux/skbuff.h>
++#include <net/inet6_hashtables.h>
++#include <net/inet_hashtables.h>
+ #include <net/page_pool/helpers.h>
+ #include "core.h"
+ #include "debug.h"
+@@ -2854,8 +2856,9 @@ static void ath11k_dp_rx_deliver_msdu(struct ath11k *ar, struct napi_struct *nap
+ 		   !!(status->flag & RX_FLAG_MMIC_ERROR),
+ 		   !!(status->flag & RX_FLAG_AMSDU_MORE));
+ 
++	/* a merged frame has only its first segment's bytes in its head */
+ 	ath11k_dbg_dump(ar->ab, ATH11K_DBG_DP_RX, NULL, "dp rx msdu: ",
+-			msdu->data, msdu->len);
++			msdu->data, skb_headlen(msdu));
+ 
+ 	rx_status = IEEE80211_SKB_RXCB(msdu);
+ 	*rx_status = *status;
+@@ -2987,6 +2990,439 @@ static int ath11k_dp_rx_process_msdu(struct ath11k *ar,
+ 	return ret;
  }
  
-+struct net_device *ieee80211_sta_rx_netdev(struct ieee80211_sta *pubsta)
++/* The headers of a TCP segment in an Ethernet frame. */
++struct ath11k_dp_rx_tcp {
++	struct ethhdr *eth;
++	union {
++		struct iphdr *ip4;
++		struct ipv6hdr *ip6;
++	};
++	struct tcphdr *th;
++	u16 hdr_len;
++	u16 payload;
++	bool v6;
++};
++
++/*
++ * A run of consecutive segments of one TCP stream of one station, merged
++ * into the first one's skb as its fragments, or chained on its frag_list
++ * with their headers when @flist, and what the next segment has to be to
++ * join it: @status is the receive status every segment of it had, and a
++ * segment that does not join ends the run before it is handled itself.
++ */
++struct ath11k_dp_rx_merge {
++	struct sk_buff *head;
++	struct sk_buff *last;
++	struct ieee80211_rx_status status;
++	struct ath11k_dp_rx_tcp t;
++	u32 next_seq;
++	u32 max_size;
++	u16 last_id;
++	u16 mss;
++	u16 segs;
++	u16 max_segs;
++	bool fixedid;
++	bool flist;
++};
++
++/*
++ * Whether @msdu takes the 802.3 path of ath11k_dp_rx_deliver_msdu() to a
++ * station of its own, on its own: a unicast frame of the Ethernet decap type,
++ * of a peer whose station ath11k_dp_rx_h_mpdu() found, not EAPOL, not of a
++ * 4-address station, in one buffer.
++ */
++static bool ath11k_dp_rx_merge_ok(struct ath11k *ar, struct sk_buff *msdu)
 +{
-+	struct sta_info *sta = container_of(pubsta, struct sta_info, sta);
-+	struct ieee80211_fast_rx *fast_rx = rcu_dereference(sta->fast_rx);
++	struct ath11k_skb_rxcb *rxcb = ATH11K_SKB_RXCB(msdu);
 +
-+	return fast_rx ? fast_rx->dev : NULL;
++	if (!rxcb->sta_valid || !rxcb->sta || rxcb->is_mcbc ||
++	    rxcb->is_eapol || rxcb->is_frag || rxcb->is_continuation)
++		return false;
++
++	if (ath11k_dp_rx_h_msdu_start_decap_type(ar->ab, rxcb->rx_desc) !=
++	    DP_RX_DECAP_TYPE_ETHERNET2_DIX)
++		return false;
++
++	return !READ_ONCE(ath11k_sta_to_arsta(rxcb->sta)->use_4addr_set);
 +}
-+EXPORT_SYMBOL(ieee80211_sta_rx_netdev);
 +
- static void __ieee80211_rx_handle_8023(struct ieee80211_hw *hw,
- 				       struct ieee80211_link_sta *link_pubsta,
- 				       struct sk_buff *skb,
++/*
++ * The headers of @msdu when it is a TCP data segment of an IPv4 or IPv6
++ * frame that carries nothing a merge would lose: one buffer, a checksum the
++ * hardware verified, no VLAN tag, IP options, extension headers or fragment,
++ * a length that is the frame's, a unicast destination, and the flags of a
++ * plain acknowledgment that may push.
++ */
++static bool ath11k_dp_rx_merge_parse(struct sk_buff *msdu,
++				     struct ath11k_dp_rx_tcp *t)
++{
++	unsigned int len = msdu->len, thoff, thlen;
++	u8 *d = msdu->data;
++	struct tcphdr *th;
++
++	if (skb_is_nonlinear(msdu) || msdu->ip_summed != CHECKSUM_UNNECESSARY ||
++	    len < ETH_HLEN + sizeof(struct iphdr) + sizeof(*th))
++		return false;
++
++	t->eth = (struct ethhdr *)d;
++	if (is_multicast_ether_addr(t->eth->h_dest))
++		return false;
++
++	if (t->eth->h_proto == htons(ETH_P_IP)) {
++		struct iphdr *iph = (struct iphdr *)(d + ETH_HLEN);
++
++		if (*(u8 *)iph != 0x45 || iph->protocol != IPPROTO_TCP ||
++		    (iph->frag_off & htons(IP_MF | IP_OFFSET)) ||
++		    ETH_HLEN + ntohs(iph->tot_len) != len)
++			return false;
++		t->ip4 = iph;
++		t->v6 = false;
++		thoff = ETH_HLEN + sizeof(*iph);
++	} else if (t->eth->h_proto == htons(ETH_P_IPV6)) {
++		struct ipv6hdr *ip6h = (struct ipv6hdr *)(d + ETH_HLEN);
++
++		if (len < ETH_HLEN + sizeof(*ip6h) + sizeof(*th) ||
++		    ip6h->version != 6 || ip6h->nexthdr != IPPROTO_TCP ||
++		    ETH_HLEN + sizeof(*ip6h) + ntohs(ip6h->payload_len) != len)
++			return false;
++		t->ip6 = ip6h;
++		t->v6 = true;
++		thoff = ETH_HLEN + sizeof(*ip6h);
++	} else {
++		return false;
++	}
++
++	th = (struct tcphdr *)(d + thoff);
++	thlen = th->doff * 4;
++	if (thlen < sizeof(*th) || thoff + thlen >= len)
++		return false;
++
++	if (!th->ack || th->fin || th->syn || th->rst || th->urg ||
++	    th->ece || th->cwr || th->urg_ptr)
++		return false;
++
++	t->th = th;
++	t->hdr_len = thoff + thlen;
++	t->payload = len - t->hdr_len;
++
++	return true;
++}
++
++/*
++ * Whether segment @t of @msdu, received with @status, follows the run's last
++ * one as GRO on the netdev would take it: the same station, TID and receive
++ * status, the same Ethernet header, IP header but for the ID, ports,
++ * acknowledgment, window and options, the next sequence number, an IP ID
++ * that goes up by one or stays with DF set, and room under the size GRO
++ * stops at. A frame list takes no segment that pushes, as GRO's does not.
++ */
++static bool ath11k_dp_rx_merge_fits(const struct ath11k_dp_rx_merge *g,
++				    struct sk_buff *msdu,
++				    const struct ieee80211_rx_status *status,
++				    const struct ath11k_dp_rx_tcp *t,
++				    bool *fixed)
++{
++	const struct ath11k_skb_rxcb *rxcb = ATH11K_SKB_RXCB(msdu);
++	const struct ath11k_skb_rxcb *hcb = ATH11K_SKB_RXCB(g->head);
++	const struct ath11k_dp_rx_tcp *h = &g->t;
++	unsigned int optlen;
++
++	if (g->flist && t->th->psh)
++		return false;
++
++	if (rxcb->sta != hcb->sta || rxcb->tid != hcb->tid ||
++	    memcmp(status, &g->status, sizeof(*status)))
++		return false;
++
++	if (t->v6 != h->v6 || t->hdr_len != h->hdr_len ||
++	    t->payload > g->mss || ntohl(t->th->seq) != g->next_seq ||
++	    g->head->len + t->payload >= g->max_size ||
++	    memcmp(t->eth, h->eth, ETH_HLEN) ||
++	    memcmp(&t->th->source, &h->th->source, sizeof(__be32)) ||
++	    t->th->ack_seq != h->th->ack_seq || t->th->window != h->th->window)
++		return false;
++
++	optlen = t->hdr_len - ((u8 *)t->th - (u8 *)t->eth) - sizeof(*t->th);
++	if (memcmp(t->th + 1, h->th + 1, optlen))
++		return false;
++
++	if (t->v6)
++		return *(__be32 *)t->ip6 == *(__be32 *)h->ip6 &&
++		       t->ip6->hop_limit == h->ip6->hop_limit &&
++		       !memcmp(&t->ip6->saddr, &h->ip6->saddr,
++			       2 * sizeof(t->ip6->saddr));
++
++	if (t->ip4->tos != h->ip4->tos || t->ip4->ttl != h->ip4->ttl ||
++	    t->ip4->frag_off != h->ip4->frag_off ||
++	    memcmp(&t->ip4->saddr, &h->ip4->saddr, 2 * sizeof(__be32)))
++		return false;
++
++	if (g->segs > 1)
++		*fixed = g->fixedid;
++	else
++		*fixed = ntohs(t->ip4->id) == g->last_id;
++	if (*fixed)
++		return !!(t->ip4->frag_off & htons(IP_DF));
++
++	return ntohs(t->ip4->id) == (u16)(g->last_id + 1);
++}
++
++/*
++ * Gives the run what the TCP GRO of the stack gives its own aggregate: the
++ * length of the IP packet, and the size and number of its segments; for
++ * one with fragments the pseudo-header sum its checksum is finished from by
++ * whoever segments it, while a frame list keeps the checksum of each segment,
++ * which the hardware verified.
++ */
++static void ath11k_dp_rx_merge_complete(struct ath11k_dp_rx_merge *g)
++{
++	struct sk_buff *skb = g->head;
++	struct ath11k_dp_rx_tcp *t = &g->t;
++	struct skb_shared_info *shinfo = skb_shinfo(skb);
++	unsigned int thoff = (u8 *)t->th - skb->data;
++	unsigned int l4len = skb->len - thoff;
++
++	if (t->v6) {
++		t->ip6->payload_len = htons(skb->len - ETH_HLEN -
++					    sizeof(*t->ip6));
++		shinfo->gso_type = SKB_GSO_TCPV6;
++	} else {
++		__be16 len = htons(skb->len - ETH_HLEN);
++
++		csum_replace2(&t->ip4->check, t->ip4->tot_len, len);
++		t->ip4->tot_len = len;
++		shinfo->gso_type = SKB_GSO_TCPV4;
++	}
++
++	skb_set_network_header(skb, ETH_HLEN);
++	skb_set_transport_header(skb, thoff);
++	shinfo->gso_size = g->mss;
++	shinfo->gso_segs = g->segs;
++
++	if (g->flist) {
++		shinfo->gso_type |= SKB_GSO_FRAGLIST;
++		skb->ip_summed = CHECKSUM_UNNECESSARY;
++		skb->csum_level = 0;
++		return;
++	}
++
++	if (t->v6) {
++		t->th->check = ~csum_ipv6_magic(&t->ip6->saddr, &t->ip6->daddr,
++						l4len, IPPROTO_TCP, 0);
++	} else {
++		t->th->check = ~csum_tcpudp_magic(t->ip4->saddr, t->ip4->daddr,
++						  l4len, IPPROTO_TCP, 0);
++		if (g->fixedid)
++			shinfo->gso_type |= SKB_GSO_TCP_FIXEDID;
++	}
++	skb->csum_start = (u8 *)t->th - skb->head;
++	skb->csum_offset = offsetof(struct tcphdr, check);
++	skb->ip_summed = CHECKSUM_PARTIAL;
++}
++
++/*
++ * Hands the run to mac80211 as one frame with the receive status of its
++ * segments; one of several segments as a GSO frame, which mac80211 counts
++ * as those segments.
++ */
++static void ath11k_dp_rx_merge_flush(struct ath11k *ar,
++				     struct napi_struct *napi,
++				     struct ath11k_dp_rx_merge *g)
++{
++	struct sk_buff *skb = g->head;
++
++	if (!skb)
++		return;
++
++	/* complete before the run is let go: it reads g->head */
++	if (g->segs > 1) {
++		ath11k_dp_rx_merge_complete(g);
++		ar->ab->soc_stats.rx_merge_aggs++;
++		ar->ab->soc_stats.rx_merge_segs += g->segs;
++	}
++	g->head = NULL;
++
++	ath11k_dp_rx_deliver_msdu(ar, napi, skb, &g->status);
++}
++
++/*
++ * Appends segment @t of @msdu to the run: its payload as a fragment of the
++ * head, which takes the buffer it was received in and frees the segment's
++ * skb, or the segment whole to the frame list. A segment that cannot be taken
++ * is left as it was.
++ */
++static bool ath11k_dp_rx_merge_join(struct ath11k *ar,
++				    struct napi_struct *napi,
++				    struct ath11k_dp_rx_merge *g,
++				    struct sk_buff *msdu,
++				    const struct ath11k_dp_rx_tcp *t, bool fixed)
++{
++	u16 payload = t->payload, id = t->v6 ? 0 : ntohs(t->ip4->id);
++	u16 hdr_len = t->hdr_len;
++	bool push = t->th->psh, fragstolen;
++	int delta;
++
++	if (g->flist) {
++		/*
++		 * Chained as skb_gro_receive_list() chains a segment: its
++		 * headers stay in front of its payload, where the network
++		 * header names them for whoever cuts the list.
++		 */
++		skb_set_network_header(msdu, ETH_HLEN);
++		skb_set_transport_header(msdu, (u8 *)t->th - msdu->data);
++		__skb_pull(msdu, hdr_len);
++		if (g->last == g->head)
++			skb_shinfo(g->head)->frag_list = msdu;
++		else
++			g->last->next = msdu;
++		msdu->next = NULL;
++		g->last = msdu;
++		g->head->data_len += msdu->len;
++		g->head->len += msdu->len;
++		g->head->truesize += msdu->truesize;
++	} else {
++		__skb_pull(msdu, hdr_len);
++		if (!skb_try_coalesce(g->head, msdu, &fragstolen, &delta)) {
++			__skb_push(msdu, hdr_len);
++			return false;
++		}
++		kfree_skb_partial(msdu, fragstolen);
++	}
++
++	if (g->segs == 1)
++		g->fixedid = fixed;
++	g->segs++;
++	g->next_seq += payload;
++	g->last_id = id;
++	if (push)
++		g->t.th->psh = 1;
++
++	/*
++	 * A segment that ends a write ends the run, as does a short one, and
++	 * the bound on its size.
++	 */
++	if (push || payload < g->mss || g->segs >= g->max_segs)
++		ath11k_dp_rx_merge_flush(ar, napi, g);
++
++	return true;
++}
++
++/*
++ * Starts a run with @msdu, unless GRO on the netdev its frames reach is off
++ * or has an XDP program there, which see every frame alone. The run takes the
++ * form GRO on the netdev would give it: with frame lists on a frame list,
++ * unless a socket of the host takes the stream, as tcp4_check_fraglist_gro()
++ * and tcp6_check_fraglist_gro() decide, else a frame with fragments; either up
++ * to the netdev's GRO size.
++ */
++static bool ath11k_dp_rx_merge_open(struct ath11k_dp_rx_merge *g,
++				    struct sk_buff *msdu,
++				    const struct ieee80211_rx_status *status,
++				    const struct ath11k_dp_rx_tcp *t)
++{
++	struct ieee80211_sta *sta = ATH11K_SKB_RXCB(msdu)->sta;
++	struct net_device *dev;
++	struct sock *sk = NULL;
++	int iif, sdif = 0;
++	bool flist;
++
++	rcu_read_lock();
++	dev = ieee80211_sta_rx_netdev(sta);
++	if (!dev || netif_elide_gro(dev)) {
++		rcu_read_unlock();
++		return false;
++	}
++
++	g->max_size = min_t(u32, t->v6 ? READ_ONCE(dev->gro_max_size) :
++				  READ_ONCE(dev->gro_ipv4_max_size),
++			    GRO_LEGACY_MAX_SIZE);
++	flist = dev->features & NETIF_F_GRO_FRAGLIST;
++	if (flist) {
++		iif = dev->ifindex;
++#if IS_ENABLED(CONFIG_NET_L3_MASTER_DEV)
++		if (netif_is_l3_slave(dev)) {
++			struct net_device *master;
++
++			master = netdev_master_upper_dev_get_rcu(dev);
++			sdif = iif;
++			iif = master ? master->ifindex : 0;
++		}
++#endif
++		if (!t->v6)
++			sk = __inet_lookup_established(dev_net_rcu(dev),
++						       t->ip4->saddr,
++						       t->th->source,
++						       t->ip4->daddr,
++						       ntohs(t->th->dest),
++						       iif, sdif);
++#if IS_ENABLED(CONFIG_IPV6)
++		else
++			sk = __inet6_lookup_established(dev_net_rcu(dev),
++							&t->ip6->saddr,
++							t->th->source,
++							&t->ip6->daddr,
++							ntohs(t->th->dest),
++							iif, sdif);
++#endif
++	}
++	rcu_read_unlock();
++
++	if (sk) {
++		sock_gen_put(sk);
++		flist = false;
++	}
++
++	g->head = msdu;
++	g->last = msdu;
++	g->flist = flist;
++	memcpy(&g->status, status, sizeof(*status));
++	g->t = *t;
++	g->mss = t->payload;
++	g->next_seq = ntohl(t->th->seq) + t->payload;
++	g->last_id = t->v6 ? 0 : ntohs(t->ip4->id);
++	g->segs = 1;
++	g->fixedid = false;
++	/*
++	 * GRO ends a frame list at 64 segments, and a frame with fragments
++	 * takes one per segment but the first.
++	 */
++	g->max_segs = flist ? 64 : MAX_SKB_FRAGS + 1;
++
++	return true;
++}
++
++/*
++ * A frame ath11k_dp_rx_process_msdu() has made ready for mac80211, with its
++ * receive status @status: merged into the run when it is the next segment of
++ * it, else the run is sent and the frame starts one, or is left to be sent
++ * alone. The frames of a stream leave in the order they came in, and a frame
++ * never waits behind another one's: a frame that does not join ends the run
++ * before it is handled.
++ *
++ * Return: true when the frame is the run's.
++ */
++static bool ath11k_dp_rx_merge_rx(struct ath11k *ar, struct napi_struct *napi,
++				  struct ath11k_dp_rx_merge *g,
++				  struct sk_buff *msdu,
++				  const struct ieee80211_rx_status *status)
++{
++	struct ath11k_dp_rx_tcp t;
++	bool fixed = false, ok;
++
++	ok = !(status->flag & (RX_FLAG_FAILED_FCS_CRC | RX_FLAG_MMIC_ERROR)) &&
++	     ath11k_dp_rx_merge_ok(ar, msdu) &&
++	     ath11k_dp_rx_merge_parse(msdu, &t);
++
++	if (g->head) {
++		if (ok && ath11k_dp_rx_merge_fits(g, msdu, status, &t, &fixed) &&
++		    ath11k_dp_rx_merge_join(ar, napi, g, msdu, &t, fixed))
++			return true;
++		ath11k_dp_rx_merge_flush(ar, napi, g);
++	}
++
++	return ok && !t.th->psh && ath11k_dp_rx_merge_open(g, msdu, status, &t);
++}
++
+ static void ath11k_dp_rx_process_received_packets(struct ath11k_base *ab,
+ 						  struct napi_struct *napi,
+ 						  struct sk_buff_head *msdu_list,
+@@ -2995,6 +3431,7 @@ static void ath11k_dp_rx_process_received_packets(struct ath11k_base *ab,
+ 	struct sk_buff *msdu;
+ 	struct ath11k *ar;
+ 	struct ieee80211_rx_status rx_status = {};
++	struct ath11k_dp_rx_merge merge = {};
+ 	int ret;
+ 
+ 	if (skb_queue_empty(msdu_list))
+@@ -3020,8 +3457,13 @@ static void ath11k_dp_rx_process_received_packets(struct ath11k_base *ab,
+ 			continue;
+ 		}
+ 
++		if (ath11k_dp_rx_merge_rx(ar, napi, &merge, msdu, &rx_status))
++			continue;
++
+ 		ath11k_dp_rx_deliver_msdu(ar, napi, msdu, &rx_status);
+ 	}
++
++	ath11k_dp_rx_merge_flush(ar, napi, &merge);
+ }
+ 
+ /*
 -- 
 2.53.0
 
