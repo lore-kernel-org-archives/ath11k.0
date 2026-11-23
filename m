@@ -2,80 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E0A6606A32E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1ED1606A337
 	for <ath11k@archiver.kernel.org>; Mon, 23 Nov 2026 13:50:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dEUFJEFk;
-	dkim=pass (2048-bit key) header.d=bairaktaris.de header.i=@bairaktaris.de header.a=rsa-sha256 header.s=google header.b=ah7PQGUk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=A1WP0JOw;
+	dkim=pass (2048-bit key) header.d=bairaktaris.de header.i=@bairaktaris.de header.a=rsa-sha256 header.s=google header.b=g9IrbVxk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=6HVhuJO5sWXcG8AHtCleMZpnq8VDkE7D2E0LYlxDAms=; b=dEUFJEFk2kfDaTq77qR0R+Yr4Y
-	lsK/BzFaZjk27qBalccrwSKPKFoy3xVQChJMJNKwUgy3/uM4mNeC+I+Ewd5JXtu47OxCQVs0Dp9Nk
-	sFXxXeZyNHG8/ablYWyMT2YbkcOINP4mBFpd1NC7MzNbvS0X5p9Umdr7eQt+eD6+2u3lgefV9WsuO
-	+2nENSxVEC1V7K6CTxh0iIxXeI9/QytA84LPESsmtr9opRTbv6k0fQ7MGP6ncd4TZIKLxGNzQsKW0
-	kt4/KhOmV7oCHFCCL/KAvsRYV619P4e/d58+gY/LHI3pZymfG8RJNHMP4HhPkgpXql5IPxAE6gy9B
-	kP/Dkchg==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=57ma+zgU22rM4nTYnM4SGAl9X+VUD738fpDOy0Jctx4=; b=A1WP0JOwn1vA/8
+	idCAfZs2mAR/RzouSQtUb9nJ2tjLdk/m8aWGH12MeDaa95pQ9S+7WJtoYhGeesnUjvzkNI/rebk17
+	ncTUSvjZeJhHOqJYsfr3DEgyBIU5ALOHn113s+QLWBwtKg8d80UIBBQzV6VeGU6w0TR/t8uGV1NxN
+	xkJ5cAWYXTl+wXKrrqu1jT+95YiGSgANGvb4L2UjMOqbY2+eFOsgJMQLBUna/sWpI1YqLeV4znNpM
+	0sJsHsn1j5JF7K/J1VmoaB7GFancma411uLZVC5c6G7isk2eURIIM7Q4Ow+4qY7gREBSUMahbBip3
+	qMLLnhbdAmmlPY9wXn5A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVUR0-00000003dIa-0MfD;
-	Mon, 23 Nov 2026 13:50:18 +0000
-Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
+	id 1xVUR1-00000003dJn-1Gkq;
+	Mon, 23 Nov 2026 13:50:19 +0000
+Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVUQv-00000003dGL-35uO
+	id 1xVUQw-00000003dGM-2RNt
 	for ath11k@lists.infradead.org;
-	Mon, 23 Nov 2026 13:50:15 +0000
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-c4322d310e7so584845366b.0
-        for <ath11k@lists.infradead.org>; Mon, 23 Nov 2026 05:50:13 -0800 (PST)
+	Mon, 23 Nov 2026 13:50:18 +0000
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-6b167ffd132so5012878a12.1
+        for <ath11k@lists.infradead.org>; Mon, 23 Nov 2026 05:50:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bairaktaris.de; s=google; t=1795441812; x=1796046612; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=6HVhuJO5sWXcG8AHtCleMZpnq8VDkE7D2E0LYlxDAms=;
-        b=ah7PQGUkP4EPR21hMJxWQGqegrp/8mRSR/BYrrKsWFlnRCgtGuRsigEaC0aFcfrD7k
-         oEoa12P1WJdMY20fSWD/YM6hzbwF0Ri/WvZUBuEM8xRqdQE12ILNhAix0bWAMDZ2mL0j
-         wAsmvbD9ViorxbEUhp+oci7C4DcyEtu8OuCuFJkflvHsptnYto63aj0mbI2LEF2gvHdO
-         VwUygkj7CIaZsHyy7AJoWkAKF89GCkVQPkMApbXHiU6+wDr08A0vQo8NcdjsOsdcy8zY
-         SK0mCs673IFXEOSa7CN0gK02n64oXnd03vvxC+K2u86hkOm+Q72YJs25oD1X8v50Lb/A
-         O8yQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795441812; x=1796046612;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=bairaktaris.de; s=google; t=1795441813; x=1796046613; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=6HVhuJO5sWXcG8AHtCleMZpnq8VDkE7D2E0LYlxDAms=;
-        b=Og5evA0zZMZOvTR0FFqi0chZNuqyU5M/aymPLlW/4ON63pV9ecwWwBJp7RfDGTSBvy
-         gXfwSFBPMjfdv0pf9hN7aKo8ht+LAI0FVJHyY6Pv1eStubihV6fuwI47k7/UwyTv3n1t
-         xaI3Xe0upp3aruDThta3+lD3k1tbmLB35A6RTpJ1LjfqYdOKanyBbWE1T2WJyTOFH7mw
-         I5Olp+hJluymH5f9oC4TlcwdoYZ2XzNNODcuH/zbXOINsexDYzm90Nwnxf2l25QvWzxD
-         w93G8CfAfIh8Bi96NZpV1LlrB43oSabCM1aLVRLCGwlesxQxshwUPYmut0U90+amuONu
-         dszw==
-X-Gm-Message-State: APuU4Z9WzlUIXtzAvJ0Lw7DiaUb2gKDFSuvRHkdxkOcBcVrqANDPfPqk
-	V3Qw1Qz3xCzpgV57YxvevM8r9lGqOnRO9VMIb1E09RwCfsj505yj0SHfkiGdnCxflg==
-X-Gm-Gg: AZFdTZdTJqsSEvlnFXwVcmJizQaUbn0/I2lAtcZF8plgvHRM7qy+qNXPSJNOLNAZwa8
-	SmqtYKwAb1D6TVEZ+/mL0Xs7IHw4SxkHpgslRICv8m8Amg/W+oau9HVNlE0AHHDRJfPjtBORepN
-	cCptOd01yQBNB+KMjksXUonY/MTKB0fnPWvCziUwK//1enLlmhuSBlgaM+WfIajHm/t/ixKDcQO
-	n6cB7BYaui3/zSTgeV4PmaMy9EJsF+bXmZQsjqBFPqeRJKqzj65RzwUgtZ3p/GUpSSUp279vvGE
-	GIgvQ9Fpga4ErzyE4IPAHflvHtLubLDFQdUWQcgVgo90Ijanq0sA0/hXMNWO9uePeFFjm/UhLs8
-	9qQr9O0oPyok/vYvbZMnW4/CwtKKmE75cX5MEM724xECj/clKannkF59TyafgBQUs9kc6HRT5Rg
-	lpixNhc5f35xMoQmo5AYzU1DnMdHyVrFjh5Hm0zAgkJ13htmIDp40mr6aFSuMkrSZY4mEBOnQth
-	imSLMycSClRy5fSw1mLz+95XCImXYifA/IkPJ7AyjcCnzMYVpq7p9b291eg0Z3UM8Wd5vFktpxF
-	4vYGZFhfG6FrDXMwB2y1Lzl6BN/VgOkVMJ7dW8teomrBgVQl7TRTSOWrYieXpVl6Zgjthil9uaZ
-	f2XBUFxUXEGD6Rh7W9PnvCv//gWxG8WWsFpRn5ZViziNa9jXTtG1IRU2piTAqzD3gIyvWLqnPVL
-	ZDdfmSTP3NZq4hCS4IlLsNv7ZeRKVFc1XxJ57bKV4+4KSpbTDhxTKi1jax/1mPVZTl1x7sMTdOM
-	SM3GCRp6vU4DXye4Z+5vEX/Sa1PcYUwybTfohEO+EU31yLNQ+lQVGS3lIGUC+DLt+W1vv/zUP3O
-	55ITc349G5kICvWQniC42wclC6iyIyvvcVg6fOqJ1krZKdU/kYwjOhbeAcIkFqWMygVev62LfQ=
+        bh=57ma+zgU22rM4nTYnM4SGAl9X+VUD738fpDOy0Jctx4=;
+        b=g9IrbVxkYNp3f7XEWNXOlq8K5PvuXNe8SB9iaIJiYqF7LdF2z89onkg/qHf6DurwBE
+         y7LlkTHDeSGVd3mJnhJ9nOgW3n1sPcmiCfczlG7MMWSpJ34NZ3NNYfU04qXcSjesBeKj
+         eH0JTUV82hDA8v8QaVedBtja8Yc/iQEpPs6ZHGLmiRP2b95JJ0uSRHY1TgJWkdhcpBxR
+         5CBrWgmSUxvEOEVP1LaXSnSbPd1FTcLfUNY+SpNf+hgVdeflgOz5y3i54jSHTh17OG03
+         pQswfEcTBZwPCiYTNutDVhafNK7oMBFOxbwQ8hd/qQ2GHCVHW+1NZsDVXwCtgwCQsE7/
+         LiGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795441813; x=1796046613;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=57ma+zgU22rM4nTYnM4SGAl9X+VUD738fpDOy0Jctx4=;
+        b=Vbr68u4GTMf0juBFW0xZy8LHh5o2UllQozQvbinerow6LJkqcsdPTHIGqIVFINGjzw
+         V+eDi6kJPWX0phd95oElENnWTGEoRNRoC0yP/CATuS9iQk+3LTsMUEemaAlpEGHHVeGS
+         w7M2GWRBFs7DN3YaooJLCfAIFbsQbKQUXUr/3PJclJEDbb+zYv2Ci2hukm81KtvBnJK+
+         2jkQgCp7x6nlyAeFitkn6QcDtsP/T3dLF3hjxXacC90Ts8szyOHjSsThpN/hZZi5ZY9g
+         M6vdi/x+GpTu44AvY71mMkesZ8WLzkf6zUSacx62LCd9PqkJmNdeBZpnJnSDOWnD+RbS
+         JEpw==
+X-Gm-Message-State: APuU4Z/17i2eZWaYxw6KBpYlzVoFHPf3KwvEoAOXfu7Ggvuz0WHWb+YI
+	Pvl83QvURnmwR3a31VBlX0Wytei79jyJdLihtDQZPJ+nOWL0sPAIktRenWaVppMsKg==
+X-Gm-Gg: AZFdTZdbYRSpLNkCBcrwAS1Rj0bwiv3Tnu96YbccEFBkM7+pG67quSpubtNjZ9xfDR+
+	rND44ygWzpJYTTj8u64913dBNQ8ndUrIn2VHnFYKRhP61YoZxukXssJ7ocnyimB3qFw3QODVVNX
+	H/obadIlrkY8vISHxjXBWc4kAXirQrNBSZchHqQxGEYUQyHsBUwk4vPaIKNqL0YYUbeRdQXW1og
+	kgkD6Vbqrwa4giOZHmCMWoX1w9qtm9i+lGEbzTTAMGUV4DgpfFtMPQ8urLpN5imzPF5RSHFJPJD
+	v8RZB59CZDl6eSAhipfJQ3naBqarf5b1jPywAeQR+AG6MKdpq/zAJR4fz4p+0/0jTs0lKlsVWV6
+	kMdmToYSk3JcXKQ7zE/KelNIsOraIoVYc62CDzhJPhXQmlr+lDWbtCuFTdqxn0SpblDUJ2vn+e/
+	/ZM1GNZ3zfk9XsDYVtLvbPBjnpG/mrp3rr92sNms4obPed2ImxLRQxCISbBInVa7xTGaLtDhbIg
+	mrmps5ftJBuQSWxpXToAIVi6iV1W+kSO4U7zYXJrgZLx7GlTig1cTmLWeqD0a2EBMrXPACLeK+s
+	rJBOephEMpgbxnKOIU2nTw3+mXN05sYYQwSqgjGog4MyzSvXUvt7UnLtCUDwIpDijyvIsKasld+
+	yK+DGOZ3YgIQtd59wy1wy2wgxa8kDBNFyQ+Z1B68DFvY4ATJEqn2RvyWr0eX4l3O4sc9R65srf1
+	lpaYMtI+BS7U5+aVVlJg4FdrlXOdASbZxqQakh0fXRI8OwEy00QjrZ7w4akRyL8ohnydZXUNlf9
+	/Aq8BeSy1GeHtovvSk68P87fspfAEGJWRltPWeoKvCHYmvlQI2hG8hDL3GbXTe38s2sF0KDwJCf
+	vBqrqpd+GhxJXm1DU9JzThieniXC9f7KC9yZYzJVgZ2iS3GKhHoUqCFS7nwpl9wqjyjGrp2I4Uk
 	=
-X-Received: by 2002:a17:906:8a63:b0:c1c:4a80:30c4 with SMTP id a640c23a62f3a-c513a99a66amr712771366b.11.1795441811767;
-        Mon, 23 Nov 2026 05:50:11 -0800 (PST)
+X-Received: by 2002:a05:6402:4416:b0:6ba:c87b:b53f with SMTP id 4fb4d7f45d1cf-6bac87bbebamr1384351a12.22.1795441812759;
+        Mon, 23 Nov 2026 05:50:12 -0800 (PST)
 Received: from Desktop.tail070c67.ts.net (p200300f247012000e9a6b19fb24a0d13.dip0.t-ipconnect.de. [2003:f2:4701:2000:e9a6:b19f:b24a:d13])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6ba370fa8a4sm5357732a12.21.2026.11.23.05.50.10
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6ba370fa8a4sm5357732a12.21.2026.11.23.05.50.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 05:50:11 -0800 (PST)
+        Mon, 23 Nov 2026 05:50:12 -0800 (PST)
 From: Julius Bairaktaris <julius@bairaktaris.de>
 To: Jeff Johnson <jjohnson@kernel.org>,
 	Johannes Berg <johannes@sipsolutions.net>
@@ -100,16 +100,18 @@ Cc: ath11k@lists.infradead.org,
 	John Crispin <john@phrozen.org>,
 	Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com>,
 	Ramya Gnanasekar <quic_rgnanase@quicinc.com>
-Subject: [RFC PATCH ath-next 0/3] wifi: ath11k: merge the TCP segments of a station in the REO reap
-Date: Mon, 23 Nov 2026 14:50:07 +0100
-Message-ID: <20261123135010.721107-1-julius@bairaktaris.de>
+Subject: [RFC PATCH ath-next 1/3] wifi: mac80211: count the segments of a received GSO frame
+Date: Mon, 23 Nov 2026 14:50:08 +0100
+Message-ID: <20261123135010.721107-2-julius@bairaktaris.de>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261123135010.721107-1-julius@bairaktaris.de>
+References: <20261123135010.721107-1-julius@bairaktaris.de>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_055013_820537_4508F647 
-X-CRM114-Status: GOOD (  15.63  )
+X-CRM114-CacheID: sfid-20261123_055014_656436_02FCF9F0 
+X-CRM114-Status: GOOD (  18.21  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -121,137 +123,152 @@ List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-With Ethernet rx decap, ath11k hands every MSDU of a REO reap to
-ieee80211_rx_napi() on its own. mac80211 runs its 802.3 receive path for
-it (station and fast_rx lookup, station and netdev counters, control port
-check, internal forward lookup) and passes it to napi_gro_receive(), where
-TCP GRO on the netdev parses it again and adds it to the aggregate it is
-building. A TCP upload of one station at 850 Mbit/s is about 70,000
-frames a second through both.
+A driver with rx decap offload may merge consecutive in-order TCP frames
+of one station into a GSO frame before it hands it over, as GRO would
+on the netdev. ieee80211_rx_8023() counts every frame it takes as one:
+one packet, fragment and MSDU of the station, one packet of the netdev,
+and the bytes of the merged frame, which carries the headers of its
+first segment only. The counters then report fewer frames and bytes
+than the station sent.
 
-3/3 merges the consecutive segments of one TCP stream of one station and
-TID of a reap in the driver, as GRO on the netdev would, and hands the
-run to mac80211 as one GSO frame. I would like to know whether this is
-the right layer before going further, so this is an RFC.
+Count a TCP GSO frame as its gso_segs frames, and its bytes as those of
+the frames it was merged from: its length plus the headers, up to the
+end of the TCP header, of every segment after the first. Any other
+frame counts as before.
 
-Why in the driver and not GRO per MSDU: on a Xiaomi AX3600 (IPQ8074,
-four Cortex-A53) routing a TCP upload of one HE160 station at
-852 Mbit/s, without the merge, a CPU profile (one run) has the GRO
-functions (dev_gro_receive(), tcp_gro_receive(), inet_gro_receive(),
-tcp4_gro_receive() and their helpers) at 7.9 % of all samples, the
-mac80211 802.3 receive path at 5.2 %, and the second peer lookup that
-the RX cost series [1] removes at 1.7 %. With the merge, in a profile of
-the same upload at 814 Mbit/s (one run, with further datapath changes of
-mine on OpenWrt), GRO is at 1.0 %, the mac80211 receive path at 1.4 %,
-and the merge functions themselves at 2.7 %. The driver already has what
-a merge needs per MSDU (the station, TID and receive status of each
-frame, in ring order) before mac80211 sees the frame, so joining a
-segment is one header comparison.
+A merged frame to another station of the same interface takes the
+internal forward of ieee80211_rx_8023(), which sets ETH_P_802_3 as the
+protocol and the network header on the MAC header. The segmentation of
+the frame on the way out then fails: skb_mac_gso_segment() finds no
+handler for the protocol, and a driver that segments in hardware reads
+the IP header at offset 0. Give a GSO frame the protocol of its
+Ethernet header and its network header behind it; any other frame is
+forwarded as before.
 
-What stays per MSDU: every frame still passes ath11k_dp_rx_process_msdu()
-and ath11k_dp_rx_h_mpdu() before it can join, so the run is built only
-from frames that would take the 802.3 path on their own. A frame joins
-only with a receive status identical to the run's (so the decryption and
-PN-validated flags are those of every segment), with no FCS or MIC
-error, unicast, not EAPOL (those take the 802.11 path), not of a
-4-address station, in one buffer, with a TCP checksum the hardware
-verified, and with the Ethernet header of the run, so the source address
-mac80211 checks is the one of every segment. ath11k has no decap offload
-on mesh interfaces, so mesh is not merged. A frame that does not join
-ends the run before it is handled, so order is kept and nothing is held
-across reaps.
+Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
+---
+ net/mac80211/rx.c | 61 +++++++++++++++++++++++++++++++++++++++++------
+ 1 file changed, 54 insertions(+), 7 deletions(-)
 
-Counters: 1/3 makes ieee80211_rx_8023() count a TCP GSO frame as its
-gso_segs packets, fragments and MSDUs and add the headers of the merged
-segments to the byte counts, for the station and the netdev. It also
-fixes the internal forward of such a frame to another station, which
-today sets ETH_P_802_3 and the network header on the MAC header, so
-validate_xmit_skb() fails to segment it and drops it. 2/3 exports the
-netdev a station's 802.3 frames reach (its AP_VLAN netdev if it has
-one), so the driver can decide as GRO there would: no merge with GRO off
-or an XDP program, a frame list with rx-gro-list unless a local socket
-takes the stream, else a frame with fragments, up to the netdev's GRO
-size.
-
-Alternatives I see, and would follow if preferred:
-- a batched receive call in mac80211 that takes a list of 802.3 frames
-  of one station, does the per-station work once and merges in
-  __ieee80211_rx_handle_8023(), so every driver with decap offload gets
-  it (ieee80211_rx_list() today takes one frame per call);
-- keeping GRO per MSDU and making each step cheaper (a hardware skb
-  hash so GRO finds its flow without hashing, no second peer lookup,
-  both in [1]), which keeps most of the 13 % above.
-ath12k has the same per-MSDU path and would get the same change once
-the layer is agreed; it also looks the peer up twice per MSDU (in
-ath12k_wifi7_dp_rx_h_mpdu() and ath12k_dp_rx_deliver_msdu()).
-
-The merge joins only frames whose TCP checksum the hardware verified,
-which relies on the RX checksum fix of the RX correctness series [2].
-
-1/3 and 2/3 are mac80211 changes, for wireless-next. The merge acts only
-with Ethernet decap (frame_mode=2); with the native Wi-Fi default nothing
-changes. The series applies on top of the RX cost
-series [1], whose page_pool RX buffers the fragment form takes over and
-whose single peer lookup gives the station of each frame; [1] applies
-on the RX correctness series [2].
-
-The same changes ran on the AX3600 with OpenWrt's 6.18 kernel and
-wireless backports, together with further datapath changes of mine,
-with frame_mode=2. Over a run of routed and bridged TCP up- and
-download, IPv4 and IPv6, with one HE160 station, the driver merged
-14,640,275 segments into 1,359,382 frames (10.8 per frame), and the
-kernel log stayed clean. Station to station on one radio, the stream
-that mac80211 forwards internally ran at 3.8 / 4.3 Mbit/s with the merge
-before the forward fix in 1/3, and at 83.4 / 99.0 Mbit/s with it,
-against 81.6 / 99.5 Mbit/s without the merge (one run each; the second
-station's link is the limit).
-
-[1] https://lore.kernel.org/all/20261123134137.718575-1-julius@bairaktaris.de/
-[2] https://lore.kernel.org/all/20261122210525.2076058-1-julius@bairaktaris.de/
-
-I used Claude (Anthropic) to help write these patches.
-I have reviewed the commit messages and the cover letter myself and edited
-them where needed.
-
-Julius Bairaktaris (3):
-  wifi: mac80211: count the segments of a received GSO frame
-  wifi: mac80211: tell a driver the netdev a station's 802.3 frames
-    reach
-  wifi: ath11k: merge the TCP segments of a station in a REO reap
-
- drivers/net/wireless/ath/ath11k/core.h    |   3 +
- drivers/net/wireless/ath/ath11k/debugfs.c |   4 +
- drivers/net/wireless/ath/ath11k/dp_rx.c   | 444 +++++++++++++++++++++-
- include/net/mac80211.h                    |  17 +
- net/mac80211/rx.c                         |  70 +++-
- 5 files changed, 530 insertions(+), 8 deletions(-)
-
-
-base-commit: 1983b40acfcb3c3464b291c85977290a785bcfdc
-prerequisite-patch-id: ed566369a9bbda0ac9a48357261e8cfe1cc0f1d1
-prerequisite-patch-id: 726d7737c833da0842192eccececad4a0dedb1a6
-prerequisite-patch-id: cf0b8ff1ac6cef681433247e4b937a3e23af78a3
-prerequisite-patch-id: 03c89df01745ac9a80653431261f9a003dbca7db
-prerequisite-patch-id: cb48c0eddbe0c2fe176e8edc94c6bc40be3c48a9
-prerequisite-patch-id: 1956ec85ad80b68868538070fc0e89c29603467a
-prerequisite-patch-id: a66e3c439fe1341f83075e5687361fdb197cfe5a
-prerequisite-patch-id: 3e5becdd444369ceebf7128696f32b9c7575cdae
-prerequisite-patch-id: 09d8e8e4d5db48209df13c50b0bceadc913f1b36
-prerequisite-patch-id: a665dc2d623226337224372a5bc7e3e78be9c96e
-prerequisite-patch-id: 7cbac21c92659e4da6c3e708271517b65d7a5272
-prerequisite-patch-id: d615376a310af6a446929dd935dfa6d7576b7cb4
-prerequisite-patch-id: 291642da9c3994bb7deacb428c37d0ec8eb121ae
-prerequisite-patch-id: 09359a8fb405612c1ef37addfa8a8518bad32fcc
-prerequisite-patch-id: 7ef0f31a73ea2a5c875e2c1a233a4db18c4ed8d1
-prerequisite-patch-id: 5d75f6dfac0bc5ccb54a9e2fdcd0583381c158eb
+diff --git a/net/mac80211/rx.c b/net/mac80211/rx.c
+index 905fd70491ce..fd7dbd4b0611 100644
+--- a/net/mac80211/rx.c
++++ b/net/mac80211/rx.c
+@@ -19,6 +19,7 @@
+ #include <linux/export.h>
+ #include <linux/kcov.h>
+ #include <linux/bitops.h>
++#include <linux/tcp.h>
+ #include <kunit/visibility.h>
+ #include <net/mac80211.h>
+ #include <net/ieee80211_radiotap.h>
+@@ -4915,6 +4916,33 @@ void ieee80211_check_fast_rx_iface(struct ieee80211_sub_if_data *sdata)
+ 	__ieee80211_check_fast_rx_iface(sdata);
+ }
+ 
++/*
++ * The frames a received 802.3 frame stands for: one, or the segments of a TCP
++ * GSO frame that the driver merged from consecutive frames of a stream, each
++ * of which carried the headers the merged one has. @extra is set to the bytes
++ * of those headers the merged frame no longer carries.
++ */
++static unsigned int ieee80211_rx_8023_segs(struct sk_buff *skb,
++					   unsigned int *extra)
++{
++	unsigned int segs, hdrlen;
++
++	*extra = 0;
++	if (!skb_is_gso(skb) || !skb_is_gso_tcp(skb) ||
++	    !skb_transport_header_was_set(skb))
++		return 1;
++
++	hdrlen = skb_transport_offset(skb) + sizeof(struct tcphdr);
++	if (skb_headlen(skb) < hdrlen)
++		return 1;
++
++	segs = max_t(unsigned int, skb_shinfo(skb)->gso_segs, 1);
++	hdrlen += tcp_hdrlen(skb) - sizeof(struct tcphdr);
++	*extra = (segs - 1) * hdrlen;
++
++	return segs;
++}
++
+ static void ieee80211_rx_8023(struct ieee80211_rx_data *rx,
+ 			      struct ieee80211_fast_rx *fast_rx,
+ 			      int orig_len)
+@@ -4925,6 +4953,8 @@ static void ieee80211_rx_8023(struct ieee80211_rx_data *rx,
+ 	struct sk_buff *skb = rx->skb;
+ 	void *sa = skb->data + ETH_ALEN;
+ 	void *da = skb->data;
++	struct pcpu_sw_netstats *tstats;
++	unsigned int segs, extra;
+ 
+ 	if (WARN_ON_ONCE(!link_sta)) {
+ 		dev_kfree_skb(rx->skb);
+@@ -4964,12 +4994,17 @@ static void ieee80211_rx_8023(struct ieee80211_rx_data *rx,
+ 	stats->last_rx = jiffies;
+ 	stats->last_rate = sta_stats_encode_rate(status);
+ 
+-	stats->fragments++;
+-	stats->packets++;
++	segs = ieee80211_rx_8023_segs(skb, &extra);
++	stats->fragments += segs;
++	stats->packets += segs;
+ 
+ 	skb->dev = fast_rx->dev;
+ 
+-	dev_sw_netstats_rx_add(fast_rx->dev, skb->len);
++	tstats = this_cpu_ptr(fast_rx->dev->tstats);
++	u64_stats_update_begin(&tstats->syncp);
++	u64_stats_add(&tstats->rx_packets, segs);
++	u64_stats_add(&tstats->rx_bytes, skb->len + extra);
++	u64_stats_update_end(&tstats->syncp);
+ 
+ 	/* The seqno index has the same property as needed
+ 	 * for the rx_msdu field, i.e. it is IEEE80211_NUM_TIDS
+@@ -4977,8 +5012,8 @@ static void ieee80211_rx_8023(struct ieee80211_rx_data *rx,
+ 	 * frame, so count MSDUs.
+ 	 */
+ 	u64_stats_update_begin(&stats->syncp);
+-	u64_stats_inc(&stats->msdu[rx->seqno_idx]);
+-	u64_stats_add(&stats->bytes, orig_len);
++	u64_stats_add(&stats->msdu[rx->seqno_idx], segs);
++	u64_stats_add(&stats->bytes, orig_len + extra);
+ 	u64_stats_update_end(&stats->syncp);
+ 
+ 	if (fast_rx->internal_forward) {
+@@ -4998,9 +5033,21 @@ static void ieee80211_rx_8023(struct ieee80211_rx_data *rx,
+ 			 * reclassifying the frame (see cfg80211_classify8021d).
+ 			 */
+ 			xmit_skb->priority += 256;
+-			xmit_skb->protocol = htons(ETH_P_802_3);
+-			skb_reset_network_header(xmit_skb);
+ 			skb_reset_mac_header(xmit_skb);
++			/*
++			 * A GSO frame is cut into its segments on the way
++			 * out, which needs the protocol and network header
++			 * it was merged with: with ETH_P_802_3 and the
++			 * network header on the MAC header, the segmentation
++			 * finds no IP header.
++			 */
++			if (skb_is_gso(xmit_skb)) {
++				xmit_skb->protocol = eth_hdr(xmit_skb)->h_proto;
++				skb_set_network_header(xmit_skb, ETH_HLEN);
++			} else {
++				xmit_skb->protocol = htons(ETH_P_802_3);
++				skb_reset_network_header(xmit_skb);
++			}
+ 			dev_queue_xmit(xmit_skb);
+ 		}
+ 
 -- 
 2.53.0
 
