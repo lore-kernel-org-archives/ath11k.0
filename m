@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C3F1606A31E
-	for <ath11k@archiver.kernel.org>; Tue, 24 Nov 2026 01:41:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13A7E606A31E
+	for <ath11k@archiver.kernel.org>; Tue, 24 Nov 2026 14:25:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mvPoZIX3;
-	dkim=pass (2048-bit key, unprotected) header.d=luixo.me header.i=@luixo.me header.a=rsa-sha256 header.s=protonmail3 header.b=siv+bPXC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YbimQ/Nc;
+	dkim=pass (2048-bit key) header.d=schenkerlabs.com header.i=@schenkerlabs.com header.a=rsa-sha256 header.s=google header.b=be7/Mr9U
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
@@ -14,48 +14,79 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=AEPdrSonFnMm713LtxfgWTKetCF42gKUQZWQeqT3CgY=; b=mvPoZIX3EzZyasLsuGgnh9dGKQ
-	O5HZHyQlP+M4kSmqBsFlFX8GCnUcEkAUG4P0v9+k+SGfUf24UNw8lvHHl42wiG229FeVYGpE4pYzI
-	2hIv9UqEU+w5xCBjvM0qXkmzAFi7P86zuy4E6+66O/IO15GintmDHsPaVWbCEI47MvPd8yEH3PFBr
-	ASLiqfa2jWfJ0B/RV5mNOm0GcRWHz+2l3vaUOtyxVMNo1CgKmiv+qCtYALMKWq2vHEvfVp+oEBjuQ
-	WvHFwm+iHc1U244FJhIxPRMMYvaIir5OsJI03vFKhEZNa53P1mngMq2ls0zvsNmfDjo1Hb3OCkkXv
-	ABm5FbRA==;
+	bh=RCKrLkl5k99AJFpDDohI0CFzM+JQWzk+3RNc7Giamwc=; b=YbimQ/NclhliORXBeMiLiJNuAW
+	kjx0X1ZvZfPqSiiLZ7LAZWim0wXHtss5tuwmPHRMH+Iz68VrVAnuqlbmjtuxVxqwvEDLStX2Pvjq1
+	vp+eqWZLovm/ulHw6O/cHHq9hJE4K1mAaPUVEDyfNMxHQ4KR9UEbqC4cC2O8dlqI/hDxBM6BkkAol
+	23hTExNDp9rsa851Z2Poxhzi+qYgvQvmiTVu/XIq2pV20kFNT3HbRHSsqcQaGRBZI1gBZduGIkfir
+	f0aakUJZEp8j21CxM4PFO5FgxU0pvgIX5lxpQ2X5UD1Yajbw3Rs4zXH0sK1mshBc0VTlf8XmKqH7S
+	YlyskUPw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVfXB-00000005Kq9-0KRc;
-	Tue, 24 Nov 2026 01:41:25 +0000
-Received: from mail-244106.protonmail.ch ([109.224.244.106])
+	id 1xVrSA-00000006jlc-2j5j;
+	Tue, 24 Nov 2026 14:25:02 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVfX7-00000005Kow-1Odb
+	id 1xVrS7-00000006jjR-3YLA
 	for ath11k@lists.infradead.org;
-	Tue, 24 Nov 2026 01:41:23 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=luixo.me;
-	s=protonmail3; t=1795484473; x=1795743673;
-	bh=AEPdrSonFnMm713LtxfgWTKetCF42gKUQZWQeqT3CgY=;
-	h=From:To:Cc:Subject:Date:Message-ID:From:To:Cc:Date:Subject:
-	 Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=siv+bPXCrGItXu0b6pT1jsAhikxBRCe3ht0Ytm1cQOWxxjFjdiIJ3rqEkyujKpYHT
-	 EIEKXIEEZbOfmeyRh9pSq0Dr5hFz8LSz2fSGaClIX25YMGZs+FalW0oiWA14RUItPb
-	 3uXLGv/AgDtcQ+eVilIf5a7TdoQgyGbh9AAMn8ViqKpNwYaiXsvupQtZHt0EOUhHLp
-	 zYZyyNz+L31bQjXP1B1Ty7qrzY18V1rUfBIn8/SP8alvBzNLL4Yy6OIixS1x/xsq0S
-	 qqMNX2rGuMv92puxRRATpzhEeUR3QzHvhhsE4eCZUY+N/f3pArs8HprGspHHf768ke
-	 I6Af3RZyPjt9w==
-X-Pm-Submission-Id: 4jYQWW34Yyz1DDL2
-From: Alexey Immoreev <luixo-public@luixo.me>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org,
-	jjohnson@kernel.org,
-	julius@bairaktaris.de
-Subject: [RFC PATCH] wifi: ath11k: use coherent DMA for destination rings
-Date: Tue, 24 Nov 2026 01:40:57 +0000
-Message-ID: <20261124014057.491428-1-luixo-public@luixo.me>
+	Tue, 24 Nov 2026 14:25:01 +0000
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4bb69f5b161so29659965e9.0
+        for <ath11k@lists.infradead.org>; Tue, 24 Nov 2026 06:24:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=schenkerlabs.com; s=google; t=1795530298; x=1796135098; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=RCKrLkl5k99AJFpDDohI0CFzM+JQWzk+3RNc7Giamwc=;
+        b=be7/Mr9UzL+NhgGqnmo5k/ZBqtMn8jaCcrEkYq16EvroC0EL32/YZpTYeB/jBn+8f/
+         BQMyOgxyKc4PutWeoueI6kPZJU/H0qSuct4/iX8QUoh/q21dSvD0DzBYOdhU1pFDOTFO
+         CVKCXaPF4CLuj/Q/DhukZBAzVF+HzXmnEE8OirIBpBotnQNVweVUqRUIlOvEArawiees
+         IcYzmyYPkygrNaudlwFB7kLHWEyStRmpy4s4fWLtdIvGU+BpZSAwmbJ6YQcYBslVF7EO
+         G0qtqTWL5Rw6/q5ZCcX7uq3HI59WKW+4YiNC4i/y+P+/ZXwRpRjskwmPE9I/mkhOaBwD
+         KACg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795530298; x=1796135098;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=RCKrLkl5k99AJFpDDohI0CFzM+JQWzk+3RNc7Giamwc=;
+        b=tgT1I6CljCMsvLRqnvXikICaB2MxhLLYmONwtf4y/aYOaqCmXwT2/aXcsg86WvDoni
+         2dcrER4vxeERqqDU4LGu9pAmYafT9uVP1m8nXXqkg7S8PiVaB7sZBq+eLjjWZQIEbFXf
+         kSCMzaNO9AlwMKCAgvrz3OkWiuYKAXEIihR6yQCR+5fZDNePd4XvRjVnI5VZf28EpbLA
+         TRzCy4UGMa5TXaOTemSkMEGKMW0qFlSXYVSq/1/ToLZe2igKwkmJXtYRKsJMfoOyEGjE
+         K8NPTwmq3QxT7D/IsHk1zv90wSj3Mv7yCbA4+6iMwaj2T3H5WQln9oVJXbUumF1rNARB
+         5Xaw==
+X-Forwarded-Encrypted: i=1; AL+hErFkiLfPM4Mh1EzPu5Qu0CW3kqwQG/0meClG0zpi99n8m1RNeePTq4E59UB5ANbppA7PxV2twfM=@lists.infradead.org
+X-Gm-Message-State: APuU4Z+KuW4DTjBbvzUsESaP5LSsFPEZpnm4nVqh3Yavx3yTFIbn+zsw
+	7n9b64SS/45G8cP7HXrHt1WPpC7uxoSDlTFw/Dj/czuguNajtLlMI30WVJb49x8UanuOOdJO7/N
+	kBl2M2A==
+X-Gm-Gg: AZFdTZcwRadmgTs1MGUoVN1vKZM8IH9VsyYLVkMwHiaCTR3IzHQkwwhYx3kwzJkkLq0
+	tpX7CUJfgomqGuXm8fgOTjdwyRnnnSh/EkpXE1kPxHh1magy3gpRt4gfjfLo/WyLMtIoDG625W/
+	nru5haZiDgb57WRQB1YoTR47SdzfzvwE/CgL31tNTjB6cClzd1EduY9cVDGnBB2eHcuXdHb0X9h
+	pFuhLx8PSRdABx116JbTxp2NBFbiP26wLGURIVIeFV2u7omxtLVO6qzTtQ0kCMrZW7xR/ryF6Ho
+	pofkDXKtiYNSY202pG69EZn0PDgUh2RS+sXuTuf1dI+jwPJ94XycDou5Gtmp5rzVOiEYmdVmsWm
+	Y4efp/1p8yOHWrrJbGEQAq07lPSDhryGR+dY+g9wE8S3/T8POgaldRXMRtuFZ8HEJotbWbPD0zQ
+	HAtdq2YPCdI9M6MAPkVo/spnSFy6BCedfsrEI6Da+uO/dEsYLzkSYwJfjHDgqKWRPUjQofIOtUl
+	VIa3Sly2BxxKDDj1LZGWFPb7lnMzxmOjhogpwXrPswsahVt/sCrD9ESK0EiH7XT7mi2M8pkpbtd
+	/80HdlAQFE6JttLQesZvvA2TBIs93uWoeVweG66h80kNF1YmR9NQySSp1nKcI2x5LfvRBQ==
+X-Received: by 2002:a05:600c:1d8c:b0:4a1:c5eb:b445 with SMTP id 5b1f17b1804b1-4bb88820436mr306545315e9.35.1795530297416;
+        Tue, 24 Nov 2026 06:24:57 -0800 (PST)
+Received: from jbs-XPS-13-9310.sus.lan ([83.144.243.242])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb88442693sm386718825e9.1.2026.11.24.06.24.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Nov 2026 06:24:56 -0800 (PST)
+From: "Joerg Schenker (Schenker Labs)" <joerg@schenkerlabs.com>
+To: Jeff Johnson <jjohnson@kernel.org>,
+	ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
+Subject: [PATCH ath-next] wifi: ath11k: clamp survey noise floor on QCA6390
+Date: Tue, 24 Nov 2026 15:24:38 +0100
+Message-ID: <20261124142438.106847-1-joerg@schenkerlabs.com>
 X-Mailer: git-send-email 2.53.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_174122_400906_EC7F27BD 
-X-CRM114-Status: GOOD (  10.75  )
+X-CRM114-CacheID: sfid-20261124_062459_936220_A390B9F7 
+X-CRM114-Status: GOOD (  26.70  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -75,105 +106,165 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-ath11k zeroes cached REO destination and WBM release rings mapped as
-DMA_FROM_DEVICE, then enables them without syncing them for the device.
-The DMA API requires that initial sync and treats this DMA direction
-as CPU read-only.
+QCA6390 firmware reports channel noise floor values of -111 to -118 dBm
+in the chan info and pdev bss chan info events. The driver passes them
+unchanged to cfg80211 as the survey noise floor.
 
-Use coherent DMA for allocation and free, and stop setting the cached
-ring flag. Leave the unused cache code for a follow-up.
+These values don't match the signal levels reported by the driver. For
+management frames, ath11k_mgmt_rx_event() calculates the signal level as
+rx_ev.snr + ATH11K_DEFAULT_NOISE_FLOOR (-95 dBm). User space calculates
+the SNR of a scan result as signal level minus survey noise floor, so
+with a noise floor of -116 dBm, the SNR is 21 dB higher than the SNR
+reported by the firmware.
 
-Keeping non-coherent cached rings would require DMA_BIDIRECTIONAL and a
-device sync before enable. It would also require safe ownership at
-cache-line granularity: two 32-byte WBM descriptors can share a 64-byte
-line while the CPU owns one and hardware owns the other. Syncing one
-descriptor at a time does not solve that. Coherent DMA avoids the
-overlap but may cost CPU time where coherent mappings are uncached.
+The values are also far below the real noise floor. On an AP received
+at -88 dBm, the AP transmitted to the station at 6.5 Mbit/s (MCS 0), and
+the station transmitted at 13 to 27 Mbit/s. A noise floor of -116 dBm
+would mean an SNR of about 28 dB, which allows much higher rates.
 
-Signed-off-by: Alexey Immoreev <luixo-public@luixo.me>
+wpa_supplicant uses the SNR to calculate the estimated throughput of
+scan results, and roams within an ESS when another BSS has a higher
+estimated throughput. In an ESS with many APs, the station repeatedly
+roamed from an AP at -60 dBm to an AP at -90 dBm:
+
+  Current BSS:  ... freq=5580 level=-59 snr=57 est_throughput=180001
+  Selected BSS: ... freq=5180 level=-90 snr=26 est_throughput=263301
+  Allow reassociation - selected BSS has better estimated throughput
+
+The station roamed to that AP twice within 15 minutes. After the first
+roam, the connection was lost after about 100 seconds because of beacon
+loss.
+
+Add a hw_params flag to clamp the survey noise floor to
+ATH11K_DEFAULT_NOISE_FLOOR, and enable it for QCA6390. The noise floor
+is still reported, so users that require it, such as hostapd ACS, keep
+working. Other chips are not changed.
+
+With this change, the distant AP, received at -88 to -90 dBm, gets an
+SNR of 5 to 7 dB and an estimated throughput of 18 to 26 Mbit/s instead
+of 263 Mbit/s. In a one hour test at the same desk, the station stayed
+on an AP at about -68 dBm the whole time, with 0.2% ping loss. Directly
+afterwards, with the unpatched driver, the station connected to the
+distant AP at -89 dBm, with 53% ping loss, and the test had to be
+stopped after three minutes.
+
+The problem was analyzed and this patch was developed with the help of
+an AI coding assistant (Claude Code, model claude-opus-5-5). The
+assistant analyzed the debug logs and the driver code, and wrote the
+code and this commit message. I reviewed the change and tested it on my
+laptop as described above.
+
+Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-05266-QCAHSTSWPLZ_V2_TO_X86-1
+
+Fixes: 9de2ad43d46c ("ath11k: add hw_params entry for QCA6390")
+Signed-off-by: Joerg Schenker (Schenker Labs) <joerg@schenkerlabs.com>
 ---
-Downstream IPQ5018 (RA82) testing saw three zero-status TX completions
-with cached WBM rings and none with coherent WBM rings. The dp.c change
-compiles on ARM32 and AArch64 with OpenWrt backports headers.
+Notes:
 
-Patch 5/10 of https://patchwork.kernel.org/series/1219647/ changes
-runtime CPU sync, not startup. This RFC disables the cached path that
-the series optimizes. The performance impact is not yet measured.
+- Only QCA6390 is changed because it is the only chip I could test. I
+  don't know whether other chips (e.g. WCN6855) report similar values.
+  If they do, the flag can be enabled for them, or the clamp could be
+  made unconditional.
 
-OpenAI GPT-6.2 Sol drafted the patch and ran the host checks.
-GPT-6.2 Astra independently reviewed the DMA issue.
-I reviewed the email and patch and signed off on the contribution.
+- The noise floor is clamped instead of not reported, because hostapd
+  ACS ignores surveys without a noise floor (acs_survey_is_sufficient()).
 
-base-commit: 03b7c601b6e314115015a57061f5b377afe13190
+- ATH11K_DEFAULT_NOISE_FLOOR is used as the limit because it is the
+  noise floor that the driver already assumes for the signal level of
+  management frames. It also matches the link rates observed above.
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
-index be65d73b904b..f23c37370280 100644
---- a/drivers/net/wireless/ath/ath11k/dp.c
-+++ b/drivers/net/wireless/ath/ath11k/dp.c
-@@ -103,12 +103,8 @@
- 	if (!ring->vaddr_unaligned)
- 		return;
+- The survey noise floor has been reported unchanged since the initial
+  driver commit d5c65159f289, which supported only IPQ8074. The Fixes
+  tag points to the commit that added QCA6390, because the problem was
+  observed there and the change only affects QCA6390.
+
+- I don't know what the chan info noise_floor value refers to in the
+  firmware. If there is a known conversion to dBm, using it would be
+  better than clamping.
+
+- AI assistance: I asked the assistant to find out why my laptop's WiFi
+  was unreliable in one office while it worked elsewhere. It collected
+  and analyzed wpa_supplicant/NetworkManager debug logs and per-second
+  link measurements, found the cause in the driver, and wrote the patch.
+  Over several iterations we changed the approach: from not reporting
+  the noise floor (would break hostapd ACS), to a generic clamp (would
+  affect chips I can't test), to this QCA6390-only clamp.
+
+ drivers/net/wireless/ath/ath11k/core.c |  1 +
+ drivers/net/wireless/ath/ath11k/hw.h   |  1 +
+ drivers/net/wireless/ath/ath11k/wmi.c  | 20 ++++++++++++++++++--
+ 3 files changed, 20 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 766ae2730..8ffdd0a8f 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -306,6 +306,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.cfr_support = false,
+ 		.cfr_num_stream_bufs = 0,
+ 		.cfr_stream_buf_size = 0,
++		.clamp_survey_noise_floor = true,
+ 	},
+ 	{
+ 		.name = "qcn9074 hw1.0",
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 4996536fb..ea66f26b7 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -231,6 +231,7 @@ struct ath11k_hw_params {
+ 	bool cfr_support;
+ 	u32 cfr_num_stream_bufs;
+ 	u32 cfr_stream_buf_size;
++	bool clamp_survey_noise_floor;
+ };
  
--	if (ring->cached)
--		dma_free_noncoherent(ab->dev, ring->size, ring->vaddr_unaligned,
--				     ring->paddr_unaligned, DMA_FROM_DEVICE);
--	else
--		dma_free_coherent(ab->dev, ring->size, ring->vaddr_unaligned,
--				  ring->paddr_unaligned);
-+	dma_free_coherent(ab->dev, ring->size, ring->vaddr_unaligned,
-+			  ring->paddr_unaligned);
- 
- 	ring->vaddr_unaligned = NULL;
+ struct ath11k_hw_ops {
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 82f85df48..5db4ff346 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -7970,6 +7970,22 @@ static void ath11k_roam_event(struct ath11k_base *ab, struct sk_buff *skb)
+ 	rcu_read_unlock();
  }
-@@ -226,7 +222,6 @@
- 	int entry_sz = ath11k_hal_srng_get_entrysize(ab, type);
- 	int max_entries = ath11k_hal_srng_get_max_entries(ab, type);
- 	int ret;
--	bool cached = false;
  
- 	if (max_entries < 0 || entry_sz < 0)
- 		return -EINVAL;
-@@ -236,27 +231,9 @@
++/* The firmware of some chips reports channel noise floor values far below
++ * the actual noise floor, e.g. -111 to -118 dBm on QCA6390. Signal levels
++ * of received management frames are calculated as rx_ev.snr +
++ * ATH11K_DEFAULT_NOISE_FLOOR in ath11k_mgmt_rx_event(), so user space
++ * calculates a far too high SNR for scan results from such a noise floor.
++ * On these chips, don't report noise floor values below
++ * ATH11K_DEFAULT_NOISE_FLOOR.
++ */
++static s8 ath11k_wmi_survey_noise_floor(struct ath11k_base *ab, s32 noise_floor)
++{
++	if (ab->hw_params.clamp_survey_noise_floor)
++		return max_t(s32, noise_floor, ATH11K_DEFAULT_NOISE_FLOOR);
++
++	return noise_floor;
++}
++
+ static void ath11k_chan_info_event(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	struct wmi_chan_info_event ch_info_ev = {};
+@@ -8032,7 +8048,7 @@ static void ath11k_chan_info_event(struct ath11k_base *ab, struct sk_buff *skb)
+ 	if (ch_info_ev.cmd_flags == WMI_CHAN_INFO_START_RESP) {
+ 		survey = &ar->survey[idx];
+ 		memset(survey, 0, sizeof(*survey));
+-		survey->noise = ch_info_ev.noise_floor;
++		survey->noise = ath11k_wmi_survey_noise_floor(ab, ch_info_ev.noise_floor);
+ 		survey->filled = SURVEY_INFO_NOISE_DBM | SURVEY_INFO_TIME |
+ 				 SURVEY_INFO_TIME_BUSY;
+ 		survey->time = div_u64(ch_info_ev.cycle_count, cc_freq_hz);
+@@ -8099,7 +8115,7 @@ ath11k_pdev_bss_chan_info_event(struct ath11k_base *ab, struct sk_buff *skb)
  
- 	ring->size = (num_entries * entry_sz) + HAL_RING_BASE_ALIGN - 1;
+ 	survey = &ar->survey[idx];
  
--	if (ab->hw_params.alloc_cacheable_memory) {
--		/* Allocate the reo dst and tx completion rings from cacheable memory */
--		switch (type) {
--		case HAL_REO_DST:
--		case HAL_WBM2SW_RELEASE:
--			cached = true;
--			break;
--		default:
--			cached = false;
--		}
--	}
--
--	if (cached)
--		ring->vaddr_unaligned = dma_alloc_noncoherent(ab->dev, ring->size,
--							      &ring->paddr_unaligned,
--							      DMA_FROM_DEVICE,
--							      GFP_KERNEL);
--	else
--		ring->vaddr_unaligned = dma_alloc_coherent(ab->dev, ring->size,
--							   &ring->paddr_unaligned,
--							   GFP_KERNEL);
-+	ring->vaddr_unaligned = dma_alloc_coherent(ab->dev, ring->size,
-+						   &ring->paddr_unaligned,
-+						   GFP_KERNEL);
- 
- 	if (!ring->vaddr_unaligned)
- 		return -ENOMEM;
-@@ -318,11 +295,6 @@
- 		return -EINVAL;
- 	}
- 
--	if (cached) {
--		params.flags |= HAL_SRNG_FLAGS_CACHED;
--		ring->cached = 1;
--	}
--
- 	ret = ath11k_hal_srng_setup(ab, type, ring_num, mac_id, &params);
- 	if (ret < 0) {
- 		ath11k_dp_srng_cleanup(ab, ring);
+-	survey->noise     = bss_ch_info_ev.noise_floor;
++	survey->noise     = ath11k_wmi_survey_noise_floor(ab, bss_ch_info_ev.noise_floor);
+ 	survey->time      = div_u64(total, cc_freq_hz);
+ 	survey->time_busy = div_u64(busy, cc_freq_hz);
+ 	survey->time_rx   = div_u64(rx_bss, cc_freq_hz);
+-- 
+2.53.0
+
 
