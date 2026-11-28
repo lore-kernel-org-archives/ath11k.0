@@ -2,121 +2,94 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF6B1606A325
-	for <ath11k@archiver.kernel.org>; Sat, 28 Nov 2026 17:22:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F40F606A326
+	for <ath11k@archiver.kernel.org>; Sat, 28 Nov 2026 17:28:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4rN43+eP;
-	dkim=pass (2048-bit key) header.d=bairaktaris.de header.i=@bairaktaris.de header.a=rsa-sha256 header.s=google header.b=oJTVggdQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Wx+hLRus;
+	dkim=pass (2048-bit key) header.d=bairaktaris.de header.i=@bairaktaris.de header.a=rsa-sha256 header.s=google header.b=sKbNkyxC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=DMbvLhVt9/6Byoyb38QB8bC7RSl2nRVkt3CkxY9/jJY=; b=4rN43+ePoYyQ7M
-	1hYiyTIh7/d9+OtsFixemsbLmyipHvGKm1z7KNrZNxNZ7n7TuD/ntWpcbC/qWPLIZLBuvi+eOxVGf
-	Zp51IB9I2Wdda8bGWhyGTKI0k7/dWwYfkifaa2sI8oRhiXnQnZSI4kcBYuAQB6aX7E2HC27yzKuKx
-	aBhSy0WGH/f7HDOqbknl+3FR9m2WPJbBjJxpy7DwcsnfUNIHW9nOGmrplZ//SgyVgF8dpiLUyerAx
-	rmQ0uvuBfEmJOFBxDkZlqg7ipeCHwTshg/xQsMYzsobx/C+dwXLrkjCl3MvyhYoE7sM83vY+SWc4q
-	aVJRVqIJxEVqYQEb1s0w==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=O080aChkvNamwQRpvXuVq5oFlnHhJNHxbRaLnIM0Xus=; b=Wx+hLRusMHBZiSt2G5uxttTfSn
+	otPsQUIGk54qcLGcjdBhQ/y3t4iNulwiO5BI6NNQzqL5hA0yG7G6JxuMSxZcptaPR+36hq+lyq8q3
+	o8j5lLP+OvS+adPSHnAjdk/3ooKiXoY8AjA9oY6iE38KVMW3dfG3m86ivlKvTEKRHfa/22/+pG9zm
+	r9kS6w4sCjgsaK71NzPDW9lD0U6fsOkTkgX2VCHwSObU8gmwmL7IEM2chJ6FTVwORKjxMyTWv2TTq
+	uJQbCfhv2/a/cUhIQtGXz6MadRDW4mCnnXp/azmFMZZQcpMav7+WtsIdMHn+9Sd15XCS+8Ceo0Qfr
+	hBtbmn4g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXM89-000000011Ai-198k;
-	Sat, 28 Nov 2026 17:22:33 +0000
-Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
+	id 1xXMDt-000000012ke-0Qbg;
+	Sat, 28 Nov 2026 17:28:29 +0000
+Received: from mail-ej1-x629.google.com ([2a00:1450:4864:20::629])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXM83-000000010vM-1VLJ
+	id 1xXMDq-000000012jm-3bZ9
 	for ath11k@lists.infradead.org;
-	Sat, 28 Nov 2026 17:22:30 +0000
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-c4203bbb1e9so1505011266b.3
-        for <ath11k@lists.infradead.org>; Sat, 28 Nov 2026 09:22:26 -0800 (PST)
+	Sat, 28 Nov 2026 17:28:27 +0000
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-c51a14bd405so526765566b.2
+        for <ath11k@lists.infradead.org>; Sat, 28 Nov 2026 09:28:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bairaktaris.de; s=google; t=1795886545; x=1796491345; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=DMbvLhVt9/6Byoyb38QB8bC7RSl2nRVkt3CkxY9/jJY=;
-        b=oJTVggdQSzycktPYSaI0aN7LBW8b2LMCJGLvP8UIBtYW8pGnpxAwXnGlBI0zXbfixy
-         nh/O2D5rDFcbSNlAXBHsK00ySA8ieverBJgtqyX6Cx6/zmlPswalV7DsxtwyVOnZP6c8
-         3uPAb0D/k1KbZ517gKFnpdKy7StA2LwiyIMZ1IlLGvM9ioPYHDdwHlDiJJbXQ3w0MKnY
-         kOqTqAdlUIpyBwAKqm9qBJ4jQts6rXbG+sH4cESy+MJsmvVPR1WU0ntlsBHrXL8LIcxC
-         vx9ldgxREH3gVeMqbIZxjqNKCebk677MFXwlFIX5hltVugnJ+YPkDjp04q/ZGTQwNPQf
-         gHTw==
+        d=bairaktaris.de; s=google; t=1795886905; x=1796491705; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=O080aChkvNamwQRpvXuVq5oFlnHhJNHxbRaLnIM0Xus=;
+        b=sKbNkyxCJcOoPveeLhID71dWywVoSJSnKg8ZJpIMDVIByEF2Bf/qCbkZva6kgMHzEC
+         kPGjK3hKB8UJjVbJJTsDAW0OSrfiX15vyx/Ck8Fz2hS1fxEhhf8PH9a7WIJH7M7vKAWd
+         5m2pBvfeLLPXSyLv4KeQMfKQ3it+QRw91olOl5jxq3e37pFVVuJnmG+51krBGmLIH/bq
+         MPdl5gxdakQKrSzFjhDsd/hJMFpdj1z23+ikykjXLSXX1Y7U6tdaw4rQX8ic/mn849KN
+         jXQ/bm3TVEKFAqmwti3Zn2bzmdSi7lGLS78UHrodRRUVSkgJPznSOWz2XJRRaaTlBAHM
+         TSqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795886545; x=1796491345;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=DMbvLhVt9/6Byoyb38QB8bC7RSl2nRVkt3CkxY9/jJY=;
-        b=bpSrSET4LE+n7htVmW/qdAIaQFYPEocPAXOCyzb/LOnskI8GkweYv4D7PxO/TG61JW
-         U4iDMP3MwCzcowfdUoJu2/zzj+BUUht8RIK4ncYHeUoUnYQmee40WfXXwuborjZCrI0f
-         gXb/GBRxeZK9kATF+d0WXxNPi2NccwFCjetIZGuZCV3GNaI7QEmQ8VdeUy9GIbM35LMS
-         lN1uFXOfpqLOe18xpZb7B/VBKXYV6bo0WpvllScYHHm1TBstB60ET/fna0vnh1TC0vZk
-         ZFG+Vfsch90Xd+SUEUtMQtcHkXYoqhoMwNmNyffWHy1hDtAOKV/7Ws1ciZ6VslFgcb/n
-         Ki7w==
-X-Forwarded-Encrypted: i=1; AL+hErGdCSd8Ksgji9+IK11fQ+6gnFVscwVDIUZTBNJTEeG4OUtT+A7EJRkkzmj8TNmOpJopbCGGH04=@lists.infradead.org
-X-Gm-Message-State: APuU4Z8HeYLRCFlaDf3BBHW6UbaSDMGxT17YpGswOyqisKFToJsMCrHQ
-	xCkA9bdHntNZnowB+ZFYty9vXy5GKJUrkU6tK/hWsxfCu8z+r54xT2JN6Q4MSjQR6A==
-X-Gm-Gg: AZFdTZciibgDEMDfXoSvHt1OmDaaz0HAOStLevQ2wqkT4tMI2Ofsjj59VSnr9HPURnd
-	7VOxnmW51zikWEW4oBFYX+z3SlATzd5Adn0HAQsFe8Pe3cTIpGaiw7rjSysuPBIgeVA4cwqpArX
-	Ic5KuWIGPyDHAl0NKZz5VTTZT4IOhh/lIVk1hHqgK3dolNCUf6Fo/fwrQK98DLtYTKmP3QzepTU
-	UB+7wsir4K657SrfMsAIuUhZSjCAOaSQhH1qOkGZ/p6BgEdcauZE1HeeSc7HhEqLoGx+zyNCObm
-	0j2CGiItOmHv1g26VwlZUzRfRpr2TdSJ/H480N2YwDmimiCx4Vwq/g77Z7lO+plYiSXGkAL9ddc
-	6e07cx9atSeZ0SZeQMh32J8uDd9LdkNMEwy4B9VDBe79F5hLp5JiFcL56e386TKu1PRA6kbQ0X2
-	Byow3DWQMncQL70FBeZQn5fJJ07CZVNp22HHns+Bu1WV9Z97fw2yvH8/HDFUNw7wCEBoLvFMEhz
-	65AD3/w2TNhO36OV8yJo9pQ2jFrKMpYrxmy8BC3en33GbanKcDEg8Po6lrTgotcbPpnkE+B94gp
-	5dMn4N+GRb1dXQ4+C5kzCAffvLgIFLeqgBKBv00cr72dZC52IqxNtbH/CmchaCH6v9jLG4MO3+N
-	tpMp9FHuIdhYj6N92SSGdZMiuoHYjpGJdA5pX4j265wreH/3winEMe3X9ONFVXcQLmBM3Ns1shR
-	ucpqXhwBDl1lhkkX5wJgqws80ulo+nl7VEzLxKaB1zdpK1d0Qnue2E/yBRJBgx6JZIjDraWrSU1
-	rSl3uJONge9PDRZVkpXTnUWpW5FxcQn5LLaVt+SIOJhcoOZJGMD119ZxD8nsoGCaCS4YmLAXsar
-	r3zq6VORR4f0ZQ==
-X-Received: by 2002:a17:906:9c03:b0:c46:2987:2169 with SMTP id a640c23a62f3a-c513a84c864mr1823750566b.24.1795886545446;
-        Sat, 28 Nov 2026 09:22:25 -0800 (PST)
+        d=1e100.net; s=20260707; t=1795886905; x=1796491705;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=O080aChkvNamwQRpvXuVq5oFlnHhJNHxbRaLnIM0Xus=;
+        b=fioElptCTYjTKHwR4MKtprOps3JC9ADP6BJlX/ZeEHMMZd899DeygWJeyBB9+VPEJN
+         LZHzEi4yaxuQaYe4kyKcCUmwpbyT3QxfmvuHevkKwpvqfuEJ5NrW4ZroUdlEmakahsfI
+         RuGV3td/rqDvvR0NSa052GOmZ8huUFbiC7mJwfvdzmUwZNaJNm/+EKPqzGjHuCZxAY2M
+         EksigGnGnkSJySLuewLFs708NV+h9sSSpC+DEkz62W4TlPKJ5IxuMiIz0XK2Qxhf8Xqe
+         MwoIEbnk+ATiODvR+s5H96asMaXPASXrGVR2hSaThfZBXu46iWG6b4k0/lxzCvqJ4MgG
+         /sMA==
+X-Gm-Message-State: APuU4Z9Bw470o2DUT6efWs7CJITM2YQUdGBdCcVCfeyaDtP8LNv8Jo0K
+	zz8TITr+bXksWyAYtIGn1/T+Pm+TDZYp0w6aU+3QLYifkW/9Msm8k42MrzyKMLq2yA==
+X-Gm-Gg: AZFdTZdUx506XxAdJCnALqdN+w4y3Zm0gEigrmuFskfPB3t9V5G8dMQWVBxw3pCd8CC
+	SFsibQj+O4BtWGrLlgdaFzTxWQtPM8vN2r5XL/+D0QqO4Ot4nPG4MZIjbK/X0fc7Ic08p146Nq6
+	3hvi1J2JKaFn6Lo76FPtTkrebUAyPFif/4vmpVQLH46gxlElA+vH7ihGefDM5KWVkGTE9dJFbz1
+	6SQDA2rxASWpW6IxHcu6dAZ/cB4v/xUL8m3L3siVZO9cvFwRNtUL9VuSsu58quoKwhIwKO1ib1y
+	F6GtatOT9aL2hlnpKfKT3rNKhes0N3fpG/YCE0HwmhWoXdtCtoGcm/iPy2G5cEd8HAE72u6vqtq
+	gXxuwubkAHyVDj20V8fa/XlJHypcEABaxEAKhXMP1nYRP2kFuvsVRyjKGDLyLTB5MDT5pcdjpHC
+	cO3idr1rELXv5Eq1iPZwBrWYoesOu96JiqUfcIJTu2B1BjrgsNrECofRRy9Dx3bSl+uZqb3kDf3
+	52OI0VK/GTpVba5SVqvlXfFedLVzTQEULAHgJaCGGFbhviKV9HYxWnP1WNocJn9iUob8+KufVnx
+	UKg14OZ7s/NR1I4vU7gaC9kD/3kdmcD6Fn0wnVPzHxLXzIw7hrHNxvxPdIjFDHaSuDwNo3S48cd
+	2vYcrOqVXzP4jtwOtKEFyiAuy8GJVQJaDHpFCgxPwhyB19POXbB4L9+ZWY/ljMpaZ+91b7FChpn
+	VRV+9Vbkl9gSKX3PzOKsSMXafyI7GdKaeQ9iXkJD/uMaNcbeHzXsQmUKDFIkzft2oyEAoQKLeil
+	R7oolDinyrP+i3UPskb1svi8GgP3seSUq1mUpJ+Wdu334nSW2pCflx87MFPZAv5A+UeluwbIYIF
+	ArjSjwNiXw/oJA==
+X-Received: by 2002:a17:906:99cd:b0:c50:5005:8ecf with SMTP id a640c23a62f3a-c5158a29e82mr1859064466b.8.1795886905085;
+        Sat, 28 Nov 2026 09:28:25 -0800 (PST)
 Received: from Desktop.tail070c67.ts.net ([185.152.145.248])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c513b00117dsm981388866b.80.2026.11.28.09.22.24
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c513afed607sm976442266b.77.2026.11.28.09.28.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Nov 2026 09:22:25 -0800 (PST)
+        Sat, 28 Nov 2026 09:28:24 -0800 (PST)
 From: Julius Bairaktaris <julius@bairaktaris.de>
 To: Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	ath12k@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
-	Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>,
-	Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>,
-	Karthikeyan Periyasamy <karthikeyan.periyasamy@oss.qualcomm.com>,
-	Aaradhana Sahu <aaradhana.sahu@oss.qualcomm.com>,
-	P Praneesh <praneesh.p@oss.qualcomm.com>,
-	Sriram R <sriram.ramachandran@oss.qualcomm.com>,
-	Tamizh Chelvam Raja <tamizh.raja@oss.qualcomm.com>,
-	Kalle Valo <kvalo@kernel.org>,
-	John Crispin <john@phrozen.org>,
-	Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
-	Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com>,
-	Venkateswara Naralasetty <quic_vnaralas@quicinc.com>,
-	Muna Sinada <quic_msinada@quicinc.com>,
-	Sowmiya Sree Elavalagan <quic_ssreeela@quicinc.com>,
-	Bhagavathi Perumal S <quic_bperumal@quicinc.com>,
-	Wen Gong <quic_wgong@quicinc.com>,
-	Balamurugan Selvarajan <quic_bselvara@quicinc.com>,
-	Jouni Malinen <quic_jouni@quicinc.com>,
-	Ramya Gnanasekar <quic_rgnanase@quicinc.com>,
-	Carl Huang <quic_cjhuang@quicinc.com>,
-	Maharaja Kennadyrajan <quic_mkenna@quicinc.com>,
-	Govindaraj Saminathan <quic_gsamin@quicinc.com>
-Subject: [PATCH ath-next v2 6/6] wifi: ath12k: clear RX_FLAG_8023 of the receive status for each MSDU
-Date: Sat, 28 Nov 2026 18:22:20 +0100
-Message-ID: <20261128172220.922376-7-julius@bairaktaris.de>
+Cc: ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH ath-next] wifi: ath11k: ignore the PPDU ID format indication
+Date: Sat, 28 Nov 2026 18:28:27 +0100
+Message-ID: <20261128172827.1168404-1-julius@bairaktaris.de>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261128172220.922376-1-julius@bairaktaris.de>
-References: <20261128172220.922376-1-julius@bairaktaris.de>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261128_092227_420674_77D2E4D4 
-X-CRM114-Status: GOOD (  10.41  )
+X-CRM114-CacheID: sfid-20261128_092826_917457_23CBCB27 
+X-CRM114-Status: GOOD (  12.96  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -131,57 +104,72 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Since commit c4aa897fe234 ("wifi: ath12k: Handle DP_RX_DECAP_TYPE_8023
-type in Rx path"), ath12k_dp_rx_h_undecap() sets RX_FLAG_8023 in the
-receive status that ath12k_wifi7_dp_rx_process_received_packets()
-keeps for all MSDUs of a REO reap. Before, ath12k_dp_rx_deliver_msdu()
-set it in the copy it hands to mac80211. Nothing clears it, so every
-MSDU after the first one delivered as 802.3 reaches mac80211 with
-RX_FLAG_8023, including those that carry an 802.11 header:
-ath12k_dp_rx_h_undecap() rebuilds one for EAPOL frames, for decrypted
-group-addressed frames and for frames from a 3-address peer with both
-DS bits set, and native Wi-Fi decap delivers one.
+Firmware WLAN.HK.2.12-01460 on IPQ8074 sends HTT T2H message 0x30 each
+time it starts, at boot and after a firmware recovery. ath11k has no
+case for it and logs a warning every time:
 
-mac80211 hands such a frame to __ieee80211_rx_handle_8023(), which
-drops it when the station has no fast-RX state, as before its 4-way
-handshake completes, and otherwise handles it as an Ethernet frame
-whose addresses and EtherType are bytes of the 802.11 header. An EAPOL
-frame that follows a data frame of any station in the same reap is lost
-this way, and so is a decrypted group-addressed frame.
+  ath11k c000000.wifi: htt event 48 not handled
 
-Clear RX_FLAG_8023 with the other per-MPDU flags in
-ath12k_wifi7_dp_rx_h_mpdu(), before ath12k_dp_rx_h_undecap() sets it.
+The same line is in a user's boot log with WLAN.HK.2.9.0.1-02146, the
+firmware linux-firmware ships for IPQ8074.
 
-Found by an LLM review (Claude) of the code.
+The message is HTT_T2H_PPDU_ID_FMT_IND in Qualcomm's public fw-api
+(fw/htt.h). It tells the host which bits of a PPDU ID hold the hardware
+scheduler's command ID, ring, sequence index, link and MAC ID. ath11k
+only compares PPDU IDs as whole values and never splits one into these
+fields, so it has no use for the layout. Name the message and drop it
+without the warning.
 
-Fixes: c4aa897fe234 ("wifi: ath12k: Handle DP_RX_DECAP_TYPE_8023 type in Rx path")
+Found on the bench, from the warning in the kernel log. No security
+impact.
+
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.12-01460-QCAHKSWPL_SILICONZ-1
+
 Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
 ---
-v2: discovery line reworded.
+The warning shows once at every start of the firmware (boot, driver
+load, firmware recovery) on IPQ8074 with WLAN.HK.2.12-01460, seen on
+the bench, and with WLAN.HK.2.9.0.1-02146, seen in a user's boot log. No
+frame or user action is involved, and nothing else goes wrong; until
+this lands, the line can be ignored.
 
- drivers/net/wireless/ath/ath12k/wifi7/dp_rx.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+I used Claude (Anthropic) to help write these patches.
 
-diff --git a/drivers/net/wireless/ath/ath12k/wifi7/dp_rx.c b/drivers/net/wireless/ath/ath12k/wifi7/dp_rx.c
-index e37353445749..b74ffcd94a87 100644
---- a/drivers/net/wireless/ath/ath12k/wifi7/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath12k/wifi7/dp_rx.c
-@@ -417,7 +417,8 @@ static int ath12k_wifi7_dp_rx_h_mpdu(struct ath12k_pdev_dp *dp_pdev,
- 			     RX_FLAG_MMIC_STRIPPED |
- 			     RX_FLAG_MIC_STRIPPED |
- 			     RX_FLAG_ICV_STRIPPED |
--			     RX_FLAG_PN_VALIDATED);
-+			     RX_FLAG_PN_VALIDATED |
-+			     RX_FLAG_8023);
+ drivers/net/wireless/ath/ath11k/dp.h    | 1 +
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 3 +++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
+index 84f66839f0c6d..bace81c453e16 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.h
++++ b/drivers/net/wireless/ath/ath11k/dp.h
+@@ -1033,6 +1033,7 @@ enum htt_t2h_msg_type {
+ 	HTT_T2H_MSG_TYPE_PPDU_STATS_IND = 0x1d,
+ 	HTT_T2H_MSG_TYPE_EXT_STATS_CONF = 0x1c,
+ 	HTT_T2H_MSG_TYPE_BKPRESSURE_EVENT_IND = 0x24,
++	HTT_T2H_MSG_TYPE_PPDU_ID_FMT_IND = 0x30,
+ };
  
- 	if (err_bitmap & HAL_RX_MPDU_ERR_FCS)
- 		rx_status->flag |= RX_FLAG_FAILED_FCS_CRC;
--- 
-2.53.0
+ #define HTT_TARGET_VERSION_MAJOR 3
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 6d95f7b343a55..c65bbbdc267eb 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1747,6 +1747,9 @@ void ath11k_dp_htt_htc_t2h_msg_handler(struct ath11k_base *ab,
+ 	case HTT_T2H_MSG_TYPE_BKPRESSURE_EVENT_IND:
+ 		ath11k_htt_backpressure_event_handler(ab, skb);
+ 		break;
++	case HTT_T2H_MSG_TYPE_PPDU_ID_FMT_IND:
++		/* ath11k uses PPDU IDs only as whole values */
++		break;
+ 	default:
+ 		ath11k_warn(ab, "htt event %d not handled\n", type);
+ 		break;
 
+base-commit: 18d0bedbb5f0538396cb7f763ed9cd1dd69c5b23
 
