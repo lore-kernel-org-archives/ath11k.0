@@ -2,80 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E97F606A68F
-	for <ath11k@archiver.kernel.org>; Sat, 28 Nov 2026 17:22:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0182606A6BC
+	for <ath11k@archiver.kernel.org>; Sat, 28 Nov 2026 17:22:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rUCTdNDL;
-	dkim=pass (2048-bit key) header.d=bairaktaris.de header.i=@bairaktaris.de header.a=rsa-sha256 header.s=google header.b=X8ayZoz/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zDkZv070;
+	dkim=pass (2048-bit key) header.d=bairaktaris.de header.i=@bairaktaris.de header.a=rsa-sha256 header.s=google header.b=GX5CRug+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=sYnLslG0vGfNapeKl06yr4lRqve9qB4fEnPycqLuwWM=; b=rUCTdNDLocFmR5DBVHoE/ZGwlg
-	3wjqO5G/Az0Yw308+fd2QPY+V7hl+RkZpW2t3tbbRc+ENdcW7ZbAfyciI64V2wUGIXie7TmLscjX6
-	7lojtGWNnfEzPo27/DzXKY/A9E02JVK4Yevlnm7hO/sJbXGbKjzj3mBVxQFxvUiPwPHT/JyEiAjLh
-	pkykDuiA1A6dYKba4Oa09MlGtOYD1pKyJptkUuiMpfOIjc6IeTHa9okqjzkute9OXcFSlIW+dGotT
-	mqGoUS1J5u5m+pl7s3mGJSkU/h8s/gwGWssrZMlgi0l6UWcKmjzFXo/BO+O+ZKGeVXiJ/o7iGGGza
-	ZUSqMyDA==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=uPspllEpba4GJzDMv8SswcqcP0cPwF7UGnWVw7zSJFI=; b=zDkZv070X6JovG
+	Stny5A2U2rqM4Ymj0oWJEg+8kf7RyBvl2Dqnn5YBAbVlSmB+dYLiqv8WjZC07BjrSp/ppFQ3VziAO
+	EzMPxl+YNe5yhqtAHIIfe/IYWeMMXBZjpwaop5BMgc0QqLG/dhLqmvzZqAMemaqH3l/yeJNydrUU2
+	p58XI2F+C7k92GWT5LBtwn1j9J6nTBELzs0O4K7OqIMEMgzPh+IXYMsbrC2FLKhZ//YDK6wukdx8f
+	y9Rxf4hc3E53qPyBAA8l7LIxh70dAIjzyakcsR4IoD1tOCyuw/mg7y7GzETt5+zujOEBht3v8x/ud
+	Q0uC3NHjxmT2K23hPbgQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXM7y-000000010tE-3F7G;
-	Sat, 28 Nov 2026 17:22:22 +0000
-Received: from mail-ej1-x629.google.com ([2a00:1450:4864:20::629])
+	id 1xXM83-000000010y2-0qp0;
+	Sat, 28 Nov 2026 17:22:27 +0000
+Received: from mail-ej1-x630.google.com ([2a00:1450:4864:20::630])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXM7w-000000010rd-0BbZ
+	id 1xXM7x-000000010ro-07rx
 	for ath11k@lists.infradead.org;
-	Sat, 28 Nov 2026 17:22:21 +0000
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-c511c0e2826so1039569266b.0
-        for <ath11k@lists.infradead.org>; Sat, 28 Nov 2026 09:22:19 -0800 (PST)
+	Sat, 28 Nov 2026 17:22:22 +0000
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-c4d2b741ed9so1453007166b.2
+        for <ath11k@lists.infradead.org>; Sat, 28 Nov 2026 09:22:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bairaktaris.de; s=google; t=1795886538; x=1796491338; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=sYnLslG0vGfNapeKl06yr4lRqve9qB4fEnPycqLuwWM=;
-        b=X8ayZoz/xTmb3saBW5WQ3c/D1sNXv+QZ5uOGcPK0bLMUX4oHlyaVtcwxXkpI2FPO2K
-         6lBXIrg7SKEYD0nFWfmCP/05ryBFGgYfXNRb9QKslPNIPkipqc0obmuq5IjQhrCB8nEQ
-         1LVSonzqT+sNLmkdy9Q4CCn+0D2Wfx7tihv/D1GCyYY6pAgFDVcRLEDw2rrbJlJzhGrK
-         tit9m5xD8plern4J8oA8kgB5fBndYNUhZIE2qJ9p+cf8f8heunkhwD3EGYw1S5iJFPzP
-         Zm+PpumPBmfd7G0HuhDH4oCl7t7fNnO2jFyb+eG9mBoBzsA6zXvBE/s7P+Enf495yuuu
-         4YwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795886538; x=1796491338;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=bairaktaris.de; s=google; t=1795886539; x=1796491339; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=sYnLslG0vGfNapeKl06yr4lRqve9qB4fEnPycqLuwWM=;
-        b=Jzxhic19VDRaYs13SSjT+jcpxY6P1iZ5aEgGaWP073jo/akfxPQHGH0V8n4OCDh842
-         k17oKohwwzCbSoIWfT12o9XlHomYnT78vQb4BTg5y1FpTPLm2jtx1ylwMYKFweLTT4OF
-         RPjOHQjxWzwVGtbKRl/2Un3sRmlMvLvJhCQ5BCwyEWqZSq2VsrnqAY0VA4qxa02CbqLM
-         mGhQKhWmJASD7pmuA1ybRFJ0nFRKfuCAxuubdSsEfm6aByLV7n2Z5xGHvteh040Yrq3S
-         YktrsHz8wpXLLSqfbVxvi5HyanWKeBY8tj8mTRn2w5WAYqiaasuQXzpS/ggvRWR+AZKF
-         CLqA==
-X-Forwarded-Encrypted: i=1; AL+hErFu2GaaNuGRKRRGKChYozAnYSiFrNPKXbXepge6KX5nIHLZnE8Vmbfk4ESuHrwgSP6A+R6DPaE=@lists.infradead.org
-X-Gm-Message-State: APuU4Z9L4/G2zUUGETS7JoazERkKviItlpkLqOY6ooelU5deZgcHplvc
-	dtwl5S9IOIRaFooE655rS1U4QG8hE4qFfOp8qghUJymIy7DOg/UPTxsX0ZRWQcR+kQ==
-X-Gm-Gg: AZFdTZc5ZG4Zz8oqbCKrLW2GvYR1W5wdc+4/uRb/6MM2j6+iOsOgZ24gpNwlXN+z7JY
-	WKbCILAmRVQJgwWMqzqx9jzM2dLBUYa8JeRfZA3/G99N53twgGN3XzwvzHpLiBEWlS6HEf9+jnC
-	cDs/kSURkQjzS7z4ydIGjAvEwIfGL40ZgxGMeaHzzs0aoNyrj4YeNFsCQ6RaFyKRQ9GzZJOohCL
-	TryUWgitftxJmNqkKjHBFf9XRMMSsqxILiBANk7dehUvM2Ws4U+chO2AUI5ph3WspbvcRb/ZcBz
-	H1gj/FFIL9w4lrG0Mmdd6iRMAeHkOBQ1y4ANQGiHiRiG70ZS5rrya4ltA4BZEa/DQi4eJwag4cj
-	SM/444HD9VskJzSIBtdeqeBg7rSKmtGmH2JR+3LDe9TxxeJ+IGbAOUdHbZIJ+OdSSF2rdCSkIoD
-	rkhxIDW2nTLclrytlNM/bOaeHTW8KDntqe2Rum2Vfc5vsz0K4MJ6rc5luBgNnJfSa5kE3PiGL/V
-	aLvKnaznqJHFU9LwEptiXB3kvRLID2trq8vJOlvOSLiDUjUxldc+3JBxD35dY61zI3Gyi4xJmUb
-	wsN0E7CyV83LMB94l8MDlTTCKuyNYjuK3U/LvcezetsgWCWISKuz+oP5iDyw5NNx5/Du1/uXvBR
-	mI5hutB7coXj4qaLg8/y3d7+0PETKQlJgLGhTZ6CiBMdnjrvMjJCv5lpLwgf/IC0pN+EW7S5eIl
-	IJTQIj4DZqg9xk7GwiC+I4SEHsmHoJPQJ9YcnPeOKdERn+0sgnVvTZnDgYAcBtx3nFOTL61BFhM
-	Jh8YvnqklrdsT7E38LX+iT6091/ockURN/NqNkke1wi0qwDMfGCyxlHDSKpz6YvtZwYWaeu6+cA
-	rIHpPWZStY3MOg==
-X-Received: by 2002:a17:907:6091:b0:c51:51f7:c9e3 with SMTP id a640c23a62f3a-c5151f7fd77mr1878504366b.34.1795886538067;
-        Sat, 28 Nov 2026 09:22:18 -0800 (PST)
+        bh=uPspllEpba4GJzDMv8SswcqcP0cPwF7UGnWVw7zSJFI=;
+        b=GX5CRug+m1GipmDJqfTx1cu2op3x4qKN6chXpHWjxsHJ2V732V82kY7K3YFdaP3EAG
+         WOKUvsil1p09tUkA+OCJd6otKWg8/mKu3qX1ZJgO2DebvRwSmeI3qTSMqjb1rpMH6AxB
+         b3XSFLtgKFM9r195I9jEg/Psafi8yt0l94tY1Nc90hDEaNzaOrJXbleJO9nt8/vgYkNn
+         /dbTKJjelty6P60qGmFxs4moWv12+OxRCK6/jw+9/DRypitUOeBm8L+FjrpabmGHR3o+
+         VyVJssaqUoCY/kOysaWpqI27YOYRyJv83kFVtRZnDd7RhJZPZ5ZmJv5Q+WWcC0gsGJ1K
+         Sz/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795886539; x=1796491339;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=uPspllEpba4GJzDMv8SswcqcP0cPwF7UGnWVw7zSJFI=;
+        b=UJl7azPa3uqRO45gAXDo1PTT/Kv7yWfmvcf7otivszQ22n6j0ECYuIoe3csblJ0l9Z
+         5D5mVj6F0BBEJEOH+qcmrO8xjPWJIV0RtW1C0Pfjmg/EsdaC/OUe+TmpEIHdUanUX3Ng
+         8o+zDwVB1GzRzAwAvYdapO9otrtlOV+/p7M1o1EzdMU1OrPIaVqcXFhG6pwq4pb0gO59
+         jzt4FpBarF15IVt5HO4f5tVxRmXCXydqfaf4MserWZWG0owXvVoh5mANt3hbTTJxdZSC
+         c/cFupIqef7tiPkBv43HETxuzRiYEtsUDagHxdBZIdwsBt2EPRcCCbd+BN8mBCZa/aO4
+         Jkjw==
+X-Forwarded-Encrypted: i=1; AL+hErH+aFqPcvgYXyL614PZ03fWHXuG8sum9sLDe6JqG7x4VZYXAcUMCBScjRit4a9BECfOq35RH9w=@lists.infradead.org
+X-Gm-Message-State: APuU4Z8pL+tagyr8QHiDA5g4uU73vrIEmYNUkum3MFYVFdhZ68ICdSVT
+	1aaDDTgkCOKUULYBp/BohWdaYynoRmrj9wOxQgHcc0wnmwXbCnlzQzMQRnSJvXNq5A==
+X-Gm-Gg: AZFdTZeCqYQuNf9McVq0Ji4IS3jwqDW/akss0BaMrFIjgA6j4oBzh/OI7uy5SxVuIkU
+	DzCok7T7mCF73+6NtON46utc24CNjfTz6Sd3RDFeAA3TuxXObKCrAwqvLCVnB2esfH/G12wngNu
+	OZLbh8qnTQ/9uR5bKbrAZ+pXbspuMNwpSeh2gjqu5kl3yQU7uODXSYbdA/KzKfho460afjs0TWi
+	2yuozahQPhv34TFEAENAT+aR415mPCYgrEmI8xYlbt15nPbjELfr8tdPUgXZePNLYpnb4WZAjC4
+	wG16ae84ANQCdVv3B5/UAPVQE9ARRbNkFNvTTZQgbjZK/6QLpdd3Wrk8a2nNHwubaVUZZswwSrd
+	Lykc0AzViUsPD89fhDS0W48LDDdCFB/pa/h+zaW2osXmhI6OSOt4OMsEjDpKVJrmfRyu8XenPhC
+	kLyzJKWrclB6n+86RfLemlEWzChqcVfmbhgth1W5dzxllj6usZe2aYmOdS5Nc4jfRRWvhyIVwXS
+	oJxo/lbQesuuCqFf2eiuSWBrq9Yq5EKjkYMRKA7DYXBCMGoK6Cc6lXJUR8ymoetPBU/EOjBwT68
+	bF40zMhatolGjlfeSdbwFhZvwenjgq7jOU6zYrf9+tZL4cPiNiYcozXBkTUtMIOZn9CWxVIFb79
+	eEFSOkVkw5h3E22Q+TM38E8/ncEq4o988cKSrirfCLHkP6FCMJXtcNmmDqKdbem0Oe9wSQTuKu9
+	HcrN0NBigEPNRqNKv0O4DZqU2BIJ6B5CDd+PE1iD+6ZXLTDEnEyUsHhFEh+g+l3QYeJqVYK/3/i
+	hqaAbkS+mwf64UXoh9v/jyTFUDi/AN2GUWhekG2ADAbE0JklKrU6FkEPS/1W3cizxQEiuARYXyr
+	BffsrzVrIALyQg==
+X-Received: by 2002:a17:906:c29a:b0:c4c:bff4:200c with SMTP id a640c23a62f3a-c513a893bc3mr1652561466b.32.1795886539042;
+        Sat, 28 Nov 2026 09:22:19 -0800 (PST)
 Received: from Desktop.tail070c67.ts.net ([185.152.145.248])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c513b00117dsm981388866b.80.2026.11.28.09.22.16
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c513b00117dsm981388866b.80.2026.11.28.09.22.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Nov 2026 09:22:17 -0800 (PST)
+        Sat, 28 Nov 2026 09:22:18 -0800 (PST)
 From: Julius Bairaktaris <julius@bairaktaris.de>
 To: Jeff Johnson <jjohnson@kernel.org>
 Cc: linux-wireless@vger.kernel.org,
@@ -105,16 +105,18 @@ Cc: linux-wireless@vger.kernel.org,
 	Carl Huang <quic_cjhuang@quicinc.com>,
 	Maharaja Kennadyrajan <quic_mkenna@quicinc.com>,
 	Govindaraj Saminathan <quic_gsamin@quicinc.com>
-Subject: [PATCH ath-next v2 0/6] wifi: ath11k, ath12k: RX correctness fixes
-Date: Sat, 28 Nov 2026 18:22:14 +0100
-Message-ID: <20261128172220.922376-1-julius@bairaktaris.de>
+Subject: [PATCH ath-next v2 1/6] wifi: ath11k: only trust the RX checksum of a frame the hardware checked
+Date: Sat, 28 Nov 2026 18:22:15 +0100
+Message-ID: <20261128172220.922376-2-julius@bairaktaris.de>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261128172220.922376-1-julius@bairaktaris.de>
+References: <20261128172220.922376-1-julius@bairaktaris.de>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261128_092220_130467_44D4E129 
-X-CRM114-Status: GOOD (  13.48  )
+X-CRM114-CacheID: sfid-20261128_092221_128074_EE2DF92A 
+X-CRM114-Status: GOOD (  20.57  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -126,120 +128,252 @@ List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Six RX fixes for ath11k and ath12k. "The hardware" below is an
-IPQ8074 hw2.0 with firmware WLAN.HK.2.12-01460.
+ath11k_dp_rx_h_csum_offload() marks every received MSDU
+CHECKSUM_UNNECESSARY unless the attention TLV reports an IP or TCP/UDP
+checksum failure. Those bits report a checksum the hardware computed
+and found wrong, so both are also clear for a frame whose transport
+checksum it never computed: any protocol other than TCP and UDP, such
+as ICMP, ICMPv6 or GRE, and a TCP or UDP frame whose headers it did not
+parse within the first 256 bytes. An IP fragment carries only part of
+the datagram its checksum covers.
 
-1/6, 2/6: checksum trusted for frames the hardware did not check
-- Trigger: an associated peer sends ICMP or ICMPv6 with a wrong
-  checksum, a UDP datagram with a wrong checksum in IP fragments, or a
-  TCP or UDP packet with a wrong checksum in 802.11 fragments (a station
-  sets its fragmentation threshold below the packet size).
-- By the code, every ath11k and ath12k chip and frame mode.
-- Shown on the hardware with OpenWrt's ath11k, 50 frames per case,
-  1 run each: with ath-next's rule the AP answered 50 of 50 ICMP echo
-  requests with a wrong checksum and 50 of 50 fragmented UDP datagrams
-  with a wrong checksum; with this series it answered none of either
-  and counted 50 checksum errors each.
-- Impact: the stack accepts such frames unchecked (icmp_rcv(), UDP
-  after reassembly). CVSS 3.1: 3.5,
-  AV:A/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N.
-- Workaround: none; mac80211 offers no switch for RX checksum offload.
-- Found by an LLM review (Claude) of the code.
+The descriptor also describes only the MSDU the hardware received. A
+frame that ath11k_dp_rx_h_defrag() reassembles from 802.11 fragments
+keeps the descriptor of its first fragment, of which only the MSDU
+length is rewritten, so the flags say nothing about the payload of the
+later fragments. With raw decap (frame_mode=0 or crypto_mode=1) an
+A-MSDU reaches mac80211 as one MPDU; when it spans several RX buffers
+and ath11k_dp_rx_msdu_coalesce() moves it into a larger buffer,
+ieee80211_amsdu_to_8023s() hands that skb, ip_summed included, to the
+last subframe.
 
-3/6: ath11k delivers frames under a forged source address
-- Trigger: a station associated to an ath11k AP turns on 4-address
-  mode on its own side and sends data frames with any source address.
-- Reachable with frame_mode=2 (Ethernet decap) only. On the hardware,
-  an ath10k station sent 200 broadcasts with a forged source: all 200
-  reached the AP's bridge, which learned the forged address on the
-  Wi-Fi port. One run.
-- Impact: a station can send frames as another host, and the bridge
-  then sends that host's traffic to the Wi-Fi port, where it is lost.
-  CVSS 3.1: 4.6, AV:A/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:L.
-- Workaround: the default frame_mode=1 (native Wi-Fi).
-- Found by an LLM review (Claude) of the code, then reproduced as
-  above.
+The stack then skips the checks it would make: icmp_rcv() takes the
+checksum as verified, and reassembly keeps CHECKSUM_UNNECESSARY when
+every fragment carries it, so a UDP datagram that arrives in IP
+fragments is never checked. By the code this holds for every ath11k
+chip and frame mode and for any frame an associated peer sends.
 
-4/6, 5/6: replay check of the group key skipped
-- Trigger: a radio in range replays a recorded group-addressed data
-  frame while the receiver gets unicast data; no key needed.
-- Both drivers keep one receive status for all MSDUs of a REO reap and
-  do not clear RX_FLAG_PN_VALIDATED between them, so a group-addressed
-  MSDU behind a decrypted unicast one skips mac80211's replay check.
-  Not reachable on the hardware: its firmware releases group-addressed
-  MSDUs through the REO error path, which gives each MSDU its own
-  status. An ath11k station under unicast load received 29011
-  group-addressed MSDUs there, and none carried RX_FLAG_PN_VALIDATED
-  in from an earlier MSDU. It would be reachable on a chip or firmware
-  that delivers group-addressed MSDUs through the REO destination ring;
-  none is known.
-- Impact there: replayed group-addressed frames would be accepted.
-  CVSS 3.1 if reachable: 3.1, AV:A/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N.
-- Workaround: none needed on the hardware; elsewhere none.
-- Found by an LLM review (Claude) of the code; measured as above.
+The MSDU start TLV carries the flags that say what the hardware parsed:
+TCP, UDP, IP fragment, and whether the fixed IP header and the TCP/UDP
+header were parsed. Mark a frame CHECKSUM_UNNECESSARY only when it is
+TCP or UDP, not a fragment, and both headers were parsed, and never for
+a reassembled 802.11 frame or a raw A-MSDU;
+ath10k_htt_rx_get_csum_state() already leaves a frame that is neither
+TCP nor UDP to the stack. The flags sit in a different descriptor
+layout on each chip family, so add a hw_ops accessor for the MSDU start
+word that holds them.
 
-6/6: ath12k loses EAPOL and group frames
-- Trigger: an EAPOL frame, or a decrypted group-addressed frame,
-  arrives in the same REO reap after a data frame of any station.
-- Since commit c4aa897fe234 ("wifi: ath12k: Handle DP_RX_DECAP_TYPE_8023
-  type in Rx path") ath12k sets RX_FLAG_8023 in the shared receive
-  status and never clears it, so such a frame goes down mac80211's 802.3
-  path with an 802.11 header and is lost. ath12k uses Ethernet decap
-  without any setting when the firmware advertises
-  WMI_TLV_SERVICE_ETH_OFFLOAD.
-- Impact: 4-way handshakes and group rekeys stall until retried, and
-  decrypted broadcasts such as ARP, ND and DHCP are lost. CVSS 3.1:
-  2.6, AV:A/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:L.
-- Workaround: none.
-- Found by an LLM review (Claude) of the code.
+Found by an LLM review (Claude) of the code.
 
-I used Claude (Anthropic) to help write these patches.
+Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
+---
+v2: also leave a frame reassembled from 802.11 fragments and a raw
+A-MSDU to the stack (Sashiko); discovery line reworded.
 
-Changes in v2:
-- 1/6: also leave a frame reassembled from 802.11 fragments and a raw
-  A-MSDU to the stack (Sashiko, on v1 1/6).
-- 2/6: also leave a frame reassembled from 802.11 fragments to the
-  stack (the same finding); read the new flags from the last buffer of
-  the MSDU, as ath-next now does for the other MSDU end fields since
-  commit 1e678e37ff13 ("wifi: ath12k: fix decap of MSDUs spanning
-  multiple RX buffers").
-- 3/6: result with the check run on this version.
-- Rebased onto ath-next; discovery lines reworded.
-- v1: https://lore.kernel.org/r/20261122210525.2076058-1-julius@bairaktaris.de
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 61 ++++++++++++++++++++++++-
+ drivers/net/wireless/ath/ath11k/hw.c    | 22 +++++++++
+ drivers/net/wireless/ath/ath11k/hw.h    |  1 +
+ 3 files changed, 82 insertions(+), 2 deletions(-)
 
-Julius Bairaktaris (6):
-  wifi: ath11k: only trust the RX checksum of a frame the hardware
-    checked
-  wifi: ath12k: only trust the RX checksum of a frame the hardware
-    checked
-  wifi: ath11k: drop decapped frames with a source other than the
-    station
-  wifi: ath11k: clear the crypto flags of the receive status for each
-    MSDU
-  wifi: ath12k: clear the crypto flags of the receive status for each
-    MSDU
-  wifi: ath12k: clear RX_FLAG_8023 of the receive status for each MSDU
-
- drivers/net/wireless/ath/ath11k/dp_rx.c       | 124 ++++++++++++++++--
- drivers/net/wireless/ath/ath11k/hw.c          |  22 ++++
- drivers/net/wireless/ath/ath11k/hw.h          |   1 +
- drivers/net/wireless/ath/ath12k/hal.h         |   1 +
- drivers/net/wireless/ath/ath12k/wifi7/dp_rx.c |  17 ++-
- .../wireless/ath/ath12k/wifi7/hal_qcc2072.c   |  11 ++
- .../wireless/ath/ath12k/wifi7/hal_qcn9274.c   |  12 ++
- .../wireless/ath/ath12k/wifi7/hal_wcn7850.c   |  12 ++
- 8 files changed, 188 insertions(+), 12 deletions(-)
-
-
-base-commit: 18d0bedbb5f0538396cb7f763ed9cd1dd69c5b23
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 6d95f7b343a5..a2c359cc8e92 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1860,18 +1860,75 @@ static struct sk_buff *ath11k_dp_rx_get_msdu_last_buf(struct sk_buff_head *msdu_
+ 	return NULL;
+ }
+ 
++static bool ath11k_dp_rx_h_is_raw_amsdu(struct ath11k_base *ab,
++					struct sk_buff *msdu)
++{
++	struct ath11k_skb_rxcb *rxcb = ATH11K_SKB_RXCB(msdu);
++	struct ieee80211_hdr *hdr = (struct ieee80211_hdr *)msdu->data;
++
++	if (ath11k_dp_rx_h_msdu_start_decap_type(ab, rxcb->rx_desc) !=
++	    DP_RX_DECAP_TYPE_RAW)
++		return false;
++
++	/*
++	 * Neither an MPDU the hardware delivered as several MSDUs nor a frame
++	 * too short to tell is taken as a single MSDU.
++	 */
++	if (!rxcb->is_first_msdu || !rxcb->is_last_msdu)
++		return true;
++
++	if (msdu->len < sizeof(hdr->frame_control))
++		return true;
++
++	if (!ieee80211_is_data_qos(hdr->frame_control))
++		return false;
++
++	if (msdu->len < ieee80211_hdrlen(hdr->frame_control))
++		return true;
++
++	return *ieee80211_get_qos_ctl(hdr) & IEEE80211_QOS_CTL_A_MSDU_PRESENT;
++}
++
+ static void ath11k_dp_rx_h_csum_offload(struct ath11k *ar, struct sk_buff *msdu)
+ {
+ 	struct ath11k_skb_rxcb *rxcb = ATH11K_SKB_RXCB(msdu);
+ 	struct rx_attention *rx_attention;
+ 	bool ip_csum_fail, l4_csum_fail;
++	u32 info2;
+ 
+ 	rx_attention = ath11k_dp_rx_get_attention(ar->ab, rxcb->rx_desc);
+ 	ip_csum_fail = ath11k_dp_rx_h_attn_ip_cksum_fail(rx_attention);
+ 	l4_csum_fail = ath11k_dp_rx_h_attn_l4_cksum_fail(rx_attention);
++	info2 = ar->ab->hw_params.hw_ops->rx_desc_get_msdu_start_info2(rxcb->rx_desc);
++
++	msdu->ip_summed = CHECKSUM_NONE;
++
++	/*
++	 * The descriptor describes one MSDU as the hardware received it. A
++	 * frame reassembled from 802.11 fragments keeps the descriptor of its
++	 * first fragment, and mac80211 splits a raw A-MSDU into subframes the
++	 * descriptor does not describe one by one.
++	 */
++	if (rxcb->is_frag || ath11k_dp_rx_h_is_raw_amsdu(ar->ab, msdu))
++		return;
++
++	if (ip_csum_fail || l4_csum_fail)
++		return;
++
++	/*
++	 * The failure bits only report a checksum the hardware computed, so
++	 * they are also clear for a frame it did not check. It checks the
++	 * TCP or UDP checksum of a frame whose IP and TCP/UDP headers it
++	 * parsed; an IP fragment does not carry the whole datagram the
++	 * checksum covers.
++	 */
++	if (!(info2 & (RX_MSDU_START_INFO2_TCP | RX_MSDU_START_INFO2_UDP)) ||
++	    (info2 & RX_MSDU_START_INFO2_IP_FRAG) ||
++	    !(info2 & RX_MSDU_START_INFO2_IP_FIXED_HDR_VALID) ||
++	    !(info2 & RX_MSDU_START_INFO2_IP_TCP_UDP_HDR_VALID))
++		return;
+ 
+-	msdu->ip_summed = (ip_csum_fail || l4_csum_fail) ?
+-			  CHECKSUM_NONE : CHECKSUM_UNNECESSARY;
++	msdu->ip_summed = CHECKSUM_UNNECESSARY;
+ }
+ 
+ int ath11k_dp_rx_crypto_mic_len(struct ath11k *ar, enum hal_encrypt_type enctype)
+diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
+index 93f9a03c48dc..096366b85849 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.c
++++ b/drivers/net/wireless/ath/ath11k/hw.c
+@@ -272,6 +272,11 @@ static u8 ath11k_hw_ipq8074_rx_desc_get_decap_type(struct hal_rx_desc *desc)
+ 			 __le32_to_cpu(desc->u.ipq8074.msdu_start.info2));
+ }
+ 
++static u32 ath11k_hw_ipq8074_rx_desc_get_msdu_start_info2(struct hal_rx_desc *desc)
++{
++	return __le32_to_cpu(desc->u.ipq8074.msdu_start.info2);
++}
++
+ static u8 ath11k_hw_ipq8074_rx_desc_get_mesh_ctl(struct hal_rx_desc *desc)
+ {
+ 	return FIELD_GET(RX_MSDU_START_INFO2_MESH_CTRL_PRESENT,
+@@ -449,6 +454,11 @@ static u8 ath11k_hw_qcn9074_rx_desc_get_decap_type(struct hal_rx_desc *desc)
+ 			 __le32_to_cpu(desc->u.qcn9074.msdu_start.info2));
+ }
+ 
++static u32 ath11k_hw_qcn9074_rx_desc_get_msdu_start_info2(struct hal_rx_desc *desc)
++{
++	return __le32_to_cpu(desc->u.qcn9074.msdu_start.info2);
++}
++
+ static u8 ath11k_hw_qcn9074_rx_desc_get_mesh_ctl(struct hal_rx_desc *desc)
+ {
+ 	return FIELD_GET(RX_MSDU_START_INFO2_MESH_CTRL_PRESENT,
+@@ -626,6 +636,11 @@ static u8 ath11k_hw_wcn6855_rx_desc_get_decap_type(struct hal_rx_desc *desc)
+ 			 __le32_to_cpu(desc->u.wcn6855.msdu_start.info2));
+ }
+ 
++static u32 ath11k_hw_wcn6855_rx_desc_get_msdu_start_info2(struct hal_rx_desc *desc)
++{
++	return __le32_to_cpu(desc->u.wcn6855.msdu_start.info2);
++}
++
+ static u8 ath11k_hw_wcn6855_rx_desc_get_mesh_ctl(struct hal_rx_desc *desc)
+ {
+ 	return FIELD_GET(RX_MSDU_START_INFO2_MESH_CTRL_PRESENT,
+@@ -914,6 +929,7 @@ const struct ath11k_hw_ops ipq8074_ops = {
+ 	.rx_desc_get_encrypt_type = ath11k_hw_ipq8074_rx_desc_get_encrypt_type,
+ 	.rx_desc_get_decap_type = ath11k_hw_ipq8074_rx_desc_get_decap_type,
+ 	.rx_desc_get_mesh_ctl = ath11k_hw_ipq8074_rx_desc_get_mesh_ctl,
++	.rx_desc_get_msdu_start_info2 = ath11k_hw_ipq8074_rx_desc_get_msdu_start_info2,
+ 	.rx_desc_get_ldpc_support = ath11k_hw_ipq8074_rx_desc_get_ldpc_support,
+ 	.rx_desc_get_mpdu_seq_ctl_vld = ath11k_hw_ipq8074_rx_desc_get_mpdu_seq_ctl_vld,
+ 	.rx_desc_get_mpdu_fc_valid = ath11k_hw_ipq8074_rx_desc_get_mpdu_fc_valid,
+@@ -954,6 +970,7 @@ const struct ath11k_hw_ops ipq6018_ops = {
+ 	.rx_desc_get_encrypt_type = ath11k_hw_ipq8074_rx_desc_get_encrypt_type,
+ 	.rx_desc_get_decap_type = ath11k_hw_ipq8074_rx_desc_get_decap_type,
+ 	.rx_desc_get_mesh_ctl = ath11k_hw_ipq8074_rx_desc_get_mesh_ctl,
++	.rx_desc_get_msdu_start_info2 = ath11k_hw_ipq8074_rx_desc_get_msdu_start_info2,
+ 	.rx_desc_get_ldpc_support = ath11k_hw_ipq8074_rx_desc_get_ldpc_support,
+ 	.rx_desc_get_mpdu_seq_ctl_vld = ath11k_hw_ipq8074_rx_desc_get_mpdu_seq_ctl_vld,
+ 	.rx_desc_get_mpdu_fc_valid = ath11k_hw_ipq8074_rx_desc_get_mpdu_fc_valid,
+@@ -994,6 +1011,7 @@ const struct ath11k_hw_ops qca6390_ops = {
+ 	.rx_desc_get_encrypt_type = ath11k_hw_ipq8074_rx_desc_get_encrypt_type,
+ 	.rx_desc_get_decap_type = ath11k_hw_ipq8074_rx_desc_get_decap_type,
+ 	.rx_desc_get_mesh_ctl = ath11k_hw_ipq8074_rx_desc_get_mesh_ctl,
++	.rx_desc_get_msdu_start_info2 = ath11k_hw_ipq8074_rx_desc_get_msdu_start_info2,
+ 	.rx_desc_get_ldpc_support = ath11k_hw_ipq8074_rx_desc_get_ldpc_support,
+ 	.rx_desc_get_mpdu_seq_ctl_vld = ath11k_hw_ipq8074_rx_desc_get_mpdu_seq_ctl_vld,
+ 	.rx_desc_get_mpdu_fc_valid = ath11k_hw_ipq8074_rx_desc_get_mpdu_fc_valid,
+@@ -1034,6 +1052,7 @@ const struct ath11k_hw_ops qcn9074_ops = {
+ 	.rx_desc_get_encrypt_type = ath11k_hw_qcn9074_rx_desc_get_encrypt_type,
+ 	.rx_desc_get_decap_type = ath11k_hw_qcn9074_rx_desc_get_decap_type,
+ 	.rx_desc_get_mesh_ctl = ath11k_hw_qcn9074_rx_desc_get_mesh_ctl,
++	.rx_desc_get_msdu_start_info2 = ath11k_hw_qcn9074_rx_desc_get_msdu_start_info2,
+ 	.rx_desc_get_ldpc_support = ath11k_hw_qcn9074_rx_desc_get_ldpc_support,
+ 	.rx_desc_get_mpdu_seq_ctl_vld = ath11k_hw_qcn9074_rx_desc_get_mpdu_seq_ctl_vld,
+ 	.rx_desc_get_mpdu_fc_valid = ath11k_hw_qcn9074_rx_desc_get_mpdu_fc_valid,
+@@ -1074,6 +1093,7 @@ const struct ath11k_hw_ops wcn6855_ops = {
+ 	.rx_desc_get_encrypt_type = ath11k_hw_wcn6855_rx_desc_get_encrypt_type,
+ 	.rx_desc_get_decap_type = ath11k_hw_wcn6855_rx_desc_get_decap_type,
+ 	.rx_desc_get_mesh_ctl = ath11k_hw_wcn6855_rx_desc_get_mesh_ctl,
++	.rx_desc_get_msdu_start_info2 = ath11k_hw_wcn6855_rx_desc_get_msdu_start_info2,
+ 	.rx_desc_get_ldpc_support = ath11k_hw_wcn6855_rx_desc_get_ldpc_support,
+ 	.rx_desc_get_mpdu_seq_ctl_vld = ath11k_hw_wcn6855_rx_desc_get_mpdu_seq_ctl_vld,
+ 	.rx_desc_get_mpdu_fc_valid = ath11k_hw_wcn6855_rx_desc_get_mpdu_fc_valid,
+@@ -1114,6 +1134,7 @@ const struct ath11k_hw_ops wcn6750_ops = {
+ 	.rx_desc_get_encrypt_type = ath11k_hw_qcn9074_rx_desc_get_encrypt_type,
+ 	.rx_desc_get_decap_type = ath11k_hw_qcn9074_rx_desc_get_decap_type,
+ 	.rx_desc_get_mesh_ctl = ath11k_hw_qcn9074_rx_desc_get_mesh_ctl,
++	.rx_desc_get_msdu_start_info2 = ath11k_hw_qcn9074_rx_desc_get_msdu_start_info2,
+ 	.rx_desc_get_ldpc_support = ath11k_hw_qcn9074_rx_desc_get_ldpc_support,
+ 	.rx_desc_get_mpdu_seq_ctl_vld = ath11k_hw_qcn9074_rx_desc_get_mpdu_seq_ctl_vld,
+ 	.rx_desc_get_mpdu_fc_valid = ath11k_hw_qcn9074_rx_desc_get_mpdu_fc_valid,
+@@ -1155,6 +1176,7 @@ const struct ath11k_hw_ops ipq5018_ops = {
+ 	.rx_desc_get_encrypt_type = ath11k_hw_qcn9074_rx_desc_get_encrypt_type,
+ 	.rx_desc_get_decap_type = ath11k_hw_qcn9074_rx_desc_get_decap_type,
+ 	.rx_desc_get_mesh_ctl = ath11k_hw_qcn9074_rx_desc_get_mesh_ctl,
++	.rx_desc_get_msdu_start_info2 = ath11k_hw_qcn9074_rx_desc_get_msdu_start_info2,
+ 	.rx_desc_get_ldpc_support = ath11k_hw_qcn9074_rx_desc_get_ldpc_support,
+ 	.rx_desc_get_mpdu_seq_ctl_vld = ath11k_hw_qcn9074_rx_desc_get_mpdu_seq_ctl_vld,
+ 	.rx_desc_get_mpdu_fc_valid = ath11k_hw_qcn9074_rx_desc_get_mpdu_fc_valid,
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 4996536fbd14..8725e119707b 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -249,6 +249,7 @@ struct ath11k_hw_ops {
+ 	u32 (*rx_desc_get_encrypt_type)(struct hal_rx_desc *desc);
+ 	u8 (*rx_desc_get_decap_type)(struct hal_rx_desc *desc);
+ 	u8 (*rx_desc_get_mesh_ctl)(struct hal_rx_desc *desc);
++	u32 (*rx_desc_get_msdu_start_info2)(struct hal_rx_desc *desc);
+ 	bool (*rx_desc_get_ldpc_support)(struct hal_rx_desc *desc);
+ 	bool (*rx_desc_get_mpdu_seq_ctl_vld)(struct hal_rx_desc *desc);
+ 	bool (*rx_desc_get_mpdu_fc_valid)(struct hal_rx_desc *desc);
 -- 
 2.53.0
 
